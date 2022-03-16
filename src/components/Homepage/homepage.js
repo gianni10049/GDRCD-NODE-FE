@@ -2,8 +2,12 @@ import { Box, Text } from '@chakra-ui/react';
 import Logo from '../Utils/logo';
 import { Formik, Field, Form, ErrorMessage } from 'formik';
 import * as Yup from 'yup';
+import { useLazyQuery } from '@apollo/client';
+import REGISTRATION from '../Utils/Apollo';
 
 const Homepage = () => {
+	const [registrationQuery] = useLazyQuery(REGISTRATION);
+
 	let loginInitialValues = {
 		username: '',
 		password: '',
@@ -21,6 +25,12 @@ const Homepage = () => {
 		<p className='text-red-600 font-TecFont underline pb-1'>{message}</p>
 	);
 
+	const registration = async () => {
+		registrationQuery().then((val) => {
+			console.log(val.data);
+		});
+	};
+
 	return (
 		<Box
 			className={
@@ -30,6 +40,7 @@ const Homepage = () => {
 				className={
 					'flex py-0.5 rounded-md bg-homepage-login-border shadow-homepage-login-backdrop shadow-homepage-login justify-center items-center'
 				}
+				onClick={registration}
 				style={{
 					clipPath:
 						'polygon(0 0, 85% 0%, 100% 0, 100% 85%, 90% 100%, 0 100%)',
