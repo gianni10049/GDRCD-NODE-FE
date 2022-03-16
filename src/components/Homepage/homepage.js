@@ -1,67 +1,125 @@
-import { Box } from '@chakra-ui/react';
-import GlitchClip from 'react-glitch-effect/core/GlitchClip';
-import { useState } from 'react';
-let first_step_image = require('./../../images/first_step.gif');
-let second_step_image = require('./../../images/second_step.gif');
-let third_step_image = require('./../../images/third_step.gif');
+import { Box, Text } from '@chakra-ui/react';
+import Logo from '../Utils/logo';
+import { Formik, Field, Form, ErrorMessage } from 'formik';
+import * as Yup from 'yup';
 
 const Homepage = () => {
-	const [isDisabled, setIsDisabled] = useState(true);
-	const [step, setStep] = useState(1);
-
-	const toggleGlitch = () => {
-		setIsDisabled(false);
-		setStep(2);
-		setTimeout(() => {
-			setIsDisabled(true);
-			setTimeout(() => {
-				setIsDisabled(false);
-				setStep(3);
-				setTimeout(() => {
-					setIsDisabled(true);
-				}, 1000);
-			}, 3000);
-		}, 1000);
+	let loginInitialValues = {
+		username: '',
+		password: '',
 	};
+	const loginSchemaValidation = Yup.object({
+		username: Yup.string().required('required'),
+		password: Yup.string().required('required'),
+	});
+
+	const loginSubmit = (values) => {
+		alert(JSON.stringify(values, null, 2));
+	};
+
+	const renderError = (message) => (
+		<p className='text-red-600 font-TecFont underline pb-1'>{message}</p>
+	);
 
 	return (
 		<Box
 			className={
-				'flex h-screen w-screen m-0 p-0 bg-black justify-center bg-no-repeat bg-homepage-image bg-center justify-center items-center bg-50%'
+				'flex h-screen w-screen m-0 p-0 bg-homepage-image justify-center bg-no-repeat justify-center items-center bg-cover'
 			}>
 			<Box
 				className={
-					'flex w-2/6 h-2/3 border border-red-50 bg-white cursor-pointer'
+					'flex py-0.5 rounded-md bg-homepage-login-border shadow-homepage-login-backdrop shadow-homepage-login justify-center items-center'
 				}
-				onClick={toggleGlitch}>
-				<GlitchClip
-					disabled={isDisabled}
-					duration={1000}
+				style={{
+					clipPath:
+						'polygon(0 0, 85% 0%, 100% 0, 100% 85%, 90% 100%, 0 100%)',
+				}}>
+				<Box
 					className={
-						'flex w-full h-full justify-center items-center bg-[#120D14]'
-					}>
-					{step === 1 && (
-						<img
-							src={first_step_image}
-							className={'w-full h-full'}
-							alt={'first_step_image'}
-						/>
-					)}
-					{step === 2 && (
-						<img
-							src={second_step_image}
-							className={'w-full h-full'}
-							alt={'second_step_image'}
-						/>
-					)}
-					{step === 3 && (
-						<img
-							src={third_step_image}
-							className={'w-full h-full'}
-							alt={'third_step_image'}
-						/>
-					)}
-				</GlitchClip>
+						'rounded-md bg-homepage-login-background py-5 px-10 '
+					}
+					style={{
+						width: 'calc(100% - 2px)',
+						height: 'calc(100% - 2px)',
+						clipPath:
+							'polygon(0 0, 85% 0%, 100% 0, 100% 85%, 90% 100%, 0 100%)',
+					}}>
+					{/*LOGO + NAME */}
+					<Box className={'flex w-full items-center justify-center'}>
+						<Logo />
+						<Text
+							className={
+								'text-6xl m-3 font-TecFont text-homepage-login-text text-border'
+							}>
+							Corrupta
+						</Text>
+					</Box>
+
+					<Box className={'w-full h-1/3 mt-5'}>
+						<Formik
+							initialValues={loginInitialValues}
+							validationSchema={loginSchemaValidation}
+							onSubmit={loginSubmit}>
+							<Form className={'text-center'}>
+								<Box className='w-2/4 m-auto my-5'>
+									<Field
+										name='username'
+										type='text'
+										className='input w-full bg-transparent border-b border-homepage-login-border font-TecFont outline-0 text-homepage-login-border placeholder:text-homepage-login-border'
+										placeholder='username'
+									/>
+									<ErrorMessage
+										name='username'
+										render={renderError}
+									/>
+								</Box>
+
+								<Box className='w-2/4 m-auto my-5'>
+									<Field
+										name='password'
+										type='password'
+										className='input w-full bg-transparent border-b border-homepage-login-border font-TecFont outline-0 text-homepage-login-border placeholder:text-homepage-login-border'
+										placeholder='Password'
+									/>
+									<ErrorMessage
+										name='password'
+										render={renderError}
+									/>
+								</Box>
+
+								<Box
+									className={
+										'flex m-auto bg-homepage-login-border items-center justify-center'
+									}
+									style={{
+										clipPath:
+											'polygon(11% 0, 100% 0, 100% 59%, 89% 100%, 0 100%, 0 40%)',
+										height: '30px',
+										width: '200px',
+									}}>
+									<button
+										type='submit'
+										className={
+											'text-center bg-homepage-login-background'
+										}
+										style={{
+											width: 'calc(100% - 2px)',
+											height: 'calc(100% - 2px)',
+											clipPath:
+												'polygon(11% 0, 100% 0, 100% 59%, 89% 100%, 0 100%, 0 40%)',
+										}}>
+										<Text
+											className={
+												'font-TecFont text-homepage-login-text text-border text-xl tracking-widest'
+											}>
+											Submit
+										</Text>
+									</button>
+								</Box>
+							</Form>
+						</Formik>
+					</Box>
+				</Box>
 			</Box>
 		</Box>
 	);
