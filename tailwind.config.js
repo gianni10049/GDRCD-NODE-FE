@@ -6,7 +6,8 @@ module.exports = {
 				'TecFont': 'TecFont',
 			},
 			backgroundImage: {
-				'homepage-image': "url('./images/homepage/homepage-image.png')",
+				'homepage-image':
+					"url('./../images/homepage/homepage-image.png')",
 			},
 			backgroundSize: {
 				'50%': '80%',

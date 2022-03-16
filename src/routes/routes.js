@@ -1,5 +1,5 @@
-import Page404 from './components/404/404';
-import Homepage from './components/Homepage/homepage';
+import Page404 from '../components/404/404';
+import Homepage from '../components/Homepage/homepage';
 
 const routes = [
 	{

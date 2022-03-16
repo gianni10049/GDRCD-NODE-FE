@@ -22,5 +22,5 @@ code {
 
 @font-face {
   font-family: 'TecFont';
-  src: url('./fonts/AquireLight.otf');
+  src: url('../../fonts/AquireLight.otf');
 }

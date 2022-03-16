@@ -1,5 +1,5 @@
 import { Box, Image } from '@chakra-ui/react';
-import homepage_logo from '../../images/logo/logo2.png';
+import homepage_logo from '../../static/images/logo/logo2.png';
 
 const Logo = (props) => {
 	let { width, heigth } = props;

@@ -1,7 +1,7 @@
-import './App.css';
+import './static/css/App.css';
 import { BrowserRouter as Router, Routes, Route } from 'react-router-dom';
 
-import routes from './routes';
+import routes from './routes/routes';
 
 function App() {
 	return (
