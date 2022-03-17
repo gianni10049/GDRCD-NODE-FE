@@ -33,7 +33,7 @@ const Homepage = () => {
 	};
 	const registrationSchemaValidation = Yup.object({
 		username: Yup.string().required('required'),
-		email: Yup.string().email('Only valid emails'),
+		email: Yup.string().email('Only valid emails').required('required'),
 		password: Yup.string().required('required'),
 		password_confirm: Yup.string().required('required'),
 	});
@@ -42,11 +42,13 @@ const Homepage = () => {
 		email: '',
 	};
 	const recPassSchemaValidation = Yup.object({
-		email: Yup.string().email('Only valid emails'),
+		email: Yup.string().email('Only valid emails').required('required'),
 	});
 
 	const renderError = (message) => (
-		<p className='text-red-600 font-TecFont underline pb-1'>{message}</p>
+		<p className='text-red-600 font-TecFont tracking-wide pb-1 font-bold'>
+			{message}
+		</p>
 	);
 
 	const loginSubmit = (data) => {
@@ -135,7 +137,7 @@ const Homepage = () => {
 		<>
 			<Box
 				className={
-					'flex  z-50 h-screen w-screen m-0 p-0 bg-homepage-image justify-center bg-no-repeat justify-center items-center bg-cover'
+					'flex  z-50 h-screen w-screen m-0 p-0 bg-homepage-image justify-center bg-no-repeat justify-center items-center bg-cover select-none'
 				}>
 				<Particles
 					id='tsparticles'
@@ -165,11 +167,15 @@ const Homepage = () => {
 							className={
 								'flex w-full items-center justify-center'
 							}>
-							<Logo />
+							<Logo
+								className={
+									'hover:bg-homepage-login-text hover:border-homepage-login-border'
+								}
+							/>
 
 							<Text
 								className={
-									'text-6xl m-3 font-TecFont text-homepage-login-text text-border'
+									'text-6xl m-3 font-TecFont text-homepage-login-text text-border hover:text-homepage-login-border tracking-wider'
 								}>
 								Corrupta
 							</Text>
@@ -186,7 +192,8 @@ const Homepage = () => {
 											<Field
 												name='username'
 												type='text'
-												className='input w-full bg-transparent border-b border-homepage-login-border font-TecFont outline-0 text-homepage-login-border placeholder:text-homepage-login-border'
+												className='input w-full bg-transparent border-b border-homepage-login-border font-TecFont outline-0 text-homepage-login-border placeholder:text-homepage-login-border
+												focus:text-homepage-login-light focus:placeholder:text-homepage-login-light hover:placeholder:text-homepage-login-light'
 												placeholder='username'
 											/>
 											<ErrorMessage
@@ -199,7 +206,8 @@ const Homepage = () => {
 											<Field
 												name='password'
 												type='password'
-												className='input w-full bg-transparent border-b border-homepage-login-border font-TecFont outline-0 text-homepage-login-border placeholder:text-homepage-login-border'
+												className='input w-full bg-transparent border-b border-homepage-login-border font-TecFont outline-0 text-homepage-login-border placeholder:text-homepage-login-border
+												focus:text-homepage-login-light focus:placeholder:text-homepage-login-light hover:placeholder:text-homepage-login-light'
 												placeholder='Password'
 											/>
 											<ErrorMessage
@@ -210,7 +218,7 @@ const Homepage = () => {
 
 										<Box
 											className={
-												'flex m-auto bg-homepage-login-border items-center justify-center'
+												'flex m-auto bg-homepage-login-border items-center justify-center hover:bg-homepage-login-light'
 											}
 											style={{
 												clipPath:
@@ -231,7 +239,7 @@ const Homepage = () => {
 												}}>
 												<Text
 													className={
-														'font-TecFont text-homepage-login-text text-border text-xl tracking-widest'
+														'font-TecFont text-homepage-login-text text-border text-xl tracking-widest hover:text-homepage-login-light'
 													}>
 													Submit
 												</Text>
@@ -252,7 +260,8 @@ const Homepage = () => {
 											<Field
 												name='username'
 												type='text'
-												className='input w-full bg-transparent border-b border-homepage-login-border font-TecFont outline-0 text-homepage-login-border placeholder:text-homepage-login-border'
+												className='input w-full bg-transparent border-b border-homepage-login-border font-TecFont outline-0 text-homepage-login-border placeholder:text-homepage-login-border
+												focus:text-homepage-login-light focus:placeholder:text-homepage-login-light hover:placeholder:text-homepage-login-light'
 												placeholder='username'
 											/>
 											<ErrorMessage
@@ -264,7 +273,8 @@ const Homepage = () => {
 											<Field
 												name='email'
 												type='email'
-												className='input w-full bg-transparent border-b border-homepage-login-border font-TecFont outline-0 text-homepage-login-border placeholder:text-homepage-login-border'
+												className='input w-full bg-transparent border-b border-homepage-login-border font-TecFont outline-0 text-homepage-login-border placeholder:text-homepage-login-border
+												focus:text-homepage-login-light focus:placeholder:text-homepage-login-light hover:placeholder:text-homepage-login-light'
 												placeholder='email'
 											/>
 											<ErrorMessage
@@ -277,7 +287,8 @@ const Homepage = () => {
 											<Field
 												name='password'
 												type='password'
-												className='input w-full bg-transparent border-b border-homepage-login-border font-TecFont outline-0 text-homepage-login-border placeholder:text-homepage-login-border'
+												className='input w-full bg-transparent border-b border-homepage-login-border font-TecFont outline-0 text-homepage-login-border placeholder:text-homepage-login-border
+												focus:text-homepage-login-light focus:placeholder:text-homepage-login-light hover:placeholder:text-homepage-login-light'
 												placeholder='Password'
 											/>
 											<ErrorMessage
@@ -290,7 +301,8 @@ const Homepage = () => {
 											<Field
 												name='password_confirm'
 												type='password'
-												className='input w-full bg-transparent border-b border-homepage-login-border font-TecFont outline-0 text-homepage-login-border placeholder:text-homepage-login-border'
+												className='input w-full bg-transparent border-b border-homepage-login-border font-TecFont outline-0 text-homepage-login-border placeholder:text-homepage-login-border
+												focus:text-homepage-login-light focus:placeholder:text-homepage-login-light hover:placeholder:text-homepage-login-light'
 												placeholder='Password Confirm'
 											/>
 											<ErrorMessage
@@ -301,7 +313,7 @@ const Homepage = () => {
 
 										<Box
 											className={
-												'flex m-auto bg-homepage-login-border items-center justify-center'
+												'flex m-auto bg-homepage-login-border items-center justify-center hover:bg-homepage-login-light'
 											}
 											style={{
 												clipPath:
@@ -322,7 +334,7 @@ const Homepage = () => {
 												}}>
 												<Text
 													className={
-														'font-TecFont text-homepage-login-text text-border text-xl tracking-widest'
+														'font-TecFont text-homepage-login-text text-border text-xl tracking-widest hover:text-homepage-login-light '
 													}>
 													Submit
 												</Text>
@@ -341,7 +353,8 @@ const Homepage = () => {
 											<Field
 												name='email'
 												type='email'
-												className='input w-full bg-transparent border-b border-homepage-login-border font-TecFont outline-0 text-homepage-login-border placeholder:text-homepage-login-border'
+												className='input w-full bg-transparent border-b border-homepage-login-border font-TecFont outline-0 text-homepage-login-border placeholder:text-homepage-login-border
+												focus:text-homepage-login-light focus:placeholder:text-homepage-login-light hover:placeholder:text-homepage-login-light'
 												placeholder='Email'
 											/>
 											<ErrorMessage
@@ -352,7 +365,7 @@ const Homepage = () => {
 
 										<Box
 											className={
-												'flex m-auto bg-homepage-login-border items-center justify-center'
+												'flex m-auto bg-homepage-login-border items-center justify-center hover:bg-homepage-login-light'
 											}
 											style={{
 												clipPath:
@@ -373,7 +386,7 @@ const Homepage = () => {
 												}}>
 												<Text
 													className={
-														'font-TecFont text-homepage-login-text text-border text-xl tracking-widest'
+														'font-TecFont text-homepage-login-text text-border text-xl tracking-widest hover:text-homepage-login-light'
 													}>
 													Submit
 												</Text>
