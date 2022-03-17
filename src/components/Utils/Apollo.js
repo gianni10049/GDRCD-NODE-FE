@@ -1,8 +1,21 @@
 import { gql } from '@apollo/client';
 
 const REGISTRATION = gql`
-	{
-		registration
+	mutation registration(
+		$username: String!
+		$password: String!
+		$password_confirm: String!
+		$email: String!
+	) {
+		registration(
+			username: $username
+			password: $password
+			password_confirm: $password_confirm
+			email: $email
+		) {
+			response
+			responseStatus
+		}
 	}
 `;
 

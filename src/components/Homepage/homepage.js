@@ -2,15 +2,17 @@ import { Box, Text } from '@chakra-ui/react';
 import Logo from '../Utils/logo';
 import { Formik, Field, Form, ErrorMessage } from 'formik';
 import * as Yup from 'yup';
-import { useLazyQuery } from '@apollo/client';
+import { useMutation } from '@apollo/client';
 import REGISTRATION from '../Utils/Apollo';
 import Particles from 'react-tsparticles';
 import config_particles from './../Particles/homepage.json';
 import { useState } from 'react';
+import { useToast } from '@chakra-ui/react';
 
 const Homepage = () => {
-	const [registrationQuery] = useLazyQuery(REGISTRATION);
+	const [registrationQuery] = useMutation(REGISTRATION);
 	const [formContent, setFormContent] = useState('login');
+	const toast = useToast();
 
 	let loginInitialValues = {
 		username: '',
@@ -23,11 +25,13 @@ const Homepage = () => {
 
 	let registrationInitialValues = {
 		username: '',
+		email: '',
 		password: '',
 		password_confirm: '',
 	};
 	const registrationSchemaValidation = Yup.object({
 		username: Yup.string().required('required'),
+		email: Yup.string().email('Only valid emails'),
 		password: Yup.string().required('required'),
 		password_confirm: Yup.string().required('required'),
 	});
@@ -47,8 +51,31 @@ const Homepage = () => {
 		alert('login submit!');
 	};
 
-	const registrationSubmit = async () => {
-		alert('registration submit!');
+	const registrationSubmit = async (data) => {
+		registrationQuery({
+			variables: {
+				username: data.username,
+				email: data.email,
+				password: data.password,
+				password_confirm: data.password_confirm,
+			},
+		}).then((resp) => {
+			if (resp.data.registration) {
+				let status = resp.data.registration.responseStatus;
+				let response = resp.data.registration.response;
+
+				toast({
+					title: response,
+					status: status,
+					duration: 9000,
+					isClosable: true,
+				});
+
+				if (status === 'success') {
+					setFormContent('login');
+				}
+			}
+		});
 	};
 
 	const recPassSubmit = async () => {
@@ -181,6 +208,18 @@ const Homepage = () => {
 											/>
 											<ErrorMessage
 												name='username'
+												render={renderError}
+											/>
+										</Box>
+										<Box className='w-2/4 m-auto my-5'>
+											<Field
+												name='email'
+												type='email'
+												className='input w-full bg-transparent border-b border-homepage-login-border font-TecFont outline-0 text-homepage-login-border placeholder:text-homepage-login-border'
+												placeholder='email'
+											/>
+											<ErrorMessage
+												name='email'
 												render={renderError}
 											/>
 										</Box>
