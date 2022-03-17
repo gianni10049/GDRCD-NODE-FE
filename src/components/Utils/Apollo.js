@@ -19,4 +19,14 @@ const REGISTRATION = gql`
 	}
 `;
 
-export default REGISTRATION;
+const LOGIN = gql`
+	query login($username: String!, $password: String!) {
+		login(username: $username, password: $password) {
+			response
+			responseStatus
+			token
+		}
+	}
+`;
+
+export { REGISTRATION, LOGIN };

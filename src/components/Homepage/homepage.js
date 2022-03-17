@@ -2,8 +2,8 @@ import { Box, Text } from '@chakra-ui/react';
 import Logo from '../Utils/logo';
 import { Formik, Field, Form, ErrorMessage } from 'formik';
 import * as Yup from 'yup';
-import { useMutation } from '@apollo/client';
-import REGISTRATION from '../Utils/Apollo';
+import { useLazyQuery, useMutation } from '@apollo/client';
+import { REGISTRATION, LOGIN } from '../Utils/Apollo';
 import Particles from 'react-tsparticles';
 import config_particles from './../Particles/homepage.json';
 import { useState } from 'react';
@@ -11,6 +11,7 @@ import { useToast } from '@chakra-ui/react';
 
 const Homepage = () => {
 	const [registrationQuery] = useMutation(REGISTRATION);
+	const [loginQuery] = useLazyQuery(LOGIN);
 	const [formContent, setFormContent] = useState('login');
 	const toast = useToast();
 
@@ -47,8 +48,35 @@ const Homepage = () => {
 		<p className='text-red-600 font-TecFont underline pb-1'>{message}</p>
 	);
 
-	const loginSubmit = () => {
-		alert('login submit!');
+	const loginSubmit = (data) => {
+		loginQuery({
+			variables: {
+				username: data.username,
+				password: data.password,
+			},
+		}).then((resp) => {
+			if (resp.data.login) {
+				let status = resp.data.login.responseStatus;
+				let token = resp.data.login.token;
+				let response = resp.data.login.response;
+
+				if (status === 'success') {
+					localStorage.clear();
+					localStorage.setItem('token12', token);
+
+					toast({
+						title: response,
+						status: status,
+						duration: 9000,
+						isClosable: true,
+					});
+
+					setTimeout(function () {
+						window.location.href = '/main';
+					}, 2000);
+				}
+			}
+		});
 	};
 
 	const registrationSubmit = async (data) => {
