@@ -3,7 +3,7 @@ import Logo from '../Utils/logo';
 import { Formik, Field, Form, ErrorMessage } from 'formik';
 import * as Yup from 'yup';
 import { useLazyQuery, useMutation } from '@apollo/client';
-import { REGISTRATION, LOGIN } from '../Utils/Apollo';
+import { REGISTRATION, LOGIN, RECPASS } from '../Utils/Apollo';
 import Particles from 'react-tsparticles';
 import config_particles from './../Particles/homepage.json';
 import { useState } from 'react';
@@ -12,6 +12,7 @@ import { useToast } from '@chakra-ui/react';
 const Homepage = () => {
 	const [registrationQuery] = useMutation(REGISTRATION);
 	const [loginQuery] = useLazyQuery(LOGIN);
+	const [recPassQuery] = useLazyQuery(RECPASS);
 	const [formContent, setFormContent] = useState('login');
 	const toast = useToast();
 
@@ -60,16 +61,16 @@ const Homepage = () => {
 				let token = resp.data.login.token;
 				let response = resp.data.login.response;
 
+				toast({
+					title: response,
+					status: status,
+					duration: 9000,
+					isClosable: true,
+				});
+
 				if (status === 'success') {
 					localStorage.clear();
 					localStorage.setItem('token', token);
-
-					toast({
-						title: response,
-						status: status,
-						duration: 9000,
-						isClosable: true,
-					});
 
 					setTimeout(function () {
 						window.location.href = '/main';
@@ -106,8 +107,28 @@ const Homepage = () => {
 		});
 	};
 
-	const recPassSubmit = async () => {
-		alert('rec pass submit!');
+	const recPassSubmit = async (data) => {
+		recPassQuery({
+			variables: {
+				email: data.email,
+			},
+		}).then((resp) => {
+			if (resp.data.recPass) {
+				let status = resp.data.recPass.responseStatus;
+				let response = resp.data.recPass.response;
+
+				toast({
+					title: response,
+					status: status,
+					duration: 9000,
+					isClosable: true,
+				});
+
+				if (status === 'success') {
+					setFormContent('login');
+				}
+			}
+		});
 	};
 
 	return (

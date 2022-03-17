@@ -1,5 +1,4 @@
 import { gql } from '@apollo/client';
-
 const REGISTRATION = gql`
 	mutation registration(
 		$username: String!
@@ -29,4 +28,13 @@ const LOGIN = gql`
 	}
 `;
 
-export { REGISTRATION, LOGIN };
+const RECPASS = gql`
+	query recPass($email: String!) {
+		recPass(email: $email) {
+			response
+			responseStatus
+		}
+	}
+`;
+
+export { REGISTRATION, LOGIN, RECPASS };
