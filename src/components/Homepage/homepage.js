@@ -405,7 +405,7 @@ const Homepage = () => {
 								<Box className={'flex w-1/2 justify-center'}>
 									<span
 										className={
-											'cursor-pointer hover:underline'
+											'cursor-pointer hover:text-homepage-login-light  hover:underline'
 										}
 										onClick={() =>
 											setFormContent('registration')
@@ -419,7 +419,7 @@ const Homepage = () => {
 								<Box className={'flex w-1/2 justify-center'}>
 									<span
 										className={
-											'cursor-pointer hover:underline'
+											'cursor-pointer hover:text-homepage-login-light  hover:underline'
 										}
 										onClick={() => setFormContent('login')}>
 										Login
@@ -430,7 +430,7 @@ const Homepage = () => {
 								<Box className={'flex w-1/2 justify-center'}>
 									<span
 										className={
-											'cursor-pointer hover:underline'
+											'cursor-pointer hover:text-homepage-login-light hover:underline'
 										}
 										onClick={() =>
 											setFormContent('recPass')
