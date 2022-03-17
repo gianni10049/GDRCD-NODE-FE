@@ -62,7 +62,7 @@ const Homepage = () => {
 
 				if (status === 'success') {
 					localStorage.clear();
-					localStorage.setItem('token12', token);
+					localStorage.setItem('token', token);
 
 					toast({
 						title: response,
@@ -73,7 +73,7 @@ const Homepage = () => {
 
 					setTimeout(function () {
 						window.location.href = '/main';
-					}, 2000);
+					}, 1500);
 				}
 			}
 		});
