@@ -1,0 +1,26 @@
+# This file was generated based on ".graphqlconfig". Do not edit manually.
+
+schema {
+    query: Query
+    mutation: Mutation
+}
+
+type Mutation {
+    registration(email: String!, password: String!, password_confirm: String!, username: String!): genericResponse
+}
+
+type Query {
+    login(password: String!, username: String!): loginResponse
+    recPass(email: String!): genericResponse
+}
+
+type genericResponse {
+    response: String!
+    responseStatus: String!
+}
+
+type loginResponse {
+    response: String!
+    responseStatus: String!
+    token: String
+}
