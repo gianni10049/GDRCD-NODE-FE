@@ -1,4 +1,5 @@
 import { gql } from '@apollo/client';
+
 const REGISTRATION = gql`
 	mutation registration(
 		$username: String!

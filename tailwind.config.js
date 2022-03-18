@@ -23,7 +23,7 @@ module.exports = {
 				},
 			},
 			boxShadow: {
-				'homepage-login': '0 0 80px -12px rgba(0, 0, 0, 0.3)',
+				'homepage-login': '0 0 15px -5px rgba(0, 0, 0, 1)',
 				'homepage-logo': 'inset 0px 0px 10px -5px #000000',
 			},
 		},

@@ -10,8 +10,20 @@ type Mutation {
 }
 
 type Query {
+    charactersList(token: String!): [characterData]
     login(password: String!, username: String!): loginResponse
     recPass(email: String!): genericResponse
+    setCharacter(characterId: Int!, token: String!): loginResponse
+}
+
+type characterData {
+    age: Int
+    id: ID
+    miniavatar: String
+    name: String
+    nickname: String
+    profilePic: String
+    surname: String
 }
 
 type genericResponse {

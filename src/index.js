@@ -3,19 +3,10 @@ import ReactDOM from 'react-dom';
 import './static/css/index.css';
 import App from './App';
 import { ChakraProvider } from '@chakra-ui/react';
-import {
-	ApolloClient,
-	InMemoryCache,
-	ApolloProvider,
-	HttpLink,
-} from '@apollo/client';
+import { ApolloProvider } from '@apollo/client';
+import { createApolloClient } from './Apollo/Apollo';
 
-const httpLink = new HttpLink({ uri: 'http://localhost:4000/graphql' });
-
-const client = new ApolloClient({
-	link: httpLink,
-	cache: new InMemoryCache(),
-});
+const client = createApolloClient();
 
 ReactDOM.render(
 	<ApolloProvider client={client}>

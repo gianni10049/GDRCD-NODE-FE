@@ -2,17 +2,14 @@ import { Box, Text } from '@chakra-ui/react';
 import Logo from '../Utils/logo';
 import { Formik, Field, Form, ErrorMessage } from 'formik';
 import * as Yup from 'yup';
-import { useLazyQuery, useMutation } from '@apollo/client';
-import { REGISTRATION, LOGIN, RECPASS } from '../Utils/Apollo';
+import { REGISTRATION, LOGIN, RECPASS } from '../../Apollo/Homepage';
 import Particles from 'react-tsparticles';
 import config_particles from './../Particles/homepage.json';
 import { useState } from 'react';
 import { useToast } from '@chakra-ui/react';
+import { GQLmutation, GQLQuery } from '../../Apollo/GQL';
 
 const Homepage = () => {
-	const [registrationQuery] = useMutation(REGISTRATION);
-	const [loginQuery] = useLazyQuery(LOGIN);
-	const [recPassQuery] = useLazyQuery(RECPASS);
 	const [formContent, setFormContent] = useState('login');
 	const toast = useToast();
 
@@ -52,16 +49,14 @@ const Homepage = () => {
 	);
 
 	const loginSubmit = (data) => {
-		loginQuery({
-			variables: {
-				username: data.username,
-				password: data.password,
-			},
+		GQLQuery(LOGIN, {
+			username: data.username,
+			password: data.password,
 		}).then((resp) => {
-			if (resp.data.login) {
-				let status = resp.data.login.responseStatus;
-				let token = resp.data.login.token;
-				let response = resp.data.login.response;
+			if (resp.login) {
+				let status = resp.login.responseStatus;
+				let token = resp.login.token;
+				let response = resp.login.response;
 
 				toast({
 					title: response,
@@ -75,7 +70,7 @@ const Homepage = () => {
 					localStorage.setItem('token', token);
 
 					setTimeout(function () {
-						window.location.href = '/main';
+						window.location.href = '/charSelect';
 					}, 1500);
 				}
 			}
@@ -83,17 +78,15 @@ const Homepage = () => {
 	};
 
 	const registrationSubmit = async (data) => {
-		registrationQuery({
-			variables: {
-				username: data.username,
-				email: data.email,
-				password: data.password,
-				password_confirm: data.password_confirm,
-			},
+		GQLmutation(REGISTRATION, {
+			username: data.username,
+			email: data.email,
+			password: data.password,
+			password_confirm: data.password_confirm,
 		}).then((resp) => {
-			if (resp.data.registration) {
-				let status = resp.data.registration.responseStatus;
-				let response = resp.data.registration.response;
+			if (resp.registration) {
+				let status = resp.registration.responseStatus;
+				let response = resp.registration.response;
 
 				toast({
 					title: response,
@@ -110,14 +103,12 @@ const Homepage = () => {
 	};
 
 	const recPassSubmit = async (data) => {
-		recPassQuery({
-			variables: {
-				email: data.email,
-			},
+		GQLQuery(RECPASS, {
+			email: data.email,
 		}).then((resp) => {
-			if (resp.data.recPass) {
-				let status = resp.data.recPass.responseStatus;
-				let response = resp.data.recPass.response;
+			if (resp.recPass) {
+				let status = resp.recPass.responseStatus;
+				let response = resp.recPass.response;
 
 				toast({
 					title: response,
