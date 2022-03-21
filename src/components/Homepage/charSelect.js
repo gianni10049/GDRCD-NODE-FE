@@ -134,7 +134,7 @@ const CharacterSelect = () => {
 						))}
 						<Tooltip
 							label={'Create new character'}
-							bg={'rgba(6,52,38,0.73)'}>
+							bg={'rgba(6,52,38,1)'}>
 							<Box
 								className={
 									'border border-homepage-login-border w-1/2 m-auto py-1 mt-2 shadow-homepage-logo items-center ' +
