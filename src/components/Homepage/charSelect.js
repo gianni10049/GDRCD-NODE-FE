@@ -1,6 +1,6 @@
 import Particles from 'react-tsparticles';
 import config_particles from '../Particles/homepage.json';
-import { Box, Image, Text, Tooltip, useToast } from '@chakra-ui/react';
+import { Box, Text, Tooltip, useToast } from '@chakra-ui/react';
 import Logo from '../Utils/logo';
 import { GQLQuery } from '../../Apollo/GQL';
 import { CHAR_LIST, SET_CHAR } from '../../Apollo/Characters';
@@ -104,12 +104,15 @@ const CharacterSelect = () => {
 								onClick={() => setCharacter(item.id)}>
 								<Box
 									className={
-										'flex w-20 h-20 border border-homepage-login-border ml-3 shadow-homepage-login items-center'
+										'w-20 border border-homepage-login-border ml-3 shadow-homepage-login items-center'
 									}>
-									<Image
-										src={item.miniavatar}
-										className={
-											'w-full h-full text-red-600 opacity-60'
+									<Box
+										className={'ct-ratio-1-1'}
+										backgroundSize={'cover'}
+										backgroundPosition={'center center'}
+										backgroundRepeat={'no-repeat'}
+										backgroundImage={
+											'url(' + item.miniavatar + ')'
 										}
 									/>
 								</Box>
