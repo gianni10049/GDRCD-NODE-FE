@@ -14,6 +14,7 @@ type Query {
     login(password: String!, username: String!): loginResponse
     recPass(email: String!): genericResponse
     setCharacter(characterId: Int!, token: String!): loginResponse
+    tokenControl(account_needed: Boolean, character_needed: Boolean, token: String!): genericResponse
 }
 
 type characterData {
