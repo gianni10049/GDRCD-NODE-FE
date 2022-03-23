@@ -26,6 +26,12 @@ module.exports = {
 				'homepage-login': '0 0 15px -5px rgba(0, 0, 0, 1)',
 				'homepage-logo': 'inset 0px 0px 10px -5px #000000',
 			},
+			transitionProperty: {
+				'ct-animate-all-slow': 'all 0.6s',
+				'ct-animate-all-fast': 'all 0.2s',
+				'ct-animate-width-slow': 'max-width 0.6s',
+				'ct-animate-width-fast': 'max-width 0.2s',
+			},
 		},
 	},
 	plugins: [],

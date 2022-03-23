@@ -1,6 +1,7 @@
 import Page404 from '../components/404/404';
 import Homepage from '../components/Homepage/homepage';
 import CharacterSelect from '../components/Homepage/charSelect';
+import { Main } from '../components/Main/Main';
 
 const routes = [
 	{
@@ -10,6 +11,7 @@ const routes = [
 		account_needed: false,
 		character_needed: false,
 		modal: false,
+		nav: false,
 	},
 	{
 		path: 'charSelect',
@@ -18,14 +20,16 @@ const routes = [
 		account_needed: true,
 		character_needed: false,
 		modal: false,
+		nav: false,
 	},
 	{
 		path: 'main',
 		key: 'main',
-		component: <CharacterSelect />,
+		component: <Main />,
 		account_needed: true,
 		character_needed: true,
 		modal: false,
+		nav: true,
 	},
 	{
 		path: '404',
@@ -34,6 +38,7 @@ const routes = [
 		account_needed: false,
 		character_needed: false,
 		modal: false,
+		nav: false,
 	},
 ];
 

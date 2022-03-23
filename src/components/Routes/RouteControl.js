@@ -1,8 +1,11 @@
 // Hook (use-auth.js)
 import React, { useState, useEffect, useContext, createContext } from 'react';
-import { TOKEN_CONTROL } from '../../Apollo/Generic';
-import { GQLQuery } from '../../Apollo/GQL';
+import { TOKEN_CONTROL } from '../../apollo/Generic';
+import { GQLQuery } from '../../apollo/GQL';
 import Page404 from '../404/404';
+import Header from '../Core/Header';
+import { Box, Container } from '@chakra-ui/react';
+import PlaceholderImage from '../../static/images/homepage/pattern.png';
 
 const authContext = createContext(false);
 
@@ -34,11 +37,34 @@ function useProvideAuth({ character_needed, account_needed }) {
 	return { auth, inProgress };
 }
 
-export const RouteControl = ({ children }) => {
+export const RouteControl = ({ children, data }) => {
 	const auth = useAuth();
+	const actual_url = window.location.pathname;
 
 	if (auth.auth) {
-		return <>{children}</>;
+		if (data.nav) {
+			return (
+				<>
+					<Box id={'ct-main-navigation-bar'} gap={4}>
+						{/*LEFT*/}
+						<Header actual_url={actual_url} />
+						{/*RIGHT*/}
+						<Box
+							bg={'green.800'}
+							w={'full'}
+							minH={'100vh'}
+							bgImg={PlaceholderImage}
+							backgroundRepeat={'repeat'}
+							id={'global_windows'}>
+							{/*RIGHT content*/}
+							<Container maxW={'1440px'}>{children}</Container>
+						</Box>
+					</Box>
+				</>
+			);
+		} else {
+			return <>{children}</>;
+		}
 	}
 
 	if (auth.inProgress) {

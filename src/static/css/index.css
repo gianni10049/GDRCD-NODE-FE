@@ -25,6 +25,12 @@ code {
   src: url('../../fonts/AquireLight.otf');
 }
 
+*{
+  /*box-shadow: 0 0 1px 0 inset aqua*/
+}
+
+body {font-family: "HelveticaNeue-Light", "Helvetica Neue Light", "Helvetica Neue", Helvetica, Arial, "Lucida Grande", sans-serif;font-weight: 300;}
+
 /* ASPECT RATIO BOXES */
 .ct-ratio-1-1,
 .ct-ratio-4-3,
