@@ -1,18 +1,22 @@
-import { Box, Image } from '@chakra-ui/react';
+import { Box } from '@chakra-ui/react';
 import homepage_logo from '../../static/images/logo/logo2.png';
 
 const Logo = (props) => {
-	let { width, heigth, className } = props;
-
-	width = width ?? 'w-20';
-	heigth = heigth ?? 'h-20';
+	let { className } = props;
 
 	return (
 		<Box
-			className={`flex ${width} ${heigth} overflow-hidden rounded-full border border-homepage-login-border  items-center justify-center text-red-600 shadow-homepage-logo ${className}`}>
-			<Image
-				src={homepage_logo}
-				className={'w-9/12 h-9/12 text-red-600 opacity-60'}
+			rounded={'full'}
+			border={'1px solid rgba(16,164,120,0.73)'}
+			bg={'rgba(6,52,38,0.73)'}
+			boxShadow={'inset 0px 0px 10px -5px #000000'}
+			className={className}>
+			<Box
+				className={'ct-ratio-1-1'}
+				backgroundSize={'70% auto'}
+				backgroundPosition={'center center'}
+				backgroundRepeat={'no-repeat'}
+				backgroundImage={'url(' + homepage_logo + ')'}
 			/>
 		</Box>
 	);
