@@ -29,6 +29,18 @@ code {
   /*box-shadow: 0 0 1px 0 inset aqua*/
 }
 
+.ct-animate-slow {
+  transition: all 0.6s;
+}
+
+.ct-animate-fast {
+  transition: all 0.2s;
+}
+
+.ct-animate-slowest {
+  transition: all 1s;
+}
+
 body {font-family: "HelveticaNeue-Light", "Helvetica Neue Light", "Helvetica Neue", Helvetica, Arial, "Lucida Grande", sans-serif;font-weight: 300;}
 
 /* ASPECT RATIO BOXES */

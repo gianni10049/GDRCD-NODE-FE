@@ -28,6 +28,7 @@ module.exports = {
 			},
 			transitionProperty: {
 				'ct-animate-all-slow': 'all 0.6s',
+				'ct-animate-all-slowest': 'all 2s',
 				'ct-animate-all-fast': 'all 0.2s',
 				'ct-animate-width-slow': 'max-width 0.6s',
 				'ct-animate-width-fast': 'max-width 0.2s',

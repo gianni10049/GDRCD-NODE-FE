@@ -11,7 +11,6 @@ const NavLink = ({ children, link, icon, hovered }) => {
 		<Link
 			as={ReachLink}
 			to={link}
-			//color={actual_url === link ? 'white' : 'gray.500'}
 			color='gray.500'
 			py={2}
 			px={4}
@@ -23,13 +22,13 @@ const NavLink = ({ children, link, icon, hovered }) => {
 			}}
 			_active={{
 				color: 'white',
-			}}
-			className={'transition-ct-animate-all-slow'}>
+			}}>
 			<Flex alignItems={'center'}>
-				<Icon as={icon} boxSize={10} d={'inline-block'} />
+				<Icon as={icon} boxSize={8} d={'inline-block'} />
 				<Box
 					maxW={hovered ? '500px' : '0px'}
 					d={'inline-block'}
+					className={'ct-animate-slow'}
 					overflow={'hidden'}>
 					<Text ml={2} d={'inline-block'}>
 						{children}
@@ -52,13 +51,10 @@ const Header = () => {
 				top={0}
 				minH={'100vh'}
 				zIndex={1}
-				// p={4}
 				onPointerOver={() => setHover(true)}
-				onPointerOut={() => setHover(false)}
-				// opacity={0.5}
-			>
+				onPointerOut={() => setHover(false)}>
 				{/*Links*/}
-				<Box w={'50px'} mt={8} mb={3} ml={3}>
+				<Box w={'50px'} mt={8} mb={3} mx={3}>
 					<Logo />
 				</Box>
 				<Box d={'block'}>
