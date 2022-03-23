@@ -2,12 +2,12 @@ import { Box, Text } from '@chakra-ui/react';
 import Logo from '../Utils/logo';
 import { Formik, Field, Form, ErrorMessage } from 'formik';
 import * as Yup from 'yup';
-import { REGISTRATION, LOGIN, RECPASS } from '../../Apollo/Homepage';
+import { REGISTRATION, LOGIN, RECPASS } from '../../apollo/Homepage';
 import Particles from 'react-tsparticles';
 import config_particles from './../Particles/homepage.json';
 import { useState } from 'react';
 import { useToast } from '@chakra-ui/react';
-import { GQLmutation, GQLQuery } from '../../Apollo/GQL';
+import { GQLmutation, GQLQuery } from '../../apollo/GQL';
 
 const Homepage = () => {
 	const [formContent, setFormContent] = useState('login');

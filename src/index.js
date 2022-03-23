@@ -4,7 +4,7 @@ import './static/css/index.css';
 import App from './App';
 import { ChakraProvider } from '@chakra-ui/react';
 import { ApolloProvider } from '@apollo/client';
-import { createApolloClient } from './Apollo/Apollo';
+import { createApolloClient } from './apollo/Apollo';
 
 const client = createApolloClient();
 

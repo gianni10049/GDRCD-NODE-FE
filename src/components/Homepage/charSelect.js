@@ -2,8 +2,8 @@ import Particles from 'react-tsparticles';
 import config_particles from '../Particles/homepage.json';
 import { Box, Text, Tooltip, useToast } from '@chakra-ui/react';
 import Logo from '../Utils/logo';
-import { GQLQuery } from '../../Apollo/GQL';
-import { CHAR_LIST, SET_CHAR } from '../../Apollo/Characters';
+import { GQLQuery } from '../../apollo/GQL';
+import { CHAR_LIST, SET_CHAR } from '../../apollo/Characters';
 import { useEffect, useState } from 'react';
 
 const CharacterSelect = () => {
