@@ -5,7 +5,7 @@ import { GQLQuery } from '../../apollo/GQL';
 import Page404 from '../404/404';
 import Header from '../Core/Header';
 import { Box, Container } from '@chakra-ui/react';
-import PlaceholderImage from '../../static/images/homepage/pattern.png';
+import PlaceholderImage from '../../static/images/patterns/pattern9.png';
 
 const authContext = createContext(false);
 
@@ -54,6 +54,7 @@ export const RouteControl = ({ children, data }) => {
 							w={'full'}
 							minH={'100vh'}
 							bgImg={PlaceholderImage}
+							bgSize={'50px'}
 							backgroundRepeat={'repeat'}
 							id={'global_windows'}>
 							{/*RIGHT content*/}

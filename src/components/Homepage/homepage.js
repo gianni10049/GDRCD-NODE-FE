@@ -1,4 +1,4 @@
-import { Box, Text } from '@chakra-ui/react';
+import { Box, Button, Text } from '@chakra-ui/react';
 import Logo from '../Utils/logo';
 import { Formik, Field, Form, ErrorMessage } from 'formik';
 import * as Yup from 'yup';
@@ -127,64 +127,82 @@ const Homepage = () => {
 	return (
 		<>
 			<Box
-				className={
-					'flex  z-50 h-screen w-screen m-0 p-0 bg-homepage-image justify-center bg-no-repeat justify-center items-center bg-cover select-none'
-				}>
+				d={'flex'}
+				zIndex={50}
+				m={0}
+				p={0}
+				justifyContent={'center'}
+				backgroundRepeat={'no-repeat'}
+				backgroundSize={'cover'}
+				alignItems={'center'}
+				userSelect={'none'}
+				className={'h-screen w-screen bg-homepage-image'}>
 				<Particles
 					id='tsparticles'
 					options={config_particles}
 					className={'z-0'}
 				/>
 				<Box
-					className={
-						'flex py-0.5 rounded-md bg-homepage-login-border shadow-homepage-login-backdrop shadow-homepage-login justify-center items-center'
+					d={'flex'}
+					py={0.5}
+					rounded={'md'}
+					backgroundColor={'green.border'}
+					justifyContent={'center'}
+					alignItems={'center'}
+					clipPath={
+						'polygon(0 0, 85% 0%, 100% 0, 100% 85%, 90% 100%, 0 100%)'
 					}
-					style={{
-						clipPath:
-							'polygon(0 0, 85% 0%, 100% 0, 100% 85%, 90% 100%, 0 100%)',
-					}}>
+					className={'shadow-green-backdrop shadow-black-light'}>
 					<Box
-						className={
-							'rounded-md bg-homepage-login-background py-5 px-10 '
-						}
-						style={{
-							width: 'calc(100% - 2px)',
-							height: 'calc(100% - 2px)',
-							clipPath:
-								'polygon(0 0, 85% 0%, 100% 0, 100% 85%, 90% 100%, 0 100%)',
-						}}>
+						rounded={'md'}
+						backgroundColor={'green.background'}
+						py={5}
+						px={10}
+						height={'calc(100% - 2px)'}
+						width={'calc(100% - 2px)'}
+						clipPath={
+							'polygon(0 0, 85% 0%, 100% 0, 100% 85%, 90% 100%, 0 100%)'
+						}>
 						{/*LOGO + NAME */}
 						<Box
-							className={
-								'flex w-full items-center justify-center'
-							}>
-							<Logo
-								className={
-									'hover:bg-homepage-login-text hover:border-homepage-login-border'
-								}
-							/>
+							d={'flex'}
+							w={'full'}
+							alignItems={'center'}
+							justifyContent={'center'}>
+							<Box className={'w-20'}>
+								<Logo className={'hover:border-green-border'} />
+							</Box>
 
 							<Text
-								className={
-									'text-6xl m-3 font-TecFont text-homepage-login-text text-border hover:text-homepage-login-border tracking-wider'
-								}>
+								fontSize={'6xl'}
+								m={3}
+								fontFamily={'TecFont'}
+								color={'green.text'}
+								_hover={{
+									color: 'green.border',
+								}}
+								letterSpacing={'wider'}
+								className={'text-border'}>
 								Corrupta
 							</Text>
 						</Box>
 
-						<Box className={'w-full h-1/3 mt-5'}>
+						<Box w={'full'} mt={5} className={'h-1/3'}>
 							{formContent === 'login' && (
 								<Formik
 									initialValues={loginInitialValues}
 									validationSchema={loginSchemaValidation}
 									onSubmit={loginSubmit}>
-									<Form className={'text-center'}>
-										<Box className='w-2/4 m-auto my-5'>
+									<Form textAlign={'center'}>
+										<Box
+											m={'auto'}
+											my={5}
+											className='w-2/4'>
 											<Field
 												name='username'
 												type='text'
-												className='input w-full bg-transparent border-b border-homepage-login-border font-TecFont outline-0 text-homepage-login-border placeholder:text-homepage-login-border
-												focus:text-homepage-login-light focus:placeholder:text-homepage-login-light hover:placeholder:text-homepage-login-light'
+												className='input w-full bg-transparent border-b border-green-border font-TecFont outline-0 text-green-border placeholder:text-green-border
+												focus:text-green-light focus:placeholder:text-green-light hover:placeholder:text-green-light'
 												placeholder='username'
 											/>
 											<ErrorMessage
@@ -193,12 +211,15 @@ const Homepage = () => {
 											/>
 										</Box>
 
-										<Box className='w-2/4 m-auto my-5'>
+										<Box
+											m={'auto'}
+											my={5}
+											className='w-2/4'>
 											<Field
 												name='password'
 												type='password'
-												className='input w-full bg-transparent border-b border-homepage-login-border font-TecFont outline-0 text-homepage-login-border placeholder:text-homepage-login-border
-												focus:text-homepage-login-light focus:placeholder:text-homepage-login-light hover:placeholder:text-homepage-login-light'
+												className='input w-full bg-transparent border-b border-green-border font-TecFont outline-0 text-green-border placeholder:text-green-border
+												focus:text-green-light focus:placeholder:text-green-light hover:placeholder:text-green-light'
 												placeholder='Password'
 											/>
 											<ErrorMessage
@@ -208,33 +229,41 @@ const Homepage = () => {
 										</Box>
 
 										<Box
-											className={
-												'flex m-auto bg-homepage-login-border items-center justify-center hover:bg-homepage-login-light'
+											d={'flex'}
+											m={'auto'}
+											backgroundColor={'green.border'}
+											alignItems={'center'}
+											justifyContent={'center'}
+											_hover={{
+												backgroundColor: 'green.light',
+											}}
+											clipPath={
+												'polygon(11% 0, 100% 0, 100% 59%, 89% 100%, 0 100%, 0 40%)'
 											}
-											style={{
-												clipPath:
-													'polygon(11% 0, 100% 0, 100% 59%, 89% 100%, 0 100%, 0 40%)',
-												height: '30px',
-												width: '200px',
-											}}>
-											<button
+											w={'200px'}
+											h={'30px'}>
+											<Button
+												textAlign={'center'}
+												bg={'green.background'}
 												type='submit'
-												className={
-													'text-center bg-homepage-login-background'
-												}
-												style={{
-													width: 'calc(100% - 2px)',
-													height: 'calc(100% - 2px)',
-													clipPath:
-														'polygon(11% 0, 100% 0, 100% 59%, 89% 100%, 0 100%, 0 40%)',
-												}}>
+												w={'calc(100% - 2px)'}
+												h={'calc(100% - 2px)'}
+												rounded={'none'}
+												_hover={{
+													bg: 'green.light',
+												}}
+												clipPath={
+													'polygon(11% 0, 100% 0, 100% 59%, 89% 100%, 0 100%, 0 40%)'
+												}>
 												<Text
-													className={
-														'font-TecFont text-homepage-login-text text-border text-xl tracking-widest hover:text-homepage-login-light'
-													}>
+													fontFamily={'TecFont'}
+													color={'green.text'}
+													fontSize={'xl'}
+													letterSpacing={'widest'}
+													className={'text-border'}>
 													Submit
 												</Text>
-											</button>
+											</Button>
 										</Box>
 									</Form>
 								</Formik>
@@ -247,12 +276,15 @@ const Homepage = () => {
 									}
 									onSubmit={registrationSubmit}>
 									<Form className={'text-center'}>
-										<Box className='w-2/4 m-auto my-5'>
+										<Box
+											m={'auto'}
+											my={5}
+											className='w-2/4'>
 											<Field
 												name='username'
 												type='text'
-												className='input w-full bg-transparent border-b border-homepage-login-border font-TecFont outline-0 text-homepage-login-border placeholder:text-homepage-login-border
-												focus:text-homepage-login-light focus:placeholder:text-homepage-login-light hover:placeholder:text-homepage-login-light'
+												className='input w-full bg-transparent border-b border-green-border font-TecFont outline-0 text-green-border placeholder:text-green-border
+												focus:text-green-light focus:placeholder:text-green-light hover:placeholder:text-green-light'
 												placeholder='username'
 											/>
 											<ErrorMessage
@@ -260,12 +292,15 @@ const Homepage = () => {
 												render={renderError}
 											/>
 										</Box>
-										<Box className='w-2/4 m-auto my-5'>
+										<Box
+											m={'auto'}
+											my={5}
+											className='w-2/4'>
 											<Field
 												name='email'
 												type='email'
-												className='input w-full bg-transparent border-b border-homepage-login-border font-TecFont outline-0 text-homepage-login-border placeholder:text-homepage-login-border
-												focus:text-homepage-login-light focus:placeholder:text-homepage-login-light hover:placeholder:text-homepage-login-light'
+												className='input w-full bg-transparent border-b border-green-border font-TecFont outline-0 text-green-border placeholder:text-green-border
+												focus:text-green-light focus:placeholder:text-green-light hover:placeholder:text-green-light'
 												placeholder='email'
 											/>
 											<ErrorMessage
@@ -274,12 +309,15 @@ const Homepage = () => {
 											/>
 										</Box>
 
-										<Box className='w-2/4 m-auto my-5'>
+										<Box
+											m={'auto'}
+											my={5}
+											className='w-2/4'>
 											<Field
 												name='password'
 												type='password'
-												className='input w-full bg-transparent border-b border-homepage-login-border font-TecFont outline-0 text-homepage-login-border placeholder:text-homepage-login-border
-												focus:text-homepage-login-light focus:placeholder:text-homepage-login-light hover:placeholder:text-homepage-login-light'
+												className='input w-full bg-transparent border-b border-green-border font-TecFont outline-0 text-green-border placeholder:text-green-border
+												focus:text-green-light focus:placeholder:text-green-light hover:placeholder:text-green-light'
 												placeholder='Password'
 											/>
 											<ErrorMessage
@@ -288,12 +326,15 @@ const Homepage = () => {
 											/>
 										</Box>
 
-										<Box className='w-2/4 m-auto my-5'>
+										<Box
+											m={'auto'}
+											my={5}
+											className='w-2/4'>
 											<Field
 												name='password_confirm'
 												type='password'
-												className='input w-full bg-transparent border-b border-homepage-login-border font-TecFont outline-0 text-homepage-login-border placeholder:text-homepage-login-border
-												focus:text-homepage-login-light focus:placeholder:text-homepage-login-light hover:placeholder:text-homepage-login-light'
+												className='input w-full bg-transparent border-b border-green-border font-TecFont outline-0 text-green-border placeholder:text-green-border
+												focus:text-green-light focus:placeholder:text-green-light hover:placeholder:text-green-light'
 												placeholder='Password Confirm'
 											/>
 											<ErrorMessage
@@ -303,33 +344,39 @@ const Homepage = () => {
 										</Box>
 
 										<Box
-											className={
-												'flex m-auto bg-homepage-login-border items-center justify-center hover:bg-homepage-login-light'
+											d={'flex'}
+											m={'auto'}
+											bg={'green.border'}
+											alignItems={'center'}
+											justifyContent={'center'}
+											clipPath={
+												'polygon(11% 0, 100% 0, 100% 59%, 89% 100%, 0 100%, 0 40%)'
 											}
-											style={{
-												clipPath:
-													'polygon(11% 0, 100% 0, 100% 59%, 89% 100%, 0 100%, 0 40%)',
-												height: '30px',
-												width: '200px',
-											}}>
-											<button
+											w={'200px'}
+											h={'30px'}>
+											<Button
+												textAlign={'center'}
+												bg={'green.background'}
 												type='submit'
-												className={
-													'text-center bg-homepage-login-background'
-												}
-												style={{
-													width: 'calc(100% - 2px)',
-													height: 'calc(100% - 2px)',
-													clipPath:
-														'polygon(11% 0, 100% 0, 100% 59%, 89% 100%, 0 100%, 0 40%)',
-												}}>
+												w={'calc(100% - 2px)'}
+												h={'calc(100% - 2px)'}
+												rounded={'none'}
+												_hover={{
+													backgroundColor:
+														'green.light',
+												}}
+												clipPath={
+													'polygon(11% 0, 100% 0, 100% 59%, 89% 100%, 0 100%, 0 40%)'
+												}>
 												<Text
-													className={
-														'font-TecFont text-homepage-login-text text-border text-xl tracking-widest hover:text-homepage-login-light '
-													}>
+													fontFamily={'TecFont'}
+													color={'green.text'}
+													fontSize={'xl'}
+													letterSpacing={'widest'}
+													className={'text-border'}>
 													Submit
 												</Text>
-											</button>
+											</Button>
 										</Box>
 									</Form>
 								</Formik>
@@ -340,12 +387,15 @@ const Homepage = () => {
 									validationSchema={recPassSchemaValidation}
 									onSubmit={recPassSubmit}>
 									<Form className={'text-center'}>
-										<Box className='w-2/4 m-auto my-5'>
+										<Box
+											m={'auto'}
+											my={5}
+											className='w-2/4'>
 											<Field
 												name='email'
 												type='email'
-												className='input w-full bg-transparent border-b border-homepage-login-border font-TecFont outline-0 text-homepage-login-border placeholder:text-homepage-login-border
-												focus:text-homepage-login-light focus:placeholder:text-homepage-login-light hover:placeholder:text-homepage-login-light'
+												className='input w-full bg-transparent border-b border-green-border font-TecFont outline-0 text-green-border placeholder:text-green-border
+												focus:text-green-light focus:placeholder:text-green-light hover:placeholder:text-green-light'
 												placeholder='Email'
 											/>
 											<ErrorMessage
@@ -355,33 +405,42 @@ const Homepage = () => {
 										</Box>
 
 										<Box
-											className={
-												'flex m-auto bg-homepage-login-border items-center justify-center hover:bg-homepage-login-light'
+											d={'flex'}
+											m={'auto'}
+											bg={'green.border'}
+											alignItems={'center'}
+											justifyContent={'center'}
+											_hover={{
+												bg: 'green.light',
+											}}
+											clipPath={
+												'polygon(11% 0, 100% 0, 100% 59%, 89% 100%, 0 100%, 0 40%)'
 											}
-											style={{
-												clipPath:
-													'polygon(11% 0, 100% 0, 100% 59%, 89% 100%, 0 100%, 0 40%)',
-												height: '30px',
-												width: '200px',
-											}}>
-											<button
+											w={'200px'}
+											h={'30px'}>
+											<Button
+												textAlign={'center'}
+												rounded={'none'}
+												bg={'green.background'}
 												type='submit'
-												className={
-													'text-center bg-homepage-login-background'
-												}
-												style={{
-													width: 'calc(100% - 2px)',
-													height: 'calc(100% - 2px)',
-													clipPath:
-														'polygon(11% 0, 100% 0, 100% 59%, 89% 100%, 0 100%, 0 40%)',
-												}}>
+												w={'calc(100% - 2px)'}
+												h={'calc(100% - 2px)'}
+												_hover={{
+													backgroundColor:
+														'green.light',
+												}}
+												clipPath={
+													'polygon(11% 0, 100% 0, 100% 59%, 89% 100%, 0 100%, 0 40%)'
+												}>
 												<Text
-													className={
-														'font-TecFont text-homepage-login-text text-border text-xl tracking-widest hover:text-homepage-login-light'
-													}>
+													fontFamily={'TecFont'}
+													color={'green.text'}
+													fontSize={'xl'}
+													letterSpacing={'widest'}
+													className={'text-border'}>
 													Submit
 												</Text>
-											</button>
+											</Button>
 										</Box>
 									</Form>
 								</Formik>
@@ -389,45 +448,65 @@ const Homepage = () => {
 						</Box>
 
 						<Box
-							className={
-								'flex w-3/4 m-auto items-center justify-center text-center mt-5 text-homepage-login-border'
-							}>
+							d={'flex'}
+							m={'auto'}
+							alignItems={'center'}
+							justifyContent={'center'}
+							textAlign={'center'}
+							mt={5}
+							color={'green.border'}
+							className={'w-3/4'}>
 							{formContent !== 'registration' && (
-								<Box className={'flex w-1/2 justify-center'}>
-									<span
-										className={
-											'cursor-pointer hover:text-homepage-login-light  hover:underline'
-										}
+								<Box
+									d={'flex'}
+									justifyContent={'center'}
+									className={'w-1/2'}>
+									<Text
+										cursor={'pointer'}
+										_hover={{
+											color: 'green.light',
+											textDecoration: 'underline',
+										}}
 										onClick={() =>
 											setFormContent('registration')
 										}>
 										Registrati
-									</span>
+									</Text>
 								</Box>
 							)}
 
 							{formContent !== 'login' && (
-								<Box className={'flex w-1/2 justify-center'}>
-									<span
-										className={
-											'cursor-pointer hover:text-homepage-login-light  hover:underline'
-										}
+								<Box
+									d={'flex'}
+									justifyContent={'center'}
+									className={'w-1/2'}>
+									<Text
+										cursor={'pointer'}
+										_hover={{
+											color: 'green.light',
+											textDecoration: 'underline',
+										}}
 										onClick={() => setFormContent('login')}>
 										Login
-									</span>
+									</Text>
 								</Box>
 							)}
 							{formContent !== 'recPass' && (
-								<Box className={'flex w-1/2 justify-center'}>
-									<span
-										className={
-											'cursor-pointer hover:text-homepage-login-light hover:underline'
-										}
+								<Box
+									d={'flex'}
+									justifyContent={'center'}
+									className={'w-1/2'}>
+									<Text
+										cursor={'pointer'}
+										_hover={{
+											color: 'green.light',
+											textDecoration: 'underline',
+										}}
 										onClick={() =>
 											setFormContent('recPass')
 										}>
 										Recupera Password
-									</span>
+									</Text>
 								</Box>
 							)}
 						</Box>

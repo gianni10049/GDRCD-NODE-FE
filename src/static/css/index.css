@@ -20,6 +20,10 @@ code {
   text-shadow: 1px 0 0 rgba(16,164,120,0.73), -1px 0 0 rgba(16,164,120,0.73), 0 1px 0 rgba(16,164,120,0.73), 0 -1px 0 rgba(16,164,120,0.73), 1px 1px rgba(16,164,120,0.73), -1px -1px 0 rgba(16,164,120,0.73), 1px -1px 0 rgba(16,164,120,0.73), -1px 1px 0 rgba(16,164,120,0.73);
 }
 
+.text-border-light {
+  text-shadow: 1px 0 0 rgb(17,203,148), -1px 0 0 rgb(17,203,148), 0 1px 0 rgb(17,203,148), 0 -1px 0 rgb(17,203,148), 1px 1px rgb(17,203,148), -1px -1px 0 rgb(17,203,148), 1px -1px 0 rgb(17,203,148), -1px 1px 0 rgb(17,203,148);
+}
+
 @font-face {
   font-family: 'TecFont';
   src: url('../../fonts/AquireLight.otf');

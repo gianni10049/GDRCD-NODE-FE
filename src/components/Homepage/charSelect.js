@@ -46,66 +46,98 @@ const CharacterSelect = () => {
 
 	return (
 		<Box
-			className={
-				'flex h-screen w-screen m-0 p-0 bg-homepage-image justify-center bg-no-repeat justify-center items-center bg-cover select-none'
-			}>
+			d={'flex'}
+			h={'100vh'}
+			w={'100vw'}
+			m={0}
+			p={0}
+			backgroundRepeat={'no-repeat'}
+			backgroundSize={'cover'}
+			justifyContent={'center'}
+			alignItems={'center'}
+			userSelect={'none'}
+			className={'bg-homepage-image'}>
 			<Particles
 				id='tsparticles'
 				options={config_particles}
-				className={'z-0'}
+				zIndex={'0'}
 			/>
 			<Box
-				className={
-					'flex z-50 py-0.5 rounded-md bg-homepage-login-border shadow-homepage-login-backdrop shadow-homepage-login justify-center items-center'
+				rounded={'md'}
+				d={'flex'}
+				py={0.5}
+				justifyContent={'center'}
+				alignItems={'center'}
+				bg={'green.border'}
+				zIndex={50}
+				clipPath={
+					'polygon(0 0, 85% 0%, 100% 0, 100% 85%, 90% 100%, 0 100%)'
 				}
-				style={{
-					clipPath:
-						'polygon(0 0, 85% 0%, 100% 0, 100% 85%, 90% 100%, 0 100%)',
-				}}>
+				className={'shadow-green-backdrop shadow-black-light z-50'}>
 				<Box
-					className={
-						'rounded-md bg-homepage-login-background pt-5 pb-3 px-10 '
-					}
-					style={{
-						width: 'calc(100% - 2px)',
-						height: 'calc(100% - 2px)',
-						clipPath:
-							'polygon(0 0, 85% 0%, 100% 0, 100% 85%, 90% 100%, 0 100%)',
-					}}>
+					rounded={'md'}
+					bg={'green.background'}
+					pt={5}
+					pb={3}
+					px={10}
+					width={'calc(100% - 2px)'}
+					height={'calc(100% - 2px)'}
+					clipPath={
+						'polygon(0 0, 85% 0%, 100% 0, 100% 85%, 90% 100%, 0 100%)'
+					}>
 					{/*LOGO + NAME */}
 					<Box className={'flex w-full items-center justify-center'}>
-						<Logo
-							className={
-								'hover:bg-homepage-login-text hover:border-homepage-login-border'
-							}
-						/>
-
+						<Box w={'20'}>
+							<Logo
+								className={
+									'hover:bg-green-text hover:border-green-border'
+								}
+							/>
+						</Box>
 						<Text
-							className={
-								'text-6xl m-3 font-TecFont text-homepage-login-text text-border hover:text-homepage-login-border tracking-wider'
-							}>
+							color={'green.text'}
+							fontSize={'6xl'}
+							fontFamily={'TecFont'}
+							letterSpacing={'wider'}
+							m={3}
+							_hover={{
+								color: 'green.border',
+							}}
+							className={'text-border'}>
 							Corrupta
 						</Text>
 					</Box>
 
 					<Box>
 						<Box
-							className={
-								'text-2xl text-center text-homepage-login-light font-TecFont'
-							}>
+							fontSize={'2xl'}
+							textAlign={'center'}
+							color={'green.light'}
+							fontFamily={'TecFont'}>
 							Select a character:
 						</Box>
 						{charList.map((item, i) => (
 							<Box
+								borderWidth={'1px'}
+								borderColor={'green.border'}
+								w={'full'}
+								py={3}
+								my={2}
 								key={i}
-								className={
-									'flex border border-homepage-login-border w-full py-3 my-2 shadow-homepage-logo items-center hover:bg-homepage-login-text cursor-pointer'
-								}
+								cursor={'pointer'}
+								alignItems={'center'}
+								_hover={{
+									bg: 'green.text',
+								}}
+								className={'flex shadow-black-inset '}
 								onClick={() => setCharacter(item.id)}>
 								<Box
-									className={
-										'w-20 border border-homepage-login-border ml-3 shadow-homepage-login items-center'
-									}>
+									w={20}
+									borderWidth={'1px'}
+									borderColor={'green.border'}
+									ml={3}
+									alignItems={'center'}
+									className={'shadow-black-light'}>
 									<Box
 										className={'ct-ratio-1-1'}
 										backgroundSize={'cover'}
@@ -117,14 +149,18 @@ const CharacterSelect = () => {
 									/>
 								</Box>
 								<Box
-									className={
-										'flex w-full ml-5 items-center flex-wrap text-center font-TecFont'
-									}>
+									w={'full'}
+									ml={5}
+									alignItems={'center'}
+									flexWrap={true}
+									textAlign={'center'}
+									fontFamily={'TecFont'}
+									className={'flex flex-wrap '}>
 									<Box
-										className={
-											'my-1 w-full text-homepage-login-light'
-										}>
-										<Box className={'text-xl'}>
+										my={1}
+										w={'full'}
+										color={'green.light'}>
+										<Box fontSize={'xl'}>
 											{item.name}{' '}
 											{item.nickname
 												? `"${item.nickname}"`
@@ -137,12 +173,21 @@ const CharacterSelect = () => {
 						))}
 						<Tooltip
 							label={'Create new character'}
-							bg={'rgba(6,52,38,1)'}>
+							bg={'green.text'}>
 							<Box
-								className={
-									'border border-homepage-login-border w-1/2 m-auto py-1 mt-2 shadow-homepage-logo items-center ' +
-									'hover:bg-homepage-login-text cursor-pointer text-center text-homepage-login-light'
-								}>
+								borderWidth={'1px'}
+								borderColor={'green.border'}
+								m={'auto'}
+								py={1}
+								mt={2}
+								cursor={'pointer'}
+								textAlign={'center'}
+								color={'green.light'}
+								alignItems={'center'}
+								_hover={{
+									bg: 'green.text',
+								}}
+								className={'w-1/2 shadow-black-inset'}>
 								+
 							</Box>
 						</Tooltip>
