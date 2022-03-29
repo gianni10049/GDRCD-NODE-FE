@@ -24,12 +24,21 @@ code {
   text-shadow: 1px 0 0 rgb(17,203,148), -1px 0 0 rgb(17,203,148), 0 1px 0 rgb(17,203,148), 0 -1px 0 rgb(17,203,148), 1px 1px rgb(17,203,148), -1px -1px 0 rgb(17,203,148), 1px -1px 0 rgb(17,203,148), -1px 1px 0 rgb(17,203,148);
 }
 
+.text-border-extra-light {
+  text-shadow: 1px 0 0 rgba(193,215,199,1), -1px 0 0 rgba(193,215,199,1), 0 1px 0 rgba(193,215,199,1), 0 -1px 0 rgba(193,215,199,1), 1px 1px rgba(193,215,199,1), -1px -1px 0 rgba(193,215,199,1), 1px -1px 0 rgba(193,215,199,1), -1px 1px 0 rgba(193,215,199,1);
+}
+
 @font-face {
   font-family: 'TecFont';
   src: url('../../fonts/AquireLight.otf');
 }
 
+*:focus{
+  box-shadow: none !important;
+}
+
 *{
+  user-select: none;
   /*box-shadow: 0 0 1px 0 inset aqua*/
 }
 
