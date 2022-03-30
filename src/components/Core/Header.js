@@ -1,4 +1,4 @@
-import { Box, Flex, Icon, Link, Text } from '@chakra-ui/react';
+import { Box, Flex, Icon, Link, Text, Tooltip } from '@chakra-ui/react';
 import { Link as ReachLink } from 'react-router-dom';
 import Logo from '../Utils/logo';
 import {
@@ -37,42 +37,53 @@ import { SiGooglechat, SiRoamresearch } from 'react-icons/si';
 
 import { useState } from 'react';
 
-const NavLink = ({ children, icon, hovered, onClick, current_url }) => {
+const NavLink = ({ children, icon, hovered, onClick, current_url, label }) => {
 	return (
-		<Link
-			to={'#'}
-			as={ReachLink}
-			onClick={onClick}
-			color={'green.textLight'}
-			bg={current_url ? 'green.light' : 'transparent'}
-			py={2}
-			px={2}
-			w={'full'}
-			d={'block'}
-			_hover={{
-				bg: 'green.border',
-				color: 'white',
-			}}>
-			<Flex alignItems={'center'} className={'ct-animate-fast'}>
-				<Icon
-					as={icon}
-					boxSize={8}
-					d={'inline-block'}
-					m={hovered ? 'none' : 'auto'}
-				/>
-				<Box
-					maxW={hovered ? '500px' : '0px'}
-					d={'inline-block'}
-					overflow={'hidden'}>
-					<Box
-						ml={2}
+		<Tooltip
+			hasArrow
+			label={label}
+			bg={'green.light'}
+			color={'green.text'}
+			fontSize={'md'}
+			placement={'left'}
+			fontFamily={'TecFont'}
+			letterSpacing={'widest'}
+			fontWeight={'extrabold'}>
+			<Link
+				to={'#'}
+				as={ReachLink}
+				onClick={onClick}
+				color={'green.textLight'}
+				bg={current_url ? 'green.light' : 'transparent'}
+				py={2}
+				px={2}
+				w={'full'}
+				d={'block'}
+				_hover={{
+					bg: 'green.border',
+					color: 'white',
+				}}>
+				<Flex alignItems={'center'} className={'ct-animate-fast'}>
+					<Icon
+						as={icon}
+						boxSize={8}
 						d={'inline-block'}
-						className={'font-TecFont tracking-wider'}>
-						{children}
+						m={hovered ? 'none' : 'auto'}
+					/>
+					<Box
+						maxW={hovered ? '500px' : '0px'}
+						d={'inline-block'}
+						overflow={'hidden'}>
+						<Box
+							ml={2}
+							d={'inline-block'}
+							className={'font-TecFont tracking-wider'}>
+							{children}
+						</Box>
 					</Box>
-				</Box>
-			</Flex>
-		</Link>
+				</Flex>
+			</Link>
+		</Tooltip>
 	);
 };
 
@@ -148,14 +159,7 @@ const Header = () => {
 			minH={'100vh'}
 			zIndex={1}>
 			<Flex>
-				<Box
-					height={'100vh'}
-					onPointerOver={() => setHover(true)}
-					onPointerOut={() => {
-						if (!subMenu) {
-							setHover(false);
-						}
-					}}>
+				<Box height={'100vh'}>
 					{/*Links*/}
 					<Box w={'50px'} mt={8} mb={3} mx={3}>
 						<Logo />
@@ -163,87 +167,87 @@ const Header = () => {
 					<Box d={'block'}>
 						<NavLink
 							icon={GiWorld}
+							label={'Map'}
 							hovered={hovered}
 							current_url={subMenu === 'map'}
 							onClick={() => {
 								subMenu === false || subMenu !== 'map'
 									? setSubMenu('map')
 									: setSubMenu(false);
-							}}>
-							Map
-						</NavLink>
+							}}
+						/>
 
 						<NavLink
 							icon={FaUserAlt}
 							hovered={hovered}
 							current_url={subMenu === 'user'}
+							label={'User'}
 							onClick={() => {
 								subMenu === false || subMenu !== 'user'
 									? setSubMenu('user')
 									: setSubMenu(false);
-							}}>
-							User
-						</NavLink>
+							}}
+						/>
 
 						<NavLink
 							icon={AiFillMessage}
+							label={'Messages'}
 							hovered={hovered}
 							current_url={subMenu === 'messages'}
 							onClick={() => {
 								subMenu === false || subMenu !== 'messages'
 									? setSubMenu('messages')
 									: setSubMenu(false);
-							}}>
-							Messages
-						</NavLink>
+							}}
+						/>
 
 						<NavLink
 							icon={MdOutlineAttachMoney}
 							hovered={hovered}
 							current_url={subMenu === 'market'}
+							label={'Market'}
 							onClick={() => {
 								subMenu === false || subMenu !== 'market'
 									? setSubMenu('market')
 									: setSubMenu(false);
-							}}>
-							Market
-						</NavLink>
+							}}
+						/>
 
 						<NavLink
 							icon={FaCampground}
 							hovered={hovered}
 							current_url={subMenu === 'camps'}
+							label={'Camps'}
 							onClick={() => {
 								subMenu === false || subMenu !== 'camps'
 									? setSubMenu('camps')
 									: setSubMenu(false);
-							}}>
-							Camps
-						</NavLink>
+							}}
+						/>
 
 						<NavLink
 							icon={SiGooglechat}
 							hovered={hovered}
+							label={'Chat'}
 							current_url={subMenu === 'chat'}
 							onClick={() => {
 								subMenu === false || subMenu !== 'chat'
 									? setSubMenu('chat')
 									: setSubMenu(false);
-							}}>
-							Chat
-						</NavLink>
+							}}
+						/>
 
 						<NavLink
 							icon={HiUserGroup}
 							hovered={hovered}
 							current_url={subMenu === 'groups'}
+							label={'Groups'}
 							onClick={() => {
 								subMenu === false || subMenu !== 'groups'
 									? setSubMenu('groups')
 									: setSubMenu(false);
-							}}>
-							Groups
-						</NavLink>
+							}}
+						/>
 					</Box>
 				</Box>
 
