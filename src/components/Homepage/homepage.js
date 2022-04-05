@@ -48,11 +48,24 @@ const Homepage = () => {
 		</p>
 	);
 
-	const loginSubmit = (data) => {
-		GQLQuery(LOGIN, {
+	/**
+	 * @return {Promise<{
+	 * 					login:{
+	 * 						responseStatus:string,
+	 * 						token:string,
+	 * 						response:string
+	 * 					}
+	 * 	}>}
+	 */
+	const getLogin = async (data) => {
+		return await GQLQuery(LOGIN, {
 			username: data.username,
 			password: data.password,
-		}).then((resp) => {
+		});
+	};
+
+	const loginSubmit = (data) => {
+		getLogin(data).then((resp) => {
 			if (resp.login) {
 				let status = resp.login.responseStatus;
 				let token = resp.login.token;
@@ -77,35 +90,61 @@ const Homepage = () => {
 		});
 	};
 
-	const registrationSubmit = async (data) => {
-		GQLmutation(REGISTRATION, {
+	/**
+	 * @return {Promise<{
+	 * 					registration:{
+	 * 						responseStatus:string,
+	 * 						token:string,
+	 * 						response:string
+	 * 					}
+	 * 	}>}
+	 */
+	const getRegistration = async (data) => {
+		return await GQLmutation(REGISTRATION, {
 			username: data.username,
 			email: data.email,
 			password: data.password,
 			password_confirm: data.password_confirm,
-		}).then((resp) => {
+		});
+	};
+
+	const registrationSubmit = async (data) => {
+		getRegistration(data).then((resp) => {
 			if (resp.registration) {
 				let status = resp.registration.responseStatus;
 				let response = resp.registration.response;
 
 				toast({
-					title: response,
-					status: status,
+					title: status,
+					status: response ? 'success' : 'error',
 					duration: 9000,
 					isClosable: true,
 				});
 
-				if (status === 'success') {
+				if (response) {
 					setFormContent('login');
 				}
 			}
 		});
 	};
 
-	const recPassSubmit = async (data) => {
-		GQLQuery(RECPASS, {
+	/**
+	 * @return {Promise<{
+	 * 					recPass:{
+	 * 						responseStatus:string,
+	 * 						token:string,
+	 * 						response:string
+	 * 					}
+	 * 	}>}
+	 */
+	const getRecPass = async (data) => {
+		return await GQLQuery(RECPASS, {
 			email: data.email,
-		}).then((resp) => {
+		});
+	};
+
+	const recPassSubmit = async (data) => {
+		getRecPass(data).then((resp) => {
 			if (resp.recPass) {
 				let status = resp.recPass.responseStatus;
 				let response = resp.recPass.response;
