@@ -2,6 +2,8 @@ import './static/css/App.css';
 import { BrowserRouter as Router, Routes, Route } from 'react-router-dom';
 import { ProvideAuth, RouteControl } from './components/Routes/RouteControl';
 import routes from './routes/routes';
+import React from 'react';
+import { ModalContextProvider } from './components/Utils/ModalsContext';
 
 function App() {
 	return (
@@ -21,9 +23,11 @@ function App() {
 								<ProvideAuth
 									character_needed={r.character_needed}
 									account_needed={r.account_needed}>
-									<RouteControl data={r}>
-										{r.component}
-									</RouteControl>
+									<ModalContextProvider>
+										<RouteControl data={r}>
+											{r.component}
+										</RouteControl>
+									</ModalContextProvider>
 								</ProvideAuth>
 							}
 						/>

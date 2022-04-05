@@ -34,8 +34,8 @@ import {
 import { BsFillPinMapFill, BsFillInfoCircleFill } from 'react-icons/bs';
 import { BiCoinStack } from 'react-icons/bi';
 import { SiGooglechat, SiRoamresearch } from 'react-icons/si';
-
 import { useState } from 'react';
+import { useModalContext } from '../Utils/ModalsContext';
 
 const NavLink = ({ children, icon, hovered, onClick, current_url, label }) => {
 	return (
@@ -87,7 +87,7 @@ const NavLink = ({ children, icon, hovered, onClick, current_url, label }) => {
 	);
 };
 
-const MenuVoice = ({ children, icon }) => {
+const MenuVoice = ({ icon, buttonText, onClick }) => {
 	return (
 		<Box
 			color={'green.textLight'}
@@ -104,8 +104,9 @@ const MenuVoice = ({ children, icon }) => {
 				verticalAlign={'middle'}
 				fontFamily={'TecFont'}
 				ml={3}
-				d={'inline-block'}>
-				{children}
+				d={'inline-block'}
+				onClick={onClick}>
+				{buttonText}
 			</Text>
 		</Box>
 	);
@@ -150,6 +151,8 @@ const Header = () => {
 	const [hovered, setHover] = useState(false);
 	const [subMenu, setSubMenu] = useState(false);
 
+	let { modalState, setModalState } = useModalContext();
+
 	return (
 		<Box
 			bg={'green.backgroundDark'}
@@ -157,7 +160,7 @@ const Header = () => {
 			left={0}
 			top={0}
 			minH={'100vh'}
-			zIndex={1}>
+			zIndex={100}>
 			<Flex>
 				<Box height={'100vh'}>
 					{/*Links*/}
@@ -261,77 +264,170 @@ const Header = () => {
 						actualSubMenu={subMenu}
 						menuOpenedOn={'map'}
 						title={'MAP'}>
-						<MenuVoice icon={FaMap}>Full Map</MenuVoice>
-						<MenuVoice icon={BsFillPinMapFill}>Fast Map</MenuVoice>
-						<MenuVoice icon={GiPathDistance}>
-							Calc Distance
-						</MenuVoice>
-						<MenuVoice icon={MdEmojiPeople}>Presences</MenuVoice>
+						<MenuVoice
+							icon={FaMap}
+							title={'Full Map'}
+							buttonText={'Full Map'}
+							onClick={() => {
+								setModalState({ test: !modalState.test });
+							}}
+						/>
+						<MenuVoice
+							icon={BsFillPinMapFill}
+							title={'Fast Map'}
+							buttonText={'Fast Map'}
+						/>
+						<MenuVoice
+							icon={GiPathDistance}
+							title={'Calc Distance'}
+							buttonText={'Calc Distance'}
+						/>
+						<MenuVoice
+							icon={MdEmojiPeople}
+							title={'Presences'}
+							buttonText={'Presences'}
+						/>
 					</SubMenu>
 
 					<SubMenu
 						actualSubMenu={subMenu}
 						menuOpenedOn={'user'}
 						title={'USER'}>
-						<MenuVoice icon={ImProfile}>Profile</MenuVoice>
-						<MenuVoice icon={FaBox}>Resources</MenuVoice>
-						<MenuVoice icon={CgArrowsExchangeAlt}>
-							Change Character
-						</MenuVoice>
-						<MenuVoice icon={HiLogout}>Logout</MenuVoice>
+						<MenuVoice
+							icon={ImProfile}
+							title={'Profile'}
+							buttonText={'Profile'}
+						/>
+						<MenuVoice
+							icon={FaBox}
+							title={'Resources'}
+							buttonText={'Resources'}
+						/>
+						<MenuVoice
+							icon={CgArrowsExchangeAlt}
+							title={'Change Character'}
+							buttonText={'Change Character'}
+						/>
+						<MenuVoice
+							icon={HiLogout}
+							title={'Logout'}
+							buttonText={'Logout'}
+						/>
 					</SubMenu>
 
 					<SubMenu
 						actualSubMenu={subMenu}
 						menuOpenedOn={'messages'}
 						title={'MESSAGES'}>
-						<MenuVoice icon={FaEnvelopeOpenText}>
-							Personal
-						</MenuVoice>
-						<MenuVoice icon={GoRadioTower}>Radio</MenuVoice>
-						<MenuVoice icon={FaEdit}>Forum</MenuVoice>
+						<MenuVoice
+							icon={FaEnvelopeOpenText}
+							title={'Personal'}
+							buttonText={'Personal'}
+						/>
+						<MenuVoice
+							icon={GoRadioTower}
+							title={'Radio'}
+							buttonText={'Radio'}
+						/>
+						<MenuVoice
+							icon={FaEdit}
+							title={'Forum'}
+							buttonText={'Forum'}
+						/>
 					</SubMenu>
 
 					<SubMenu
 						actualSubMenu={subMenu}
 						title={'MARKET'}
 						menuOpenedOn={'market'}>
-						<MenuVoice icon={GiTakeMyMoney}>Buy</MenuVoice>
-						<MenuVoice icon={GiReceiveMoney}>Sell</MenuVoice>
-						<MenuVoice icon={FaHandshake}>Exchange</MenuVoice>
+						<MenuVoice
+							icon={GiTakeMyMoney}
+							title={'Buy'}
+							buttonText={'Buy'}
+						/>
+						<MenuVoice
+							icon={GiReceiveMoney}
+							title={'Sell'}
+							buttonText={'Sell'}
+						/>
+						<MenuVoice
+							icon={FaHandshake}
+							title={'Exchange'}
+							buttonText={'Exchange'}
+						/>
 					</SubMenu>
 
 					<SubMenu
 						actualSubMenu={subMenu}
 						menuOpenedOn={'camps'}
 						title={'CAMPS'}>
-						<MenuVoice icon={FaClipboardList}> List</MenuVoice>
-						<MenuVoice icon={FaWrench}>Edit </MenuVoice>
-						<MenuVoice icon={BiCoinStack}>Resources</MenuVoice>
-						<MenuVoice icon={FaWarehouse}>Warehouses</MenuVoice>
-						<MenuVoice icon={FaUserShield}>Troops</MenuVoice>
+						<MenuVoice
+							icon={FaClipboardList}
+							title={'List'}
+							buttonText={'List'}
+						/>
+						<MenuVoice
+							icon={FaWrench}
+							title={'Edit'}
+							buttonText={'Edit'}
+						/>
+						<MenuVoice
+							icon={BiCoinStack}
+							title={'Resources'}
+							buttonText={'Resources'}
+						/>
+						<MenuVoice
+							icon={FaWarehouse}
+							title={'Warehouses'}
+							buttonText={'Warehouses'}
+						/>
+						<MenuVoice
+							icon={FaUserShield}
+							title={'Troops'}
+							buttonText={'Troops'}
+						/>
 					</SubMenu>
 
 					<SubMenu
 						actualSubMenu={subMenu}
 						menuOpenedOn={'chat'}
 						title={'CHAT'}>
-						<MenuVoice icon={BsFillInfoCircleFill}>
-							Info Chat
-						</MenuVoice>
-						<MenuVoice icon={ImFlag}>Factions </MenuVoice>
-						<MenuVoice icon={MdOutlinePeople}>PNG</MenuVoice>
-						<MenuVoice icon={SiRoamresearch}>Hunt</MenuVoice>
-						<MenuVoice icon={RiStarFill}>Events</MenuVoice>
+						<MenuVoice
+							icon={BsFillInfoCircleFill}
+							title={'Info Chat'}
+							buttonText={'Info Chat'}
+						/>
+						<MenuVoice
+							icon={ImFlag}
+							title={'Factions'}
+							buttonText={'Factions'}
+						/>
+						<MenuVoice
+							icon={MdOutlinePeople}
+							title={'PNG'}
+							buttonText={'PNG'}
+						/>
+						<MenuVoice
+							icon={SiRoamresearch}
+							title={'Hunt'}
+							buttonText={'Hunt'}
+						/>
+						<MenuVoice
+							icon={RiStarFill}
+							title={'Events'}
+							buttonText={'Events'}
+						/>
 					</SubMenu>
 
 					<SubMenu
 						actualSubMenu={subMenu}
 						menuOpenedOn={'groups'}
 						title={'Groups'}>
-						<MenuVoice icon={AiOutlineUnorderedList}>
-							List
-						</MenuVoice>
+						<MenuVoice
+							icon={AiOutlineUnorderedList}
+							title={'List'}
+							buttonText={'List'}
+						/>
 					</SubMenu>
 				</Box>
 			</Flex>

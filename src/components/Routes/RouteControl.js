@@ -32,8 +32,8 @@ function useProvideAuth({ character_needed, account_needed }) {
 			setInProgress(false);
 			return auth;
 		});
-	});
-	// Return the user object and auth methods
+	}, []); // eslint-disable-line react-hooks/exhaustive-deps
+
 	return { auth, inProgress };
 }
 
