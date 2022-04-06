@@ -13,7 +13,7 @@ type Query {
     charactersList(token: String!): [characterData]
     login(password: String!, username: String!): loginResponse
     recPass(email: String!): toastResponse
-    setCharacter(characterId: Int!, token: String!): loginResponse
+    setCharacter(characterId: String!, token: String!): loginResponse
     tokenControl(account_needed: Boolean, character_needed: Boolean, token: String!): genericResponse
 }
 

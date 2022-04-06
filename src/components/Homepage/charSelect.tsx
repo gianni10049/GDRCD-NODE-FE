@@ -25,13 +25,13 @@ const CharacterSelect = () => {
 		return await GQLQuery(CHAR_LIST, {});
 	};
 
-	const setCharacterQuery = async (id: number) => {
+	const setCharacterQuery = async (id: string) => {
 		return await GQLQuery(SET_CHAR, {
 			characterId: id,
 		});
 	};
 
-	const setCharacter = async (id: number) => {
+	const setCharacter = async (id: string) => {
 		let data = await setCharacterQuery(id);
 
 		if (data.setCharacter.responseStatus === 'success') {

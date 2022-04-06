@@ -1,5 +1,5 @@
 export interface characterInterface {
-	id?: number;
+	id?: string;
 	mini_avatar?: string;
 	name?: string;
 	nickname?: string;

@@ -15,7 +15,7 @@ const CHAR_LIST = gql`
 `;
 
 const SET_CHAR = gql`
-	query setCharacter($token: String!, $characterId: Int!) {
+	query setCharacter($token: String!, $characterId: String!) {
 		setCharacter(token: $token, characterId: $characterId) {
 			responseStatus
 			response
