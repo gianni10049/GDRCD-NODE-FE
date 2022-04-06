@@ -1,17 +1,27 @@
 import React, { createContext, useContext, useState } from 'react';
+//@ts-ignore
 import Suspender from 'react-suspender';
 import ModalBase from './Modals';
+import {
+	ModalContextModals,
+	ModalContextProviderData,
+} from './ModalContext.model';
 
-const modalContext = createContext({
-	test: false,
-	test2: false,
+const modalContext = createContext<ModalContextModals>({
+	loading: true,
+	setModalState: () => {},
+	modalState: {
+		test: false,
+		test2: false,
+	},
 });
 
 export const useModalContext = () => {
 	return useContext(modalContext);
 };
 
-export const ModalContextProvider = ({ children }) => {
+export const ModalContextProvider = (data: ModalContextProviderData) => {
+	let { children } = data;
 	let v = ModalData();
 
 	return (
@@ -33,10 +43,11 @@ const ModalData = () => {
 		test2: false,
 	});
 
+	// noinspection JSUnusedGlobalSymbols
 	return {
 		loading: false,
 		modalState: modalState,
-		setModalState: (kind) => {
+		setModalState: (kind: object) => {
 			setModalState({ ...modalState, ...kind });
 		},
 	};

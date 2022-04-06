@@ -1,4 +1,7 @@
-const Page404 = (props) => {
+import React from 'react';
+import { Page404Model } from './404.model';
+
+const Page404 = (props: Page404Model) => {
 	let { code } = props;
 
 	switch (Number(code)) {

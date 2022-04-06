@@ -7,7 +7,7 @@ const CHAR_LIST = gql`
 			name
 			surname
 			age
-			miniavatar
+			mini_avatar
 			profilePic
 			nickname
 		}

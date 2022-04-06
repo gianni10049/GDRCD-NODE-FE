@@ -1,28 +1,37 @@
 import { Box } from '@chakra-ui/react';
-import { useEffect, useState } from 'react';
+import React from 'react';
+import { useCallback, useEffect, useState } from 'react';
 import { Rnd } from 'react-rnd';
+import {
+	ModalBaseData,
+	ModalPositionsData,
+	ModelContentData,
+} from './Modals.model';
 
-export default function ModalBase({ content, title }) {
-	const [positions, setPositions] = useState({});
+export default function ModalBase(props: ModalBaseData) {
+	let { content, title } = props;
+
+	const [positions, setPositions] = useState<ModalPositionsData>({});
 	let modal_width = 600;
 	let modal_height = 600;
 
-	useEffect(() => {
-		setPositions(getPositions());
-	}, []); // eslint-disable-line react-hooks/exhaustive-deps
-
-	const getPositions = () => {
-		let container = document.getElementById('global_windows'),
+	const getPositions = useCallback<any>(() => {
+		let container = document.getElementById('root'),
 			width = container.offsetWidth,
 			height = container.offsetHeight;
 
 		return {
-			width: width / 2 - modal_width / 2,
-			height: height / 2 - modal_height / 2,
+			x: width / 2 - modal_width / 2,
+			y: height / 2 - modal_height / 2,
 		};
-	};
+	}, [modal_width, modal_height]);
 
-	const ModalContent = ({ children }) => {
+	useEffect(() => {
+		setPositions(getPositions());
+	}, [getPositions]);
+
+	const ModalContent = (props: ModelContentData) => {
+		let { children } = props;
 		return (
 			<Box
 				width={modal_width}
@@ -56,11 +65,11 @@ export default function ModalBase({ content, title }) {
 
 	return (
 		<>
-			{positions.width && (
+			{positions.x && (
 				<Rnd
 					bounds={'#root'}
 					default={{
-						x: positions.width,
+						x: positions.x,
 						y: 55,
 						width: modal_width,
 						height: modal_height,

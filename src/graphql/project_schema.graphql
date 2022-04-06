@@ -12,7 +12,7 @@ type Mutation {
 type Query {
     charactersList(token: String!): [characterData]
     login(password: String!, username: String!): loginResponse
-    recPass(email: String!): genericResponse
+    recPass(email: String!): toastResponse
     setCharacter(characterId: Int!, token: String!): loginResponse
     tokenControl(account_needed: Boolean, character_needed: Boolean, token: String!): genericResponse
 }
@@ -20,7 +20,7 @@ type Query {
 type characterData {
     age: Int
     id: ID
-    miniavatar: String
+    mini_avatar: String
     name: String
     nickname: String
     profilePic: String
@@ -28,7 +28,7 @@ type characterData {
 }
 
 type genericResponse {
-    response: String!
+    response: Boolean!
     responseStatus: String!
 }
 
@@ -36,4 +36,9 @@ type loginResponse {
     response: String!
     responseStatus: String!
     token: String
+}
+
+type toastResponse {
+    response: String!
+    responseStatus: String!
 }

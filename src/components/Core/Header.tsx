@@ -2,6 +2,11 @@ import { Box, Flex, Icon, Link, Text, Tooltip } from '@chakra-ui/react';
 import { Link as ReachLink } from 'react-router-dom';
 import Logo from '../Utils/logo';
 import {
+	menuVoiceInterface,
+	navLinkInterface,
+	subMenuVoiceInterface,
+} from './Header.model';
+import {
 	FaUserAlt,
 	FaBox,
 	FaEnvelopeOpenText,
@@ -36,12 +41,13 @@ import { BiCoinStack } from 'react-icons/bi';
 import { SiGooglechat, SiRoamresearch } from 'react-icons/si';
 import { useState } from 'react';
 import { useModalContext } from '../Utils/ModalsContext';
+import React from 'react';
 
-const NavLink = ({ children, icon, hovered, onClick, current_url, label }) => {
+const NavLink = (props: navLinkInterface) => {
 	return (
 		<Tooltip
 			hasArrow
-			label={label}
+			label={props.label}
 			bg={'green.light'}
 			color={'green.text'}
 			fontSize={'md'}
@@ -52,9 +58,9 @@ const NavLink = ({ children, icon, hovered, onClick, current_url, label }) => {
 			<Link
 				to={'#'}
 				as={ReachLink}
-				onClick={onClick}
+				onClick={props.onClick}
 				color={'green.textLight'}
-				bg={current_url ? 'green.light' : 'transparent'}
+				bg={props.current_url ? 'green.light' : 'transparent'}
 				py={2}
 				px={2}
 				w={'full'}
@@ -65,21 +71,20 @@ const NavLink = ({ children, icon, hovered, onClick, current_url, label }) => {
 				}}>
 				<Flex alignItems={'center'} className={'ct-animate-fast'}>
 					<Icon
-						as={icon}
+						as={props.icon}
 						boxSize={8}
 						d={'inline-block'}
-						m={hovered ? 'none' : 'auto'}
+						m={props.hovered ? 'none' : 'auto'}
 					/>
 					<Box
-						maxW={hovered ? '500px' : '0px'}
+						maxW={props.hovered ? '500px' : '0px'}
 						d={'inline-block'}
 						overflow={'hidden'}>
 						<Box
 							ml={2}
 							d={'inline-block'}
-							className={'font-TecFont tracking-wider'}>
-							{children}
-						</Box>
+							className={'font-TecFont tracking-wider'}
+						/>
 					</Box>
 				</Flex>
 			</Link>
@@ -87,7 +92,7 @@ const NavLink = ({ children, icon, hovered, onClick, current_url, label }) => {
 	);
 };
 
-const MenuVoice = ({ icon, buttonText, onClick }) => {
+const MenuVoice = (props: menuVoiceInterface) => {
 	return (
 		<Box
 			color={'green.textLight'}
@@ -98,21 +103,21 @@ const MenuVoice = ({ icon, buttonText, onClick }) => {
 				bg: 'green.border',
 				color: 'white',
 			}}>
-			<Icon as={icon} d={'inline-block'} boxSize={6} ml={6} />
+			<Icon as={props.icon} d={'inline-block'} boxSize={6} ml={6} />
 			<Text
 				fontSize={'md'}
 				verticalAlign={'middle'}
 				fontFamily={'TecFont'}
 				ml={3}
 				d={'inline-block'}
-				onClick={onClick}>
-				{buttonText}
+				onClick={props.onClick}>
+				{props.buttonText}
 			</Text>
 		</Box>
 	);
 };
 
-const SubMenu = ({ children, actualSubMenu, menuOpenedOn, title }) => {
+const SubMenu = (props: subMenuVoiceInterface) => {
 	return (
 		<Box
 			color={'silver'}
@@ -125,7 +130,7 @@ const SubMenu = ({ children, actualSubMenu, menuOpenedOn, title }) => {
 			pt={3}
 			bg={'green.backgroundDark'}
 			className={'ct-animate-slowest'}
-			d={actualSubMenu === menuOpenedOn ? 'block' : 'none'}>
+			d={props.actualSubMenu === props.menuOpenedOn ? 'block' : 'none'}>
 			<Text
 				fontSize={'2xl'}
 				my={3}
@@ -139,17 +144,17 @@ const SubMenu = ({ children, actualSubMenu, menuOpenedOn, title }) => {
 				textAlign={'center'}
 				cursor={'default'}
 				className={'text-border'}>
-				{title}
+				{props.title}
 			</Text>
 
-			{children}
+			{props.children}
 		</Box>
 	);
 };
 
 const Header = () => {
-	const [hovered, setHover] = useState(false);
-	const [subMenu, setSubMenu] = useState(false);
+	const [hovered, setHover] = useState<boolean>(false);
+	const [subMenu, setSubMenu] = useState<string>('');
 
 	let { modalState, setModalState } = useModalContext();
 
@@ -174,9 +179,9 @@ const Header = () => {
 							hovered={hovered}
 							current_url={subMenu === 'map'}
 							onClick={() => {
-								subMenu === false || subMenu !== 'map'
+								subMenu === '' || subMenu !== 'map'
 									? setSubMenu('map')
-									: setSubMenu(false);
+									: setSubMenu('');
 							}}
 						/>
 
@@ -186,9 +191,9 @@ const Header = () => {
 							current_url={subMenu === 'user'}
 							label={'User'}
 							onClick={() => {
-								subMenu === false || subMenu !== 'user'
+								subMenu === '' || subMenu !== 'user'
 									? setSubMenu('user')
-									: setSubMenu(false);
+									: setSubMenu('');
 							}}
 						/>
 
@@ -198,9 +203,9 @@ const Header = () => {
 							hovered={hovered}
 							current_url={subMenu === 'messages'}
 							onClick={() => {
-								subMenu === false || subMenu !== 'messages'
+								subMenu === '' || subMenu !== 'messages'
 									? setSubMenu('messages')
-									: setSubMenu(false);
+									: setSubMenu('');
 							}}
 						/>
 
@@ -210,9 +215,9 @@ const Header = () => {
 							current_url={subMenu === 'market'}
 							label={'Market'}
 							onClick={() => {
-								subMenu === false || subMenu !== 'market'
+								subMenu === '' || subMenu !== 'market'
 									? setSubMenu('market')
-									: setSubMenu(false);
+									: setSubMenu('');
 							}}
 						/>
 
@@ -222,9 +227,9 @@ const Header = () => {
 							current_url={subMenu === 'camps'}
 							label={'Camps'}
 							onClick={() => {
-								subMenu === false || subMenu !== 'camps'
+								subMenu === '' || subMenu !== 'camps'
 									? setSubMenu('camps')
-									: setSubMenu(false);
+									: setSubMenu('');
 							}}
 						/>
 
@@ -234,9 +239,9 @@ const Header = () => {
 							label={'Chat'}
 							current_url={subMenu === 'chat'}
 							onClick={() => {
-								subMenu === false || subMenu !== 'chat'
+								subMenu === '' || subMenu !== 'chat'
 									? setSubMenu('chat')
-									: setSubMenu(false);
+									: setSubMenu('');
 							}}
 						/>
 
@@ -246,9 +251,9 @@ const Header = () => {
 							current_url={subMenu === 'groups'}
 							label={'Groups'}
 							onClick={() => {
-								subMenu === false || subMenu !== 'groups'
+								subMenu === '' || subMenu !== 'groups'
 									? setSubMenu('groups')
-									: setSubMenu(false);
+									: setSubMenu('');
 							}}
 						/>
 					</Box>
@@ -266,7 +271,6 @@ const Header = () => {
 						title={'MAP'}>
 						<MenuVoice
 							icon={FaMap}
-							title={'Full Map'}
 							buttonText={'Full Map'}
 							onClick={() => {
 								setModalState({ test: !modalState.test });
@@ -274,17 +278,14 @@ const Header = () => {
 						/>
 						<MenuVoice
 							icon={BsFillPinMapFill}
-							title={'Fast Map'}
 							buttonText={'Fast Map'}
 						/>
 						<MenuVoice
 							icon={GiPathDistance}
-							title={'Calc Distance'}
 							buttonText={'Calc Distance'}
 						/>
 						<MenuVoice
 							icon={MdEmojiPeople}
-							title={'Presences'}
 							buttonText={'Presences'}
 						/>
 					</SubMenu>
@@ -293,26 +294,13 @@ const Header = () => {
 						actualSubMenu={subMenu}
 						menuOpenedOn={'user'}
 						title={'USER'}>
-						<MenuVoice
-							icon={ImProfile}
-							title={'Profile'}
-							buttonText={'Profile'}
-						/>
-						<MenuVoice
-							icon={FaBox}
-							title={'Resources'}
-							buttonText={'Resources'}
-						/>
+						<MenuVoice icon={ImProfile} buttonText={'Profile'} />
+						<MenuVoice icon={FaBox} buttonText={'Resources'} />
 						<MenuVoice
 							icon={CgArrowsExchangeAlt}
-							title={'Change Character'}
 							buttonText={'Change Character'}
 						/>
-						<MenuVoice
-							icon={HiLogout}
-							title={'Logout'}
-							buttonText={'Logout'}
-						/>
+						<MenuVoice icon={HiLogout} buttonText={'Logout'} />
 					</SubMenu>
 
 					<SubMenu
@@ -321,71 +309,36 @@ const Header = () => {
 						title={'MESSAGES'}>
 						<MenuVoice
 							icon={FaEnvelopeOpenText}
-							title={'Personal'}
 							buttonText={'Personal'}
 						/>
-						<MenuVoice
-							icon={GoRadioTower}
-							title={'Radio'}
-							buttonText={'Radio'}
-						/>
-						<MenuVoice
-							icon={FaEdit}
-							title={'Forum'}
-							buttonText={'Forum'}
-						/>
+						<MenuVoice icon={GoRadioTower} buttonText={'Radio'} />
+						<MenuVoice icon={FaEdit} buttonText={'Forum'} />
 					</SubMenu>
 
 					<SubMenu
 						actualSubMenu={subMenu}
 						title={'MARKET'}
 						menuOpenedOn={'market'}>
-						<MenuVoice
-							icon={GiTakeMyMoney}
-							title={'Buy'}
-							buttonText={'Buy'}
-						/>
-						<MenuVoice
-							icon={GiReceiveMoney}
-							title={'Sell'}
-							buttonText={'Sell'}
-						/>
-						<MenuVoice
-							icon={FaHandshake}
-							title={'Exchange'}
-							buttonText={'Exchange'}
-						/>
+						<MenuVoice icon={GiTakeMyMoney} buttonText={'Buy'} />
+						<MenuVoice icon={GiReceiveMoney} buttonText={'Sell'} />
+						<MenuVoice icon={FaHandshake} buttonText={'Exchange'} />
 					</SubMenu>
 
 					<SubMenu
 						actualSubMenu={subMenu}
 						menuOpenedOn={'camps'}
 						title={'CAMPS'}>
-						<MenuVoice
-							icon={FaClipboardList}
-							title={'List'}
-							buttonText={'List'}
-						/>
-						<MenuVoice
-							icon={FaWrench}
-							title={'Edit'}
-							buttonText={'Edit'}
-						/>
+						<MenuVoice icon={FaClipboardList} buttonText={'List'} />
+						<MenuVoice icon={FaWrench} buttonText={'Edit'} />
 						<MenuVoice
 							icon={BiCoinStack}
-							title={'Resources'}
 							buttonText={'Resources'}
 						/>
 						<MenuVoice
 							icon={FaWarehouse}
-							title={'Warehouses'}
 							buttonText={'Warehouses'}
 						/>
-						<MenuVoice
-							icon={FaUserShield}
-							title={'Troops'}
-							buttonText={'Troops'}
-						/>
+						<MenuVoice icon={FaUserShield} buttonText={'Troops'} />
 					</SubMenu>
 
 					<SubMenu
@@ -394,29 +347,12 @@ const Header = () => {
 						title={'CHAT'}>
 						<MenuVoice
 							icon={BsFillInfoCircleFill}
-							title={'Info Chat'}
 							buttonText={'Info Chat'}
 						/>
-						<MenuVoice
-							icon={ImFlag}
-							title={'Factions'}
-							buttonText={'Factions'}
-						/>
-						<MenuVoice
-							icon={MdOutlinePeople}
-							title={'PNG'}
-							buttonText={'PNG'}
-						/>
-						<MenuVoice
-							icon={SiRoamresearch}
-							title={'Hunt'}
-							buttonText={'Hunt'}
-						/>
-						<MenuVoice
-							icon={RiStarFill}
-							title={'Events'}
-							buttonText={'Events'}
-						/>
+						<MenuVoice icon={ImFlag} buttonText={'Factions'} />
+						<MenuVoice icon={MdOutlinePeople} buttonText={'PNG'} />
+						<MenuVoice icon={SiRoamresearch} buttonText={'Hunt'} />
+						<MenuVoice icon={RiStarFill} buttonText={'Events'} />
 					</SubMenu>
 
 					<SubMenu
@@ -425,7 +361,6 @@ const Header = () => {
 						title={'Groups'}>
 						<MenuVoice
 							icon={AiOutlineUnorderedList}
-							title={'List'}
 							buttonText={'List'}
 						/>
 					</SubMenu>

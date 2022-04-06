@@ -1,7 +1,9 @@
 import { Box } from '@chakra-ui/react';
+import React from 'react';
 import homepage_logo from '../../static/images/logo/logo2.png';
+import { LogoData } from './logo.model';
 
-const Logo = (props) => {
+const Logo = (props: LogoData) => {
 	let { className } = props;
 
 	return (

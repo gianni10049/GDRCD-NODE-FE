@@ -5,12 +5,14 @@ import Logo from '../Utils/logo';
 import { GQLQuery } from '../../apollo/GQL';
 import { CHAR_LIST, SET_CHAR } from '../../apollo/Characters';
 import { useEffect, useState } from 'react';
+import React from 'react';
+import { characterInterface } from './charSelect.model';
 
 const CharacterSelect = () => {
 	//TODO
 	// - Valutare in futuro se bloccare l'accesso a questa pagina quando si e' gia' collegati con un pg. (Incasinamento localStorage)
 
-	let [charList, setCharList] = useState([]);
+	let [charList, setCharList] = useState<[characterInterface]>([{}]);
 	const toast = useToast();
 
 	useEffect(() => {
@@ -23,10 +25,14 @@ const CharacterSelect = () => {
 		return await GQLQuery(CHAR_LIST, {});
 	};
 
-	const setCharacter = async (id) => {
-		let data = await GQLQuery(SET_CHAR, {
-			characterId: Number(id),
+	const setCharacterQuery = async (id: number) => {
+		return await GQLQuery(SET_CHAR, {
+			characterId: id,
 		});
+	};
+
+	const setCharacter = async (id: number) => {
+		let data = await setCharacterQuery(id);
 
 		if (data.setCharacter.responseStatus === 'success') {
 			localStorage.setItem('token', data.setCharacter.token);
@@ -44,6 +50,12 @@ const CharacterSelect = () => {
 		}
 	};
 
+	/**
+	 * @param item
+	 * @param item.mini_avatar
+	 * @param item.nickname
+	 * @param item.surname
+	 */
 	return (
 		<Box
 			d={'flex'}
@@ -57,11 +69,8 @@ const CharacterSelect = () => {
 			alignItems={'center'}
 			userSelect={'none'}
 			className={'bg-homepage-image'}>
-			<Particles
-				id='tsparticles'
-				options={config_particles}
-				zIndex={'0'}
-			/>
+			{/*@ts-ignore*/}
+			<Particles options={config_particles} />
 			<Box
 				rounded={'md'}
 				d={'flex'}
@@ -144,7 +153,7 @@ const CharacterSelect = () => {
 										backgroundPosition={'center center'}
 										backgroundRepeat={'no-repeat'}
 										backgroundImage={
-											'url(' + item.miniavatar + ')'
+											'url(' + item.mini_avatar + ')'
 										}
 									/>
 								</Box>
@@ -152,7 +161,7 @@ const CharacterSelect = () => {
 									w={'full'}
 									ml={5}
 									alignItems={'center'}
-									flexWrap={true}
+									flexWrap={'wrap'}
 									textAlign={'center'}
 									fontFamily={'TecFont'}
 									className={'flex flex-wrap '}>

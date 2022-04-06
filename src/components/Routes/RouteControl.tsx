@@ -6,28 +6,48 @@ import Page404 from '../404/404';
 import Header from '../Core/Header';
 import { Box, Container } from '@chakra-ui/react';
 import PlaceholderImage from '../../static/images/patterns/pattern9.png';
+import {
+	AuthDataResponse,
+	ProvideAuthData,
+	RouteControlData,
+	tokenControlData,
+} from './RouteControl.model';
 
-const authContext = createContext(false);
+const authContext = createContext<AuthDataResponse>({
+	auth: false,
+	inProgress: true,
+});
 
-export function ProvideAuth({ children, character_needed, account_needed }) {
-	let auth = useProvideAuth({ character_needed, account_needed });
-	return <authContext.Provider value={auth}>{children}</authContext.Provider>;
+export function ProvideAuth(data: ProvideAuthData) {
+	let auth = useProvideAuth({
+		account_needed: data.account_needed,
+		character_needed: data.character_needed,
+	});
+	return (
+		<authContext.Provider value={auth}>
+			{data.children}
+		</authContext.Provider>
+	);
 }
 
-export const useAuth = () => {
+export const useAuth: any = () => {
 	return useContext(authContext);
 };
 
-function useProvideAuth({ character_needed, account_needed }) {
+const getTokenControl = async (data: tokenControlData) => {
+	return await GQLQuery(TOKEN_CONTROL, data);
+};
+
+function useProvideAuth(props: ProvideAuthData) {
 	const [auth, setAuth] = useState(null);
 	const [inProgress, setInProgress] = useState(true);
 
 	useEffect(() => {
-		GQLQuery(TOKEN_CONTROL, {
-			character_needed,
-			account_needed,
-		}).then((vals) => {
-			let data = vals.tokenControl;
+		getTokenControl({
+			character_needed: props.character_needed,
+			account_needed: props.account_needed,
+		}).then((response) => {
+			let data = response.tokenControl;
 			setAuth(data.response);
 			setInProgress(false);
 			return auth;
@@ -37,17 +57,16 @@ function useProvideAuth({ character_needed, account_needed }) {
 	return { auth, inProgress };
 }
 
-export const RouteControl = ({ children, data }) => {
+export const RouteControl = (props: RouteControlData) => {
 	const auth = useAuth();
-	const actual_url = window.location.pathname;
 
 	if (auth.auth) {
-		if (data.nav) {
+		if (props.data.nav) {
 			return (
 				<>
 					<Box id={'ct-main-navigation-bar'} gap={4}>
 						{/*LEFT*/}
-						<Header actual_url={actual_url} />
+						<Header />
 						{/*RIGHT*/}
 						<Box
 							bg={'green.800'}
@@ -58,13 +77,15 @@ export const RouteControl = ({ children, data }) => {
 							backgroundRepeat={'repeat'}
 							id={'global_windows'}>
 							{/*RIGHT content*/}
-							<Container maxW={'1440px'}>{children}</Container>
+							<Container maxW={'1440px'}>
+								{props.children}
+							</Container>
 						</Box>
 					</Box>
 				</>
 			);
 		} else {
-			return <>{children}</>;
+			return <>{props.children}</>;
 		}
 	}
 

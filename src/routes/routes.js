@@ -34,7 +34,7 @@ const routes = [
 	{
 		path: '404',
 		key: 'error',
-		component: <Page404 />,
+		component: <Page404 code={404} />,
 		account_needed: false,
 		character_needed: false,
 		modal: false,

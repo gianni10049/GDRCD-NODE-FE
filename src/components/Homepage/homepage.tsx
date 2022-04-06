@@ -8,6 +8,12 @@ import config_particles from './../Particles/homepage.json';
 import { useState } from 'react';
 import { useToast } from '@chakra-ui/react';
 import { GQLmutation, GQLQuery } from '../../apollo/GQL';
+import React from 'react';
+import {
+	loginDataInterface,
+	recPassDataInterface,
+	registrationDataInterface,
+} from './homepage.model';
 
 const Homepage = () => {
 	const [formContent, setFormContent] = useState('login');
@@ -42,29 +48,20 @@ const Homepage = () => {
 		email: Yup.string().email('Only valid emails').required('required'),
 	});
 
-	const renderError = (message) => (
+	const renderError = (message: string) => (
 		<p className='text-red-600 font-TecFont tracking-wide pb-1 font-bold'>
 			{message}
 		</p>
 	);
 
-	/**
-	 * @return {Promise<{
-	 * 					login:{
-	 * 						responseStatus:string,
-	 * 						token:string,
-	 * 						response:string
-	 * 					}
-	 * 	}>}
-	 */
-	const getLogin = async (data) => {
+	const getLogin = async (props: loginDataInterface) => {
 		return await GQLQuery(LOGIN, {
-			username: data.username,
-			password: data.password,
+			username: props.username,
+			password: props.password,
 		});
 	};
 
-	const loginSubmit = (data) => {
+	const loginSubmit = (data: loginDataInterface) => {
 		getLogin(data).then((resp) => {
 			if (resp.login) {
 				let status = resp.login.responseStatus;
@@ -99,7 +96,7 @@ const Homepage = () => {
 	 * 					}
 	 * 	}>}
 	 */
-	const getRegistration = async (data) => {
+	const getRegistration = async (data: registrationDataInterface) => {
 		return await GQLmutation(REGISTRATION, {
 			username: data.username,
 			email: data.email,
@@ -108,7 +105,7 @@ const Homepage = () => {
 		});
 	};
 
-	const registrationSubmit = async (data) => {
+	const registrationSubmit = async (data: registrationDataInterface) => {
 		getRegistration(data).then((resp) => {
 			if (resp.registration) {
 				let status = resp.registration.responseStatus;
@@ -128,22 +125,13 @@ const Homepage = () => {
 		});
 	};
 
-	/**
-	 * @return {Promise<{
-	 * 					recPass:{
-	 * 						responseStatus:string,
-	 * 						token:string,
-	 * 						response:string
-	 * 					}
-	 * 	}>}
-	 */
-	const getRecPass = async (data) => {
+	const getRecPass = async (data: recPassDataInterface) => {
 		return await GQLQuery(RECPASS, {
 			email: data.email,
 		});
 	};
 
-	const recPassSubmit = async (data) => {
+	const recPassSubmit = async (data: recPassDataInterface) => {
 		getRecPass(data).then((resp) => {
 			if (resp.recPass) {
 				let status = resp.recPass.responseStatus;
@@ -176,11 +164,8 @@ const Homepage = () => {
 				alignItems={'center'}
 				userSelect={'none'}
 				className={'h-screen w-screen bg-homepage-image'}>
-				<Particles
-					id='tsparticles'
-					options={config_particles}
-					className={'z-0'}
-				/>
+				{/*@ts-ignore*/}
+				<Particles options={config_particles} className={'z-0'} />
 				<Box
 					d={'flex'}
 					py={0.5}
@@ -232,7 +217,7 @@ const Homepage = () => {
 									initialValues={loginInitialValues}
 									validationSchema={loginSchemaValidation}
 									onSubmit={loginSubmit}>
-									<Form textAlign={'center'}>
+									<Form>
 										<Box
 											m={'auto'}
 											my={5}
