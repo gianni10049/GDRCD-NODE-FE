@@ -1,12 +1,12 @@
 import { gql } from '@apollo/client';
 
 const TOKEN_CONTROL = gql`
-	query tokenControl(
+	query routeControl(
 		$token: String!
 		$character_needed: Boolean!
 		$account_needed: Boolean!
 	) {
-		tokenControl(
+		routeControl(
 			token: $token
 			character_needed: $character_needed
 			account_needed: $account_needed

@@ -47,7 +47,7 @@ function useProvideAuth(props: ProvideAuthData) {
 			character_needed: props.character_needed,
 			account_needed: props.account_needed,
 		}).then((response) => {
-			let data = response.tokenControl;
+			let data = response.routeControl;
 			setAuth(data.response);
 			setInProgress(false);
 			return auth;
