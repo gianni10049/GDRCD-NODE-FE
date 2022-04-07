@@ -6,13 +6,18 @@ import {
 	ModalContextModals,
 	ModalContextProviderData,
 } from './ModalContext.model';
+import CharacterProfile from '../Character/character_profile';
 
 const modalContext = createContext<ModalContextModals>({
 	loading: true,
 	setModalState: () => {},
 	modalState: {
-		test: false,
-		test2: false,
+		character_page: {
+			open: false,
+		},
+		character_resources: {
+			open: false,
+		},
 	},
 });
 
@@ -27,8 +32,15 @@ export const ModalContextProvider = (data: ModalContextProviderData) => {
 	return (
 		<modalContext.Provider value={v}>
 			<Suspender suspend={v.loading}>
-				{v.modalState.test && (
-					<ModalBase content={<>Test modale 1</>} title={'TEST'} />
+				{v.modalState.character_page.open && (
+					<ModalBase content={<CharacterProfile />} title={'TEST'} />
+				)}
+
+				{v.modalState.character_resources.open && (
+					<ModalBase
+						content={<CharacterProfile />}
+						title={'Resources'}
+					/>
 				)}
 
 				{children}
@@ -39,8 +51,12 @@ export const ModalContextProvider = (data: ModalContextProviderData) => {
 
 const ModalData = () => {
 	const [modalState, setModalState] = useState({
-		test: false,
-		test2: false,
+		character_page: {
+			open: false,
+		},
+		character_resources: {
+			open: false,
+		},
 	});
 
 	// noinspection JSUnusedGlobalSymbols

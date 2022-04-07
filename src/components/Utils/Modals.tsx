@@ -7,6 +7,7 @@ import {
 	ModalPositionsData,
 	ModelContentData,
 } from './Modals.model';
+import $ from 'jquery';
 
 export default function ModalBase(props: ModalBaseData) {
 	let { content, title } = props;
@@ -32,10 +33,11 @@ export default function ModalBase(props: ModalBaseData) {
 
 	const ModalContent = (props: ModelContentData) => {
 		let { children } = props;
+
 		return (
 			<Box
-				width={modal_width}
-				height={modal_height}
+				width={'full'}
+				height={'full'}
 				borderWidth={'1px'}
 				bg={'green.text'}
 				rounded={'xl'}
@@ -44,6 +46,7 @@ export default function ModalBase(props: ModalBaseData) {
 				overflow={'hidden'}
 				zIndex={999}>
 				<Box
+					className={'drag-window'}
 					bg={'green.backgroundDark'}
 					borderBottomColor={'green.light'}
 					borderBottomStyle={'solid'}
@@ -53,6 +56,7 @@ export default function ModalBase(props: ModalBaseData) {
 					w={'full'}
 					color={'white'}
 					textAlign={'center'}
+					cursor={'move'}
 					fontFamily={'TecFont'}>
 					{title}
 				</Box>
@@ -67,10 +71,28 @@ export default function ModalBase(props: ModalBaseData) {
 		<>
 			{positions.x && (
 				<Rnd
+					dragHandleClassName={'drag-window'}
+					onDragStart={(e) => {
+						$('.react-draggable').css('z-index', 50);
+
+						$(e.target)
+							.closest('.react-draggable')
+							.css('z-index', '99');
+					}}
 					bounds={'#root'}
+					enableResizing={{
+						top: false,
+						right: false,
+						bottom: false,
+						left: false,
+						topRight: false,
+						bottomRight: true,
+						bottomLeft: true,
+						topLeft: false,
+					}}
 					default={{
 						x: positions.x,
-						y: 55,
+						y: positions.y,
 						width: modal_width,
 						height: modal_height,
 					}}>

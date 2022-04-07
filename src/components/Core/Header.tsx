@@ -99,6 +99,7 @@ const MenuVoice = (props: menuVoiceInterface) => {
 			cursor={'pointer'}
 			py={3}
 			pr={3}
+			onClick={props.onClick}
 			_hover={{
 				bg: 'green.border',
 				color: 'white',
@@ -109,8 +110,7 @@ const MenuVoice = (props: menuVoiceInterface) => {
 				verticalAlign={'middle'}
 				fontFamily={'TecFont'}
 				ml={3}
-				d={'inline-block'}
-				onClick={props.onClick}>
+				d={'inline-block'}>
 				{props.buttonText}
 			</Text>
 		</Box>
@@ -269,13 +269,7 @@ const Header = () => {
 						actualSubMenu={subMenu}
 						menuOpenedOn={'map'}
 						title={'MAP'}>
-						<MenuVoice
-							icon={FaMap}
-							buttonText={'Full Map'}
-							onClick={() => {
-								setModalState({ test: !modalState.test });
-							}}
-						/>
+						<MenuVoice icon={FaMap} buttonText={'Full Map'} />
 						<MenuVoice
 							icon={BsFillPinMapFill}
 							buttonText={'Fast Map'}
@@ -294,11 +288,35 @@ const Header = () => {
 						actualSubMenu={subMenu}
 						menuOpenedOn={'user'}
 						title={'USER'}>
-						<MenuVoice icon={ImProfile} buttonText={'Profile'} />
-						<MenuVoice icon={FaBox} buttonText={'Resources'} />
+						<MenuVoice
+							icon={ImProfile}
+							buttonText={'Profile'}
+							onClick={() => {
+								setModalState({
+									character_page: {
+										open: !modalState.character_page.open,
+									},
+								});
+							}}
+						/>
+						<MenuVoice
+							icon={FaBox}
+							buttonText={'Resources'}
+							onClick={() => {
+								setModalState({
+									character_resources: {
+										open: !modalState.character_resources
+											.open,
+									},
+								});
+							}}
+						/>
 						<MenuVoice
 							icon={CgArrowsExchangeAlt}
 							buttonText={'Change Character'}
+							onClick={() => {
+								window.location.href = '/charSelect';
+							}}
 						/>
 						<MenuVoice icon={HiLogout} buttonText={'Logout'} />
 					</SubMenu>
