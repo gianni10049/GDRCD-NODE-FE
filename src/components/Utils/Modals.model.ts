@@ -1,6 +1,5 @@
 export interface ModalBaseData {
-	content: any;
-	title: string;
+	modalStateVar?: any;
 }
 
 export interface ModelContentData {

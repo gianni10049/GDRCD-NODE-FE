@@ -294,6 +294,7 @@ const Header = () => {
 							onClick={() => {
 								setModalState({
 									character_page: {
+										...modalState.character_page,
 										open: !modalState.character_page.open,
 									},
 								});
@@ -305,6 +306,7 @@ const Header = () => {
 							onClick={() => {
 								setModalState({
 									character_resources: {
+										...modalState.character_resources,
 										open: !modalState.character_resources
 											.open,
 									},

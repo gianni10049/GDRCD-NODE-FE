@@ -10,15 +10,6 @@ import CharacterProfile from '../Character/character_profile';
 
 const modalContext = createContext<ModalContextModals>({
 	loading: true,
-	setModalState: () => {},
-	modalState: {
-		character_page: {
-			open: false,
-		},
-		character_resources: {
-			open: false,
-		},
-	},
 });
 
 export const useModalContext = () => {
@@ -33,14 +24,11 @@ export const ModalContextProvider = (data: ModalContextProviderData) => {
 		<modalContext.Provider value={v}>
 			<Suspender suspend={v.loading}>
 				{v.modalState.character_page.open && (
-					<ModalBase content={<CharacterProfile />} title={'TEST'} />
+					<ModalBase modalStateVar={'character_page'} />
 				)}
 
 				{v.modalState.character_resources.open && (
-					<ModalBase
-						content={<CharacterProfile />}
-						title={'Resources'}
-					/>
+					<ModalBase modalStateVar={'character_resources'} />
 				)}
 
 				{children}
@@ -53,9 +41,12 @@ const ModalData = () => {
 	const [modalState, setModalState] = useState({
 		character_page: {
 			open: false,
+			title: 'Profile',
+			component: <CharacterProfile />,
 		},
 		character_resources: {
 			open: false,
+			title: 'Resources',
 		},
 	});
 
