@@ -9,10 +9,20 @@ type Mutation {
     registration(email: String!, password: String!, password_confirm: String!, username: String!): genericResponse
 }
 
+type PermissionGroup {
+    account: Int
+    createdAt: String
+    deletedAt: String
+    group: Int
+    id: ID
+    updatedAt: String
+}
+
 type Query {
     charactersList(token: String!): [characterData]
     getCharacter(characterId: ID, token: String!): characterData
     login(password: String!, username: String!): loginResponse
+    permissionControl(permission: String!, token: String!): genericResponse
     recPass(email: String!): toastResponse
     routeControl(account_needed: Boolean, character_needed: Boolean, token: String!): genericResponse
     setCharacter(characterId: ID!, token: String!): loginResponse
