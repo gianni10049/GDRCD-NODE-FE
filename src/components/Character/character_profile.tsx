@@ -31,7 +31,7 @@ const CharacterProfile = (props: characterProfileData) => {
 					<Box
 						minW={'100px'}
 						maxW={'300px'}
-						width={'20%'}
+						width={'25%'}
 						minH={'500px'}
 						maxH={'600px'}
 						height={'80%'}
@@ -92,7 +92,7 @@ const CharacterProfile = (props: characterProfileData) => {
 								{characterData.surname}
 							</Flex>
 						</Box>
-						<Box flex={1} w={'full'} overflowY={'scroll'}>
+						<Box flex={1} w={'full'} overflowY={'auto'}>
 							<CharacterMainPage characterData={characterData} />
 						</Box>
 					</Box>
