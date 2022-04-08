@@ -29,6 +29,8 @@ export default function ModalBase(props: ModalBaseData) {
 	const [positions, setPositions] = useState<ModalPositionsData>({});
 	let modal_width = 720;
 	let modal_height = 580;
+	let max_width = 1500;
+	let max_height = 1000;
 
 	const getPositions = useCallback<any>(() => {
 		let width = window.innerWidth,
@@ -100,8 +102,8 @@ export default function ModalBase(props: ModalBaseData) {
 				<Rnd
 					minHeight={modal_height}
 					minWidth={modal_width}
-					maxHeight={'97vh'}
-					maxWidth={'97vw'}
+					maxHeight={max_height}
+					maxWidth={max_width}
 					dragHandleClassName={'drag-window'}
 					onDragStart={(e) => {
 						$('.react-draggable').css('z-index', 50);
