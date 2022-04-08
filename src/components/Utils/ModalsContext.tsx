@@ -5,8 +5,8 @@ import ModalBase from './Modals';
 import {
 	ModalContextModals,
 	ModalContextProviderData,
+	modalList,
 } from './ModalContext.model';
-import CharacterProfile from '../Character/character_profile';
 
 const modalContext = createContext<ModalContextModals>({
 	loading: true,
@@ -21,41 +21,53 @@ export const ModalContextProvider = (data: ModalContextProviderData) => {
 	let v = ModalData();
 
 	return (
-		<modalContext.Provider value={v}>
-			<Suspender suspend={v.loading}>
-				{v.modalState.character_page.open && (
-					<ModalBase modalStateVar={'character_page'} />
-				)}
+		<>
+			{v && (
+				<modalContext.Provider value={v}>
+					<Suspender suspend={v.loading}>
+						{v && v.modalState?.character_page?.open && (
+							<ModalBase modalStateVar={'character_page'} />
+						)}
 
-				{v.modalState.character_resources.open && (
-					<ModalBase modalStateVar={'character_resources'} />
-				)}
+						{v && v.modalState?.character_resources?.open && (
+							<ModalBase modalStateVar={'character_resources'} />
+						)}
 
-				{children}
-			</Suspender>{' '}
-		</modalContext.Provider>
+						{children}
+					</Suspender>{' '}
+				</modalContext.Provider>
+			)}
+		</>
 	);
 };
 
 const ModalData = () => {
-	const [modalState, setModalState] = useState({
-		character_page: {
-			open: false,
-			title: 'Profile',
-			component: CharacterProfile,
-		},
-		character_resources: {
-			open: false,
-			title: 'Resources',
-		},
-	});
+	let storage = localStorage.getItem('modals'),
+		defaultData = {
+			character_page: {
+				open: false,
+				title: 'Profile',
+				component: 'Profile',
+			},
+			character_resources: {
+				open: false,
+				title: 'Resources',
+				component: 'Resources',
+			},
+		};
+
+	const [modalState, setModalState] = useState<modalList>(
+		storage ? JSON.parse(storage) : defaultData
+	);
 
 	// noinspection JSUnusedGlobalSymbols
 	return {
 		loading: false,
 		modalState: modalState,
 		setModalState: (kind: object) => {
-			setModalState({ ...modalState, ...kind });
+			let new_data = { ...modalState, ...kind };
+			setModalState(new_data);
+			localStorage.setItem('modals', JSON.stringify(new_data));
 		},
 	};
 };

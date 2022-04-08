@@ -9,22 +9,30 @@ import {
 } from './Modals.model';
 import $ from 'jquery';
 import { useModalContext } from './ModalsContext';
+import modalsContent from '../../constants/modals';
 
 export default function ModalBase(props: ModalBaseData) {
 	let { modalStateVar } = props;
 	let { modalState, setModalState } = useModalContext();
-
-	let Content = modalState[modalStateVar].component;
 	let options = modalState[modalStateVar].options;
+
+	let Content, ModalComponent;
+
+	if (modalsContent[modalState[modalStateVar]?.component]) {
+		ModalComponent = modalsContent[modalState[modalStateVar].component];
+		Content = <ModalComponent options={options} />;
+	} else {
+		ModalComponent = modalsContent['Page404'];
+		Content = <ModalComponent code={404} />;
+	}
 
 	const [positions, setPositions] = useState<ModalPositionsData>({});
 	let modal_width = 720;
 	let modal_height = 580;
 
 	const getPositions = useCallback<any>(() => {
-		let container = document.getElementById('root'),
-			width = container.offsetWidth,
-			height = container.offsetHeight;
+		let width = window.innerWidth,
+			height = window.innerHeight;
 
 		return {
 			x: width / 2 - modal_width / 2,
@@ -110,9 +118,7 @@ export default function ModalBase(props: ModalBaseData) {
 						width: modal_width,
 						height: modal_height,
 					}}>
-					<ModalContent>
-						<Content options={options} />
-					</ModalContent>
+					<ModalContent>{Content}</ModalContent>
 				</Rnd>
 			)}
 		</>
