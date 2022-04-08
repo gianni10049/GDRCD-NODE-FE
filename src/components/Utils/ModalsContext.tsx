@@ -43,9 +43,6 @@ const ModalData = () => {
 			open: false,
 			title: 'Profile',
 			component: CharacterProfile,
-			options: {
-				character: 1,
-			},
 		},
 		character_resources: {
 			open: false,

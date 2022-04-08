@@ -105,8 +105,8 @@ export default function ModalBase(props: ModalBaseData) {
 					bounds={'#root'}
 					enableResizing={true}
 					default={{
-						x: positions.x,
-						y: positions.y,
+						x: positions.x > 0 ? positions.x : 0,
+						y: positions.y > 0 ? positions.y : 0,
 						width: modal_width,
 						height: modal_height,
 					}}>

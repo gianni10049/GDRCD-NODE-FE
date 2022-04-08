@@ -3,6 +3,7 @@ import React, { useEffect, useState } from 'react';
 import { GQLQuery } from '../../apollo/GQL';
 import { GET_CHAR } from '../../apollo/Characters';
 import { characterProfileData } from './character_profile.model';
+import CharacterMainPage from './character_mainpage';
 
 const CharacterProfile = (props: characterProfileData) => {
 	let { options } = props,
@@ -92,7 +93,7 @@ const CharacterProfile = (props: characterProfileData) => {
 							</Flex>
 						</Box>
 						<Box flex={1} w={'full'} overflowY={'scroll'}>
-							<Box h={'1200px'} />
+							<CharacterMainPage characterData={characterData} />
 						</Box>
 					</Box>
 				</Flex>
