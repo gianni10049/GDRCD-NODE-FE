@@ -15,7 +15,7 @@ const CHAR_LIST = gql`
 `;
 
 const SET_CHAR = gql`
-	query setCharacter($token: String!, $characterId: String!) {
+	query setCharacter($token: String!, $characterId: ID!) {
 		setCharacter(token: $token, characterId: $characterId) {
 			responseStatus
 			response
@@ -24,4 +24,23 @@ const SET_CHAR = gql`
 	}
 `;
 
-export { CHAR_LIST, SET_CHAR };
+const GET_CHAR = gql`
+	query getCharacter($token: String!, $characterId: ID) {
+		getCharacter(token: $token, characterId: $characterId) {
+			id
+			account
+			name
+			nickname
+			surname
+			age
+			mini_avatar
+			profilePic
+			active
+			createdAt
+			updatedAt
+			deletedAt
+		}
+	}
+`;
+
+export { CHAR_LIST, SET_CHAR, GET_CHAR };

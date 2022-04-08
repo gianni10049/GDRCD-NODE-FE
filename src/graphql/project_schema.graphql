@@ -11,6 +11,7 @@ type Mutation {
 
 type Query {
     charactersList(token: String!): [characterData]
+    getCharacter(characterId: ID, token: String!): characterData
     login(password: String!, username: String!): loginResponse
     recPass(email: String!): toastResponse
     routeControl(account_needed: Boolean, character_needed: Boolean, token: String!): genericResponse

@@ -14,6 +14,9 @@ export default function ModalBase(props: ModalBaseData) {
 	let { modalStateVar } = props;
 	let { modalState, setModalState } = useModalContext();
 
+	let Content = modalState[modalStateVar].component;
+	let options = modalState[modalStateVar].options;
+
 	const [positions, setPositions] = useState<ModalPositionsData>({});
 	let modal_width = 720;
 	let modal_height = 580;
@@ -35,8 +38,6 @@ export default function ModalBase(props: ModalBaseData) {
 
 	const ModalContent = (props: ModelContentData) => {
 		let { children } = props;
-
-		console.log(modalState[modalStateVar]);
 
 		return (
 			<Box
@@ -110,7 +111,7 @@ export default function ModalBase(props: ModalBaseData) {
 						height: modal_height,
 					}}>
 					<ModalContent>
-						{modalState[modalStateVar].component}
+						<Content options={options} />
 					</ModalContent>
 				</Rnd>
 			)}

@@ -33,6 +33,10 @@ code {
   font-family: 'TecFont';
   src: url('../../fonts/AquireLight.otf');
 }
+@font-face {
+  font-family: 'PaintFont';
+  src: url('../../fonts/Populationzerobb-ZDXK.otf');
+}
 
 *:focus{
   box-shadow: none !important;
@@ -40,8 +44,19 @@ code {
 
 *{
   user-select: none;
+
   /*box-shadow: 0 0 1px 0 inset aqua*/
 }
+
+*::-webkit-scrollbar {
+   width: 8px;
+   background: rgb(17,203,148);
+ }
+
+*::-webkit-scrollbar-thumb {
+   background-color: rgba(6,52,38,0.73);
+   border: 1px solid rgba(16,164,120,0.73);
+ }
 
 /*noinspection CssUnusedSymbol*/
 .ct-animate-slow {

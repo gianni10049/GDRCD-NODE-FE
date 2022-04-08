@@ -42,7 +42,10 @@ const ModalData = () => {
 		character_page: {
 			open: false,
 			title: 'Profile',
-			component: <CharacterProfile />,
+			component: CharacterProfile,
+			options: {
+				character: 1,
+			},
 		},
 		character_resources: {
 			open: false,
