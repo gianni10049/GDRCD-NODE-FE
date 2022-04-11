@@ -1,9 +1,10 @@
-import { Box, Flex, Image, Text } from '@chakra-ui/react';
+import { Box, Flex, Image } from '@chakra-ui/react';
 import React, { useEffect, useState } from 'react';
 import { GQLQuery } from '../../apollo/GQL';
 import { GET_CHAR } from '../../apollo/Characters';
 import { characterProfileData } from './character_profile.model';
 import CharacterMainPage from './character_mainpage';
+import { PopoverCustom, PopoverInfo } from '../Utils/Popover';
 
 const CharacterProfile = (props: characterProfileData) => {
 	let { options } = props,
@@ -35,18 +36,31 @@ const CharacterProfile = (props: characterProfileData) => {
 						minH={'500px'}
 						maxH={'600px'}
 						height={'80%'}
-						borderColor={'green.light'}
-						rounded={'2xl'}
-						overflow={'hidden'}
-						borderWidth={'2px'}
+						pos={'relative'}
 						borderStyle={'solid'}>
-						<Image
+						<Box pos={'absolute'} top={1} right={1}>
+							<PopoverInfo
+								title={'Immagine del personaggio'}
+								content={
+									"L'immagine deve rappresentare un personaggio umano. \n\n Sono ammesse foto e disegni che mostrino chiaramente il viso del personaggio. \n\n La dimensione massima e' di '300x600' mentre quella minima e' di '100x500'"
+								}
+							/>
+						</Box>
+						<Box
 							w={'full'}
 							h={'full'}
-							objectFit={'cover'}
-							objectPosition={'center'}
-							src={characterData.profilePic}
-						/>
+							overflow={'hidden'}
+							borderColor={'green.light'}
+							borderWidth={'1px'}
+							rounded={'2xl'}>
+							<Image
+								w={'full'}
+								h={'full'}
+								objectFit={'cover'}
+								objectPosition={'center'}
+								src={characterData.profilePic}
+							/>
+						</Box>
 					</Box>
 
 					{/*RIGHT*/}
@@ -77,19 +91,27 @@ const CharacterProfile = (props: characterProfileData) => {
 								alignItems={'center'}>
 								{characterData.name}{' '}
 								{characterData.nickname && (
-									<Text
-										_hover={{
-											color: 'green.light',
-										}}
-										color={'green.border'}
-										fontFamily={'PaintFont'}
-										fontSize={30}
-										h={'full'}
-										px={2}>
-										"{characterData.nickname}"
-									</Text>
+									<PopoverCustom
+										placement={'top'}
+										buttonText={`"${characterData.nickname}"`}
+										content={
+											'Test testo per prova fama test.'
+										}
+										title={characterData.nickname}
+										buttonTextSize={30}
+										buttonTextColor={'green.border'}
+										buttonTextColorHover={'green.light'}
+									/>
 								)}
 								{characterData.surname}
+								<Box justifySelf={'end'}>
+									<PopoverInfo
+										title={'Profilo del personaggio'}
+										content={
+											'Questa finestra mostra le informazioni principali del personaggio.'
+										}
+									/>
+								</Box>
 							</Flex>
 						</Box>
 						<Box flex={1} w={'full'} overflowY={'auto'}>

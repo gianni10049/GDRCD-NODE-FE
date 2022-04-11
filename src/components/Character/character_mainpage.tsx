@@ -10,8 +10,10 @@ import {
 	useDisclosure,
 	Collapse,
 	SimpleGrid,
+	Flex,
 } from '@chakra-ui/react';
 import React from 'react';
+import { PopoverInfo } from '../Utils/Popover';
 
 const SingleTab = (props: tabData) => {
 	let { title } = props;
@@ -39,7 +41,10 @@ const SingleTab = (props: tabData) => {
 				color: 'green.light',
 				bgGradient: 'linear(to-t, transparent, green.text)',
 			}}>
-			{title}
+			<Flex>
+				{title}
+				<PopoverInfo title={'Test modale'} content={'TEST TEST TEST'} />
+			</Flex>
 		</Tab>
 	);
 };
