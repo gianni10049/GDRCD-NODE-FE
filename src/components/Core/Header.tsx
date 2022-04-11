@@ -320,7 +320,13 @@ const Header = () => {
 								window.location.href = '/charSelect';
 							}}
 						/>
-						<MenuVoice icon={HiLogout} buttonText={'Logout'} />
+						<MenuVoice
+							icon={HiLogout}
+							buttonText={'Logout 1'}
+							onClick={() => {
+								window.location.href = '/logout';
+							}}
+						/>
 					</SubMenu>
 
 					<SubMenu

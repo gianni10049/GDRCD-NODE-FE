@@ -23,7 +23,7 @@ function App() {
 								<ProvideAuth
 									character_needed={r.character_needed}
 									account_needed={r.account_needed}>
-									<ModalContextProvider>
+									<ModalContextProvider routeData={r}>
 										<RouteControl data={r}>
 											{r.component}
 										</RouteControl>

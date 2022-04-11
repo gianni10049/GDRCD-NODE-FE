@@ -17,7 +17,7 @@ export const useModalContext = () => {
 };
 
 export const ModalContextProvider = (data: ModalContextProviderData) => {
-	let { children } = data;
+	let { children, routeData } = data;
 	let v = ModalData();
 
 	return (
@@ -25,12 +25,23 @@ export const ModalContextProvider = (data: ModalContextProviderData) => {
 			{v && (
 				<modalContext.Provider value={v}>
 					<Suspender suspend={v.loading}>
-						{v && v.modalState?.character_page?.open && (
-							<ModalBase modalStateVar={'character_page'} />
-						)}
+						{routeData.modal && (
+							<>
+								{v && v.modalState?.character_page?.open && (
+									<ModalBase
+										modalStateVar={'character_page'}
+									/>
+								)}
 
-						{v && v.modalState?.character_resources?.open && (
-							<ModalBase modalStateVar={'character_resources'} />
+								{v &&
+									v.modalState?.character_resources?.open && (
+										<ModalBase
+											modalStateVar={
+												'character_resources'
+											}
+										/>
+									)}
+							</>
 						)}
 
 						{children}

@@ -1,5 +1,8 @@
+import { routeData } from '../../routes/routes.model';
+
 export interface ModalContextProviderData {
 	children: any;
+	routeData: routeData;
 }
 
 export interface ModalContextModals {
