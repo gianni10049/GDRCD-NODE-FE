@@ -4,6 +4,7 @@ import { ProvideAuth, RouteControl } from './components/Routes/RouteControl';
 import routes from './routes/routes';
 import React from 'react';
 import { ModalContextProvider } from './components/Utils/ModalsContext';
+import Page404 from './components/404/404';
 
 function App() {
 	return (
@@ -33,6 +34,13 @@ function App() {
 						/>
 					);
 				})}
+
+				<Route
+					key={'page404All'}
+					path='*'
+					exact={true}
+					element={<Page404 code={404} />}
+				/>
 			</Routes>
 		</Router>
 	);
