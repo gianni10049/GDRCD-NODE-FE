@@ -13,6 +13,7 @@ import {
 	Flex,
 } from '@chakra-ui/react';
 import React from 'react';
+import { useTranslation } from 'react-i18next';
 
 const SingleTab = (props: tabData) => {
 	let { title } = props;
@@ -55,6 +56,8 @@ const DataInfo = (props: characterMainPageData) => {
 	let { characterData } = props;
 	const { isOpen: open1, onToggle: toggle1 } = useDisclosure();
 
+	const { t } = useTranslation();
+
 	return (
 		<Box w={'full'} h={'full'}>
 			<Box mb={4} w={'98%'}>
@@ -70,7 +73,7 @@ const DataInfo = (props: characterMainPageData) => {
 					borderWidth={open1 ? 1 : '1px 0'}
 					onClick={toggle1}
 					fontFamily={'TecFont'}>
-					Main data
+					{t('charactersProfile.tabData.firstBoxTitle')}
 				</Box>
 				<Collapse in={open1} animateOpacity>
 					<SimpleGrid
@@ -84,15 +87,17 @@ const DataInfo = (props: characterMainPageData) => {
 						textAlign={'center'}
 						p={3}>
 						<Box py={2} overflow={'hidden'}>
-							<Text>Age:</Text>
+							<Text>{t('charactersProfile.tabData.age')}:</Text>
 							<Text>{characterData.age}</Text>
 						</Box>
 						<Box py={2} overflow={'hidden'}>
-							<Text>Name:</Text>
+							<Text>{t('charactersProfile.tabData.name')}:</Text>
 							<Text>{characterData.name}</Text>
 						</Box>
 						<Box py={2} overflow={'hidden'}>
-							<Text>Surname:</Text>
+							<Text>
+								{t('charactersProfile.tabData.surname')}:
+							</Text>
 							<Text>{characterData.surname}</Text>
 						</Box>
 					</SimpleGrid>
@@ -104,13 +109,14 @@ const DataInfo = (props: characterMainPageData) => {
 
 const CharacterMainPage = (props: characterMainPageData) => {
 	let { characterData } = props;
+	const { t } = useTranslation();
 
 	return (
 		<Tabs isFitted isLazy variant='enclosed' defaultIndex={0}>
 			<TabList border={'none'} d={'flex'} alignItems={'bottom'} mt={2}>
-				<SingleTab title={'Data'} />
-				<SingleTab title={'Stats'} />
-				<SingleTab title={'Healt'} />
+				<SingleTab title={t('charactersProfile.tabData.tabButton')} />
+				<SingleTab title={t('charactersProfile.tabStats.tabButton')} />
+				<SingleTab title={t('charactersProfile.tabHealth.tabButton')} />
 			</TabList>
 			<TabPanels>
 				<TabPanel>

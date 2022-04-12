@@ -6,6 +6,7 @@ import { ChakraProvider } from '@chakra-ui/react';
 import theme from './chakraConfig';
 import { ApolloProvider } from '@apollo/client';
 import { createApolloClient } from './apollo/Apollo';
+import './i18n';
 
 const client = createApolloClient();
 

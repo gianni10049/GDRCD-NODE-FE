@@ -1,0 +1,17 @@
+{
+  "charactersProfile": {
+    "tabData": {
+      "tabButton": "Dati",
+      "firstBoxTitle": "Dati Principali",
+      "age" : "Età",
+      "name" : "Nome",
+      "surname" : "Cognome"
+    },
+    "tabStats": {
+      "tabButton": "Statistiche"
+    },
+    "tabHealth": {
+      "tabButton": "Salute"
+    }
+  }
+}
