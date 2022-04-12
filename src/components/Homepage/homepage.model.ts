@@ -12,3 +12,9 @@ export interface registrationDataInterface {
 export interface recPassDataInterface {
 	email: string;
 }
+
+export interface fieldData {
+	name: string;
+	type?: string | 'text' | 'password';
+	placeholder: string;
+}

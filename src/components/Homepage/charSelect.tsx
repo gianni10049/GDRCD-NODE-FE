@@ -67,8 +67,7 @@ const CharacterSelect = () => {
 			backgroundSize={'cover'}
 			justifyContent={'center'}
 			alignItems={'center'}
-			userSelect={'none'}
-			className={'bg-homepage-image'}>
+			userSelect={'none'}>
 			{/*@ts-ignore*/}
 			<Particles options={config_particles} />
 			<Box
@@ -82,7 +81,9 @@ const CharacterSelect = () => {
 				clipPath={
 					'polygon(0 0, 85% 0%, 100% 0, 100% 85%, 90% 100%, 0 100%)'
 				}
-				className={'shadow-green-backdrop shadow-black-light z-50'}>
+				style={{
+					boxShadow: '0 0 15px -5px rgba(0, 0, 0, 1)',
+				}}>
 				<Box
 					rounded={'md'}
 					bg={'green.background'}
@@ -95,7 +96,11 @@ const CharacterSelect = () => {
 						'polygon(0 0, 85% 0%, 100% 0, 100% 85%, 90% 100%, 0 100%)'
 					}>
 					{/*LOGO + NAME */}
-					<Box className={'flex w-full items-center justify-center'}>
+					<Box
+						d={'flex'}
+						w={'full'}
+						alignItems={'center'}
+						justifyContent={'center'}>
 						<Box w={'20'}>
 							<Logo
 								className={
@@ -138,7 +143,11 @@ const CharacterSelect = () => {
 								_hover={{
 									bg: 'green.text',
 								}}
-								className={'flex shadow-black-inset '}
+								d={'flex'}
+								style={{
+									boxShadow:
+										'inset 0px 0px 10px -5px #000000',
+								}}
 								onClick={() => setCharacter(item.id)}>
 								<Box
 									w={20}
@@ -146,7 +155,10 @@ const CharacterSelect = () => {
 									borderColor={'green.border'}
 									ml={3}
 									alignItems={'center'}
-									className={'shadow-black-light'}>
+									style={{
+										boxShadow:
+											'0 0 15px -5px rgba(0, 0, 0, 1)',
+									}}>
 									<Box
 										className={'ct-ratio-1-1'}
 										backgroundSize={'cover'}
@@ -164,7 +176,7 @@ const CharacterSelect = () => {
 									flexWrap={'wrap'}
 									textAlign={'center'}
 									fontFamily={'TecFont'}
-									className={'flex flex-wrap '}>
+									d={'flex'}>
 									<Box
 										my={1}
 										w={'full'}
@@ -196,7 +208,11 @@ const CharacterSelect = () => {
 								_hover={{
 									bg: 'green.text',
 								}}
-								className={'w-1/2 shadow-black-inset'}>
+								style={{
+									boxShadow:
+										'inset 0px 0px 10px -5px #000000',
+								}}
+								className={'w-1/2'}>
 								+
 							</Box>
 						</Tooltip>

@@ -83,7 +83,8 @@ const NavLink = (props: navLinkInterface) => {
 						<Box
 							ml={2}
 							d={'inline-block'}
-							className={'font-TecFont tracking-wider'}
+							fontFamily={'TecFont'}
+							letterSpacing={'wider'}
 						/>
 					</Box>
 				</Flex>

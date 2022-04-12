@@ -10,6 +10,7 @@ import { useToast } from '@chakra-ui/react';
 import { GQLmutation, GQLQuery } from '../../apollo/GQL';
 import React from 'react';
 import {
+	fieldData,
 	loginDataInterface,
 	recPassDataInterface,
 	registrationDataInterface,
@@ -49,9 +50,14 @@ const Homepage = () => {
 	});
 
 	const renderError = (message: string) => (
-		<p className='text-red-600 font-TecFont tracking-wide pb-1 font-bold'>
-			{message}
-		</p>
+		<Box
+			pb={1}
+			fontWeight={'bold'}
+			color={'red.600'}
+			fontFamily={'TecFont'}
+			letterSpacing={'wide'}>
+			<Text>{message}</Text>
+		</Box>
 	);
 
 	const getLogin = async (props: loginDataInterface) => {
@@ -151,6 +157,63 @@ const Homepage = () => {
 		});
 	};
 
+	const CreateSingleInput = (props: fieldData) => {
+		return (
+			<Box m={'auto'} my={5} className='w-2/4'>
+				<Field
+					name={props.name}
+					type={props.type ?? 'text'}
+					className='input w-full bg-transparent border-b border-green-border font-TecFont outline-0 text-green-border placeholder:text-green-border
+												focus:text-green-light focus:placeholder:text-green-light hover:placeholder:text-green-light'
+					placeholder={props.placeholder}
+				/>
+				<ErrorMessage name={props.name} render={renderError} />
+			</Box>
+		);
+	};
+
+	const CreateSubmitInput = () => {
+		return (
+			<Box
+				d={'flex'}
+				m={'auto'}
+				backgroundColor={'green.border'}
+				alignItems={'center'}
+				justifyContent={'center'}
+				_hover={{
+					backgroundColor: 'green.light',
+				}}
+				clipPath={
+					'polygon(11% 0, 100% 0, 100% 59%, 89% 100%, 0 100%, 0 40%)'
+				}
+				w={'200px'}
+				h={'30px'}>
+				<Button
+					textAlign={'center'}
+					bg={'green.background'}
+					type='submit'
+					w={'calc(100% - 2px)'}
+					h={'calc(100% - 2px)'}
+					rounded={'none'}
+					_hover={{
+						bg: 'green.light',
+					}}
+					clipPath={
+						'polygon(11% 0, 100% 0, 100% 59%, 89% 100%, 0 100%, 0 40%)'
+					}>
+					<Text
+						fontFamily={'TecFont'}
+						color={'green.text'}
+						fontSize={'xl'}
+						letterSpacing={'widest'}
+						className={'text-border'}>
+						Submit
+					</Text>
+				</Button>
+			</Box>
+		);
+	};
+
 	return (
 		<>
 			<Box
@@ -163,7 +226,10 @@ const Homepage = () => {
 				backgroundSize={'cover'}
 				alignItems={'center'}
 				userSelect={'none'}
-				className={'h-screen w-screen bg-homepage-image'}>
+				backgroundImage={
+					"url('./../images/homepage/homepage-image.png')"
+				}
+				className={'h-screen w-screen'}>
 				{/*@ts-ignore*/}
 				<Particles options={config_particles} className={'z-0'} />
 				<Box
@@ -176,7 +242,9 @@ const Homepage = () => {
 					clipPath={
 						'polygon(0 0, 85% 0%, 100% 0, 100% 85%, 90% 100%, 0 100%)'
 					}
-					className={'shadow-green-backdrop shadow-black-light'}>
+					style={{
+						boxShadow: '0 0 15px -5px rgba(0, 0, 0, 1)',
+					}}>
 					<Box
 						rounded={'md'}
 						backgroundColor={'green.background'}
@@ -218,77 +286,18 @@ const Homepage = () => {
 									validationSchema={loginSchemaValidation}
 									onSubmit={loginSubmit}>
 									<Form>
-										<Box
-											m={'auto'}
-											my={5}
-											className='w-2/4'>
-											<Field
-												name='username'
-												type='text'
-												className='input w-full bg-transparent border-b border-green-border font-TecFont outline-0 text-green-border placeholder:text-green-border
-												focus:text-green-light focus:placeholder:text-green-light hover:placeholder:text-green-light'
-												placeholder='username'
-											/>
-											<ErrorMessage
-												name='username'
-												render={renderError}
-											/>
-										</Box>
+										<CreateSingleInput
+											name={'username'}
+											placeholder={'username'}
+										/>
 
-										<Box
-											m={'auto'}
-											my={5}
-											className='w-2/4'>
-											<Field
-												name='password'
-												type='password'
-												className='input w-full bg-transparent border-b border-green-border font-TecFont outline-0 text-green-border placeholder:text-green-border
-												focus:text-green-light focus:placeholder:text-green-light hover:placeholder:text-green-light'
-												placeholder='Password'
-											/>
-											<ErrorMessage
-												name='password'
-												render={renderError}
-											/>
-										</Box>
+										<CreateSingleInput
+											name={'password'}
+											type={'password'}
+											placeholder={'password'}
+										/>
 
-										<Box
-											d={'flex'}
-											m={'auto'}
-											backgroundColor={'green.border'}
-											alignItems={'center'}
-											justifyContent={'center'}
-											_hover={{
-												backgroundColor: 'green.light',
-											}}
-											clipPath={
-												'polygon(11% 0, 100% 0, 100% 59%, 89% 100%, 0 100%, 0 40%)'
-											}
-											w={'200px'}
-											h={'30px'}>
-											<Button
-												textAlign={'center'}
-												bg={'green.background'}
-												type='submit'
-												w={'calc(100% - 2px)'}
-												h={'calc(100% - 2px)'}
-												rounded={'none'}
-												_hover={{
-													bg: 'green.light',
-												}}
-												clipPath={
-													'polygon(11% 0, 100% 0, 100% 59%, 89% 100%, 0 100%, 0 40%)'
-												}>
-												<Text
-													fontFamily={'TecFont'}
-													color={'green.text'}
-													fontSize={'xl'}
-													letterSpacing={'widest'}
-													className={'text-border'}>
-													Submit
-												</Text>
-											</Button>
-										</Box>
+										<CreateSubmitInput />
 									</Form>
 								</Formik>
 							)}
@@ -299,109 +308,30 @@ const Homepage = () => {
 										registrationSchemaValidation
 									}
 									onSubmit={registrationSubmit}>
-									<Form className={'text-center'}>
-										<Box
-											m={'auto'}
-											my={5}
-											className='w-2/4'>
-											<Field
-												name='username'
-												type='text'
-												className='input w-full bg-transparent border-b border-green-border font-TecFont outline-0 text-green-border placeholder:text-green-border
-												focus:text-green-light focus:placeholder:text-green-light hover:placeholder:text-green-light'
-												placeholder='username'
-											/>
-											<ErrorMessage
-												name='username'
-												render={renderError}
-											/>
-										</Box>
-										<Box
-											m={'auto'}
-											my={5}
-											className='w-2/4'>
-											<Field
-												name='email'
-												type='email'
-												className='input w-full bg-transparent border-b border-green-border font-TecFont outline-0 text-green-border placeholder:text-green-border
-												focus:text-green-light focus:placeholder:text-green-light hover:placeholder:text-green-light'
-												placeholder='email'
-											/>
-											<ErrorMessage
-												name='email'
-												render={renderError}
-											/>
-										</Box>
+									<Form style={{ textAlign: 'center' }}>
+										<CreateSingleInput
+											name={'username'}
+											placeholder={'username'}
+										/>
+										<CreateSingleInput
+											name={'email'}
+											type={'email'}
+											placeholder={'email'}
+										/>
 
-										<Box
-											m={'auto'}
-											my={5}
-											className='w-2/4'>
-											<Field
-												name='password'
-												type='password'
-												className='input w-full bg-transparent border-b border-green-border font-TecFont outline-0 text-green-border placeholder:text-green-border
-												focus:text-green-light focus:placeholder:text-green-light hover:placeholder:text-green-light'
-												placeholder='Password'
-											/>
-											<ErrorMessage
-												name='password'
-												render={renderError}
-											/>
-										</Box>
+										<CreateSingleInput
+											name={'password'}
+											type={'password'}
+											placeholder={'password'}
+										/>
 
-										<Box
-											m={'auto'}
-											my={5}
-											className='w-2/4'>
-											<Field
-												name='password_confirm'
-												type='password'
-												className='input w-full bg-transparent border-b border-green-border font-TecFont outline-0 text-green-border placeholder:text-green-border
-												focus:text-green-light focus:placeholder:text-green-light hover:placeholder:text-green-light'
-												placeholder='Password Confirm'
-											/>
-											<ErrorMessage
-												name='password_confirm'
-												render={renderError}
-											/>
-										</Box>
+										<CreateSingleInput
+											name={'password_confirm'}
+											type={'Password Confirm'}
+											placeholder={'password'}
+										/>
 
-										<Box
-											d={'flex'}
-											m={'auto'}
-											bg={'green.border'}
-											alignItems={'center'}
-											justifyContent={'center'}
-											clipPath={
-												'polygon(11% 0, 100% 0, 100% 59%, 89% 100%, 0 100%, 0 40%)'
-											}
-											w={'200px'}
-											h={'30px'}>
-											<Button
-												textAlign={'center'}
-												bg={'green.background'}
-												type='submit'
-												w={'calc(100% - 2px)'}
-												h={'calc(100% - 2px)'}
-												rounded={'none'}
-												_hover={{
-													backgroundColor:
-														'green.light',
-												}}
-												clipPath={
-													'polygon(11% 0, 100% 0, 100% 59%, 89% 100%, 0 100%, 0 40%)'
-												}>
-												<Text
-													fontFamily={'TecFont'}
-													color={'green.text'}
-													fontSize={'xl'}
-													letterSpacing={'widest'}
-													className={'text-border'}>
-													Submit
-												</Text>
-											</Button>
-										</Box>
+										<CreateSubmitInput />
 									</Form>
 								</Formik>
 							)}
@@ -410,62 +340,14 @@ const Homepage = () => {
 									initialValues={recPassInitialValues}
 									validationSchema={recPassSchemaValidation}
 									onSubmit={recPassSubmit}>
-									<Form className={'text-center'}>
-										<Box
-											m={'auto'}
-											my={5}
-											className='w-2/4'>
-											<Field
-												name='email'
-												type='email'
-												className='input w-full bg-transparent border-b border-green-border font-TecFont outline-0 text-green-border placeholder:text-green-border
-												focus:text-green-light focus:placeholder:text-green-light hover:placeholder:text-green-light'
-												placeholder='Email'
-											/>
-											<ErrorMessage
-												name='email'
-												render={renderError}
-											/>
-										</Box>
+									<Form style={{ textAlign: 'center' }}>
+										<CreateSingleInput
+											name={'email'}
+											type={'email'}
+											placeholder={'email'}
+										/>
 
-										<Box
-											d={'flex'}
-											m={'auto'}
-											bg={'green.border'}
-											alignItems={'center'}
-											justifyContent={'center'}
-											_hover={{
-												bg: 'green.light',
-											}}
-											clipPath={
-												'polygon(11% 0, 100% 0, 100% 59%, 89% 100%, 0 100%, 0 40%)'
-											}
-											w={'200px'}
-											h={'30px'}>
-											<Button
-												textAlign={'center'}
-												rounded={'none'}
-												bg={'green.background'}
-												type='submit'
-												w={'calc(100% - 2px)'}
-												h={'calc(100% - 2px)'}
-												_hover={{
-													backgroundColor:
-														'green.light',
-												}}
-												clipPath={
-													'polygon(11% 0, 100% 0, 100% 59%, 89% 100%, 0 100%, 0 40%)'
-												}>
-												<Text
-													fontFamily={'TecFont'}
-													color={'green.text'}
-													fontSize={'xl'}
-													letterSpacing={'widest'}
-													className={'text-border'}>
-													Submit
-												</Text>
-											</Button>
-										</Box>
+										<CreateSubmitInput />
 									</Form>
 								</Formik>
 							)}

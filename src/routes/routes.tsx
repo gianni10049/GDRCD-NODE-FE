@@ -13,7 +13,7 @@ const routes: routeData[] = [
 		component: <Homepage />,
 		account_needed: false,
 		character_needed: false,
-		modal: true,
+		modal: false,
 		nav: false,
 	},
 	{
