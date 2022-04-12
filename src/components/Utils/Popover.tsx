@@ -11,7 +11,7 @@ import {
 } from '@chakra-ui/react';
 import React from 'react';
 import { PopoverData } from './Popover.model';
-import { BsInfoCircle } from 'react-icons/bs';
+import { BsFillInfoCircleFill } from 'react-icons/bs';
 
 export const PopoverCustom = (props: PopoverData) => {
 	return (
@@ -73,7 +73,7 @@ export const PopoverInfo = (props: PopoverData) => {
 			buttonClassName={props.buttonClassName ?? ''}
 			title={props.title}
 			content={props.content}
-			buttonTextIcon={props.buttonTextIcon ?? BsInfoCircle}
+			buttonTextIcon={props.buttonTextIcon ?? BsFillInfoCircleFill}
 			buttonTextSize={props.buttonTextSize ?? 15}
 			buttonTextFamily={props.buttonTextFamily ?? 'Ariel'}
 			buttonTextIconSize={props.buttonTextIconSize ?? 4}

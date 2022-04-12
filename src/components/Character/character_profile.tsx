@@ -5,12 +5,14 @@ import { GET_CHAR } from '../../apollo/Characters';
 import { characterProfileData } from './character_profile.model';
 import CharacterMainPage from './character_mainpage';
 import { PopoverCustom, PopoverInfo } from '../Utils/Popover';
+import { characterTableData } from '../../apollo/Characters.model';
+import default_image from '../../static/images/characters/default-img.png';
 
 const CharacterProfile = (props: characterProfileData) => {
 	let { options } = props,
 		charId = options?.character;
 
-	let [characterData, setCharacterData]: any = useState({});
+	let [characterData, setCharacterData] = useState<characterTableData>({});
 
 	const getCharacterData = async (id: number) => {
 		return await GQLQuery(GET_CHAR, {
@@ -58,7 +60,11 @@ const CharacterProfile = (props: characterProfileData) => {
 								h={'full'}
 								objectFit={'cover'}
 								objectPosition={'center'}
-								src={characterData.profilePic}
+								src={
+									characterData.profilePic
+										? characterData.profilePic
+										: default_image
+								}
 							/>
 						</Box>
 					</Box>
