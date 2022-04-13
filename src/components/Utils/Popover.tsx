@@ -84,6 +84,7 @@ export const PopoverInfo = (props: PopoverData) => {
 			buttonTextIcon={props.buttonTextIcon ?? BsFillInfoCircleFill}
 			buttonTextSize={props.buttonTextSize ?? 15}
 			buttonFont={props.buttonFont ?? 'Ariel'}
+			buttonTextColor={props.buttonTextColor ?? 'popover.info'}
 			buttonTextIconSize={props.buttonTextIconSize ?? 4}
 			buttonTextColorHover={props.buttonTextColorHover ?? 'green.light'}
 			widthSize={props.widthSize}
