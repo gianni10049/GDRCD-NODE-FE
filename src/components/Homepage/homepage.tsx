@@ -15,10 +15,12 @@ import {
 	recPassDataInterface,
 	registrationDataInterface,
 } from './homepage.model';
+import { useTranslation } from 'react-i18next';
 
 const Homepage = () => {
 	const [formContent, setFormContent] = useState('login');
 	const toast = useToast();
+	const { t } = useTranslation();
 
 	let loginInitialValues = {
 		username: '',
@@ -207,7 +209,7 @@ const Homepage = () => {
 						fontSize={'xl'}
 						letterSpacing={'widest'}
 						className={'text-border'}>
-						Submit
+						{t('homepage.forms.submit')}
 					</Text>
 				</Button>
 			</Box>
@@ -275,7 +277,7 @@ const Homepage = () => {
 								}}
 								letterSpacing={'wider'}
 								className={'text-border'}>
-								Corrupta
+								{t('general.siteName')}
 							</Text>
 						</Box>
 
@@ -288,13 +290,17 @@ const Homepage = () => {
 									<Form>
 										<CreateSingleInput
 											name={'username'}
-											placeholder={'username'}
+											placeholder={t(
+												'homepage.forms.login.username'
+											)}
 										/>
 
 										<CreateSingleInput
 											name={'password'}
 											type={'password'}
-											placeholder={'password'}
+											placeholder={t(
+												'homepage.forms.login.password'
+											)}
 										/>
 
 										<CreateSubmitInput />
@@ -311,24 +317,32 @@ const Homepage = () => {
 									<Form style={{ textAlign: 'center' }}>
 										<CreateSingleInput
 											name={'username'}
-											placeholder={'username'}
+											placeholder={t(
+												'homepage.forms.registration.username'
+											)}
 										/>
 										<CreateSingleInput
 											name={'email'}
 											type={'email'}
-											placeholder={'email'}
+											placeholder={t(
+												'homepage.forms.registration.email'
+											)}
 										/>
 
 										<CreateSingleInput
 											name={'password'}
 											type={'password'}
-											placeholder={'password'}
+											placeholder={t(
+												'homepage.forms.registration.password'
+											)}
 										/>
 
 										<CreateSingleInput
 											name={'password_confirm'}
 											type={'Password Confirm'}
-											placeholder={'password'}
+											placeholder={t(
+												'homepage.forms.registration.passwordConfirm'
+											)}
 										/>
 
 										<CreateSubmitInput />
@@ -344,7 +358,9 @@ const Homepage = () => {
 										<CreateSingleInput
 											name={'email'}
 											type={'email'}
-											placeholder={'email'}
+											placeholder={t(
+												'homepage.forms.recPass.email'
+											)}
 										/>
 
 										<CreateSubmitInput />
@@ -376,7 +392,9 @@ const Homepage = () => {
 										onClick={() =>
 											setFormContent('registration')
 										}>
-										Registrati
+										{t(
+											'homepage.forms.registration.button'
+										)}
 									</Text>
 								</Box>
 							)}
@@ -393,7 +411,7 @@ const Homepage = () => {
 											textDecoration: 'underline',
 										}}
 										onClick={() => setFormContent('login')}>
-										Login
+										{t('homepage.forms.login.button')}
 									</Text>
 								</Box>
 							)}
@@ -411,7 +429,7 @@ const Homepage = () => {
 										onClick={() =>
 											setFormContent('recPass')
 										}>
-										Recupera Password
+										{t('homepage.forms.recPass.button')}
 									</Text>
 								</Box>
 							)}

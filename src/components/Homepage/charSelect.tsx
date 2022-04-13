@@ -120,7 +120,7 @@ const CharacterSelect = () => {
 								color: 'green.border',
 							}}
 							className={'text-border'}>
-							Corrupta
+							{t('general.siteName')}
 						</Text>
 					</Box>
 

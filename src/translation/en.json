@@ -1,4 +1,28 @@
 {
+  "general":{
+    "siteName": "Corrupta"
+  },
+  "homepage": {
+    "forms": {
+      "login": {
+        "button": "Sign In",
+        "username": "Username",
+        "password": "Password"
+      },
+      "registration": {
+        "button": "Sign Up",
+        "username": "Username",
+        "email": "Email",
+        "password": "Password",
+        "passwordConfirm": "Conferma Password"
+      },
+      "recPass": {
+        "button": "Password Recovery",
+        "email": "Email"
+      },
+      "submit": "Sign In"
+    }
+  },
   "charSelect": {
     "title": "Select a character:",
     "createTooltip": "Create new character"

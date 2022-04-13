@@ -1,53 +1,77 @@
 {
+  "general":{
+    "siteName": "Corrupta"
+  },
+  "homepage": {
+    "forms": {
+      "login": {
+        "button": "Login",
+        "username": "Username",
+        "password": "Password"
+      },
+      "registration": {
+        "button": "Registrazione",
+        "username": "Username",
+        "email": "Email",
+        "password": "Password",
+        "passwordConfirm": "Conferma Password"
+      },
+      "recPass": {
+        "button": "Recupero Password",
+        "email": "Email"
+      },
+      "submit": "Entra"
+    }
+  },
   "charSelect": {
     "title": "Seleziona un personaggio:",
     "createTooltip": "Crea un nuovo personaggio"
   },
   "mainMenu": {
     "map": {
-      "button" : "Mappa",
-      "fullMap" : "Mappa principale",
-      "fastMap" : "Mappa veloce",
-      "distance" : "Calcolo distanze",
-      "presences" : "Presenti"
+      "button": "Mappa",
+      "fullMap": "Mappa principale",
+      "fastMap": "Mappa veloce",
+      "distance": "Calcolo distanze",
+      "presences": "Presenti"
     },
     "user": {
-      "button" : "Utente",
+      "button": "Utente",
       "profile": "Profilo",
       "resources": "Risorse",
       "changeCharacter": "Cambia personaggio",
       "logout": "Logout"
     },
     "messages": {
-      "button" : "Messaggi",
+      "button": "Messaggi",
       "personal": "Personali",
-      "radio" : "Radio",
-      "forum" : "Forum"
+      "radio": "Radio",
+      "forum": "Forum"
     },
     "market": {
-      "button" : "Mercati",
+      "button": "Mercati",
       "buy": "Compra",
       "sell": "Vendi",
       "exchange": "Scambia"
     },
     "camps": {
-      "button" : "Accampamenti",
-      "list" : "Lista",
-      "edit" : "Modifica",
-      "resources" : "Risorse",
-      "warehouse" : "Magazzino",
-      "troops" : "Truppe"
+      "button": "Accampamenti",
+      "list": "Lista",
+      "edit": "Modifica",
+      "resources": "Risorse",
+      "warehouse": "Magazzino",
+      "troops": "Truppe"
     },
     "chat": {
-      "button" : "Chat",
-      "info" : "Info chat",
-      "factions" : "Fazioni",
-      "png" : "PNG",
-      "hunt" : "Caccia",
-      "events" : "Eventi"
+      "button": "Chat",
+      "info": "Info chat",
+      "factions": "Fazioni",
+      "png": "PNG",
+      "hunt": "Caccia",
+      "events": "Eventi"
     },
     "groups": {
-      "button" : "Gruppi",
+      "button": "Gruppi",
       "list": "Lista"
     }
   },
@@ -55,9 +79,9 @@
     "tabData": {
       "tabButton": "Dati",
       "firstBoxTitle": "Dati Principali",
-      "age" : "Età",
-      "name" : "Nome",
-      "surname" : "Cognome"
+      "age": "Età",
+      "name": "Nome",
+      "surname": "Cognome"
     },
     "tabStats": {
       "tabButton": "Statistiche"
