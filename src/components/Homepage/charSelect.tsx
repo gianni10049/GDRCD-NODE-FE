@@ -7,6 +7,7 @@ import { CHAR_LIST, SET_CHAR } from '../../apollo/Characters';
 import { useEffect, useState } from 'react';
 import React from 'react';
 import { characterInterface } from './charSelect.model';
+import { useTranslation } from 'react-i18next';
 
 const CharacterSelect = () => {
 	//TODO
@@ -14,6 +15,7 @@ const CharacterSelect = () => {
 
 	let [charList, setCharList] = useState<[characterInterface]>([{}]);
 	const toast = useToast();
+	const { t } = useTranslation();
 
 	useEffect(() => {
 		getCharactersList().then((data) => {
@@ -128,7 +130,7 @@ const CharacterSelect = () => {
 							textAlign={'center'}
 							color={'green.light'}
 							fontFamily={'TecFont'}>
-							Select a character:
+							{t('charSelect.title')}
 						</Box>
 						{charList.map((item, i) => (
 							<Box
@@ -193,7 +195,7 @@ const CharacterSelect = () => {
 							</Box>
 						))}
 						<Tooltip
-							label={'Create new character'}
+							label={t('charSelect.createTooltip')}
 							bg={'green.text'}>
 							<Box
 								borderWidth={'1px'}

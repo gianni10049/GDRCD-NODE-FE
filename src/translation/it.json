@@ -1,4 +1,8 @@
 {
+  "charSelect": {
+    "title": "Seleziona un personaggio:",
+    "createTooltip": "Crea un nuovo personaggio"
+  },
   "mainMenu": {
     "map": {
       "button" : "Mappa",

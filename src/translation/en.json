@@ -1,4 +1,9 @@
 {
+  "charSelect": {
+    "title": "Select a character:",
+    "createTooltip": "Create new character"
+
+  },
   "mainMenu": {
     "map": {
       "button": "Map",
