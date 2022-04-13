@@ -2,6 +2,14 @@
   "general":{
     "siteName": "Corrupta"
   },
+  "modals": {
+    "character_page": {
+      "title" : "Profilo"
+    },
+    "character_resources": {
+      "title" : "Risorse"
+    }
+  },
   "homepage": {
     "forms": {
       "login": {

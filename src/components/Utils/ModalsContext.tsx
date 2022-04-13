@@ -7,6 +7,7 @@ import {
 	ModalContextProviderData,
 	modalList,
 } from './ModalContext.model';
+import { useTranslation } from 'react-i18next';
 
 const modalContext = createContext<ModalContextModals>({
 	loading: true,
@@ -53,16 +54,18 @@ export const ModalContextProvider = (data: ModalContextProviderData) => {
 };
 
 const ModalData = () => {
+	const { t } = useTranslation();
+
 	let storage = localStorage.getItem('modals'),
 		defaultData = {
 			character_page: {
 				open: false,
-				title: 'Profile',
+				title: t('modals.character_page.title'),
 				component: 'Profile',
 			},
 			character_resources: {
 				open: false,
-				title: 'Resources',
+				title: t('modals.character_resources.title'),
 				component: 'Resources',
 			},
 		};
