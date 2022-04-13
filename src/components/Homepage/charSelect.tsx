@@ -104,11 +104,7 @@ const CharacterSelect = () => {
 						alignItems={'center'}
 						justifyContent={'center'}>
 						<Box w={'20'}>
-							<Logo
-								className={
-									'hover:bg-green-text hover:border-green-border'
-								}
-							/>
+							<Logo />
 						</Box>
 						<Text
 							color={'green.text'}

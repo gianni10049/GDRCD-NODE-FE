@@ -9,10 +9,16 @@ const Logo = (props: LogoData) => {
 	return (
 		<Box
 			rounded={'full'}
-			border={'1px solid rgba(16,164,120,0.73)'}
-			bg={'rgba(6,52,38,0.73)'}
+			border={'1px solid'}
+			borderColor={'green.border'}
+			bg={'green.background'}
 			boxShadow={'inset 0px 0px 10px -5px #000000'}
-			className={className}>
+			_hover={{
+				bg: 'green.text',
+				border: '1px solid',
+				borderColor: 'green.border',
+			}}
+			className={`${className}`}>
 			<Box
 				className={'ct-ratio-1-1'}
 				backgroundSize={'70% auto'}
