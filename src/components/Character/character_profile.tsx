@@ -7,12 +7,14 @@ import CharacterMainPage from './character_mainpage';
 import { PopoverCustom, PopoverInfo } from '../Utils/Popover';
 import { characterTableData } from '../../apollo/Characters.model';
 import default_image from '../../static/images/characters/default-img.png';
+import { useTranslation } from 'react-i18next';
 
 const CharacterProfile = (props: characterProfileData) => {
 	let { options } = props,
 		charId = options?.character;
 
 	let [characterData, setCharacterData] = useState<characterTableData>({});
+	const { t } = useTranslation();
 
 	const getCharacterData = async (id: number) => {
 		return await GQLQuery(GET_CHAR, {
@@ -42,10 +44,12 @@ const CharacterProfile = (props: characterProfileData) => {
 						borderStyle={'solid'}>
 						<Box pos={'absolute'} top={1} right={1}>
 							<PopoverInfo
-								title={'Immagine del personaggio'}
-								content={
-									"L'immagine deve rappresentare un personaggio umano. \n\n Sono ammesse foto e disegni che mostrino chiaramente il viso del personaggio. \n\n La dimensione massima e' di '300x600' mentre quella minima e' di '100x500'"
-								}
+								title={t(
+									'charactersProfile.imageTooltip.title'
+								)}
+								content={t(
+									'charactersProfile.imageTooltip.text'
+								)}
 							/>
 						</Box>
 						<Box
@@ -112,10 +116,13 @@ const CharacterProfile = (props: characterProfileData) => {
 								{characterData.surname}
 								<Box justifySelf={'end'}>
 									<PopoverInfo
-										title={'Profilo del personaggio'}
-										content={
-											'Questa finestra mostra le informazioni principali del personaggio.'
-										}
+										title={t(
+											'charactersProfile.profileTooltip.title'
+										)}
+										content={t(
+											'charactersProfile.profileTooltip.text'
+										)}
+										contentAlign={'left'}
 									/>
 								</Box>
 							</Flex>

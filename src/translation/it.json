@@ -1,13 +1,13 @@
 {
-  "general":{
+  "general": {
     "siteName": "Corrupta"
   },
   "modals": {
     "character_page": {
-      "title" : "Profilo"
+      "title": "Profilo"
     },
     "character_resources": {
-      "title" : "Risorse"
+      "title": "Risorse"
     }
   },
   "homepage": {
@@ -84,6 +84,14 @@
     }
   },
   "charactersProfile": {
+    "imageTooltip": {
+      "title": "Immagine del personaggio",
+      "text": "L'immagine deve rappresentare un personaggio umano. \n\n Sono ammesse foto e disegni che mostrino chiaramente il viso del personaggio. \n\n La dimensione massima e' di '300x600' mentre quella minima e' di '100x500'"
+    },
+    "profileTooltip": {
+      "title": "Profilo del personaggio",
+      "text": "Questa finestra mostra le informazioni principali del personaggio. \n\n Le informazioni sono divise in: \n - Data : I dati principali del personaggio. \n - Statistiche : I punteggi vari del personaggio. \n - Salute : La situazione attuale di salute e la storia clinica del personaggio."
+    },
     "tabData": {
       "tabButton": "Dati",
       "firstBoxTitle": "Dati Principali",

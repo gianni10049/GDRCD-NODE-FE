@@ -85,6 +85,15 @@
     }
   },
   "charactersProfile": {
+    "imageTooltip":{
+      "title": "Character Image",
+      "text" : "The image must represent a human character.\n\n Photos and drawings that clearly show the character's face are allowed.\n\n The maximum size is '300x600' while the minimum is '100x500'"
+
+    },
+    "profileTooltip": {
+      "title": "Character Profile",
+      "text" : "This window shows the main information of the character.\n\n The information is divided into:\n - Data: The main data of the character.\n - Statistics: The various scores of the character.\n - Health: The current health situation and medical history of the character."
+    },
     "tabData": {
       "tabButton": "Data",
       "firstBoxTitle": "Main Data",
