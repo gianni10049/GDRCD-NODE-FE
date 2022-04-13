@@ -1,11 +1,59 @@
 {
+  "mainMenu": {
+    "map": {
+      "button": "Map",
+      "fullMap": "Full Map",
+      "fastMap": "Fast Map",
+      "distance": "Distance Calc",
+      "presences": "Presences"
+    },
+    "user": {
+      "button": "User",
+      "profile": "Profile",
+      "resources": "Resources",
+      "changeCharacter": "Change Character",
+      "logout": "Logout"
+    },
+    "messages": {
+      "button": "Messages",
+      "personal": "Personal",
+      "radio": "Radio",
+      "forum": "Forum"
+    },
+    "market": {
+      "button": "Markets",
+      "buy": "Buy",
+      "sell": "Sell",
+      "exchange": "Exchange"
+    },
+    "camps": {
+      "button": "Camps",
+      "list": "List",
+      "edit": "Edit",
+      "resources": "Resources",
+      "warehouse": "Warehouse",
+      "troops": "Troops"
+    },
+    "chat": {
+      "button": "Chat",
+      "info": "Info chat",
+      "factions": "Factions",
+      "png": "PNG",
+      "hunt": "Hunt",
+      "events": "Events"
+    },
+    "groups": {
+      "button": "Groups",
+      "list": "List"
+    }
+  },
   "charactersProfile": {
     "tabData": {
       "tabButton": "Data",
       "firstBoxTitle": "Main Data",
-      "age" : "Age",
-      "name" : "Name",
-      "surname" : "Surname"
+      "age": "Age",
+      "name": "Name",
+      "surname": "Surname"
     },
     "tabStats": {
       "tabButton": "Stats"

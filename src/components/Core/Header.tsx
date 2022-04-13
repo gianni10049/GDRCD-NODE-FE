@@ -42,6 +42,7 @@ import { SiGooglechat, SiRoamresearch } from 'react-icons/si';
 import { useState } from 'react';
 import { useModalContext } from '../Utils/ModalsContext';
 import React from 'react';
+import { useTranslation } from 'react-i18next';
 
 const NavLink = (props: navLinkInterface) => {
 	return (
@@ -156,6 +157,7 @@ const SubMenu = (props: subMenuVoiceInterface) => {
 const Header = () => {
 	const [hovered, setHover] = useState<boolean>(false);
 	const [subMenu, setSubMenu] = useState<string>('');
+	const { t } = useTranslation();
 
 	let { modalState, setModalState } = useModalContext();
 
@@ -176,7 +178,7 @@ const Header = () => {
 					<Box d={'block'}>
 						<NavLink
 							icon={GiWorld}
-							label={'Map'}
+							label={t('mainMenu.map.button')}
 							hovered={hovered}
 							current_url={subMenu === 'map'}
 							onClick={() => {
@@ -190,7 +192,7 @@ const Header = () => {
 							icon={FaUserAlt}
 							hovered={hovered}
 							current_url={subMenu === 'user'}
-							label={'User'}
+							label={t('mainMenu.user.button')}
 							onClick={() => {
 								subMenu === '' || subMenu !== 'user'
 									? setSubMenu('user')
@@ -200,7 +202,7 @@ const Header = () => {
 
 						<NavLink
 							icon={AiFillMessage}
-							label={'Messages'}
+							label={t('mainMenu.messages.button')}
 							hovered={hovered}
 							current_url={subMenu === 'messages'}
 							onClick={() => {
@@ -214,7 +216,7 @@ const Header = () => {
 							icon={MdOutlineAttachMoney}
 							hovered={hovered}
 							current_url={subMenu === 'market'}
-							label={'Market'}
+							label={t('mainMenu.market.button')}
 							onClick={() => {
 								subMenu === '' || subMenu !== 'market'
 									? setSubMenu('market')
@@ -226,7 +228,7 @@ const Header = () => {
 							icon={FaCampground}
 							hovered={hovered}
 							current_url={subMenu === 'camps'}
-							label={'Camps'}
+							label={t('mainMenu.camps.button')}
 							onClick={() => {
 								subMenu === '' || subMenu !== 'camps'
 									? setSubMenu('camps')
@@ -237,7 +239,7 @@ const Header = () => {
 						<NavLink
 							icon={SiGooglechat}
 							hovered={hovered}
-							label={'Chat'}
+							label={t('mainMenu.chat.button')}
 							current_url={subMenu === 'chat'}
 							onClick={() => {
 								subMenu === '' || subMenu !== 'chat'
@@ -250,7 +252,7 @@ const Header = () => {
 							icon={HiUserGroup}
 							hovered={hovered}
 							current_url={subMenu === 'groups'}
-							label={'Groups'}
+							label={t('mainMenu.groups.button')}
 							onClick={() => {
 								subMenu === '' || subMenu !== 'groups'
 									? setSubMenu('groups')
@@ -269,29 +271,32 @@ const Header = () => {
 					<SubMenu
 						actualSubMenu={subMenu}
 						menuOpenedOn={'map'}
-						title={'MAP'}>
-						<MenuVoice icon={FaMap} buttonText={'Full Map'} />
+						title={t('mainMenu.map.button')}>
+						<MenuVoice
+							icon={FaMap}
+							buttonText={t('mainMenu.map.fullMap')}
+						/>
 						<MenuVoice
 							icon={BsFillPinMapFill}
-							buttonText={'Fast Map'}
+							buttonText={t('mainMenu.map.fastMap')}
 						/>
 						<MenuVoice
 							icon={GiPathDistance}
-							buttonText={'Calc Distance'}
+							buttonText={t('mainMenu.map.distance')}
 						/>
 						<MenuVoice
 							icon={MdEmojiPeople}
-							buttonText={'Presences'}
+							buttonText={t('mainMenu.map.presences')}
 						/>
 					</SubMenu>
 
 					<SubMenu
 						actualSubMenu={subMenu}
 						menuOpenedOn={'user'}
-						title={'USER'}>
+						title={t('mainMenu.user.button')}>
 						<MenuVoice
 							icon={ImProfile}
-							buttonText={'Profile'}
+							buttonText={t('mainMenu.user.profile')}
 							onClick={() => {
 								setModalState({
 									character_page: {
@@ -303,7 +308,7 @@ const Header = () => {
 						/>
 						<MenuVoice
 							icon={FaBox}
-							buttonText={'Resources'}
+							buttonText={t('mainMenu.user.resources')}
 							onClick={() => {
 								setModalState({
 									character_resources: {
@@ -316,14 +321,14 @@ const Header = () => {
 						/>
 						<MenuVoice
 							icon={CgArrowsExchangeAlt}
-							buttonText={'Change Character'}
+							buttonText={t('mainMenu.user.changeCharacter')}
 							onClick={() => {
 								window.location.href = '/charSelect';
 							}}
 						/>
 						<MenuVoice
 							icon={HiLogout}
-							buttonText={'Logout 1'}
+							buttonText={t('mainMenu.user.logout')}
 							onClick={() => {
 								window.location.href = '/logout';
 							}}
@@ -333,62 +338,98 @@ const Header = () => {
 					<SubMenu
 						actualSubMenu={subMenu}
 						menuOpenedOn={'messages'}
-						title={'MESSAGES'}>
+						title={t('mainMenu.messages.button')}>
 						<MenuVoice
 							icon={FaEnvelopeOpenText}
-							buttonText={'Personal'}
+							buttonText={t('mainMenu.messages.personal')}
 						/>
-						<MenuVoice icon={GoRadioTower} buttonText={'Radio'} />
-						<MenuVoice icon={FaEdit} buttonText={'Forum'} />
+						<MenuVoice
+							icon={GoRadioTower}
+							buttonText={t('mainMenu.messages.radio')}
+						/>
+						<MenuVoice
+							icon={FaEdit}
+							buttonText={t('mainMenu.messages.forum')}
+						/>
 					</SubMenu>
 
 					<SubMenu
 						actualSubMenu={subMenu}
-						title={'MARKET'}
+						title={t('mainMenu.market.button')}
 						menuOpenedOn={'market'}>
-						<MenuVoice icon={GiTakeMyMoney} buttonText={'Buy'} />
-						<MenuVoice icon={GiReceiveMoney} buttonText={'Sell'} />
-						<MenuVoice icon={FaHandshake} buttonText={'Exchange'} />
+						<MenuVoice
+							icon={GiTakeMyMoney}
+							buttonText={t('mainMenu.market.buy')}
+						/>
+						<MenuVoice
+							icon={GiReceiveMoney}
+							buttonText={t('mainMenu.market.sell')}
+						/>
+						<MenuVoice
+							icon={FaHandshake}
+							buttonText={t('mainMenu.market.exchange')}
+						/>
 					</SubMenu>
 
 					<SubMenu
 						actualSubMenu={subMenu}
 						menuOpenedOn={'camps'}
-						title={'CAMPS'}>
-						<MenuVoice icon={FaClipboardList} buttonText={'List'} />
-						<MenuVoice icon={FaWrench} buttonText={'Edit'} />
+						title={t('mainMenu.camps.button')}>
+						<MenuVoice
+							icon={FaClipboardList}
+							buttonText={t('mainMenu.camps.list')}
+						/>
+						<MenuVoice
+							icon={FaWrench}
+							buttonText={t('mainMenu.camps.edit')}
+						/>
 						<MenuVoice
 							icon={BiCoinStack}
-							buttonText={'Resources'}
+							buttonText={t('mainMenu.camps.resources')}
 						/>
 						<MenuVoice
 							icon={FaWarehouse}
-							buttonText={'Warehouses'}
+							buttonText={t('mainMenu.camps.warehouse')}
 						/>
-						<MenuVoice icon={FaUserShield} buttonText={'Troops'} />
+						<MenuVoice
+							icon={FaUserShield}
+							buttonText={t('mainMenu.camps.troops')}
+						/>
 					</SubMenu>
 
 					<SubMenu
 						actualSubMenu={subMenu}
 						menuOpenedOn={'chat'}
-						title={'CHAT'}>
+						title={t('mainMenu.chat.button')}>
 						<MenuVoice
 							icon={BsFillInfoCircleFill}
-							buttonText={'Info Chat'}
+							buttonText={t('mainMenu.chat.info')}
 						/>
-						<MenuVoice icon={ImFlag} buttonText={'Factions'} />
-						<MenuVoice icon={MdOutlinePeople} buttonText={'PNG'} />
-						<MenuVoice icon={SiRoamresearch} buttonText={'Hunt'} />
-						<MenuVoice icon={RiStarFill} buttonText={'Events'} />
+						<MenuVoice
+							icon={ImFlag}
+							buttonText={t('mainMenu.chat.factions')}
+						/>
+						<MenuVoice
+							icon={MdOutlinePeople}
+							buttonText={t('mainMenu.chat.png')}
+						/>
+						<MenuVoice
+							icon={SiRoamresearch}
+							buttonText={t('mainMenu.chat.hunt')}
+						/>
+						<MenuVoice
+							icon={RiStarFill}
+							buttonText={t('mainMenu.chat.events')}
+						/>
 					</SubMenu>
 
 					<SubMenu
 						actualSubMenu={subMenu}
 						menuOpenedOn={'groups'}
-						title={'Groups'}>
+						title={t('mainMenu.groups.button')}>
 						<MenuVoice
 							icon={AiOutlineUnorderedList}
-							buttonText={'List'}
+							buttonText={t('mainMenu.groups.list')}
 						/>
 					</SubMenu>
 				</Box>
