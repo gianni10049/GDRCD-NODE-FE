@@ -23,7 +23,7 @@ export const PopoverCustom = (props: PopoverData) => {
 					_hover={{
 						color: props.buttonTextColorHover ?? '',
 					}}
-					fontFamily={props.buttonTextFamily ?? 'PaintFont'}
+					fontFamily={props.buttonFont ?? 'PaintFont'}
 					fontSize={props.buttonTextSize ?? 18}
 					h={'full'}
 					className={props.buttonClassName ?? ''}
@@ -44,22 +44,26 @@ export const PopoverCustom = (props: PopoverData) => {
 				maxWidth={props.widthSize ?? 'sm'}
 				maxHeight={props.heightSize ?? 'sm'}
 				boxShadow={'0 0 15px 4px rgba(0, 0, 0, 0.8) !important'}
-				fontFamily={'TecFont'}
 				bg={'green.backgroundDark'}
 				borderColor='green.light'
 				borderWidth={'1px'}
 				borderStyle={'solid'}>
 				<PopoverArrow bg={'green.backgroundDark'} />
 				<PopoverCloseButton color={'red'} fontWeight={'bold'} />
-				<PopoverHeader textAlign={'center'} borderColor={'green.light'}>
+				<PopoverHeader
+					textAlign={'center'}
+					borderColor={'green.light'}
+					fontSize={props.titleSize ?? 18}
+					fontFamily={props.titleFont ?? 'TecFont'}>
 					{props.title}
 				</PopoverHeader>
 				<PopoverBody
 					overflow={'auto'}
 					whiteSpace={'pre-wrap'}
 					color={'white'}
-					fontSize={props.contentSize ?? 15}
-					textAlign={'center'}>
+					fontSize={props.contentSize ?? 18}
+					fontFamily={props.contentFont ?? 'LightFont'}
+					textAlign={props.contentAlign ?? 'center'}>
 					{props.content}
 				</PopoverBody>
 			</PopoverContent>
@@ -72,10 +76,14 @@ export const PopoverInfo = (props: PopoverData) => {
 		<PopoverCustom
 			buttonClassName={props.buttonClassName ?? ''}
 			title={props.title}
+			titleSize={props.titleSize}
+			titleFont={props.titleFont ?? 'TecFont'}
 			content={props.content}
+			contentFont={props.contentFont ?? 'LightText'}
+			contentAlign={props.contentAlign ?? 'center'}
 			buttonTextIcon={props.buttonTextIcon ?? BsFillInfoCircleFill}
 			buttonTextSize={props.buttonTextSize ?? 15}
-			buttonTextFamily={props.buttonTextFamily ?? 'Ariel'}
+			buttonFont={props.buttonFont ?? 'Ariel'}
 			buttonTextIconSize={props.buttonTextIconSize ?? 4}
 			buttonTextColorHover={props.buttonTextColorHover ?? 'green.light'}
 			widthSize={props.widthSize}

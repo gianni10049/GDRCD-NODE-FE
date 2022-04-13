@@ -1,6 +1,12 @@
+import { availableFonts, textAlign } from './Generic.model';
+
 export interface PopoverData {
 	title: string;
+	titleFont?: availableFonts;
+	titleSize?: number;
 	content: string;
+	contentFont?: availableFonts;
+	contentAlign?: textAlign;
 	widthSize?: string;
 	heightSize?: string;
 	contentSize?: number;
@@ -12,7 +18,7 @@ export interface PopoverData {
 	buttonTextIcon?: any;
 	buttonTextIconSize?: number;
 	buttonTextIconColor?: string;
-	buttonTextFamily?: string;
+	buttonFont?: availableFonts;
 	placement?:
 		| 'start-start'
 		| 'start-end'

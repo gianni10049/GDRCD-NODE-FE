@@ -33,9 +33,15 @@ code {
   font-family: 'TecFont';
   src: url('../../fonts/AquireLight.otf');
 }
+
 @font-face {
   font-family: 'PaintFont';
   src: url('../../fonts/Populationzerobb-ZDXK.otf');
+}
+
+@font-face {
+  font-family: 'LightText';
+  src: url('../../fonts/Rajdhani-Light.ttf');
 }
 
 *:focus{
