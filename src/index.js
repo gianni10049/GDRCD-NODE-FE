@@ -7,14 +7,19 @@ import theme from './chakraConfig';
 import { ApolloProvider } from '@apollo/client';
 import { createApolloClient } from './apollo/Apollo';
 import './i18n';
+import { Provider } from 'react-redux';
+import store from './redux/store';
 
 const client = createApolloClient();
 
 ReactDOM.render(
-	<ApolloProvider client={client}>
-		<ChakraProvider theme={theme}>
-			<App />
-		</ChakraProvider>
-	</ApolloProvider>,
+	<Provider store={store}>
+		<ApolloProvider client={client}>
+			<ChakraProvider theme={theme}>
+				<App />
+			</ChakraProvider>
+		</ApolloProvider>
+	</Provider>,
+
 	document.getElementById('root')
 );

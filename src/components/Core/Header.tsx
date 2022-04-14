@@ -40,9 +40,10 @@ import { BsFillPinMapFill, BsFillInfoCircleFill } from 'react-icons/bs';
 import { BiCoinStack } from 'react-icons/bi';
 import { SiGooglechat, SiRoamresearch } from 'react-icons/si';
 import { useState } from 'react';
-import { useModalContext } from '../Utils/ModalsContext';
 import React from 'react';
 import { useTranslation } from 'react-i18next';
+import { useDispatch } from 'react-redux';
+import { toggleModal } from '../../redux/modalsReducer';
 
 const NavLink = (props: navLinkInterface) => {
 	return (
@@ -158,8 +159,7 @@ const Header = () => {
 	const [hovered, setHover] = useState<boolean>(false);
 	const [subMenu, setSubMenu] = useState<string>('');
 	const { t } = useTranslation();
-
-	let { modalState, setModalState } = useModalContext();
+	const dispatch = useDispatch();
 
 	return (
 		<Box
@@ -298,25 +298,24 @@ const Header = () => {
 							icon={ImProfile}
 							buttonText={t('mainMenu.user.profile')}
 							onClick={() => {
-								setModalState({
-									character_page: {
-										...modalState.character_page,
-										open: !modalState.character_page.open,
-									},
-								});
+								dispatch(
+									toggleModal({
+										kind: 'character_page',
+										options: {},
+									})
+								);
 							}}
 						/>
 						<MenuVoice
 							icon={FaBox}
 							buttonText={t('mainMenu.user.resources')}
 							onClick={() => {
-								setModalState({
-									character_resources: {
-										...modalState.character_resources,
-										open: !modalState.character_resources
-											.open,
-									},
-								});
+								dispatch(
+									toggleModal({
+										kind: 'character_resources',
+										options: {},
+									})
+								);
 							}}
 						/>
 						<MenuVoice

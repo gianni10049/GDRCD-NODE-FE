@@ -169,6 +169,7 @@ const Homepage = () => {
 												focus:text-green-light focus:placeholder:text-green-light hover:placeholder:text-green-light'
 					placeholder={props.placeholder}
 				/>
+				{/* @ts-ignore*/}
 				<ErrorMessage name={props.name} render={renderError} />
 			</Box>
 		);
