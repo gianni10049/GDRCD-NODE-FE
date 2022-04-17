@@ -1,6 +1,13 @@
 {
   "general": {
-    "siteName": "Corrupta"
+    "siteName": "Corrupta",
+    "stats": {
+      "fisic": "Fisico",
+      "tecnic": "Tecnica",
+      "mind": "Mente",
+      "perception": "Percezione",
+      "social": "Sociale"
+    }
   },
   "modals": {
     "character_page": {
@@ -100,7 +107,9 @@
       "surname": "Cognome"
     },
     "tabStats": {
-      "tabButton": "Statistiche"
+      "tabButton": "Statistiche",
+      "statsTitle": "Statistiche",
+      "abiTitle": "Abilita"
     },
     "tabHealth": {
       "tabButton": "Salute"

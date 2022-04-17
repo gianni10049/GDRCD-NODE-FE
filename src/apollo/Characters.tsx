@@ -43,4 +43,49 @@ const GET_CHAR = gql`
 	}
 `;
 
-export { CHAR_LIST, SET_CHAR, GET_CHAR };
+const GET_CHAR_STATS = gql`
+	query getCharacterStats($token: String!, $characterId: ID!) {
+		getCharacterStats(token: $token, characterId: $characterId) {
+			table {
+				id
+				character
+				characterData {
+					id
+					account
+					name
+					nickname
+					surname
+					age
+					mini_avatar
+					profilePic
+					active
+					createdAt
+					updatedAt
+					deletedAt
+				}
+				stat
+				statData {
+					createdAt
+					deletedAt
+					description
+					id
+					max_lvl
+					min_lvl
+					name
+					registration
+					updatedAt
+					upgradable
+					usable
+				}
+				value
+				createdAt
+				updatedAt
+				deletedAt
+			}
+			response
+			responseStatus
+		}
+	}
+`;
+
+export { CHAR_LIST, SET_CHAR, GET_CHAR, GET_CHAR_STATS };

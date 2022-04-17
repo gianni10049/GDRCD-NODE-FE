@@ -1,12 +1,12 @@
 import { Box, Flex, Image } from '@chakra-ui/react';
 import React, { useEffect, useState } from 'react';
-import { GQLQuery } from '../../apollo/GQL';
-import { GET_CHAR } from '../../apollo/Characters';
+import { GQLQuery } from '../../../apollo/GQL';
+import { GET_CHAR } from '../../../apollo/Characters';
 import { characterProfileData } from './character_profile.model';
 import CharacterMainPage from './character_mainpage';
-import { PopoverCustom, PopoverInfo } from '../Utils/Popover';
-import { characterTableData } from '../../apollo/Characters.model';
-import default_image from '../../static/images/characters/default-img.png';
+import { PopoverCustom, PopoverInfo } from '../../Utils/Popover';
+import { characterTableData } from '../../../apollo/Characters.model';
+import default_image from '../../../static/images/characters/default-img.png';
 import { useTranslation } from 'react-i18next';
 
 const CharacterProfile = (props: characterProfileData) => {

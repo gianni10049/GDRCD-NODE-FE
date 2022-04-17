@@ -9,18 +9,10 @@ type Mutation {
     registration(email: String!, password: String!, password_confirm: String!, username: String!): genericResponse
 }
 
-type PermissionGroup {
-    account: Int
-    createdAt: String
-    deletedAt: String
-    group: Int
-    id: ID
-    updatedAt: String
-}
-
 type Query {
     charactersList(token: String!): [characterData]
     getCharacter(characterId: ID, token: String!): characterData
+    getCharacterStats(characterId: ID!, token: String!): getCharacterStatsResponse
     login(password: String!, username: String!): loginResponse
     permissionControl(permission: String!, token: String!): genericResponse
     recPass(email: String!): toastResponse
@@ -28,10 +20,51 @@ type Query {
     setCharacter(characterId: ID!, token: String!): loginResponse
 }
 
+type accountData {
+    active: Boolean
+    charactersData: characterData
+    createdAt: String
+    deletedAt: String
+    email: String
+    id: ID
+    password: String
+    response: Boolean
+    responseStatus: String
+    updatedAt: String
+    username: String
+}
+
+type accountPermissionData {
+    account: Int
+    accountData: accountData
+    assigned_by: Int
+    createdAt: String
+    deletedAt: String
+    id: ID
+    permission: Int
+    permissionData: permissionData
+    response: Boolean
+    responseStatus: String
+    updatedAt: String
+}
+
+type accountPermissionGroupData {
+    account: Int
+    createdAt: String
+    deletedAt: String
+    group: Int
+    id: ID
+    permissionGroupsData: permissionGroupData
+    response: Boolean
+    responseStatus: String
+    updatedAt: String
+}
+
 type characterData {
     account: Int
     active: Boolean
     age: Int
+    characterPermissionData: characterPermissionData
     createdAt: String
     deletedAt: String
     id: ID
@@ -39,8 +72,36 @@ type characterData {
     name: String
     nickname: String
     profilePic: String
+    response: Boolean
+    responseStatus: String
     surname: String
     updatedAt: String
+}
+
+type characterPermissionData {
+    assigned_by: Int
+    character: Int
+    createdAt: String
+    deletedAt: String
+    id: ID
+    permission: Int
+    response: Boolean
+    responseStatus: String
+    updatedAt: String
+}
+
+type characterStatData {
+    character: Int
+    characterData: characterData
+    createdAt: String
+    deletedAt: String
+    id: ID
+    response: Boolean
+    responseStatus: String
+    stat: Int
+    statData: statData
+    updatedAt: String
+    value: Int
 }
 
 type genericResponse {
@@ -48,10 +109,82 @@ type genericResponse {
     responseStatus: String!
 }
 
+type getCharacterStatsResponse {
+    response: Boolean
+    responseStatus: String
+    table: [characterStatData]
+}
+
+type logMailData {
+    attachment: String
+    createdAt: String
+    deletedAt: String
+    from: String
+    html: String
+    id: ID
+    response: Boolean
+    responseStatus: String
+    subject: String
+    text: String
+    to: String
+    updatedAt: String
+}
+
 type loginResponse {
     response: String!
     responseStatus: String!
     token: String
+}
+
+type permissionData {
+    createdAt: String
+    deletedAt: String
+    description: String
+    id: ID
+    name: String
+    permissionGroups: permissionGroupsPivotData
+    response: Boolean
+    responseStatus: String
+    updatedAt: String
+}
+
+type permissionGroupData {
+    account: Int
+    createdAt: String
+    deletedAt: String
+    group: Int
+    id: ID
+    permissionGroupsData: permissionGroupsPivotData
+    response: Boolean
+    responseStatus: String
+    updatedAt: String
+}
+
+type permissionGroupsPivotData {
+    createdAt: String
+    deletedAt: String
+    group: Int
+    id: ID
+    permission: Int
+    response: Boolean
+    responseStatus: String
+    updatedAt: String
+}
+
+type statData {
+    createdAt: String
+    deletedAt: String
+    description: String
+    id: ID
+    max_lvl: Int
+    min_lvl: Int
+    name: String
+    registration: Boolean
+    response: Boolean
+    responseStatus: String
+    updatedAt: String
+    upgradable: Boolean
+    usable: Boolean
 }
 
 type toastResponse {

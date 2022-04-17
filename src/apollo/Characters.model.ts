@@ -1,3 +1,5 @@
+import { statTableData } from './Stat.model';
+
 export interface characterTableData {
 	id?: number;
 	name?: string;
@@ -10,4 +12,16 @@ export interface characterTableData {
 	createdAt?: string;
 	updatedAt?: string;
 	deletedAt?: string | null;
+}
+
+export interface characterStatTableData {
+	id: number;
+	character: number;
+	stat: number;
+	value: number;
+	characterData: characterTableData;
+	statData: statTableData;
+	createdAt: string;
+	updatedAt: string;
+	deletedAt: string;
 }

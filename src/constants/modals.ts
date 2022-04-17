@@ -1,4 +1,4 @@
-import CharacterProfile from '../components/Character/character_profile';
+import CharacterProfile from '../components/Character/Profile/character_profile';
 import Page404 from '../components/404/404';
 
 const modalsContent: modalsContentData = {
