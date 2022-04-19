@@ -23,7 +23,7 @@ ChartJS.register(
 
 export const StatChart = (props: { stats: characterStatTableData[] }) => {
 	let { stats } = props;
-	const [statData, setStatData]: any = useState(null);
+	const [statData, setStatData] = useState<any>(null);
 	const { t } = useTranslation();
 
 	const calcStatDataNew = async (stats: characterStatTableData[]) => {
@@ -38,7 +38,6 @@ export const StatChart = (props: { stats: characterStatTableData[] }) => {
 			borderColor: 'rgba(80,80,80,0.3)',
 			borderWidth: 1,
 			pointBackgroundColor: 'rgba(17,203,148,1)',
-			color: 'red',
 			pointRadius: 5,
 			valueCont: {},
 		};
@@ -86,12 +85,17 @@ export const StatChart = (props: { stats: characterStatTableData[] }) => {
 											tooltipItems.dataset.valueCont[
 												tooltipItems.label
 											];
-										return `Total: ${data.total}, Buyed: ${data.value}, Bonus: ${data.bonus}`;
+										return `${t(
+											'charactersProfile.tabStats.statBase'
+										)}: ${data.value}, ${t(
+											'charactersProfile.tabStats.statBonus'
+										)}: ${data.bonus}, ${t(
+											'charactersProfile.tabStats.statTotal'
+										)}: ${data.total}`;
 									},
 								},
 							},
 						},
-						color: 'red',
 						scales: {
 							radar: {
 								grid: {

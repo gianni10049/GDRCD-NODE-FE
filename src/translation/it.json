@@ -109,6 +109,9 @@
     "tabStats": {
       "tabButton": "Statistiche",
       "statsTitle": "Statistiche",
+      "statTotal": "Totale",
+      "statBonus": "Bonus",
+      "statBase": "Base",
       "abiTitle": "Abilita"
     },
     "tabHealth": {
