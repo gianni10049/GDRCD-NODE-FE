@@ -12,12 +12,44 @@ type Mutation {
 type Query {
     charactersList(token: String!): [characterData]
     getCharacter(characterId: ID, token: String!): characterData
+    getCharacterAbility(characterId: ID!, token: String!): getCharacterAbilityResponse
     getCharacterStats(characterId: ID!, token: String!): getCharacterStatsResponse
     login(password: String!, username: String!): loginResponse
     permissionControl(permission: String!, token: String!): genericResponse
     recPass(email: String!): toastResponse
     routeControl(account_needed: Boolean, character_needed: Boolean, token: String!): genericResponse
     setCharacter(characterId: ID!, token: String!): loginResponse
+}
+
+type abilityData {
+    abilityToDetailData: [abilityDetailData]
+    castable: Boolean
+    characterAbilityData: [characterAbilityData]
+    createdAt: String
+    createdBy: Int
+    deletedAt: String
+    description: String
+    icon: String
+    id: ID
+    max_level: Int
+    name: String
+    stat: Int
+    updatedAt: String
+    visible: Boolean
+}
+
+type abilityDetailData {
+    ability: Int
+    abilityData: abilityData
+    bonus: Int
+    createdAt: String
+    createdBy: Int
+    deletedAt: String
+    description: String
+    id: ID
+    level: Int
+    price: Int
+    updatedAt: String
 }
 
 type accountData {
@@ -28,8 +60,6 @@ type accountData {
     email: String
     id: ID
     password: String
-    response: Boolean
-    responseStatus: String
     updatedAt: String
     username: String
 }
@@ -43,8 +73,6 @@ type accountPermissionData {
     id: ID
     permission: Int
     permissionData: permissionData
-    response: Boolean
-    responseStatus: String
     updatedAt: String
 }
 
@@ -55,9 +83,19 @@ type accountPermissionGroupData {
     group: Int
     id: ID
     permissionGroupsData: permissionGroupData
-    response: Boolean
-    responseStatus: String
     updatedAt: String
+}
+
+type characterAbilityData {
+    ability: Int
+    abilityData: abilityData
+    character: Int
+    characterData: characterData
+    createdAt: String
+    deletedAt: String
+    id: ID
+    updatedAt: String
+    value: Int
 }
 
 type characterData {
@@ -72,8 +110,6 @@ type characterData {
     name: String
     nickname: String
     profilePic: String
-    response: Boolean
-    responseStatus: String
     surname: String
     updatedAt: String
 }
@@ -85,8 +121,6 @@ type characterPermissionData {
     deletedAt: String
     id: ID
     permission: Int
-    response: Boolean
-    responseStatus: String
     updatedAt: String
 }
 
@@ -96,8 +130,6 @@ type characterStatData {
     createdAt: String
     deletedAt: String
     id: ID
-    response: Boolean
-    responseStatus: String
     stat: Int
     statData: statData
     updatedAt: String
@@ -107,6 +139,12 @@ type characterStatData {
 type genericResponse {
     response: Boolean!
     responseStatus: String!
+}
+
+type getCharacterAbilityResponse {
+    response: Boolean
+    responseStatus: String
+    table: [abilityData]
 }
 
 type getCharacterStatsResponse {
@@ -122,8 +160,6 @@ type logMailData {
     from: String
     html: String
     id: ID
-    response: Boolean
-    responseStatus: String
     subject: String
     text: String
     to: String
@@ -143,8 +179,6 @@ type permissionData {
     id: ID
     name: String
     permissionGroups: permissionGroupsPivotData
-    response: Boolean
-    responseStatus: String
     updatedAt: String
 }
 
@@ -155,8 +189,6 @@ type permissionGroupData {
     group: Int
     id: ID
     permissionGroupsData: permissionGroupsPivotData
-    response: Boolean
-    responseStatus: String
     updatedAt: String
 }
 
@@ -166,8 +198,6 @@ type permissionGroupsPivotData {
     group: Int
     id: ID
     permission: Int
-    response: Boolean
-    responseStatus: String
     updatedAt: String
 }
 
@@ -180,8 +210,6 @@ type statData {
     min_lvl: Int
     name: String
     registration: Boolean
-    response: Boolean
-    responseStatus: String
     updatedAt: String
     upgradable: Boolean
     usable: Boolean

@@ -23,6 +23,10 @@ const theme = extendTheme({
 			backdrop: 'rgba(53, 203, 0, 0.5)',
 			backgroundDark: '#2f3e46',
 		},
+		'yellow': {
+			bg: 'gold',
+			text: '#998600',
+		},
 		'popover': {
 			info: 'rgba(255,255,255,0.7)',
 		},

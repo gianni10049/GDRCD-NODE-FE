@@ -1,4 +1,4 @@
-import { statTableData } from './Stat.model';
+import { abilityTableData, statTableData } from './Tables.model';
 
 export interface characterTableData {
 	id?: number;
@@ -21,6 +21,18 @@ export interface characterStatTableData {
 	value: number;
 	characterData: characterTableData;
 	statData: statTableData;
+	createdAt: string;
+	updatedAt: string;
+	deletedAt: string;
+}
+
+export interface characterAbilityTableData {
+	id: number;
+	character: number;
+	ability: number;
+	value: number;
+	characterData: characterTableData;
+	abilityData: abilityTableData;
 	createdAt: string;
 	updatedAt: string;
 	deletedAt: string;
