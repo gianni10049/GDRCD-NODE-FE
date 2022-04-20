@@ -2,62 +2,71 @@ import { Box, Icon, Tooltip } from '@chakra-ui/react';
 import React, { useEffect, useState } from 'react';
 import { AbiButtonsData, AbiChartData } from './AbiChart.model';
 import { getIcon } from '../../Utils/Icons';
-import { abilityTableData } from '../../../apollo/Tables.model';
+import { abilityTableData, statTableData } from '../../../apollo/Tables.model';
 import { useTranslation } from 'react-i18next';
+import { GQLQuery } from '../../../apollo/GQL';
+import { STATS_LIST } from '../../../apollo/Stats';
 
 export const AbiChart = (props: AbiChartData) => {
 	let { abilities } = props;
 	const { t } = useTranslation();
+	const [stats, setStats] = useState<statTableData[]>([]);
 
-	let last_analyzed = '';
-
-	const analyzed = (stat: string) => {
-		if (last_analyzed !== stat) {
-			last_analyzed = stat;
-			return true;
-		} else {
-			return false;
-		}
+	const statsList = async () => {
+		return await GQLQuery(STATS_LIST);
 	};
 
+	useEffect(() => {
+		statsList().then((resp) => {
+			setStats(resp.statsList);
+		});
+	});
+
+	// @ts-ignore
 	return (
-		<>
-			<Box
-				overflow={'hidden'}
-				w={'full'}
-				borderColor={'green.light'}
-				borderStyle={'solid'}
-				borderWidth={'0 1px 1px 1px'}
-				bg={'green.lightOpacity'}
-				color={'green.backgroundDark'}
-				justifyContent={'center'}
-				d={'flex'}
-				flexWrap={'wrap'}
-				py={2}
-				m={'0 auto'}>
-				{abilities.map((item: abilityTableData, i) => (
-					<Box key={i}>
-						{analyzed(item.statData.name) && (
-							<Box
-								d={'block'}
-								w={'full'}
-								color={'green.light'}
-								textAlign={'center'}>
-								{/*@ts-ignore*/}
-								{t(`general.stats.${item.statData.name}`)}
-							</Box>
-						)}
-						<AbiButton
-							//@ts-ignore
-							tooltip={t(`general.ability.${item.name}`)}
-							points={item.characterAbilityData[0]?.value}
-							icon={item.icon}
-							max_level={item.max_level}
-						/>
+		<Box
+			borderColor={'green.light'}
+			borderStyle={'solid'}
+			w={'full'}
+			overflow={'hidden'}
+			bg={'green.lightOpacity'}
+			color={'green.backgroundDark'}
+			py={2}
+			m={'0 auto'}
+			borderWidth={'0 1px 1px 1px'}>
+			{stats.map((stat: statTableData, i) => (
+				<Box key={i}>
+					<Box
+						d={'block'}
+						w={'full'}
+						color={'green.light'}
+						textAlign={'center'}>
+						{/*@ts-ignore*/}
+						{t(`general.stats.${stat.name}`)}
 					</Box>
-				))}
-			</Box>
-		</>
+					<Box justifyContent={'center'} d={'flex'} flexWrap={'wrap'}>
+						{abilities.map((item: abilityTableData, i) => (
+							<Box key={i}>
+								{item.stat === stat.id && (
+									<AbiButton
+										//@ts-ignore
+										tooltip={t(
+											//@ts-ignore
+											`general.ability.${item.name}`
+										)}
+										points={
+											item.characterAbilityData[0]?.value
+										}
+										icon={item.icon}
+										max_level={item.max_level}
+									/>
+								)}
+							</Box>
+						))}
+					</Box>
+				</Box>
+			))}
+		</Box>
 	);
 };
 
