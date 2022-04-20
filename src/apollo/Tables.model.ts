@@ -10,6 +10,7 @@ export interface abilityTableData {
 	castable: boolean;
 	visible: boolean;
 	characterAbilityData: characterAbilityTableData[];
+	statData: statTableData;
 	createdBy: number;
 	createdAt: string;
 	updatedAt: string;

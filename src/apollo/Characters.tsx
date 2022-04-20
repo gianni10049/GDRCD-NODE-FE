@@ -104,6 +104,19 @@ const GET_CHAR_ABILITY = gql`
 				createdAt
 				updatedAt
 				deletedAt
+				statData {
+					createdAt
+					deletedAt
+					description
+					id
+					max_lvl
+					min_lvl
+					name
+					registration
+					updatedAt
+					upgradable
+					usable
+				}
 				characterAbilityData {
 					id
 					character

@@ -7,6 +7,28 @@
       "mind": "Mente",
       "perception": "Percezione",
       "social": "Sociale"
+    },
+    "ability": {
+      "athletic": "Atletica",
+      "whiteWeapons": "Armi bianche",
+      "fight": "Lotta",
+      "resistance": "Resistenza",
+      "fireWeapon": "Armi da fuoco",
+      "furtivity": "Furtività",
+      "drive": "Guidare",
+      "manuality": "Manualità",
+      "selfcontrol": "Autocontrollo",
+      "knowledge": "Conoscenza",
+      "investigate": "Investigare",
+      "engineering": "Ingegneria",
+      "find": "Cercare",
+      "fiveSenses": "Cinque sensi",
+      "empaty": "Empatia",
+      "readiness": "Prontezza",
+      "exchange": "Contrattare",
+      "intimidate": "Intimidire",
+      "deceive": "Raggirare",
+      "socializing": "Socializzare"
     }
   },
   "modals": {

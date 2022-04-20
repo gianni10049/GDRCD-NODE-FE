@@ -89,20 +89,7 @@ export const StatChar = (props: characterStatData) => {
 				{t('charactersProfile.tabStats.abiTitle')}
 			</Box>
 			<Collapse in={open2}>
-				<Box
-					overflow={'hidden'}
-					w={'full'}
-					borderColor={'green.light'}
-					borderStyle={'solid'}
-					borderWidth={'0 1px 1px 1px'}
-					bg={'green.lightOpacity'}
-					color={'green.backgroundDark'}
-					justifyContent={'center'}
-					d={'flex'}
-					flexWrap={'wrap'}
-					m={'0 auto'}>
-					{abiResponse && <AbiChart abilities={abiResponse} />}
-				</Box>
+				{abiResponse && <AbiChart abilities={abiResponse} />}
 			</Collapse>
 		</>
 	);
