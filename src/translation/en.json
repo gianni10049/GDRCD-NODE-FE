@@ -37,6 +37,9 @@
     },
     "character_resources": {
       "title": "Resources"
+    },
+    "ability_details": {
+      "title": "Ability details"
     }
   },
   "homepage": {

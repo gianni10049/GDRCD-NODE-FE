@@ -43,7 +43,7 @@ import { useState } from 'react';
 import React from 'react';
 import { useTranslation } from 'react-i18next';
 import { useDispatch } from 'react-redux';
-import { toggleModal } from '../../redux/modalsReducer';
+import { toggleCharacterModal } from '../../redux/characterModals';
 
 const NavLink = (props: navLinkInterface) => {
 	return (
@@ -298,25 +298,13 @@ const Header = () => {
 							icon={ImProfile}
 							buttonText={t('mainMenu.user.profile')}
 							onClick={() => {
-								dispatch(
-									toggleModal({
-										kind: 'character_page',
-										options: {},
-									})
-								);
+								dispatch(toggleCharacterModal());
 							}}
 						/>
 						<MenuVoice
 							icon={FaBox}
 							buttonText={t('mainMenu.user.resources')}
-							onClick={() => {
-								dispatch(
-									toggleModal({
-										kind: 'character_resources',
-										options: {},
-									})
-								);
-							}}
+							onClick={() => {}}
 						/>
 						<MenuVoice
 							icon={CgArrowsExchangeAlt}

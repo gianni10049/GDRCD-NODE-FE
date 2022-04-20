@@ -1,30 +1,27 @@
 import React from 'react';
 import ModalBase from './Modals';
 import { ModalContextProviderData } from './ModalContext.model';
-import { useSelector } from 'react-redux';
-import { selectModals } from '../../redux/modalsReducer';
+import { useSelector, useDispatch } from 'react-redux';
+import { chracterModalsSelector } from '../../redux/characterModals';
+import { toggleCharacterModal } from '../../redux/characterModals';
 
 export const ModalContextProvider = (data: ModalContextProviderData) => {
-	let { children, routeData } = data;
-	let v = useSelector(selectModals);
+	let { routeData } = data;
+	let characterModals = useSelector(chracterModalsSelector);
+	const dispatch = useDispatch();
 
 	return (
 		<>
-			{v && (
+			{routeData.modal && (
 				<>
-					{routeData.modal && (
-						<>
-							{v.character_page?.open && (
-								<ModalBase modalStateVar={'character_page'} />
-							)}
-							{v.character_resources?.open && (
-								<ModalBase
-									modalStateVar={'character_resources'}
-								/>
-							)}
-						</>
+					{characterModals.open && (
+						<ModalBase
+							title={characterModals.title}
+							component={characterModals.component}
+							options={characterModals.options}
+							dispatch={() => dispatch(toggleCharacterModal())}
+						/>
 					)}
-					{children}
 				</>
 			)}
 		</>

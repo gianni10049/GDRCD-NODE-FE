@@ -9,19 +9,14 @@ import {
 } from './Modals.model';
 import $ from 'jquery';
 import modalsContent from '../../constants/modals';
-import { useSelector, useDispatch } from 'react-redux';
-import { selectModals, toggleModal } from '../../redux/modalsReducer';
 
 export default function ModalBase(props: ModalBaseData) {
-	let { modalStateVar } = props;
-	let modals = useSelector(selectModals);
-	let dispatch = useDispatch();
-	let options = modals[modalStateVar].options;
+	let { options, component, title } = props;
 
 	let Content, ModalComponent;
 
-	if (modalsContent[modals[modalStateVar]?.component]) {
-		ModalComponent = modalsContent[modals[modalStateVar].component];
+	if (modalsContent[component]) {
+		ModalComponent = modalsContent[component];
 		Content = <ModalComponent options={options} />;
 	} else {
 		ModalComponent = modalsContent['Page404'];
@@ -77,16 +72,14 @@ export default function ModalBase(props: ModalBaseData) {
 					textAlign={'center'}
 					cursor={'move'}
 					fontFamily={'TecFont'}>
-					{modals[modalStateVar].title}
+					{title}
 					<Box
 						pos={'absolute'}
 						right={5}
 						top={0}
 						color={'red'}
 						cursor={'pointer'}
-						onClick={() => {
-							dispatch(toggleModal({ kind: modalStateVar }));
-						}}>
+						onClick={() => {}}>
 						X
 					</Box>
 				</Box>

@@ -49,6 +49,7 @@ export const AbiChart = (props: AbiChartData) => {
 							<Box key={i}>
 								{item.stat === stat.id && (
 									<AbiButton
+										abilityId={item.id}
 										//@ts-ignore
 										tooltip={t(
 											//@ts-ignore
@@ -105,7 +106,8 @@ export const AbiButton = (props: AbiButtonsData) => {
 				d={'flex'}
 				justifyContent={'center'}
 				alignItems={'center'}
-				textAlign={'center'}>
+				textAlign={'center'}
+				onClick={() => {}}>
 				<Icon
 					color={points >= max_level ? 'yellow.text' : 'white'}
 					pointerEvents={'none'}
