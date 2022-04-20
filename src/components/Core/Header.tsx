@@ -298,7 +298,7 @@ const Header = () => {
 							icon={ImProfile}
 							buttonText={t('mainMenu.user.profile')}
 							onClick={() => {
-								dispatch(toggleCharacterModal());
+								dispatch(toggleCharacterModal({}));
 							}}
 						/>
 						<MenuVoice

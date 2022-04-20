@@ -6,6 +6,8 @@ import { abilityTableData, statTableData } from '../../../apollo/Tables.model';
 import { useTranslation } from 'react-i18next';
 import { GQLQuery } from '../../../apollo/GQL';
 import { STATS_LIST } from '../../../apollo/Stats';
+import { useDispatch } from 'react-redux';
+import { toggleAbilityDetailModal } from '../../../redux/abilityDetailsModal';
 
 export const AbiChart = (props: AbiChartData) => {
 	let { abilities } = props;
@@ -73,6 +75,7 @@ export const AbiChart = (props: AbiChartData) => {
 
 export const AbiButton = (props: AbiButtonsData) => {
 	let { tooltip, max_level, icon } = props;
+	const dispatch = useDispatch();
 
 	let [percentage, setPercentage] = useState<number>(0),
 		points = props.points ?? 0;
@@ -107,7 +110,9 @@ export const AbiButton = (props: AbiButtonsData) => {
 				justifyContent={'center'}
 				alignItems={'center'}
 				textAlign={'center'}
-				onClick={() => {}}>
+				onClick={() => {
+					dispatch(toggleAbilityDetailModal({}));
+				}}>
 				<Icon
 					color={points >= max_level ? 'yellow.text' : 'white'}
 					pointerEvents={'none'}

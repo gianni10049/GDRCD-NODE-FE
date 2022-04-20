@@ -1,14 +1,8 @@
 import { routeData } from '../../routes/routes.model';
 
 export interface ModalContextProviderData {
+	children: any;
 	routeData: routeData;
-}
-
-export interface ModalContextModals {
-	[key: string]: any;
-	loading: boolean;
-	setModalState?: any;
-	modalState?: modalList;
 }
 
 export interface modalList {
