@@ -16,5 +16,5 @@ export interface modalContentData {
 	open?: boolean;
 	title?: string;
 	component?: any;
-	options?: object;
+	options?: any;
 }

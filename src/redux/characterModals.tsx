@@ -12,10 +12,19 @@ export const characterModals = createSlice({
 	},
 	reducers: {
 		toggleCharacterModal: (state: modalContentData, data) => {
-			state.open = !state.open;
-
 			if (data.payload.options) {
-				state.options = data.payload.options;
+				if (
+					state.options.character !== data.payload.options.character
+				) {
+					state.options = data.payload.options;
+					if (!state.open) {
+						state.open = true;
+					}
+				} else {
+					state.open = !state.open;
+				}
+			} else {
+				state.open = !state.open;
 			}
 		},
 	},

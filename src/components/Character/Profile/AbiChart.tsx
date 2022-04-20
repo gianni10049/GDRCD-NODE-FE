@@ -74,7 +74,7 @@ export const AbiChart = (props: AbiChartData) => {
 };
 
 export const AbiButton = (props: AbiButtonsData) => {
-	let { tooltip, max_level, icon } = props;
+	let { abilityId, tooltip, max_level, icon } = props;
 	const dispatch = useDispatch();
 
 	let [percentage, setPercentage] = useState<number>(0),
@@ -111,7 +111,13 @@ export const AbiButton = (props: AbiButtonsData) => {
 				alignItems={'center'}
 				textAlign={'center'}
 				onClick={() => {
-					dispatch(toggleAbilityDetailModal({}));
+					dispatch(
+						toggleAbilityDetailModal({
+							options: {
+								abilityId: abilityId,
+							},
+						})
+					);
 				}}>
 				<Icon
 					color={points >= max_level ? 'yellow.text' : 'white'}

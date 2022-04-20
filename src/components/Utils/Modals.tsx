@@ -11,7 +11,7 @@ import $ from 'jquery';
 import modalsContent from '../../constants/modals';
 
 export default function ModalBase(props: ModalBaseData) {
-	let { options, component, title } = props;
+	let { dispatch, options, component, title } = props;
 
 	let Content, ModalComponent;
 
@@ -79,7 +79,9 @@ export default function ModalBase(props: ModalBaseData) {
 						top={0}
 						color={'red'}
 						cursor={'pointer'}
-						onClick={() => {}}>
+						onClick={() => {
+							dispatch();
+						}}>
 						X
 					</Box>
 				</Box>

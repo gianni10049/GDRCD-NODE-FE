@@ -12,10 +12,19 @@ export const abilityDetailsModal = createSlice({
 	},
 	reducers: {
 		toggleAbilityDetailModal: (state: modalContentData, data: any) => {
-			state.open = !state.open;
-
 			if (data.payload.options) {
-				state.options = data.payload.options;
+				if (
+					state.options.abilityId !== data.payload.options.abilityId
+				) {
+					state.options = data.payload.options;
+					if (!state.open) {
+						state.open = true;
+					}
+				} else {
+					state.open = !state.open;
+				}
+			} else {
+				state.open = !state.open;
 			}
 		},
 	},
