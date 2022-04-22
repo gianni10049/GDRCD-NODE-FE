@@ -67,10 +67,13 @@ const GET_CHAR_STATS = gql`
 				statData {
 					createdAt
 					deletedAt
-					description
+					description {
+						eng
+						it
+					}
 					id
-					max_lvl
-					min_lvl
+					max_level
+					min_level
 					name
 					registration
 					updatedAt
@@ -94,7 +97,10 @@ const GET_CHAR_ABILITY = gql`
 			table {
 				id
 				name
-				description
+				description {
+					it
+					eng
+				}
 				icon
 				stat
 				castable
@@ -107,10 +113,13 @@ const GET_CHAR_ABILITY = gql`
 				statData {
 					createdAt
 					deletedAt
-					description
+					description {
+						eng
+						it
+					}
 					id
-					max_lvl
-					min_lvl
+					max_level
+					min_level
 					name
 					registration
 					updatedAt

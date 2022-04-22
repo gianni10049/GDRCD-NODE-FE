@@ -34,8 +34,8 @@ export interface statTableData {
 	id: number;
 	name: string;
 	description: string;
-	max_lvl: number;
-	min_lvl: number;
+	max_level: number;
+	min_level: number;
 	registration: boolean;
 	usable: boolean;
 	upgradable: boolean;

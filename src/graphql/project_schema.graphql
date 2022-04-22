@@ -11,15 +11,16 @@ type Mutation {
 
 type Query {
     charactersList(token: String!): [characterData]
+    getAbility(abilityId: ID!, token: String!): abilityData
     getCharacter(characterId: ID, token: String!): characterData
     getCharacterAbility(characterId: ID!, token: String!): getCharacterAbilityResponse
     getCharacterStats(characterId: ID!, token: String!): getCharacterStatsResponse
+    listStats(token: String!): [statData]
     login(password: String!, username: String!): loginResponse
     permissionControl(permission: String!, token: String!): genericResponse
     recPass(email: String!): toastResponse
     routeControl(account_needed: Boolean, character_needed: Boolean, token: String!): genericResponse
     setCharacter(characterId: ID!, token: String!): loginResponse
-    listStats(token: String!): [statData]
 }
 
 type abilityData {
@@ -29,12 +30,12 @@ type abilityData {
     createdAt: String
     createdBy: Int
     deletedAt: String
-    description: String
+    description: descriptionsArray
     icon: String
     id: ID
     max_level: Int
     name: String
-    stat: Int
+    stat: ID
     statData: statData
     updatedAt: String
     visible: Boolean
@@ -138,6 +139,11 @@ type characterStatData {
     value: Int
 }
 
+type descriptionsArray {
+    eng: String
+    it: String
+}
+
 type genericResponse {
     response: Boolean!
     responseStatus: String!
@@ -206,10 +212,10 @@ type permissionGroupsPivotData {
 type statData {
     createdAt: String
     deletedAt: String
-    description: String
+    description: descriptionsArray
     id: ID
-    max_lvl: Int
-    min_lvl: Int
+    max_level: Int
+    min_level: Int
     name: String
     registration: Boolean
     updatedAt: String

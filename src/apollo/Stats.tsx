@@ -5,10 +5,13 @@ const LIST_STATS = gql`
 		listStats(token: $token) {
 			createdAt
 			deletedAt
-			description
+			description {
+				it
+				eng
+			}
 			id
-			max_lvl
-			min_lvl
+			max_level
+			min_level
 			name
 			registration
 			updatedAt
