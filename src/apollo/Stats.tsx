@@ -1,8 +1,8 @@
 import { gql } from '@apollo/client';
 
-const STATS_LIST = gql`
-	query statsList($token: String!) {
-		statsList(token: $token) {
+const LIST_STATS = gql`
+	query listStats($token: String!) {
+		listStats(token: $token) {
 			createdAt
 			deletedAt
 			description
@@ -18,4 +18,4 @@ const STATS_LIST = gql`
 	}
 `;
 
-export { STATS_LIST };
+export { LIST_STATS };

@@ -19,7 +19,7 @@ type Query {
     recPass(email: String!): toastResponse
     routeControl(account_needed: Boolean, character_needed: Boolean, token: String!): genericResponse
     setCharacter(characterId: ID!, token: String!): loginResponse
-    statsList(token: String!): [statData]
+    listStats(token: String!): [statData]
 }
 
 type abilityData {
