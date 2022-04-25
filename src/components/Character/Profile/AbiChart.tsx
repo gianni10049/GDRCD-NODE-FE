@@ -8,6 +8,7 @@ import { GQLQuery } from '../../../apollo/GQL';
 import { LIST_STATS } from '../../../apollo/Stats';
 import { useDispatch } from 'react-redux';
 import { toggleAbilityDetailModal } from '../../../redux/abilityDetailsModal';
+import { PopoverInfo } from '../../Utils/Popover';
 
 export const AbiChart = (props: AbiChartData) => {
 	let { abilities } = props;
@@ -34,8 +35,15 @@ export const AbiChart = (props: AbiChartData) => {
 			bg={'green.lightOpacity'}
 			color={'green.backgroundDark'}
 			py={2}
+			pos={'relative'}
 			m={'0 auto'}
 			borderWidth={'0 1px 1px 1px'}>
+			<Box pos={'absolute'} top={1} right={1}>
+				<PopoverInfo
+					title={t('charactersProfile.tabStats.abiPopoverTitle')}
+					content={t('charactersProfile.tabStats.abiPopoverText')}
+				/>
+			</Box>
 			{stats.map((stat: statTableData, i) => (
 				<Box key={i}>
 					<Box
