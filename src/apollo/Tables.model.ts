@@ -3,7 +3,10 @@ import { characterAbilityTableData } from './Characters.model';
 export interface abilityTableData {
 	id: number;
 	name: string;
-	description: string;
+	description: {
+		it: string;
+		eng: string;
+	};
 	icon: string;
 	stat: number;
 	max_level: number;
@@ -21,7 +24,10 @@ export interface abilityDetailsTableData {
 	id: number;
 	ability: number;
 	level: number;
-	description: string;
+	description: {
+		it: string;
+		eng: string;
+	};
 	price: number;
 	bonus: number;
 	createdBy: number;
@@ -33,7 +39,10 @@ export interface abilityDetailsTableData {
 export interface statTableData {
 	id: number;
 	name: string;
-	description: string;
+	description: {
+		it: string;
+		eng: string;
+	};
 	max_level: number;
 	min_level: number;
 	registration: boolean;

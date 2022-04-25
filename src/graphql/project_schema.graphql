@@ -48,7 +48,7 @@ type abilityDetailData {
     createdAt: String
     createdBy: Int
     deletedAt: String
-    description: String
+    description: descriptionsArray
     id: ID
     level: Int
     price: Int

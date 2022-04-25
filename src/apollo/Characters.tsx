@@ -139,7 +139,10 @@ const GET_CHAR_ABILITY = gql`
 					id
 					ability
 					level
-					description
+					description {
+						eng
+						it
+					}
 					price
 					bonus
 					createdBy
