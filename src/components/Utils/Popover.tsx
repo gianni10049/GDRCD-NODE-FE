@@ -54,6 +54,7 @@ export const PopoverCustom = (props: PopoverData) => {
 					textAlign={'center'}
 					borderColor={'green.light'}
 					fontSize={props.titleSize ?? 18}
+					color={props.titleColor ?? 'green.textLight'}
 					fontFamily={props.titleFont ?? 'TecFont'}>
 					{props.title}
 				</PopoverHeader>
@@ -62,7 +63,7 @@ export const PopoverCustom = (props: PopoverData) => {
 					whiteSpace={'pre-wrap'}
 					color={'white'}
 					fontSize={props.contentSize ?? 18}
-					fontFamily={props.contentFont ?? 'LightFont'}
+					fontFamily={props.contentFont ?? 'LightText'}
 					textAlign={props.contentAlign ?? 'center'}>
 					{props.content}
 				</PopoverBody>
@@ -74,21 +75,26 @@ export const PopoverCustom = (props: PopoverData) => {
 export const PopoverInfo = (props: PopoverData) => {
 	return (
 		<PopoverCustom
-			buttonClassName={props.buttonClassName ?? ''}
 			title={props.title}
+			titleFont={props.titleFont}
 			titleSize={props.titleSize}
-			titleFont={props.titleFont ?? 'TecFont'}
+			titleColor={props.titleColor}
 			content={props.content}
-			contentFont={props.contentFont ?? 'LightText'}
-			contentAlign={props.contentAlign ?? 'center'}
-			buttonTextIcon={props.buttonTextIcon ?? BsFillInfoCircleFill}
-			buttonTextSize={props.buttonTextSize ?? 15}
-			buttonFont={props.buttonFont ?? 'Ariel'}
-			buttonTextColor={props.buttonTextColor ?? 'popover.info'}
-			buttonTextIconSize={props.buttonTextIconSize ?? 4}
-			buttonTextColorHover={props.buttonTextColorHover ?? 'green.light'}
+			contentFont={props.contentFont}
+			contentAlign={props.contentAlign}
+			contentSize={props.contentSize}
 			widthSize={props.widthSize}
 			heightSize={props.heightSize}
+			buttonClassName={props.buttonClassName}
+			buttonText={props.buttonText}
+			buttonTextSize={props.buttonTextSize ?? 15}
+			buttonTextColor={props.buttonTextColor ?? 'popover.info'}
+			buttonTextColorHover={props.buttonTextColorHover ?? 'green.light'}
+			buttonTextIcon={props.buttonTextIcon ?? BsFillInfoCircleFill}
+			buttonTextIconSize={props.buttonTextIconSize ?? 4}
+			buttonTextIconColor={props.buttonTextIconColor}
+			buttonFont={props.buttonFont ?? 'Ariel'}
+			placement={props.placement}
 		/>
 	);
 };

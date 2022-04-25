@@ -4,12 +4,13 @@ export interface PopoverData {
 	title: string;
 	titleFont?: availableFonts;
 	titleSize?: number;
+	titleColor?: string;
 	content: string;
 	contentFont?: availableFonts;
 	contentAlign?: textAlign;
+	contentSize?: number;
 	widthSize?: string;
 	heightSize?: string;
-	contentSize?: number;
 	buttonClassName?: string;
 	buttonText?: string;
 	buttonTextSize?: number;
