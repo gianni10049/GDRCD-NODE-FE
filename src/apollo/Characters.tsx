@@ -47,43 +47,43 @@ const GET_CHAR_STATS = gql`
 	query getCharacterStats($token: String!, $characterId: ID!) {
 		getCharacterStats(token: $token, characterId: $characterId) {
 			table {
-				id
-				character
-				characterData {
-					id
-					account
-					name
-					nickname
-					surname
-					age
-					mini_avatar
-					profilePic
-					active
-					createdAt
-					updatedAt
-					deletedAt
-				}
-				stat
-				statData {
-					createdAt
-					deletedAt
-					description {
-						eng
-						it
-					}
-					id
-					max_level
-					min_level
-					name
-					registration
-					updatedAt
-					upgradable
-					usable
-				}
-				value
 				createdAt
-				updatedAt
 				deletedAt
+				description {
+					eng
+					it
+				}
+				characterStatData {
+					id
+					value
+					createdAt
+					updatedAt
+					deletedAt
+					character
+					characterData {
+						id
+						account
+						name
+						nickname
+						surname
+						age
+						mini_avatar
+						profilePic
+						active
+						createdAt
+						updatedAt
+						deletedAt
+					}
+					stat
+				}
+				id
+				max_level
+				min_level
+				name
+				registration
+				updatedAt
+				upgradable
+				usable
 			}
 			response
 			responseStatus

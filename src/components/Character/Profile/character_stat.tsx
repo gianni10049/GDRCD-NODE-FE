@@ -4,18 +4,16 @@ import { Box, Collapse, useDisclosure } from '@chakra-ui/react';
 import { useTranslation } from 'react-i18next';
 import { GQLQuery } from '../../../apollo/GQL';
 import { GET_CHAR_ABILITY, GET_CHAR_STATS } from '../../../apollo/Characters';
-import { characterStatTableData } from '../../../apollo/Characters.model';
 import { StatChart } from './StatChart';
 import { AbiChart } from './AbiChart';
-import { abilityTableData } from '../../../apollo/Tables.model';
+import { abilityTableData, statTableData } from '../../../apollo/Tables.model';
 
 export const StatChar = (props: characterStatData) => {
 	const { characterData } = props;
 	const { t } = useTranslation();
 	const { isOpen: open1, onToggle: toggle1 } = useDisclosure();
 	const { isOpen: open2, onToggle: toggle2 } = useDisclosure();
-	const [statResponse, setStatResponse] =
-		useState<characterStatTableData[]>(null);
+	const [statResponse, setStatResponse] = useState<statTableData[]>(null);
 	const [abiResponse, setAbiResponse] = useState<abilityTableData[]>(null);
 
 	useEffect(() => {

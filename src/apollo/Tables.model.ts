@@ -1,4 +1,7 @@
-import { characterAbilityTableData } from './Characters.model';
+import {
+	characterAbilityTableData,
+	characterStatTableData,
+} from './Characters.model';
 
 export interface abilityTableData {
 	id: number;
@@ -43,6 +46,7 @@ export interface statTableData {
 		it: string;
 		eng: string;
 	};
+	characterStatData: characterStatTableData[];
 	max_level: number;
 	min_level: number;
 	registration: boolean;

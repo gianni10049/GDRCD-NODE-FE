@@ -158,7 +158,7 @@ type getCharacterAbilityResponse {
 type getCharacterStatsResponse {
     response: Boolean
     responseStatus: String
-    table: [characterStatData]
+    table: [statData]
 }
 
 type logMailData {
@@ -210,6 +210,7 @@ type permissionGroupsPivotData {
 }
 
 type statData {
+    characterStatData: [characterStatData]
     createdAt: String
     deletedAt: String
     description: descriptionsArray

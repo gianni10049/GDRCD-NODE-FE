@@ -1,6 +1,5 @@
 import { Radar } from 'react-chartjs-2';
 import React, { useEffect, useState } from 'react';
-import { characterStatTableData } from '../../../apollo/Characters.model';
 import { useTranslation } from 'react-i18next';
 import {
 	Chart as ChartJS,
@@ -11,6 +10,7 @@ import {
 	RadialLinearScale,
 	Tooltip,
 } from 'chart.js';
+import { statTableData } from '../../../apollo/Tables.model';
 
 ChartJS.register(
 	RadialLinearScale,
@@ -21,12 +21,12 @@ ChartJS.register(
 	Legend
 );
 
-export const StatChart = (props: { stats: characterStatTableData[] }) => {
+export const StatChart = (props: { stats: statTableData[] }) => {
 	let { stats } = props;
 	const [statData, setStatData] = useState<any>(null);
 	const { t } = useTranslation();
 
-	const calcStatDataNew = async (stats: characterStatTableData[]) => {
+	const calcStatDataNew = async (stats: statTableData[]) => {
 		let data: any = {
 			labels: [],
 			datasets: [],
@@ -44,8 +44,8 @@ export const StatChart = (props: { stats: characterStatTableData[] }) => {
 
 		stats.forEach((stat) => {
 			//@ts-ignore
-			let name: string = t(`general.stats.${stat.statData.name}`);
-			let value = stat.value;
+			let name: string = t(`general.stats.${stat.name}`);
+			let value = stat.characterStatData[0]?.value ?? 1;
 			let bonus = 3;
 
 			datum.valueCont[name] = {
