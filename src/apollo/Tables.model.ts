@@ -17,6 +17,7 @@ export interface abilityTableData {
 	visible: boolean;
 	characterAbilityData: characterAbilityTableData[];
 	statData: statTableData;
+	abilityToDetailData: abilityDetailsTableData[];
 	createdBy: number;
 	createdAt: string;
 	updatedAt: string;

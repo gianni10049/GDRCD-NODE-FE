@@ -87,7 +87,12 @@ export const StatChar = (props: characterStatData) => {
 				{t('charactersProfile.tabStats.abiTitle')}
 			</Box>
 			<Collapse in={open2}>
-				{abiResponse && <AbiChart abilities={abiResponse} />}
+				{abiResponse && (
+					<AbiChart
+						abilities={abiResponse}
+						characterId={characterData.id}
+					/>
+				)}
 			</Collapse>
 		</>
 	);

@@ -11,7 +11,7 @@ import { toggleAbilityDetailModal } from '../../../redux/abilityDetailsModal';
 import { PopoverInfo } from '../../Utils/Popover';
 
 export const AbiChart = (props: AbiChartData) => {
-	let { abilities } = props;
+	let { abilities, characterId } = props;
 	const { t } = useTranslation();
 	const [stats, setStats] = useState<statTableData[]>([]);
 
@@ -59,6 +59,7 @@ export const AbiChart = (props: AbiChartData) => {
 							<Box key={i}>
 								{item.stat === stat.id && (
 									<AbiButton
+										characterId={characterId}
 										abilityId={item.id}
 										//@ts-ignore
 										tooltip={t(
@@ -82,7 +83,7 @@ export const AbiChart = (props: AbiChartData) => {
 };
 
 export const AbiButton = (props: AbiButtonsData) => {
-	let { abilityId, tooltip, max_level, icon } = props;
+	let { abilityId, tooltip, max_level, icon, characterId } = props;
 	const dispatch = useDispatch();
 
 	let [percentage, setPercentage] = useState<number>(0),
@@ -123,6 +124,7 @@ export const AbiButton = (props: AbiButtonsData) => {
 						toggleAbilityDetailModal({
 							options: {
 								abilityId: abilityId,
+								characterId: characterId,
 							},
 						})
 					);
