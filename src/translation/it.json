@@ -145,5 +145,9 @@
     "tabHealth": {
       "tabButton": "Salute"
     }
+  },
+  "ability": {
+    "abilityDetailsTitle": "Informazioni abilità",
+    "abilityDetailsText": "In questa schermata è possibile visualizzare i dettagli dell'abilità selezionata. I livelli in chiaro sono quelli acquistati dal proprietario dell'abilità mentre quelli più scuri sono quelli ancora da acquistare. Il calcolo base per un'abilità è di 5 x livello se non specificato diversamente da configurazione di abilità. E' possibile vederne il prezzo cliccando sulla tab del livello desiderato."
   }
 }

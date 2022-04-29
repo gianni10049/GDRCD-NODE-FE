@@ -10,6 +10,7 @@ import {
 	calcDefaultAbilityBonus,
 	calcDefaultAbilityPrice,
 } from '../Utils/Generals';
+import { PopoverInfo } from '../Utils/Popover';
 
 export const AbilityDetails = (props: AbilityDetailsData) => {
 	let { abilityId, characterId } = props.options;
@@ -83,16 +84,22 @@ export const AbilityDetails = (props: AbilityDetailsData) => {
 				{data.map((levelDetail, i) => (
 					<Box key={i}>
 						<Box
+							cursor={'pointer'}
 							textTransform={'uppercase'}
 							textAlign={'center'}
 							fontSize={20}
 							mx={'auto'}
 							mt={5}
-							color={'white'}
+							color={'green.textLight'}
+							_hover={{
+								bgColor: 'green.border',
+								color: 'white',
+							}}
+							transition={'0.2s all'}
 							bg={
 								levelDetail.char_level >= levelDetail.level
 									? 'green.lightOpacity'
-									: 'green.900'
+									: 'green.backgroundDark'
 							}
 							borderColor={'green.light'}
 							borderStyle={'solid'}
@@ -152,7 +159,13 @@ export const AbilityDetails = (props: AbilityDetailsData) => {
 	};
 
 	return (
-		<Box w={'full'} h={'full'}>
+		<Box w={'full'} h={'full'} pos={'relative'} overflowX={'hidden'}>
+			<Box pos={'absolute'} top={1} right={1}>
+				<PopoverInfo
+					title={t('ability.abilityDetailsTitle')}
+					content={t('ability.abilityDetailsText')}
+				/>
+			</Box>
 			{abilityData && (
 				<>
 					<Box
