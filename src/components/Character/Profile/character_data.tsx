@@ -9,7 +9,7 @@ import {
 import React from 'react';
 import { useTranslation } from 'react-i18next';
 
-export const DataInfo = (props: characterMainPageData) => {
+export const CharDataInfo = (props: characterMainPageData) => {
 	let { characterData } = props;
 	const { isOpen: open1, onToggle: toggle1 } = useDisclosure();
 

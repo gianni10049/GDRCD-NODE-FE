@@ -9,8 +9,8 @@ import {
 } from '@chakra-ui/react';
 import React from 'react';
 import { useTranslation } from 'react-i18next';
-import { StatChar } from './character_stat';
-import { DataInfo } from './character_data';
+import { CharStatTab } from './character_stat';
+import { CharDataInfo } from './character_data';
 
 const SingleTab = (props: tabData) => {
 	let { title } = props;
@@ -62,10 +62,10 @@ const CharacterMainPage = (props: characterMainPageData) => {
 			</TabList>
 			<TabPanels>
 				<TabPanel>
-					<DataInfo characterData={characterData} />
+					<CharDataInfo characterData={characterData} />
 				</TabPanel>
 				<TabPanel>
-					<StatChar characterData={characterData} />
+					<CharStatTab characterData={characterData} />
 				</TabPanel>
 				<TabPanel>
 					<p>tree!</p>
