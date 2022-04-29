@@ -157,4 +157,32 @@ const GET_CHAR_ABILITY = gql`
 	}
 `;
 
-export { CHAR_LIST, SET_CHAR, GET_CHAR, GET_CHAR_STATS, GET_CHAR_ABILITY };
+const GET_CHAR_POINTS = gql`
+	query getCharacterPoints($token: String!, $characterId: ID!) {
+		getCharacterPoints(token: $token, characterId: $characterId) {
+			table {
+				id
+				character
+				life
+				stamina
+				exp_total
+				exp_usable
+				stat_points
+				createdAt
+				updatedAt
+				deletedAt
+			}
+			response
+			responseStatus
+		}
+	}
+`;
+
+export {
+	CHAR_LIST,
+	SET_CHAR,
+	GET_CHAR,
+	GET_CHAR_STATS,
+	GET_CHAR_ABILITY,
+	GET_CHAR_POINTS,
+};

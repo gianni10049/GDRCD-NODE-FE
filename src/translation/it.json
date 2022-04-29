@@ -140,7 +140,8 @@
       "abiTitle": "Abilita",
       "abiPopoverText": "Cliccando sulle icone sarà possibile vederne i dettagli. L'aumento delle abilità avanza di xxx. Errori o volontà di diminuzione vanno segnalate ad un moderatore, che prenderà in carico la richiesta e, dopo accettazione, eseguirà la restituzione dell'esperienza tolta.",
       "abiPopoverTitle": "Schermata abilità",
-      "abiLevelsText": "Livello"
+      "abiLevelsText": "Livello",
+      "pointsTitle": "Punteggi"
     },
     "tabHealth": {
       "tabButton": "Salute"

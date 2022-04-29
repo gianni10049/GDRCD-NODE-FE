@@ -3,18 +3,30 @@ import { characterStatData } from './character_stat.model';
 import { Box, Collapse, useDisclosure } from '@chakra-ui/react';
 import { useTranslation } from 'react-i18next';
 import { GQLQuery } from '../../../apollo/GQL';
-import { GET_CHAR_ABILITY, GET_CHAR_STATS } from '../../../apollo/Characters';
+import {
+	GET_CHAR_ABILITY,
+	GET_CHAR_POINTS,
+	GET_CHAR_STATS,
+} from '../../../apollo/Characters';
 import { StatChart } from './StatChart';
 import { AbiChart } from './AbiChart';
-import { abilityTableData, statTableData } from '../../../apollo/Tables.model';
+import {
+	abilityTableData,
+	characterPointsTableData,
+	statTableData,
+} from '../../../apollo/Tables.model';
+import { CharPoints } from './Points';
 
-export const StatChar = (props: characterStatData) => {
+export const CharStatTab = (props: characterStatData) => {
 	const { characterData } = props;
 	const { t } = useTranslation();
 	const { isOpen: open1, onToggle: toggle1 } = useDisclosure();
 	const { isOpen: open2, onToggle: toggle2 } = useDisclosure();
+	const { isOpen: open3, onToggle: toggle3 } = useDisclosure();
 	const [statResponse, setStatResponse] = useState<statTableData[]>(null);
 	const [abiResponse, setAbiResponse] = useState<abilityTableData[]>(null);
+	const [pointsResponse, setPointsResponse] =
+		useState<characterPointsTableData>(null);
 
 	useEffect(() => {
 		getCharacterStats(characterData.id).then((resp) => {
@@ -23,6 +35,10 @@ export const StatChar = (props: characterStatData) => {
 
 		getCharacterAbi(characterData.id).then((resp) => {
 			setAbiResponse(resp.getCharacterAbility.table);
+		});
+
+		getCharacterPoints(characterData.id).then((resp) => {
+			setPointsResponse(resp.getCharacterPoints.table);
 		});
 	}, [characterData]);
 
@@ -38,9 +54,44 @@ export const StatChar = (props: characterStatData) => {
 		});
 	};
 
+	const getCharacterPoints = async (id: number) => {
+		return await GQLQuery(GET_CHAR_POINTS, {
+			characterId: id,
+		});
+	};
+
 	return (
 		<>
 			<Box
+				mt={5}
+				textTransform={'uppercase'}
+				textAlign={'center'}
+				fontSize={20}
+				mx={'auto'}
+				color={'green.light'}
+				bg={'green.text'}
+				borderColor={'green.light'}
+				borderStyle={'solid'}
+				borderWidth={1}
+				onClick={toggle3}
+				fontFamily={'TecFont'}>
+				{t('charactersProfile.tabStats.pointsTitle')}
+			</Box>
+			<Collapse in={open3}>
+				<Box
+					overflow={'hidden'}
+					w={'full'}
+					borderColor={'green.light'}
+					borderStyle={'solid'}
+					borderWidth={'0 1px 1px 1px'}
+					bg={'green.lightOpacity'}
+					color={'green.textLight'}
+					m={'0 auto'}>
+					<CharPoints points={pointsResponse} />
+				</Box>
+			</Collapse>
+			<Box
+				mt={5}
 				textTransform={'uppercase'}
 				textAlign={'center'}
 				fontSize={20}

@@ -57,3 +57,16 @@ export interface statTableData {
 	updatedAt: string;
 	deletedAt: string;
 }
+
+export interface characterPointsTableData {
+	id: number;
+	character: number;
+	life: number;
+	stamina: number;
+	exp_total: number;
+	exp_usable: number;
+	stat_points: number;
+	createdAt: string;
+	updatedAt: string;
+	deletedAt: string;
+}

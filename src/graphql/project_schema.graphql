@@ -14,6 +14,7 @@ type Query {
     getAbility(abilityId: ID!, characterId: ID, token: String!): abilityData
     getCharacter(characterId: ID, token: String!): characterData
     getCharacterAbility(characterId: ID!, token: String!): getCharacterAbilityResponse
+    getCharacterPoints(characterId: ID!, token: String!): getCharacterPointsResponse
     getCharacterStats(characterId: ID!, token: String!): getCharacterStatsResponse
     listStats(token: String!): [statData]
     login(password: String!, username: String!): loginResponse
@@ -106,6 +107,7 @@ type characterData {
     active: Boolean
     age: Int
     characterPermissionData: characterPermissionData
+    characterPoints: characterPointsData
     createdAt: String
     deletedAt: String
     id: ID
@@ -124,6 +126,19 @@ type characterPermissionData {
     deletedAt: String
     id: ID
     permission: Int
+    updatedAt: String
+}
+
+type characterPointsData {
+    character: ID
+    createdAt: String
+    deletedAt: String
+    exp_total: Int
+    exp_usable: Int
+    id: ID
+    life: Int
+    stamina: Int
+    stat_points: Int
     updatedAt: String
 }
 
@@ -153,6 +168,12 @@ type getCharacterAbilityResponse {
     response: Boolean
     responseStatus: String
     table: [abilityData]
+}
+
+type getCharacterPointsResponse {
+    response: Boolean
+    responseStatus: String
+    table: characterPointsData
 }
 
 type getCharacterStatsResponse {

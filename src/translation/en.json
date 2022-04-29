@@ -140,7 +140,8 @@
       "abiTitle": "Ability",
       "abiPopoverText": "By clicking on the icons it will be possible to see the details. Skill increase advances by xxx. Any errors or will to decrease must be reported to a moderator, who will take charge of the request and, after acceptance, will carry out the return of the removed experience.",
       "abiPopoverTitle": "Ability screen",
-      "abiLevelsText": "Level"
+      "abiLevelsText": "Level",
+      "pointsTitle": "Points"
     },
     "tabHealth": {
       "tabButton": "Health"
