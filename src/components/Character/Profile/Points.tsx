@@ -8,6 +8,7 @@ import {
 import { GQLQuery } from '../../../apollo/GQL';
 import { GET_CHAR_PERCENTAGES } from '../../../apollo/Characters';
 import { characterPercentagesInput } from './Points.model';
+import { PopoverInfo } from '../../Utils/Popover';
 
 export const CharPoints = (props: {
 	points: characterPointsTableData;
@@ -87,8 +88,18 @@ export const CharPoints = (props: {
 					<Text
 						textAlign={'center'}
 						fontSize={22}
-						fontWeight={'bold'}>
+						fontWeight={'bold'}
+						d={'flex'}
+						justifyContent={'center'}>
 						Bonus
+						<PopoverInfo
+							title={t(
+								'charactersProfile.tabStats.pointsPopoverTitle'
+							)}
+							content={t(
+								'charactersProfile.tabStats.pointsPopoverText'
+							)}
+						/>
 					</Text>
 					<SimpleGrid
 						spacingY={5}

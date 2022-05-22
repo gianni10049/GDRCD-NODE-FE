@@ -132,7 +132,7 @@
       "surname": "Surname"
     },
     "tabStats": {
-      "tabButton": "Stats",
+      "tabButton": "Points",
       "statsTitle": "Statistics",
       "statTotal": "Total",
       "statBonus": "Bonus",
@@ -152,7 +152,10 @@
       "investigate_calc_label": "Investigation",
       "initiative_calc_label": "Initiative",
       "price_calc_label": "Trade",
-      "research_calc_label": "Research"
+      "research_calc_label": "Research",
+      "pointsPopoverTitle": "Points and percentage",
+      "pointsPopoverText": "Punteggi e percentuali spiegazione lunghissima"
+
     },
     "tabHealth": {
       "tabButton": "Health"

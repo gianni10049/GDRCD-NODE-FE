@@ -69,6 +69,7 @@ export const CharStatTab = (props: characterStatData) => {
 				fontSize={20}
 				mx={'auto'}
 				color={'green.light'}
+				cursor={'pointer'}
 				bg={'green.text'}
 				borderColor={'green.light'}
 				borderStyle={'solid'}
@@ -103,6 +104,7 @@ export const CharStatTab = (props: characterStatData) => {
 				bg={'green.text'}
 				borderColor={'green.light'}
 				borderStyle={'solid'}
+				cursor={'pointer'}
 				borderWidth={1}
 				onClick={toggle1}
 				fontFamily={'TecFont'}>
@@ -136,6 +138,7 @@ export const CharStatTab = (props: characterStatData) => {
 				borderColor={'green.light'}
 				borderStyle={'solid'}
 				borderWidth={1}
+				cursor={'pointer'}
 				onClick={toggle2}
 				fontFamily={'TecFont'}>
 				{t('charactersProfile.tabStats.abiTitle')}
