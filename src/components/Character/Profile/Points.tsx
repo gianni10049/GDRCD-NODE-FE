@@ -1,13 +1,186 @@
-import React, { useEffect } from 'react';
+import React, { useEffect, useState } from 'react';
 import { useTranslation } from 'react-i18next';
+import { Box, Text, SimpleGrid } from '@chakra-ui/react';
+import {
+	characterPercentagesData,
+	characterPointsTableData,
+} from '../../../apollo/Tables.model';
+import { GQLQuery } from '../../../apollo/GQL';
+import { GET_CHAR_PERCENTAGES } from '../../../apollo/Characters';
+import { characterPercentagesInput } from './Points.model';
 
-import { characterPointsTableData } from '../../../apollo/Tables.model';
-
-export const CharPoints = (props: { points: characterPointsTableData }) => {
-	let { points } = props;
+export const CharPoints = (props: {
+	points: characterPointsTableData;
+	characterId: number;
+}) => {
+	let { points, characterId } = props;
 	const { t } = useTranslation();
 
-	useEffect(() => {}, []); // eslint-disable-line react-hooks/exhaustive-deps
+	const [percentages, setPercentages] =
+		useState<characterPercentagesData>(null);
 
-	return <>{points && <>{t('ability.abilityDetailsText')}</>}</>;
+	useEffect(() => {
+		if (characterId) {
+			getCharacterPercentages({
+				characterId: characterId,
+			}).then((response) => {
+				let data = response.getCharacterActionPercentages;
+
+				if (data.response) {
+					setPercentages(data.percentages);
+				} else {
+					alert(data.responseStatus);
+				}
+			});
+		}
+	}, []); // eslint-disable-line react-hooks/exhaustive-deps
+
+	const getCharacterPercentages = async (data: characterPercentagesInput) => {
+		return await GQLQuery(GET_CHAR_PERCENTAGES, data);
+	};
+
+	return (
+		<>
+			{points && percentages && (
+				<SimpleGrid
+					spacingY={5}
+					minChildWidth={'120px'}
+					borderColor={'green.light'}
+					borderStyle={'solid'}
+					borderWidth={'0 1px 1px 1px'}
+					bg={'green.lightOpacity'}
+					fontFamily={'TecFont'}
+					textAlign={'center'}
+					p={3}>
+					<>
+						<Box py={2} overflow={'hidden'}>
+							<Text>{t('charactersProfile.tabStats.life')}:</Text>
+							<Text>
+								{points.life + percentages.life_calc.total}/
+								{100 + percentages.life_calc.total}
+							</Text>
+						</Box>
+						<Box py={2} overflow={'hidden'}>
+							<Text>
+								{t('charactersProfile.tabStats.stamina')}:
+							</Text>
+							<Text>
+								{points.stamina +
+									percentages.stamina_calc.total}
+								/{100 + percentages.stamina_calc.total}
+							</Text>
+						</Box>
+						<Box py={2} overflow={'hidden'}>
+							<Text>
+								{t('charactersProfile.tabStats.exp_total')}:
+							</Text>
+							<Text>
+								{points.exp_usable}/{points.exp_total}
+							</Text>
+						</Box>
+					</>
+				</SimpleGrid>
+			)}
+
+			{percentages && (
+				<>
+					<Text
+						textAlign={'center'}
+						fontSize={22}
+						fontWeight={'bold'}>
+						Bonus
+					</Text>
+					<SimpleGrid
+						spacingY={5}
+						minChildWidth={'120px'}
+						borderColor={'green.light'}
+						borderStyle={'solid'}
+						borderWidth={'0 1px 1px 1px'}
+						bg={'green.lightOpacity'}
+						fontFamily={'TecFont'}
+						textAlign={'center'}
+						p={3}>
+						<>
+							<Box py={2} overflow={'hidden'}>
+								<Text>
+									{t(
+										'charactersProfile.tabStats.life_calc_label'
+									)}
+									:
+								</Text>
+								<Text>{percentages.life_calc.total}%</Text>
+							</Box>
+							<Box py={2} overflow={'hidden'}>
+								<Text>
+									{t(
+										'charactersProfile.tabStats.stamina_calc_label'
+									)}
+									:
+								</Text>
+								<Text>{percentages.stamina_calc.total}%</Text>
+							</Box>
+							<Box py={2} overflow={'hidden'}>
+								<Text>
+									{t(
+										'charactersProfile.tabStats.find_calc_label'
+									)}
+									:
+								</Text>
+								<Text>{percentages.find_calc.total}%</Text>
+							</Box>
+							<Box py={2} overflow={'hidden'}>
+								<Text>
+									{t(
+										'charactersProfile.tabStats.furtivity_calc_label'
+									)}
+									:
+								</Text>
+								<Text>{percentages.furtivity_calc.total}%</Text>
+							</Box>
+							<Box py={2} overflow={'hidden'}>
+								<Text>
+									{t(
+										'charactersProfile.tabStats.investigate_calc_label'
+									)}
+									:
+								</Text>
+								<Text>
+									{percentages.investigate_calc.total}%
+								</Text>
+							</Box>
+							<Box py={2} overflow={'hidden'}>
+								<Text>
+									{t(
+										'charactersProfile.tabStats.initiative_calc_label'
+									)}
+									:
+								</Text>
+								<Text>
+									{percentages.initiative_calc.total}%
+								</Text>
+							</Box>
+							<Box py={2} overflow={'hidden'}>
+								<Text>
+									{t(
+										'charactersProfile.tabStats.price_calc_label'
+									)}
+									:
+								</Text>
+								<Text>{percentages.price_calc.total}%</Text>
+							</Box>
+							<Box py={2} overflow={'hidden'}>
+								<Text>
+									{t(
+										'charactersProfile.tabStats.research_calc_label'
+									)}
+									:
+								</Text>
+								<Text>{percentages.research_calc.total}%</Text>
+							</Box>
+						</>
+					</SimpleGrid>
+				</>
+			)}
+		</>
+	);
 };

@@ -87,7 +87,10 @@ export const CharStatTab = (props: characterStatData) => {
 					bg={'green.lightOpacity'}
 					color={'green.textLight'}
 					m={'0 auto'}>
-					<CharPoints points={pointsResponse} />
+					<CharPoints
+						points={pointsResponse}
+						characterId={characterData.id}
+					/>
 				</Box>
 			</Collapse>
 			<Box

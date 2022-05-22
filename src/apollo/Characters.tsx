@@ -178,6 +178,57 @@ const GET_CHAR_POINTS = gql`
 	}
 `;
 
+const GET_CHAR_PERCENTAGES = gql`
+	query getCharacterActionPercentages(
+		$token: String!
+		$characterId: ID!
+		$action: String
+	) {
+		getCharacterActionPercentages(
+			token: $token
+			characterId: $characterId
+			action: $action
+		) {
+			percentages {
+				life_calc {
+					max_value
+					total
+				}
+				stamina_calc {
+					max_value
+					total
+				}
+				find_calc {
+					max_value
+					total
+				}
+				furtivity_calc {
+					max_value
+					total
+				}
+				investigate_calc {
+					max_value
+					total
+				}
+				initiative_calc {
+					max_value
+					total
+				}
+				price_calc {
+					max_value
+					total
+				}
+				research_calc {
+					max_value
+					total
+				}
+			}
+			response
+			responseStatus
+		}
+	}
+`;
+
 export {
 	CHAR_LIST,
 	SET_CHAR,
@@ -185,4 +236,5 @@ export {
 	GET_CHAR_STATS,
 	GET_CHAR_ABILITY,
 	GET_CHAR_POINTS,
+	GET_CHAR_PERCENTAGES,
 };

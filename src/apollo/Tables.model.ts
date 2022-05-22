@@ -70,3 +70,19 @@ export interface characterPointsTableData {
 	updatedAt: string;
 	deletedAt: string;
 }
+
+export interface characterPercentagesData {
+	life_calc?: singlePercentageData;
+	stamina_calc?: singlePercentageData;
+	furtivity_calc?: singlePercentageData;
+	find_calc?: singlePercentageData;
+	investigate_calc?: singlePercentageData;
+	initiative_calc?: singlePercentageData;
+	price_calc?: singlePercentageData;
+	research_calc?: singlePercentageData;
+}
+
+interface singlePercentageData {
+	total: number;
+	max_value: number;
+}

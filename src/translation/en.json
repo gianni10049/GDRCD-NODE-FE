@@ -141,7 +141,18 @@
       "abiPopoverText": "By clicking on the icons it will be possible to see the details. Skill increase advances by xxx. Any errors or will to decrease must be reported to a moderator, who will take charge of the request and, after acceptance, will carry out the return of the removed experience.",
       "abiPopoverTitle": "Ability screen",
       "abiLevelsText": "Level",
-      "pointsTitle": "Points"
+      "pointsTitle": "Points",
+      "exp_total": "Experience",
+      "life": "Life",
+      "stamina": "Stamina",
+      "life_calc_label": "Life",
+      "stamina_calc_label": "Stamina",
+      "find_calc_label": "Research",
+      "furtivity_calc_label": "Furtive",
+      "investigate_calc_label": "Investigation",
+      "initiative_calc_label": "Initiative",
+      "price_calc_label": "Trade",
+      "research_calc_label": "Research"
     },
     "tabHealth": {
       "tabButton": "Health"

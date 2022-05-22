@@ -141,7 +141,18 @@
       "abiPopoverText": "Cliccando sulle icone sarà possibile vederne i dettagli. L'aumento delle abilità avanza di xxx. Errori o volontà di diminuzione vanno segnalate ad un moderatore, che prenderà in carico la richiesta e, dopo accettazione, eseguirà la restituzione dell'esperienza tolta.",
       "abiPopoverTitle": "Schermata abilità",
       "abiLevelsText": "Livello",
-      "pointsTitle": "Punteggi"
+      "pointsTitle": "Punteggi",
+      "exp_total": "Esperienza",
+      "life": "Vita",
+      "stamina": "Energia",
+      "life_calc_label": "Vitalità",
+      "stamina_calc_label": "Energia",
+      "find_calc_label": "Ricerca",
+      "furtivity_calc_label": "Furtività",
+      "investigate_calc_label": "Investigare",
+      "initiative_calc_label": "Iniziativa",
+      "price_calc_label": "Commercio",
+      "research_calc_label": "Ricerca"
     },
     "tabHealth": {
       "tabButton": "Salute"
