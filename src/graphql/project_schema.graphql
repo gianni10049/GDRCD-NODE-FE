@@ -17,6 +17,7 @@ type Query {
     getCharacterActionPercentages(action: String, characterId: ID!, token: String!): getCharacterActionPercentagesResponse
     getCharacterPoints(characterId: ID!, token: String!): getCharacterPointsResponse
     getCharacterStats(characterId: ID!, token: String!): getCharacterStatsResponse
+    isMineCharacter(characterId: ID!, token: String!): genericResponse
     listStats(token: String!): [statData]
     login(password: String!, username: String!): loginResponse
     permissionControl(permission: String!, token: String!): genericResponse
