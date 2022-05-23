@@ -24,6 +24,7 @@ type Query {
     recPass(email: String!): toastResponse
     routeControl(account_needed: Boolean, character_needed: Boolean, token: String!): genericResponse
     setCharacter(characterId: ID!, token: String!): loginResponse
+    updateAbility(abilityId: ID!, characterId: ID, token: String!): genericResponse
 }
 
 type abilityData {

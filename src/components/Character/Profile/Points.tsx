@@ -1,44 +1,19 @@
-import React, { useEffect, useState } from 'react';
+import React from 'react';
 import { useTranslation } from 'react-i18next';
 import { Box, Text, SimpleGrid } from '@chakra-ui/react';
 import {
 	characterPercentagesData,
 	characterPointsTableData,
 } from '../../../apollo/Tables.model';
-import { GQLQuery } from '../../../apollo/GQL';
-import { GET_CHAR_PERCENTAGES } from '../../../apollo/Characters';
-import { characterPercentagesInput } from './Points.model';
 import { PopoverInfo } from '../../Utils/Popover';
 
 export const CharPoints = (props: {
 	points: characterPointsTableData;
 	characterId: number;
+	percentages: characterPercentagesData;
 }) => {
-	let { points, characterId } = props;
+	let { points, percentages } = props;
 	const { t } = useTranslation();
-
-	const [percentages, setPercentages] =
-		useState<characterPercentagesData>(null);
-
-	useEffect(() => {
-		if (characterId) {
-			getCharacterPercentages({
-				characterId: characterId,
-			}).then((response) => {
-				let data = response.getCharacterActionPercentages;
-
-				if (data.response) {
-					setPercentages(data.percentages);
-				} else {
-					alert(data.responseStatus);
-				}
-			});
-		}
-	}, []); // eslint-disable-line react-hooks/exhaustive-deps
-
-	const getCharacterPercentages = async (data: characterPercentagesInput) => {
-		return await GQLQuery(GET_CHAR_PERCENTAGES, data);
-	};
 
 	return (
 		<>

@@ -1,10 +1,11 @@
 import React, { useEffect, useState } from 'react';
 import { characterStatData } from './character_stat.model';
-import { Box, Collapse, useDisclosure } from '@chakra-ui/react';
+import { Box, Collapse, useDisclosure, Icon, Tooltip } from '@chakra-ui/react';
 import { useTranslation } from 'react-i18next';
 import { GQLQuery } from '../../../apollo/GQL';
 import {
 	GET_CHAR_ABILITY,
+	GET_CHAR_PERCENTAGES,
 	GET_CHAR_POINTS,
 	GET_CHAR_STATS,
 } from '../../../apollo/Characters';
@@ -12,10 +13,12 @@ import { StatChart } from './StatChart';
 import { AbiChart } from './AbiChart';
 import {
 	abilityTableData,
+	characterPercentagesData,
 	characterPointsTableData,
 	statTableData,
 } from '../../../apollo/Tables.model';
 import { CharPoints } from './Points';
+import { AiOutlineReload } from 'react-icons/ai';
 
 export const CharStatTab = (props: characterStatData) => {
 	const { characterData } = props;
@@ -27,6 +30,8 @@ export const CharStatTab = (props: characterStatData) => {
 	const [abiResponse, setAbiResponse] = useState<abilityTableData[]>(null);
 	const [pointsResponse, setPointsResponse] =
 		useState<characterPointsTableData>(null);
+	const [percentages, setPercentages] =
+		useState<characterPercentagesData>(null);
 
 	useEffect(() => {
 		getCharacterStats(characterData.id).then((resp) => {
@@ -39,6 +44,10 @@ export const CharStatTab = (props: characterStatData) => {
 
 		getCharacterPoints(characterData.id).then((resp) => {
 			setPointsResponse(resp.getCharacterPoints.table);
+		});
+
+		getCharacterPercentages(characterData.id).then((response) => {
+			setPercentages(response.getCharacterActionPercentages.percentages);
 		});
 	}, [characterData]);
 
@@ -60,10 +69,65 @@ export const CharStatTab = (props: characterStatData) => {
 		});
 	};
 
+	const getCharacterPercentages = async (id: number) => {
+		return await GQLQuery(GET_CHAR_PERCENTAGES, {
+			characterId: id,
+		});
+	};
+
+	const refetchData = async () => {
+		getCharacterStats(characterData.id).then((resp) => {
+			setStatResponse(resp.getCharacterStats.table);
+		});
+
+		getCharacterAbi(characterData.id).then((resp) => {
+			setAbiResponse(resp.getCharacterAbility.table);
+		});
+
+		getCharacterPoints(characterData.id).then((resp) => {
+			setPointsResponse(resp.getCharacterPoints.table);
+		});
+
+		getCharacterPercentages(characterData.id).then((response) => {
+			setPercentages(response.getCharacterActionPercentages.percentages);
+		});
+	};
+
 	return (
-		<>
+		<Box>
+			<Tooltip
+				hasArrow
+				label={t('ability.refetchData')}
+				bg={'green.light'}
+				color={'green.text'}
+				fontSize={'md'}
+				fontFamily={'TecFont'}
+				letterSpacing={'widest'}
+				fontWeight={'extrabold'}>
+				<Box
+					pos={'fixed'}
+					mt={-135}
+					right={5}
+					w={7}
+					h={7}
+					cursor={'pointer'}
+					justifyContent={'center'}
+					alignItems={'center'}
+					d={'flex'}
+					bg={'white'}
+					zIndex={2}
+					color={'green.light'}
+					rounded={'full'}>
+					<Icon
+						as={AiOutlineReload}
+						boxSize={5}
+						onClick={refetchData}
+					/>
+				</Box>
+			</Tooltip>
+
 			<Box
-				mt={5}
+				mt={10}
 				textTransform={'uppercase'}
 				textAlign={'center'}
 				fontSize={20}
@@ -91,6 +155,7 @@ export const CharStatTab = (props: characterStatData) => {
 					<CharPoints
 						points={pointsResponse}
 						characterId={characterData.id}
+						percentages={percentages}
 					/>
 				</Box>
 			</Collapse>
@@ -151,6 +216,6 @@ export const CharStatTab = (props: characterStatData) => {
 					/>
 				)}
 			</Collapse>
-		</>
+		</Box>
 	);
 };

@@ -66,4 +66,17 @@ const GET_ABILITY = gql`
 	}
 `;
 
-export { GET_ABILITY };
+const UPDATE_ABILITY = gql`
+	query updateAbility($token: String!, $characterId: ID!, $abilityId: ID!) {
+		updateAbility(
+			token: $token
+			characterId: $characterId
+			abilityId: $abilityId
+		) {
+			response
+			responseStatus
+		}
+	}
+`;
+
+export { GET_ABILITY, UPDATE_ABILITY };

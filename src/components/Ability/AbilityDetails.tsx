@@ -1,8 +1,16 @@
 import React, { useCallback, useEffect, useState } from 'react';
-import { Box, Icon, Collapse, SimpleGrid, Text } from '@chakra-ui/react';
+import {
+	Box,
+	Icon,
+	Collapse,
+	SimpleGrid,
+	Text,
+	Tooltip,
+	useToast,
+} from '@chakra-ui/react';
 import { AbilityDetailsData } from './AbilityDetails.modal';
 import { GQLQuery } from '../../apollo/GQL';
-import { GET_ABILITY } from '../../apollo/Ability';
+import { GET_ABILITY, UPDATE_ABILITY } from '../../apollo/Ability';
 import { abilityTableData } from '../../apollo/Tables.model';
 import { useTranslation } from 'react-i18next';
 import { getIcon } from '../Utils/Icons';
@@ -11,11 +19,15 @@ import {
 	calcDefaultAbilityPrice,
 } from '../Utils/Generals';
 import { PopoverInfo } from '../Utils/Popover';
+import { BsFillPlusCircleFill } from 'react-icons/bs';
+import Permission from '../Utils/Permission';
 
 export const AbilityDetails = (props: AbilityDetailsData) => {
 	let { abilityId, characterId } = props.options;
 	let [abilityData, setAbilityData] = useState<abilityTableData>(null);
 	let [opened, setOpened] = useState<any>({});
+	let [permission, setPermission] = useState<boolean>(false);
+	const toast = useToast();
 
 	const { t } = useTranslation();
 
@@ -26,11 +38,35 @@ export const AbilityDetails = (props: AbilityDetailsData) => {
 		});
 	}, [abilityId, characterId]);
 
-	useEffect(() => {
-		getAbility().then((resp: any) => {
-			setAbilityData(resp.getAbility);
+	const updateAbility = async () => {
+		return await GQLQuery(UPDATE_ABILITY, {
+			abilityId: abilityId,
+			characterId: characterId,
 		});
-	}, [getAbility]);
+	};
+
+	const permissionControl = useCallback(async () => {
+		let permission;
+
+		permission = await Permission.isMineCharacter({
+			characterId: characterId,
+		});
+
+		if (!permission) {
+			permission = await Permission.permissionControl({
+				permission: 'MANAGE_ABI_OTHER',
+			});
+		}
+
+		return permission;
+	}, [characterId]);
+
+	useEffect(() => {
+		getAbility().then(async (resp: any) => {
+			setAbilityData(resp.getAbility);
+			setPermission(await permissionControl());
+		});
+	}, [getAbility, permissionControl]);
 
 	const toggleSubMenu = (id: number) => {
 		let new_array = {
@@ -44,6 +80,24 @@ export const AbilityDetails = (props: AbilityDetailsData) => {
 		}
 
 		setOpened(new_array);
+	};
+
+	const buySkill = async () => {
+		updateAbility().then((resp: any) => {
+			toast({
+				title: resp.updateAbility.responseStatus,
+				status: resp.updateAbility.response ? 'success' : 'error',
+				duration: 9000,
+				isClosable: true,
+			});
+
+			if (resp.updateAbility.response) {
+				getAbility().then(async (resp: any) => {
+					setAbilityData(resp.getAbility);
+					setPermission(await permissionControl());
+				});
+			}
+		});
 	};
 
 	const createDetails = () => {
@@ -168,6 +222,31 @@ export const AbilityDetails = (props: AbilityDetailsData) => {
 			</Box>
 			{abilityData && (
 				<>
+					{permission && (
+						<Tooltip
+							hasArrow
+							label={t('ability.upgradeTitle')}
+							bg={'green.light'}
+							color={'green.text'}
+							fontSize={'md'}
+							fontFamily={'TecFont'}
+							letterSpacing={'widest'}
+							fontWeight={'extrabold'}>
+							<Box pos={'absolute'} left={2} top={2}>
+								<Icon
+									as={BsFillPlusCircleFill}
+									boxSize={4}
+									color={'green.textLight'}
+									cursor={'pointer'}
+									_hover={{
+										color: 'green.light',
+									}}
+									onClick={buySkill}
+								/>
+							</Box>
+						</Tooltip>
+					)}
+
 					<Box
 						textAlign={'center'}
 						fontSize={25}
