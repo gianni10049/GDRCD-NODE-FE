@@ -106,7 +106,7 @@ export const CharStatTab = (props: characterStatData) => {
 				fontWeight={'extrabold'}>
 				<Box
 					pos={'fixed'}
-					mt={-135}
+					mt={-115}
 					right={5}
 					w={7}
 					h={7}
@@ -127,7 +127,7 @@ export const CharStatTab = (props: characterStatData) => {
 			</Tooltip>
 
 			<Box
-				mt={10}
+				mt={5}
 				textTransform={'uppercase'}
 				textAlign={'center'}
 				fontSize={20}
