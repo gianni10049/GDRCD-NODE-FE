@@ -11,6 +11,7 @@ export const GQLQuery = async (body: any, vars?: object) => {
 				...vars,
 				token: token,
 			},
+			fetchPolicy: 'network-only',
 		})
 		.then(({ data }) => {
 			return data;
@@ -25,6 +26,7 @@ export const GQLmutation = async (body: any, vars: object) => {
 				...vars,
 				token: token,
 			},
+			fetchPolicy: 'network-only',
 		})
 		.then(({ data }) => {
 			return data;
