@@ -9,7 +9,7 @@ import {
 	useToast,
 } from '@chakra-ui/react';
 import { AbilityDetailsData } from './AbilityDetails.modal';
-import { GQLQuery } from '../../apollo/GQL';
+import { GQLmutation, GQLQuery } from '../../apollo/GQL';
 import { GET_ABILITY, UPDATE_ABILITY } from '../../apollo/Ability';
 import { abilityTableData } from '../../apollo/Tables.model';
 import { useTranslation } from 'react-i18next';
@@ -39,7 +39,7 @@ export const AbilityDetails = (props: AbilityDetailsData) => {
 	}, [abilityId, characterId]);
 
 	const updateAbility = async () => {
-		return await GQLQuery(UPDATE_ABILITY, {
+		return await GQLmutation(UPDATE_ABILITY, {
 			abilityId: abilityId,
 			characterId: characterId,
 		});

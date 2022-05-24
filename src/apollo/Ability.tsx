@@ -67,7 +67,11 @@ const GET_ABILITY = gql`
 `;
 
 const UPDATE_ABILITY = gql`
-	query updateAbility($token: String!, $characterId: ID!, $abilityId: ID!) {
+	mutation updateAbility(
+		$token: String!
+		$characterId: ID!
+		$abilityId: ID!
+	) {
 		updateAbility(
 			token: $token
 			characterId: $characterId

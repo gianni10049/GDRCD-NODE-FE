@@ -7,6 +7,8 @@ schema {
 
 type Mutation {
     registration(email: String!, password: String!, password_confirm: String!, username: String!): genericResponse
+    setDamageSolved(damageId: ID!, token: String!): getDamageResponse
+    updateAbility(abilityId: ID!, characterId: ID, token: String!): genericResponse
 }
 
 type Query {
@@ -24,7 +26,6 @@ type Query {
     recPass(email: String!): toastResponse
     routeControl(account_needed: Boolean, character_needed: Boolean, token: String!): genericResponse
     setCharacter(characterId: ID!, token: String!): loginResponse
-    updateAbility(abilityId: ID!, characterId: ID, token: String!): genericResponse
 }
 
 type abilityData {
@@ -103,6 +104,20 @@ type characterAbilityData {
     id: ID
     updatedAt: String
     value: Int
+}
+
+type characterDamageData {
+    character: ID
+    createdAt: String
+    deletedAt: String
+    description: String
+    id: ID
+    part: ID
+    partData: partsData
+    points: Int
+    solved: Boolean
+    title: String
+    updatedAt: String
 }
 
 type characterData {
@@ -192,6 +207,24 @@ type getCharacterStatsResponse {
     table: [statData]
 }
 
+type getDamageResponse {
+    damage: characterDamageData
+    response: Int
+    responseStatus: String
+}
+
+type getDamagesResponse {
+    damages: [characterDamageData]
+    response: Int
+    responseStatus: String
+}
+
+type getPartsList {
+    response: Int
+    responseStatus: String
+    table: [partsData]
+}
+
 type logMailData {
     attachment: String
     createdAt: String
@@ -209,6 +242,19 @@ type loginResponse {
     response: String!
     responseStatus: String!
     token: String
+}
+
+type partsData {
+    createdAt: String
+    deletedAt: String
+    description_eng: String
+    description_it: String
+    icon: String
+    id: ID
+    max_points: Int
+    name: String
+    partDamages: [characterDamageData]
+    updatedAt: String
 }
 
 type percentagesArray {

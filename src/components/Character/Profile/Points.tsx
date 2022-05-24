@@ -60,7 +60,7 @@ export const CharPoints = (props: {
 
 			{percentages && (
 				<>
-					<Text
+					<Box
 						textAlign={'center'}
 						fontSize={22}
 						fontWeight={'bold'}
@@ -75,7 +75,7 @@ export const CharPoints = (props: {
 								'charactersProfile.tabStats.pointsPopoverText'
 							)}
 						/>
-					</Text>
+					</Box>
 					<SimpleGrid
 						spacingY={5}
 						minChildWidth={'120px'}
