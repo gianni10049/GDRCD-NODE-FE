@@ -71,6 +71,19 @@ export interface characterPointsTableData {
 	deletedAt: string;
 }
 
+export interface characterDamageTableData {
+	id: number;
+	character: number;
+	part: number;
+	points: number;
+	description: string;
+	title: string;
+	solved: boolean;
+	createdAt: string;
+	updatedAt: string;
+	deletedAt: string;
+}
+
 export interface characterPercentagesData {
 	life_calc?: singlePercentageData;
 	stamina_calc?: singlePercentageData;

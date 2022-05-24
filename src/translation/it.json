@@ -8,6 +8,14 @@
       "perception": "Percezione",
       "social": "Sociale"
     },
+    "bodyParts": {
+      "head": "Testa",
+      "leftArm": "Braccio Sinistro",
+      "rightArm": "Braccio Destro",
+      "chest": "Busto",
+      "leftLeg": "Gamba Sinistra",
+      "rightLeg": "Gamba Destra"
+    },
     "ability": {
       "athletic": "Atletica",
       "whiteWeapons": "Armi bianche",
@@ -40,6 +48,10 @@
     },
     "ability_details": {
       "title": "Dettaglio abilità"
+    },
+    "damage_details": {
+      "title": "Dettaglio danni",
+      "solved": "Segna Risolto"
     }
   },
   "homepage": {
@@ -157,7 +169,8 @@
       "pointsPopoverText": "Punteggi e percentuali spiegazione lunghissima"
     },
     "tabHealth": {
-      "tabButton": "Salute"
+      "tabButton": "Salute",
+      "noDamage": "Nessun danno per questa parte del corpo"
     }
   },
   "ability": {

@@ -14,11 +14,14 @@ type Mutation {
 type Query {
     charactersList(token: String!): [characterData]
     getAbility(abilityId: ID!, characterId: ID, token: String!): abilityData
+    getCharDamageByPart(characterId: ID!, partId: ID!, token: String!): getDamagesResponse
     getCharacter(characterId: ID, token: String!): characterData
     getCharacterAbility(characterId: ID!, token: String!): getCharacterAbilityResponse
     getCharacterActionPercentages(action: String, characterId: ID!, token: String!): getCharacterActionPercentagesResponse
     getCharacterPoints(characterId: ID!, token: String!): getCharacterPointsResponse
     getCharacterStats(characterId: ID!, token: String!): getCharacterStatsResponse
+    getDamage(damageId: ID!, token: String): getDamageResponse
+    getPartsList(characterId: ID!, token: String!): getPartsList
     isMineCharacter(characterId: ID!, token: String!): genericResponse
     listStats(token: String!): [statData]
     login(password: String!, username: String!): loginResponse

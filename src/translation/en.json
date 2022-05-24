@@ -29,6 +29,14 @@
       "intimidate": "Intimidate",
       "deceive": "Deceive",
       "socializing": "Socializing"
+    },
+    "bodyParts": {
+      "head": "Head",
+      "leftArm": "Left Arm",
+      "rightArm": "Right Arm",
+      "chest": "Chest",
+      "leftLeg": "Left Leg",
+      "rightLeg": "Right Leg"
     }
   },
   "modals": {
@@ -40,6 +48,10 @@
     },
     "ability_details": {
       "title": "Ability details"
+    },
+    "damage_details": {
+      "title": "Damage Details",
+      "solved": "Set Healed"
     }
   },
   "homepage": {
@@ -158,7 +170,8 @@
 
     },
     "tabHealth": {
-      "tabButton": "Health"
+      "tabButton": "Health",
+      "noDamage": "No damages on this part"
     }
   },
   "ability": {

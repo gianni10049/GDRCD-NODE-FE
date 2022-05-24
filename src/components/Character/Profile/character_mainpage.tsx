@@ -11,6 +11,7 @@ import React from 'react';
 import { useTranslation } from 'react-i18next';
 import { CharStatTab } from './character_stat';
 import { CharDataInfo } from './character_data';
+import { CharHealthTab } from './character_healt';
 
 const SingleTab = (props: tabData) => {
 	let { title } = props;
@@ -68,13 +69,7 @@ const CharacterMainPage = (props: characterMainPageData) => {
 					<CharStatTab characterData={characterData} />
 				</TabPanel>
 				<TabPanel>
-					<p>tree!</p>
-				</TabPanel>
-				<TabPanel>
-					<p>two!</p>
-				</TabPanel>
-				<TabPanel>
-					<p>two!</p>
+					<CharHealthTab characterData={characterData} />
 				</TabPanel>
 			</TabPanels>
 		</Tabs>
