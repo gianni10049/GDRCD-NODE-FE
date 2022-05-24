@@ -161,6 +161,8 @@ type characterPointsData {
     stamina: Int
     stat_points: Int
     updatedAt: String
+    weight: Int
+    resources:Int
 }
 
 type characterStatData {

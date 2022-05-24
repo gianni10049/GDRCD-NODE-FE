@@ -1,4 +1,4 @@
-import React, { useEffect, useState } from 'react';
+import React, { useCallback, useEffect, useState } from 'react';
 import { characterHealthData } from './character_healt.model';
 import { GQLQuery } from '../../../apollo/GQL';
 import { GET_PARTS_DAMAGE, GET_PARTS_LIST } from '../../../apollo/Generic';
@@ -16,43 +16,76 @@ import { characterDamageTableData } from '../../../apollo/Tables.model';
 import { toggleDamageDetailModal } from '../../../redux/damageDetailsModal';
 import { useDispatch } from 'react-redux';
 import { AiOutlineReload } from 'react-icons/ai';
+import { GET_CHAR_PERCENTAGES } from '../../../apollo/Characters';
 
 export const CharHealthTab = (props: characterHealthData) => {
 	const { characterData } = props;
 
 	const [partsData, setPartsData] = useState<any>(false);
 	const [partDamage, setPartDamage] = useState<any>(false);
+	const [lifePercentage, setlifePercentage] = useState<number>(0);
 	const { t } = useTranslation();
 	const toast = useToast();
 	const dispatch = useDispatch();
 
+	const calcPercentage = useCallback(
+		(part: any) => {
+			let total = 0,
+				max_points_calc = Math.floor(
+					part.max_points + (part.max_points / 100) * lifePercentage
+				);
+
+			part.partDamages.forEach((damage: any) => {
+				total += damage.points;
+			});
+
+			let percentage = Math.floor(
+				(100 / max_points_calc) * (max_points_calc - total)
+			);
+
+			return {
+				percentage,
+				remained: max_points_calc - total,
+				max_points_calc,
+				color: calcColor(percentage),
+			};
+		},
+		[lifePercentage]
+	);
+
 	useEffect(() => {
+		setPartDamage(null);
+		getCharacterPercentages(characterData.id).then((resp) => {
+			setlifePercentage(
+				resp.getCharacterActionPercentages?.percentages?.life_calc
+					?.total
+			);
+		});
+
 		getPartsList(characterData.id).then((resp) => {
 			let parts = resp.getPartsList.table.map((part: any) => {
 				let new_obj = { ...part };
-				let perc = calcPercentage(part);
-				let color = calcColor(perc);
-
-				new_obj.percentage = perc;
-				new_obj.color = color;
-
+				new_obj.percentage = calcPercentage(part);
 				return new_obj;
 			});
 
 			setPartsData(parts);
 		});
-	}, [characterData]);
+	}, [calcPercentage, characterData]);
 
 	const refetchData = async () => {
+		setPartDamage(null);
+		getCharacterPercentages(characterData.id).then((resp) => {
+			setlifePercentage(
+				resp.getCharacterActionPercentages?.percentages?.life_calc
+					?.total
+			);
+		});
+
 		getPartsList(characterData.id).then((resp) => {
 			let parts = resp.getPartsList.table.map((part: any) => {
 				let new_obj = { ...part };
-				let perc = calcPercentage(part);
-				let color = calcColor(perc);
-
-				new_obj.percentage = perc;
-				new_obj.color = color;
-
+				new_obj.percentage = calcPercentage(part);
 				return new_obj;
 			});
 
@@ -73,6 +106,12 @@ export const CharHealthTab = (props: characterHealthData) => {
 		});
 	};
 
+	const getCharacterPercentages = async (id: number) => {
+		return await GQLQuery(GET_CHAR_PERCENTAGES, {
+			characterId: id,
+		});
+	};
+
 	const loadPartDamage = async (part: number) => {
 		getDamageListByPart(characterData.id, part).then((resp) => {
 			if (resp.getCharDamageByPart.damages.length > 0) {
@@ -87,16 +126,6 @@ export const CharHealthTab = (props: characterHealthData) => {
 				setPartDamage(null);
 			}
 		});
-	};
-
-	const calcPercentage = (part: any) => {
-		let total = 0;
-
-		part.partDamages.forEach((damage: any) => {
-			total += damage.points;
-		});
-
-		return Math.floor((100 / part.max_points) * (10 - total));
 	};
 
 	const calcColor = (percentage: any) => {
@@ -159,8 +188,11 @@ export const CharHealthTab = (props: characterHealthData) => {
 						<Tooltip
 							key={i}
 							hasArrow
-							// @ts-ignore
-							label={t('general.bodyParts.' + part.name)}
+							label={
+								// @ts-ignore
+								t('general.bodyParts.' + part.name) +
+								` ${part.percentage.remained}/${part.percentage.max_points_calc}`
+							}
 							bg={'green.light'}
 							color={'green.text'}
 							fontSize={'md'}
@@ -197,8 +229,8 @@ export const CharHealthTab = (props: characterHealthData) => {
 								/>
 								<Box
 									w={'full'}
-									h={part.percentage + `%`}
-									bg={part.color}
+									h={part.percentage.percentage + `%`}
+									bg={part.percentage.color}
 									pos={'absolute'}
 									pointerEvents={'none'}
 									bottom={0}

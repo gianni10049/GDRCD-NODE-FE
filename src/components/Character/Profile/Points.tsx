@@ -48,6 +48,12 @@ export const CharPoints = (props: {
 						</Box>
 						<Box py={2} overflow={'hidden'}>
 							<Text>
+								{t('charactersProfile.tabStats.weight')}:
+							</Text>
+							<Text>{100 + percentages.stamina_calc.total}</Text>
+						</Box>
+						<Box py={2} overflow={'hidden'}>
+							<Text>
 								{t('charactersProfile.tabStats.exp_total')}:
 							</Text>
 							<Text>

@@ -165,6 +165,8 @@ const GET_CHAR_POINTS = gql`
 				character
 				life
 				stamina
+				weight
+				resources
 				exp_total
 				exp_usable
 				stat_points

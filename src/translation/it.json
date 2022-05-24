@@ -157,6 +157,7 @@
       "exp_total": "Esperienza",
       "life": "Vita",
       "stamina": "Energia",
+      "weight": "Peso max.",
       "life_calc_label": "Vitalità",
       "stamina_calc_label": "Energia",
       "find_calc_label": "Ricerca",

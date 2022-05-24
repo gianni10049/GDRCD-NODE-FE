@@ -157,6 +157,7 @@
       "exp_total": "Experience",
       "life": "Life",
       "stamina": "Stamina",
+      "weight": "Weight",
       "life_calc_label": "Life",
       "stamina_calc_label": "Stamina",
       "find_calc_label": "Research",
