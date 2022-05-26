@@ -12,7 +12,7 @@ type Mutation {
 }
 
 type Query {
-    charactersList(token: String!): [characterData]
+    chactersListByAccount(token: String!): [characterData]
     getAbility(abilityId: ID!, characterId: ID, token: String!): abilityData
     getCharDamageByPart(characterId: ID!, partId: ID!, token: String!): getDamagesResponse
     getCharacter(characterId: ID, token: String!): characterData

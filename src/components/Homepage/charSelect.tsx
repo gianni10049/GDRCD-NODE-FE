@@ -19,7 +19,7 @@ const CharacterSelect = () => {
 
 	useEffect(() => {
 		getCharactersList().then((data) => {
-			setCharList(data.charactersList);
+			setCharList(data.chactersListByAccount);
 		});
 	}, []);
 

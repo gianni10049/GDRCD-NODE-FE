@@ -1,8 +1,8 @@
 import { gql } from '@apollo/client';
 
 const CHAR_LIST = gql`
-	query charactersList($token: String!) {
-		charactersList(token: $token) {
+	query chactersListByAccount($token: String!) {
+		chactersListByAccount(token: $token) {
 			id
 			name
 			surname
