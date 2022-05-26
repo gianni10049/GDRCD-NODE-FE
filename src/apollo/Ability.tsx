@@ -1,4 +1,6 @@
 import { gql } from '@apollo/client';
+import { GQLmutation, GQLQuery } from './GQL';
+import { getAbilityInput, updateAbilityInput } from './Ability.model';
 
 const GET_ABILITY = gql`
 	query getAbility($token: String!, $abilityId: ID!, $characterId: ID) {
@@ -82,5 +84,13 @@ const UPDATE_ABILITY = gql`
 		}
 	}
 `;
+
+export const getAbility = async (data: getAbilityInput) => {
+	return await GQLQuery(GET_ABILITY, data);
+};
+
+export const updateAbility = async (data: updateAbilityInput) => {
+	return await GQLmutation(UPDATE_ABILITY, data);
+};
 
 export { GET_ABILITY, UPDATE_ABILITY };

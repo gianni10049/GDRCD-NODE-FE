@@ -9,8 +9,7 @@ import {
 	useToast,
 } from '@chakra-ui/react';
 import { AbilityDetailsData } from './AbilityDetails.modal';
-import { GQLmutation, GQLQuery } from '../../apollo/GQL';
-import { GET_ABILITY, UPDATE_ABILITY } from '../../apollo/Ability';
+import { getAbility, updateAbility } from '../../apollo/Ability';
 import { abilityTableData } from '../../apollo/Tables.model';
 import { useTranslation } from 'react-i18next';
 import { getIcon } from '../Utils/Icons';
@@ -31,20 +30,6 @@ export const AbilityDetails = (props: AbilityDetailsData) => {
 
 	const { t } = useTranslation();
 
-	const getAbility = useCallback<any>(async () => {
-		return await GQLQuery(GET_ABILITY, {
-			abilityId: abilityId,
-			characterId: characterId,
-		});
-	}, [abilityId, characterId]);
-
-	const updateAbility = async () => {
-		return await GQLmutation(UPDATE_ABILITY, {
-			abilityId: abilityId,
-			characterId: characterId,
-		});
-	};
-
 	const permissionControl = useCallback(async () => {
 		let permission;
 
@@ -61,12 +46,19 @@ export const AbilityDetails = (props: AbilityDetailsData) => {
 		return permission;
 	}, [characterId]);
 
-	useEffect(() => {
-		getAbility().then(async (resp: any) => {
+	const refetchData = useCallback(async () => {
+		getAbility({
+			abilityId: abilityId,
+			characterId: characterId,
+		}).then(async (resp: any) => {
 			setAbilityData(resp.getAbility);
 			setPermission(await permissionControl());
 		});
-	}, [getAbility, permissionControl]);
+	}, [abilityId, characterId, permissionControl]);
+
+	useEffect(() => {
+		refetchData().then(() => {});
+	}, [refetchData]);
 
 	const toggleSubMenu = (id: number) => {
 		let new_array = {
@@ -83,7 +75,10 @@ export const AbilityDetails = (props: AbilityDetailsData) => {
 	};
 
 	const buySkill = async () => {
-		updateAbility().then((resp: any) => {
+		updateAbility({
+			abilityId: abilityId,
+			characterId: characterId,
+		}).then((resp: any) => {
 			toast({
 				title: resp.updateAbility.responseStatus,
 				status: resp.updateAbility.response ? 'success' : 'error',
@@ -92,10 +87,7 @@ export const AbilityDetails = (props: AbilityDetailsData) => {
 			});
 
 			if (resp.updateAbility.response) {
-				getAbility().then(async (resp: any) => {
-					setAbilityData(resp.getAbility);
-					setPermission(await permissionControl());
-				});
+				refetchData();
 			}
 		});
 	};
