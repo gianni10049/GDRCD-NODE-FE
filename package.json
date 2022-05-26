@@ -36,8 +36,8 @@
     "yup": "^0.32.11"
   },
   "scripts": {
-    "start": "react-scripts --max_old_space_size=8192 start",
-    "build": "react-scripts --max_old_space_size=8192 build"
+    "start": "react-scripts --max_old_space_size=1024 start",
+    "build": "react-scripts --max_old_space_size=1024 build"
   },
   "browserslist": {
     "production": [
@@ -52,6 +52,7 @@
     ]
   },
   "devDependencies": {
+    "@babel/core": "^7.18.2",
     "@babel/eslint-parser": "^7.17.0",
     "@babel/preset-react": "^7.16.7",
     "@types/jquery": "^3.5.14",
