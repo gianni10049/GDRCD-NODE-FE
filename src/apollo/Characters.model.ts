@@ -37,3 +37,7 @@ export interface characterAbilityTableData {
 	updatedAt: string;
 	deletedAt: string;
 }
+
+export interface getCharacterPointsInput {
+	characterId: number;
+}

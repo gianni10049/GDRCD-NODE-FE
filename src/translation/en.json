@@ -52,6 +52,13 @@
     "damage_details": {
       "title": "Damage Details",
       "solved": "Set Healed"
+    },
+    "bank": {
+      "title": "Resources",
+      "currentMoneyTitle": "Possessed",
+      "sendMoneyTitle": "Reclaim",
+      "sendMoneySubmit": "Send",
+      "money": "Amount"
     }
   },
   "homepage": {

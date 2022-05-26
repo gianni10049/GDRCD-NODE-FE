@@ -52,6 +52,13 @@
     "damage_details": {
       "title": "Dettaglio danni",
       "solved": "Segna Risolto"
+    },
+    "bank": {
+      "title": "Risorse",
+      "currentMoneyTitle": "Saldo",
+      "sendMoneyTitle": "Bonifico",
+      "sendMoneySubmit": "Invia",
+      "money": "Importo"
     }
   },
   "homepage": {

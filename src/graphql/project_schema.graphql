@@ -7,6 +7,7 @@ schema {
 
 type Mutation {
     registration(email: String!, password: String!, password_confirm: String!, username: String!): genericResponse
+    sendMoney(character: ID!, money: String!, token: String!): genericResponse
     setDamageSolved(damageId: ID!, token: String!): getDamageResponse
     updateAbility(abilityId: ID!, characterId: ID, token: String!): genericResponse
 }
@@ -20,7 +21,9 @@ type Query {
     getCharacterActionPercentages(action: String, characterId: ID!, token: String!): getCharacterActionPercentagesResponse
     getCharacterPoints(characterId: ID!, token: String!): getCharacterPointsResponse
     getCharacterStats(characterId: ID!, token: String!): getCharacterStatsResponse
+    getCharactersList(token: String!): [characterData]
     getDamage(damageId: ID!, token: String): getDamageResponse
+    getMe(token: String!): getMeResponse
     getPartsList(characterId: ID!, token: String!): getPartsList
     isMineCharacter(characterId: ID!, token: String!): genericResponse
     listStats(token: String!): [statData]
@@ -97,6 +100,11 @@ type accountPermissionGroupData {
     updatedAt: String
 }
 
+type authData {
+    account: accountData
+    character: characterData
+}
+
 type characterAbilityData {
     ability: Int
     abilityData: abilityData
@@ -158,11 +166,11 @@ type characterPointsData {
     exp_usable: Int
     id: ID
     life: Int
+    resources: Int
     stamina: Int
     stat_points: Int
     updatedAt: String
     weight: Int
-    resources:Int
 }
 
 type characterStatData {
@@ -220,6 +228,12 @@ type getDamageResponse {
 
 type getDamagesResponse {
     damages: [characterDamageData]
+    response: Int
+    responseStatus: String
+}
+
+type getMeResponse {
+    me: authData
     response: Int
     responseStatus: String
 }

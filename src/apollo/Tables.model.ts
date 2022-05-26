@@ -65,6 +65,8 @@ export interface characterPointsTableData {
 	stamina: number;
 	exp_total: number;
 	exp_usable: number;
+	resources: number;
+	weight: number;
 	stat_points: number;
 	createdAt: string;
 	updatedAt: string;

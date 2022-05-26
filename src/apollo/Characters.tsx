@@ -1,4 +1,6 @@
 import { gql } from '@apollo/client';
+import { GQLQuery } from './GQL';
+import { getCharacterPointsInput } from './Characters.model';
 
 const CHAR_LIST = gql`
 	query chactersListByAccount($token: String!) {
@@ -230,6 +232,33 @@ const GET_CHAR_PERCENTAGES = gql`
 		}
 	}
 `;
+
+const GET_CHAR_LIST = gql`
+	query getCharactersList($token: String!) {
+		getCharactersList(token: $token) {
+			id
+			account
+			name
+			nickname
+			surname
+			age
+			mini_avatar
+			profilePic
+			active
+			createdAt
+			updatedAt
+			deletedAt
+		}
+	}
+`;
+
+export const getCharactersList = async () => {
+	return await GQLQuery(GET_CHAR_LIST);
+};
+
+export const getCharacterPoints = async (data: getCharacterPointsInput) => {
+	return await GQLQuery(GET_CHAR_POINTS, data);
+};
 
 export {
 	CHAR_LIST,

@@ -44,6 +44,7 @@ import React from 'react';
 import { useTranslation } from 'react-i18next';
 import { useDispatch } from 'react-redux';
 import { toggleCharacterModal } from '../../redux/characterModals';
+import { toggleBankModal } from '../../redux/bankModal';
 
 const NavLink = (props: navLinkInterface) => {
 	return (
@@ -304,7 +305,9 @@ const Header = () => {
 						<MenuVoice
 							icon={FaBox}
 							buttonText={t('mainMenu.user.resources')}
-							onClick={() => {}}
+							onClick={() => {
+								dispatch(toggleBankModal());
+							}}
 						/>
 						<MenuVoice
 							icon={CgArrowsExchangeAlt}
