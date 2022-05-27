@@ -178,7 +178,8 @@
     },
     "tabHealth": {
       "tabButton": "Salute",
-      "noDamage": "Nessun danno per questa parte del corpo"
+      "noDamage": "Nessun danno per questa parte del corpo",
+      "watch": "Vedi Dettagli"
     }
   },
   "ability": {

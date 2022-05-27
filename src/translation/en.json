@@ -179,7 +179,8 @@
     },
     "tabHealth": {
       "tabButton": "Health",
-      "noDamage": "No damages on this part"
+      "noDamage": "No damages on this part",
+      "watch": "See Details"
     }
   },
   "ability": {

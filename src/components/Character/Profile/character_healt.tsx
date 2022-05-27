@@ -14,7 +14,7 @@ import { useTranslation } from 'react-i18next';
 import { characterDamageTableData } from '../../../apollo/Tables.model';
 import { toggleDamageDetailModal } from '../../../redux/damageDetailsModal';
 import { useDispatch } from 'react-redux';
-import { AiOutlineReload } from 'react-icons/ai';
+import { AiOutlineReload, AiOutlineEye } from 'react-icons/ai';
 import { getCharacterPercentages } from '../../../apollo/Characters';
 
 export const CharHealthTab = (props: characterHealthData) => {
@@ -273,18 +273,40 @@ export const CharHealthTab = (props: characterHealthData) => {
 										<Text>{damage.points}</Text>
 									</Box>
 									<Box py={2} overflow={'hidden'}>
-										<Text
-											onClick={() => {
-												dispatch(
-													toggleDamageDetailModal({
-														options: {
-															damageId: damage.id,
-														},
-													})
-												);
-											}}>
-											blabla
-										</Text>
+										<Tooltip
+											hasArrow
+											label={t(
+												'charactersProfile.tabHealth.watch'
+											)}
+											bg={'green.light'}
+											color={'green.text'}
+											fontSize={'md'}
+											fontFamily={'TecFont'}
+											letterSpacing={'widest'}
+											fontWeight={'extrabold'}>
+											<Box>
+												<Icon
+													as={AiOutlineEye}
+													boxSize={5}
+													cursor={'pointer'}
+													_hover={{
+														color: 'green.light',
+													}}
+													onClick={() => {
+														dispatch(
+															toggleDamageDetailModal(
+																{
+																	options: {
+																		damageId:
+																			damage.id,
+																	},
+																}
+															)
+														);
+													}}
+												/>
+											</Box>
+										</Tooltip>
 									</Box>
 								</SimpleGrid>
 							)
