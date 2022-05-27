@@ -1,7 +1,6 @@
-import React, { useEffect, useState } from 'react';
+import React, { useCallback, useEffect, useState } from 'react';
 import { DamageDetailsData } from './DamageDetails.model';
-import { GQLmutation, GQLQuery } from '../../apollo/GQL';
-import { GET_DAMAGE, SET_DAMAGE_SOLVED } from '../../apollo/Damage';
+import { getDamage, setDamageSolved } from '../../apollo/Damage';
 import { characterDamageTableData } from '../../apollo/Tables.model';
 import { PopoverInfo } from '../Utils/Popover';
 import { Box, Icon, Tooltip, useToast } from '@chakra-ui/react';
@@ -19,8 +18,10 @@ export const DamageDetails = (props: DamageDetailsData) => {
 	const { t } = useTranslation();
 	const toast = useToast();
 
-	useEffect(() => {
-		getDamage(damageId).then((resp) => {
+	const refetchData = useCallback(async () => {
+		getDamage({
+			damageId: damageId,
+		}).then((resp) => {
 			setDamageData(resp.getDamage.damage);
 			controlPermission().then((resp) => {
 				setPermission(resp);
@@ -28,20 +29,10 @@ export const DamageDetails = (props: DamageDetailsData) => {
 		});
 	}, [damageId]);
 
-	const getDamage = async (id: number) => {
-		return await GQLQuery(GET_DAMAGE, {
-			damageId: id,
-		});
-	};
-
-	const setDamageSolved = async (id: number) => {
-		return await GQLmutation(SET_DAMAGE_SOLVED, {
-			damageId: id,
-		});
-	};
-
 	const setSolved = async () => {
-		setDamageSolved(damageId).then((resp) => {
+		setDamageSolved({
+			damageId: damageId,
+		}).then((resp) => {
 			if (resp.setDamageSolved.response) {
 				setDamageData(resp.setDamageSolved.damage);
 			}
@@ -60,6 +51,10 @@ export const DamageDetails = (props: DamageDetailsData) => {
 			permission: 'MANAGE_DAMAGES',
 		});
 	};
+
+	useEffect(() => {
+		refetchData().then(() => {});
+	}, [refetchData]);
 
 	return (
 		<Box w={'full'} h={'full'} pos={'relative'} overflowX={'hidden'}>

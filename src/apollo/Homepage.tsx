@@ -1,4 +1,10 @@
 import { gql } from '@apollo/client';
+import {
+	loginDataInterface,
+	recPassDataInterface,
+	registrationDataInterface,
+} from '../components/Homepage/homepage.model';
+import { GQLmutation, GQLQuery } from './GQL';
 
 const REGISTRATION = gql`
 	mutation registration(
@@ -37,5 +43,17 @@ const RECPASS = gql`
 		}
 	}
 `;
+
+export const getRegistration = async (data: registrationDataInterface) => {
+	return await GQLmutation(REGISTRATION, data);
+};
+
+export const getLogin = async (data: loginDataInterface) => {
+	return await GQLQuery(LOGIN, data);
+};
+
+export const getRecPass = async (data: recPassDataInterface) => {
+	return await GQLQuery(RECPASS, data);
+};
 
 export { REGISTRATION, LOGIN, RECPASS };

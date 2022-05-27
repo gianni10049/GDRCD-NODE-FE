@@ -1,7 +1,5 @@
-// Hook (use-auth.js)
 import React, { useState, useEffect, useContext, createContext } from 'react';
-import { TOKEN_CONTROL } from '../../apollo/Generic';
-import { GQLQuery } from '../../apollo/GQL';
+import { getTokenControl } from '../../apollo/Generic';
 import Page404 from '../404/404';
 import Header from '../Core/Header';
 import { Box, Container } from '@chakra-ui/react';
@@ -10,7 +8,6 @@ import {
 	AuthDataResponse,
 	ProvideAuthData,
 	RouteControlData,
-	tokenControlData,
 } from './RouteControl.model';
 
 const authContext = createContext<AuthDataResponse>({
@@ -32,10 +29,6 @@ export function ProvideAuth(data: ProvideAuthData) {
 
 export const useAuth: any = () => {
 	return useContext(authContext);
-};
-
-const getTokenControl = async (data: tokenControlData) => {
-	return await GQLQuery(TOKEN_CONTROL, data);
 };
 
 function useProvideAuth(props: ProvideAuthData) {

@@ -1,4 +1,4 @@
-import React, { useEffect, useState } from 'react';
+import React, { useCallback, useEffect, useState } from 'react';
 import { getCharacterPoints, getCharactersList } from '../../apollo/Characters';
 import { characterPointsTableData } from '../../apollo/Tables.model';
 import { getMe, sendMoney } from '../../apollo/Generic';
@@ -49,7 +49,7 @@ export const Bank = () => {
 		});
 	};
 
-	useEffect(() => {
+	const refetchData = useCallback(async () => {
 		getMe().then((resp) => {
 			if (resp.getMe.response) {
 				getCharacterPoints({
@@ -65,21 +65,9 @@ export const Bank = () => {
 		});
 	}, []);
 
-	const refetchData = async () => {
-		getMe().then((resp) => {
-			if (resp.getMe.response) {
-				getCharacterPoints({
-					characterId: resp?.getMe?.me?.character?.id,
-				}).then((resp) => {
-					setPointsResponse(resp?.getCharacterPoints?.table);
-				});
-
-				getCharactersList().then((resp) => {
-					setCharactersList(resp.getCharactersList);
-				});
-			}
-		});
-	};
+	useEffect(() => {
+		refetchData().then(() => {});
+	}, [refetchData]);
 
 	return (
 		<Box w={'full'} h={'full'} pos={'relative'} overflow={'hidden'}>

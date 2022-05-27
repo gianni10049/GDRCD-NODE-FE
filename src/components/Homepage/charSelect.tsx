@@ -2,8 +2,7 @@ import Particles from 'react-tsparticles';
 import config_particles from '../Particles/homepage.json';
 import { Box, Text, Tooltip, useToast } from '@chakra-ui/react';
 import Logo from '../Utils/logo';
-import { GQLQuery } from '../../apollo/GQL';
-import { CHAR_LIST, SET_CHAR } from '../../apollo/Characters';
+import { charactersListByAccount, setCharacter } from '../../apollo/Characters';
 import { useEffect, useState } from 'react';
 import React from 'react';
 import { characterInterface } from './charSelect.model';
@@ -18,23 +17,13 @@ const CharacterSelect = () => {
 	const { t } = useTranslation();
 
 	useEffect(() => {
-		getCharactersList().then((data) => {
+		charactersListByAccount({}).then((data) => {
 			setCharList(data.chactersListByAccount);
 		});
 	}, []);
 
-	const getCharactersList = async () => {
-		return await GQLQuery(CHAR_LIST, {});
-	};
-
-	const setCharacterQuery = async (id: number) => {
-		return await GQLQuery(SET_CHAR, {
-			characterId: id,
-		});
-	};
-
-	const setCharacter = async (id: number) => {
-		let data = await setCharacterQuery(id);
+	const setCharacterOp = async (id: number) => {
+		let data = await setCharacter({ characterId: id });
 
 		if (data.setCharacter.responseStatus === 'success') {
 			localStorage.setItem('token', data.setCharacter.token);
@@ -146,7 +135,7 @@ const CharacterSelect = () => {
 									boxShadow:
 										'inset 0px 0px 10px -5px #000000',
 								}}
-								onClick={() => setCharacter(item.id)}>
+								onClick={() => setCharacterOp(item.id)}>
 								<Box
 									w={20}
 									borderWidth={'1px'}

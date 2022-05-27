@@ -104,7 +104,7 @@ export const CreateSubmitInput = (props: submitData) => {
 					fontSize={'xl'}
 					letterSpacing={'widest'}
 					className={'text-border'}>
-					{label}
+					{label ?? 'submit'}
 				</Text>
 			</Button>
 		</Box>

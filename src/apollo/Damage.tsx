@@ -1,4 +1,6 @@
 import { gql } from '@apollo/client';
+import { GQLmutation, GQLQuery } from './GQL';
+import { getDamageInput, setDamageSolvedInput } from './Damage.model';
 
 const GET_DAMAGE = gql`
 	query getDamage($token: String!, $damageId: ID!) {
@@ -41,5 +43,13 @@ const SET_DAMAGE_SOLVED = gql`
 		}
 	}
 `;
+
+export const getDamage = async (data: getDamageInput) => {
+	return await GQLQuery(GET_DAMAGE, data);
+};
+
+export const setDamageSolved = async (data: setDamageSolvedInput) => {
+	return await GQLmutation(SET_DAMAGE_SOLVED, data);
+};
 
 export { GET_DAMAGE, SET_DAMAGE_SOLVED };

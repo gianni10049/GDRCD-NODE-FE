@@ -4,8 +4,7 @@ import { AbiButtonsData, AbiChartData } from './AbiChart.model';
 import { getIcon } from '../../Utils/Icons';
 import { abilityTableData, statTableData } from '../../../apollo/Tables.model';
 import { useTranslation } from 'react-i18next';
-import { GQLQuery } from '../../../apollo/GQL';
-import { LIST_STATS } from '../../../apollo/Stats';
+import { listStats } from '../../../apollo/Stats';
 import { useDispatch } from 'react-redux';
 import { toggleAbilityDetailModal } from '../../../redux/abilityDetailsModal';
 import { PopoverInfo } from '../../Utils/Popover';
@@ -14,10 +13,6 @@ export const AbiChart = (props: AbiChartData) => {
 	let { abilities, characterId } = props;
 	const { t } = useTranslation();
 	const [stats, setStats] = useState<statTableData[]>([]);
-
-	const listStats = async () => {
-		return await GQLQuery(LIST_STATS);
-	};
 
 	useEffect(() => {
 		listStats().then((resp) => {

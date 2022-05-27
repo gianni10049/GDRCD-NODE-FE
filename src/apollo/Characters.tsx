@@ -1,8 +1,16 @@
 import { gql } from '@apollo/client';
 import { GQLQuery } from './GQL';
-import { getCharacterPointsInput } from './Characters.model';
+import {
+	characterListByAccount,
+	getCharacterAbiInput,
+	getCharacterDataInput,
+	getCharacterPercentagesInput,
+	getCharacterPointsInput,
+	getCharacterStatsInput,
+	setCharacterInput,
+} from './Characters.model';
 
-const CHAR_LIST = gql`
+const CHAR_LIST_BY_ACCOUNT = gql`
 	query chactersListByAccount($token: String!) {
 		chactersListByAccount(token: $token) {
 			id
@@ -260,8 +268,34 @@ export const getCharacterPoints = async (data: getCharacterPointsInput) => {
 	return await GQLQuery(GET_CHAR_POINTS, data);
 };
 
+export const charactersListByAccount = async (data: characterListByAccount) => {
+	return await GQLQuery(CHAR_LIST_BY_ACCOUNT, data);
+};
+
+export const setCharacter = async (data: setCharacterInput) => {
+	return await GQLQuery(SET_CHAR, data);
+};
+
+export const getCharacterData = async (data: getCharacterDataInput) => {
+	return await GQLQuery(GET_CHAR, data);
+};
+
+export const getCharacterStats = async (data: getCharacterStatsInput) => {
+	return await GQLQuery(GET_CHAR_STATS, data);
+};
+
+export const getCharacterAbi = async (data: getCharacterAbiInput) => {
+	return await GQLQuery(GET_CHAR_ABILITY, data);
+};
+
+export const getCharacterPercentages = async (
+	data: getCharacterPercentagesInput
+) => {
+	return await GQLQuery(GET_CHAR_PERCENTAGES, data);
+};
+
 export {
-	CHAR_LIST,
+	CHAR_LIST_BY_ACCOUNT,
 	SET_CHAR,
 	GET_CHAR,
 	GET_CHAR_STATS,

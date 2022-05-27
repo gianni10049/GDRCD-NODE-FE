@@ -1,7 +1,6 @@
 import { Box, Flex, Image } from '@chakra-ui/react';
 import React, { useEffect, useState } from 'react';
-import { GQLQuery } from '../../../apollo/GQL';
-import { GET_CHAR } from '../../../apollo/Characters';
+import { getCharacterData } from '../../../apollo/Characters';
 import { characterProfileData } from './character_profile.model';
 import CharacterMainPage from './character_mainpage';
 import { PopoverCustom, PopoverInfo } from '../../Utils/Popover';
@@ -10,23 +9,19 @@ import default_image from '../../../static/images/characters/default-img.png';
 import { useTranslation } from 'react-i18next';
 
 const CharacterProfile = (props: characterProfileData) => {
-	let { options } = props,
-		charId = options?.character;
+	let { options } = props;
 
 	let [characterData, setCharacterData] = useState<characterTableData>({});
+	let [charId] = useState<number>(options?.character);
 	const { t } = useTranslation();
 
-	const getCharacterData = async (id: number) => {
-		return await GQLQuery(GET_CHAR, {
-			characterId: id,
-		});
-	};
-
 	useEffect(() => {
-		getCharacterData(charId).then((resp) => {
+		getCharacterData({
+			characterId: charId,
+		}).then((resp) => {
 			setCharacterData(resp.getCharacter);
 		});
-	});
+	}, [charId]);
 
 	return (
 		<Box w={'full'} h={'full'} color={'white'}>

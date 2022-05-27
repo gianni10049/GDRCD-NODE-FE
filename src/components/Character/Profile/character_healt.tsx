@@ -1,7 +1,6 @@
 import React, { useCallback, useEffect, useState } from 'react';
 import { characterHealthData } from './character_healt.model';
-import { GQLQuery } from '../../../apollo/GQL';
-import { GET_PARTS_DAMAGE, GET_PARTS_LIST } from '../../../apollo/Generic';
+import { getDamageListByPart, getPartsList } from '../../../apollo/Generic';
 import {
 	Box,
 	SimpleGrid,
@@ -16,7 +15,7 @@ import { characterDamageTableData } from '../../../apollo/Tables.model';
 import { toggleDamageDetailModal } from '../../../redux/damageDetailsModal';
 import { useDispatch } from 'react-redux';
 import { AiOutlineReload } from 'react-icons/ai';
-import { GET_CHAR_PERCENTAGES } from '../../../apollo/Characters';
+import { getCharacterPercentages } from '../../../apollo/Characters';
 
 export const CharHealthTab = (props: characterHealthData) => {
 	const { characterData } = props;
@@ -53,81 +52,6 @@ export const CharHealthTab = (props: characterHealthData) => {
 		[lifePercentage]
 	);
 
-	useEffect(() => {
-		setPartDamage(null);
-		getCharacterPercentages(characterData.id).then((resp) => {
-			setlifePercentage(
-				resp.getCharacterActionPercentages?.percentages?.life_calc
-					?.total
-			);
-		});
-
-		getPartsList(characterData.id).then((resp) => {
-			let parts = resp.getPartsList.table.map((part: any) => {
-				let new_obj = { ...part };
-				new_obj.percentage = calcPercentage(part);
-				return new_obj;
-			});
-
-			setPartsData(parts);
-		});
-	}, [calcPercentage, characterData]);
-
-	const refetchData = async () => {
-		setPartDamage(null);
-		getCharacterPercentages(characterData.id).then((resp) => {
-			setlifePercentage(
-				resp.getCharacterActionPercentages?.percentages?.life_calc
-					?.total
-			);
-		});
-
-		getPartsList(characterData.id).then((resp) => {
-			let parts = resp.getPartsList.table.map((part: any) => {
-				let new_obj = { ...part };
-				new_obj.percentage = calcPercentage(part);
-				return new_obj;
-			});
-
-			setPartsData(parts);
-		});
-	};
-
-	const getPartsList = async (id: number) => {
-		return await GQLQuery(GET_PARTS_LIST, {
-			characterId: id,
-		});
-	};
-
-	const getDamageListByPart = async (character: number, part: number) => {
-		return await GQLQuery(GET_PARTS_DAMAGE, {
-			characterId: character,
-			partId: part,
-		});
-	};
-
-	const getCharacterPercentages = async (id: number) => {
-		return await GQLQuery(GET_CHAR_PERCENTAGES, {
-			characterId: id,
-		});
-	};
-
-	const loadPartDamage = async (part: number) => {
-		getDamageListByPart(characterData.id, part).then((resp) => {
-			if (resp.getCharDamageByPart.damages.length > 0) {
-				setPartDamage(resp.getCharDamageByPart.damages);
-			} else {
-				toast({
-					title: t('charactersProfile.tabHealth.noDamage'),
-					status: 'info',
-					duration: 9000,
-					isClosable: true,
-				});
-				setPartDamage(null);
-			}
-		});
-	};
-
 	const calcColor = (percentage: any) => {
 		switch (true) {
 			case percentage >= 100:
@@ -142,6 +66,51 @@ export const CharHealthTab = (props: characterHealthData) => {
 				return 'rgba(150,150,150,0.6)';
 		}
 	};
+
+	const loadPartDamage = async (part: number) => {
+		getDamageListByPart({
+			characterId: characterData.id,
+			partId: part,
+		}).then((resp) => {
+			if (resp.getCharDamageByPart.damages.length > 0) {
+				setPartDamage(resp.getCharDamageByPart.damages);
+			} else {
+				toast({
+					title: t('charactersProfile.tabHealth.noDamage'),
+					status: 'info',
+					duration: 9000,
+					isClosable: true,
+				});
+				setPartDamage(null);
+			}
+		});
+	};
+
+	const refetchData = useCallback(async () => {
+		setPartDamage(null);
+		getCharacterPercentages({ characterId: characterData.id }).then(
+			(resp) => {
+				setlifePercentage(
+					resp.getCharacterActionPercentages?.percentages?.life_calc
+						?.total
+				);
+			}
+		);
+
+		getPartsList({ characterId: characterData.id }).then((resp) => {
+			let parts = resp.getPartsList.table.map((part: any) => {
+				let new_obj = { ...part };
+				new_obj.percentage = calcPercentage(part);
+				return new_obj;
+			});
+
+			setPartsData(parts);
+		});
+	}, [calcPercentage, characterData]);
+
+	useEffect(() => {
+		refetchData().then(() => {});
+	}, [refetchData]);
 
 	return (
 		<>

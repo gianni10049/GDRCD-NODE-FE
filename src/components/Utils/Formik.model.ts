@@ -8,7 +8,7 @@ export interface fieldData {
 	fieldLabel?: any;
 }
 export interface submitData {
-	label: string;
+	label?: string;
 }
 
 export interface renderSelectInput {

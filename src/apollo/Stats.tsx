@@ -1,4 +1,5 @@
 import { gql } from '@apollo/client';
+import { GQLQuery } from './GQL';
 
 const LIST_STATS = gql`
 	query listStats($token: String!) {
@@ -20,5 +21,9 @@ const LIST_STATS = gql`
 		}
 	}
 `;
+
+export const listStats = async () => {
+	return await GQLQuery(LIST_STATS);
+};
 
 export { LIST_STATS };

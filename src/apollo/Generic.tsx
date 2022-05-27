@@ -1,6 +1,11 @@
 import { gql } from '@apollo/client';
 import { GQLmutation, GQLQuery } from './GQL';
-import { sendMoneyInput } from './Generic.model';
+import {
+	getDamageListByPartInput,
+	getParsListInput,
+	sendMoneyInput,
+} from './Generic.model';
+import { tokenControlData } from '../components/Routes/RouteControl.model';
 
 const GET_ME = gql`
 	query getMe($token: String!) {
@@ -113,6 +118,18 @@ export const sendMoney = async (data: sendMoneyInput) => {
 
 export const getMe = async () => {
 	return await GQLQuery(GET_ME);
+};
+
+export const getPartsList = async (data: getParsListInput) => {
+	return await GQLQuery(GET_PARTS_LIST, data);
+};
+
+export const getDamageListByPart = async (data: getDamageListByPartInput) => {
+	return await GQLQuery(GET_PARTS_DAMAGE, data);
+};
+
+export const getTokenControl = async (data: tokenControlData) => {
+	return await GQLQuery(TOKEN_CONTROL, data);
 };
 
 export { TOKEN_CONTROL, GET_PARTS_LIST, GET_PARTS_DAMAGE, GET_ME, SEND_MONEY };

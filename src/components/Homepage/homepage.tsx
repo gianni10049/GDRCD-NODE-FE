@@ -1,16 +1,15 @@
-import { Box, Button, Text } from '@chakra-ui/react';
+import { Box, Text } from '@chakra-ui/react';
 import Logo from '../Utils/logo';
-import { Formik, Field, Form, ErrorMessage } from 'formik';
+import { Formik, Form } from 'formik';
+import { CreateSingleInput, CreateSubmitInput } from '../Utils/Formik';
 import * as Yup from 'yup';
-import { REGISTRATION, LOGIN, RECPASS } from '../../apollo/Homepage';
+import { getRegistration, getLogin, getRecPass } from '../../apollo/Homepage';
 import Particles from 'react-tsparticles';
 import config_particles from './../Particles/homepage.json';
 import { useState } from 'react';
 import { useToast } from '@chakra-ui/react';
-import { GQLmutation, GQLQuery } from '../../apollo/GQL';
 import React from 'react';
 import {
-	fieldData,
 	loginDataInterface,
 	recPassDataInterface,
 	registrationDataInterface,
@@ -51,24 +50,6 @@ const Homepage = () => {
 		email: Yup.string().email('Only valid emails').required('required'),
 	});
 
-	const renderError = (message: string) => (
-		<Box
-			pb={1}
-			fontWeight={'bold'}
-			color={'red.600'}
-			fontFamily={'TecFont'}
-			letterSpacing={'wide'}>
-			<Text>{message}</Text>
-		</Box>
-	);
-
-	const getLogin = async (props: loginDataInterface) => {
-		return await GQLQuery(LOGIN, {
-			username: props.username,
-			password: props.password,
-		});
-	};
-
 	const loginSubmit = (data: loginDataInterface) => {
 		getLogin(data).then((resp) => {
 			if (resp.login) {
@@ -95,24 +76,6 @@ const Homepage = () => {
 		});
 	};
 
-	/**
-	 * @return {Promise<{
-	 * 					registration:{
-	 * 						responseStatus:string,
-	 * 						token:string,
-	 * 						response:string
-	 * 					}
-	 * 	}>}
-	 */
-	const getRegistration = async (data: registrationDataInterface) => {
-		return await GQLmutation(REGISTRATION, {
-			username: data.username,
-			email: data.email,
-			password: data.password,
-			password_confirm: data.password_confirm,
-		});
-	};
-
 	const registrationSubmit = async (data: registrationDataInterface) => {
 		getRegistration(data).then((resp) => {
 			if (resp.registration) {
@@ -130,12 +93,6 @@ const Homepage = () => {
 					setFormContent('login');
 				}
 			}
-		});
-	};
-
-	const getRecPass = async (data: recPassDataInterface) => {
-		return await GQLQuery(RECPASS, {
-			email: data.email,
 		});
 	};
 
@@ -157,64 +114,6 @@ const Homepage = () => {
 				}
 			}
 		});
-	};
-
-	const CreateSingleInput = (props: fieldData) => {
-		return (
-			<Box m={'auto'} my={5} className='w-2/4'>
-				<Field
-					name={props.name}
-					type={props.type ?? 'text'}
-					className='input w-full bg-transparent border-b border-green-border font-TecFont outline-0 text-green-border placeholder:text-green-border
-												focus:text-green-light focus:placeholder:text-green-light hover:placeholder:text-green-light'
-					placeholder={props.placeholder}
-				/>
-				{/* @ts-ignore*/}
-				<ErrorMessage name={props.name} render={renderError} />
-			</Box>
-		);
-	};
-
-	const CreateSubmitInput = () => {
-		return (
-			<Box
-				d={'flex'}
-				m={'auto'}
-				backgroundColor={'green.border'}
-				alignItems={'center'}
-				justifyContent={'center'}
-				_hover={{
-					backgroundColor: 'green.light',
-				}}
-				clipPath={
-					'polygon(11% 0, 100% 0, 100% 59%, 89% 100%, 0 100%, 0 40%)'
-				}
-				w={'200px'}
-				h={'30px'}>
-				<Button
-					textAlign={'center'}
-					bg={'green.background'}
-					type='submit'
-					w={'calc(100% - 2px)'}
-					h={'calc(100% - 2px)'}
-					rounded={'none'}
-					_hover={{
-						bg: 'green.light',
-					}}
-					clipPath={
-						'polygon(11% 0, 100% 0, 100% 59%, 89% 100%, 0 100%, 0 40%)'
-					}>
-					<Text
-						fontFamily={'TecFont'}
-						color={'green.text'}
-						fontSize={'xl'}
-						letterSpacing={'widest'}
-						className={'text-border'}>
-						{t('homepage.forms.submit')}
-					</Text>
-				</Button>
-			</Box>
-		);
 	};
 
 	return (

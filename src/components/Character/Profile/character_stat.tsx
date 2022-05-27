@@ -1,13 +1,12 @@
-import React, { useEffect, useState } from 'react';
+import React, { useCallback, useEffect, useState } from 'react';
 import { characterStatData } from './character_stat.model';
 import { Box, Collapse, useDisclosure, Icon, Tooltip } from '@chakra-ui/react';
 import { useTranslation } from 'react-i18next';
-import { GQLQuery } from '../../../apollo/GQL';
 import {
-	GET_CHAR_ABILITY,
-	GET_CHAR_PERCENTAGES,
-	GET_CHAR_POINTS,
-	GET_CHAR_STATS,
+	getCharacterAbi,
+	getCharacterStats,
+	getCharacterPoints,
+	getCharacterPercentages,
 } from '../../../apollo/Characters';
 import { StatChart } from './StatChart';
 import { AbiChart } from './AbiChart';
@@ -33,65 +32,35 @@ export const CharStatTab = (props: characterStatData) => {
 	const [percentages, setPercentages] =
 		useState<characterPercentagesData>(null);
 
-	useEffect(() => {
-		getCharacterStats(characterData.id).then((resp) => {
+	const refetchData = useCallback(async () => {
+		getCharacterStats({
+			characterId: characterData.id,
+		}).then((resp) => {
 			setStatResponse(resp.getCharacterStats.table);
 		});
 
-		getCharacterAbi(characterData.id).then((resp) => {
+		getCharacterAbi({
+			characterId: characterData.id,
+		}).then((resp) => {
 			setAbiResponse(resp.getCharacterAbility.table);
 		});
 
-		getCharacterPoints(characterData.id).then((resp) => {
+		getCharacterPoints({
+			characterId: characterData.id,
+		}).then((resp) => {
 			setPointsResponse(resp.getCharacterPoints.table);
 		});
 
-		getCharacterPercentages(characterData.id).then((response) => {
+		getCharacterPercentages({
+			characterId: characterData.id,
+		}).then((response) => {
 			setPercentages(response.getCharacterActionPercentages.percentages);
 		});
 	}, [characterData]);
 
-	const getCharacterStats = async (id: number) => {
-		return await GQLQuery(GET_CHAR_STATS, {
-			characterId: id,
-		});
-	};
-
-	const getCharacterAbi = async (id: number) => {
-		return await GQLQuery(GET_CHAR_ABILITY, {
-			characterId: id,
-		});
-	};
-
-	const getCharacterPoints = async (id: number) => {
-		return await GQLQuery(GET_CHAR_POINTS, {
-			characterId: id,
-		});
-	};
-
-	const getCharacterPercentages = async (id: number) => {
-		return await GQLQuery(GET_CHAR_PERCENTAGES, {
-			characterId: id,
-		});
-	};
-
-	const refetchData = async () => {
-		getCharacterStats(characterData.id).then((resp) => {
-			setStatResponse(resp.getCharacterStats.table);
-		});
-
-		getCharacterAbi(characterData.id).then((resp) => {
-			setAbiResponse(resp.getCharacterAbility.table);
-		});
-
-		getCharacterPoints(characterData.id).then((resp) => {
-			setPointsResponse(resp.getCharacterPoints.table);
-		});
-
-		getCharacterPercentages(characterData.id).then((response) => {
-			setPercentages(response.getCharacterActionPercentages.percentages);
-		});
-	};
+	useEffect(() => {
+		refetchData().then(() => {});
+	}, [refetchData]);
 
 	return (
 		<Box>

@@ -41,3 +41,29 @@ export interface characterAbilityTableData {
 export interface getCharacterPointsInput {
 	characterId: number;
 }
+
+export interface characterListByAccount {}
+
+export interface setCharacterInput {
+	characterId: number;
+}
+
+export interface getCharacterDataInput {
+	characterId: number;
+}
+
+export interface getCharacterStatsInput {
+	characterId: number;
+}
+
+export interface getCharacterAbiInput {
+	characterId: number;
+}
+
+export interface getCharacterPointsInput {
+	characterId: number;
+}
+
+export interface getCharacterPercentagesInput {
+	characterId: number;
+}

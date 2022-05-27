@@ -1,4 +1,9 @@
 import { gql } from '@apollo/client';
+import { GQLQuery } from './GQL';
+import {
+	isMineCharacterQueryInput,
+	permissionControlQueryInput,
+} from './Permission.model';
 
 const PERMISSION_CONTROL = gql`
 	query permissionControl($token: String!, $permission: String!) {
@@ -17,5 +22,15 @@ const IS_MINE_CHARACTER = gql`
 		}
 	}
 `;
+
+export const permissionControlQuery = async (
+	data: permissionControlQueryInput
+) => {
+	return await GQLQuery(PERMISSION_CONTROL, data);
+};
+
+export const isMineCharacterQuery = async (data: isMineCharacterQueryInput) => {
+	return await GQLQuery(IS_MINE_CHARACTER, data);
+};
 
 export { PERMISSION_CONTROL, IS_MINE_CHARACTER };
