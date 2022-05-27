@@ -59,6 +59,9 @@
       "sendMoneyTitle": "Bonifico",
       "sendMoneySubmit": "Invia",
       "money": "Importo"
+    },
+    "messages": {
+      "title": "Messaggi"
     }
   },
   "homepage": {

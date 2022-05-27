@@ -3,6 +3,7 @@ import characterModals from './characterModals';
 import AbilityDetailsModal from './abilityDetailsModal';
 import DamageDetailsModal from './damageDetailsModal';
 import BankModal from './bankModal';
+import MessagesModal from './messagesModal';
 
 export default configureStore({
 	reducer: {
@@ -10,5 +11,6 @@ export default configureStore({
 		abilityDetailsModal: AbilityDetailsModal,
 		damageDetailsModal: DamageDetailsModal,
 		bankModal: BankModal,
+		messagesModal: MessagesModal,
 	},
 });

@@ -59,6 +59,9 @@
       "sendMoneyTitle": "Reclaim",
       "sendMoneySubmit": "Send",
       "money": "Amount"
+    },
+    "messages": {
+      "title": "Messages"
     }
   },
   "homepage": {

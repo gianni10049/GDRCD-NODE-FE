@@ -45,6 +45,7 @@ import { useTranslation } from 'react-i18next';
 import { useDispatch } from 'react-redux';
 import { toggleCharacterModal } from '../../redux/characterModals';
 import { toggleBankModal } from '../../redux/bankModal';
+import { toggleMessagesModal } from '../../redux/messagesModal';
 
 const NavLink = (props: navLinkInterface) => {
 	return (
@@ -332,6 +333,9 @@ const Header = () => {
 						<MenuVoice
 							icon={FaEnvelopeOpenText}
 							buttonText={t('mainMenu.messages.personal')}
+							onClick={() => {
+								dispatch(toggleMessagesModal({}));
+							}}
 						/>
 						<MenuVoice
 							icon={GoRadioTower}
