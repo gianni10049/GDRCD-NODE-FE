@@ -194,6 +194,10 @@
     "send": "Send",
     "refetchMessage": "Refresh messages",
     "sendNew": "New message",
-    "newMessageText": "New Message"
+    "newMessageText": "New Message",
+    "deleteMexConfirm": "Delete message?",
+    "deleteConvConfirm": "Delete conversation?",
+    "deleteConvOn": "Delete On Conversation",
+    "deleteConvOff": "Delete Off Conversation"
   }
 }

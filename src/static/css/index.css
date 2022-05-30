@@ -135,3 +135,20 @@ body {font-family: "HelveticaNeue-Light", "Helvetica Neue Light", "Helvetica Neu
 .ct-ratio-21-9 {
   padding-top: 42.8571%;
 }
+
+.confirm-box{
+  background: black !important;
+}
+
+.confirm-box__overlay{
+  background: rgba(0,0,0,0.4) !important;
+}
+
+.confirm-box__content{
+  background: rgba(6,52,38,0.73) !important;
+  color: rgb(17,203,148)
+}
+
+.confirm-box__content button:hover{
+  color: rgba(17,203,148,0.3) !important;
+}

@@ -1,11 +1,20 @@
 import React, { useCallback, useEffect, useState } from 'react';
 import {
+	deleteConv,
 	deleteMessage,
 	getMessages,
 	getMessagesSenders,
 	sendMessage,
 } from '../../apollo/Messages';
-import { Box, Image, Icon, Button, Tooltip, Text } from '@chakra-ui/react';
+import {
+	Box,
+	Image,
+	Icon,
+	Button,
+	Tooltip,
+	Text,
+	useToast,
+} from '@chakra-ui/react';
 import { messageData } from '../../apollo/Messages.model';
 import { BiMessageRoundedError, BiMailSend } from 'react-icons/bi';
 import { Formik, Form, Field, ErrorMessage } from 'formik';
@@ -19,6 +28,7 @@ import { getCharactersList } from '../../apollo/Characters';
 import { characterData } from '../../apollo/Tables.model';
 import { AiOutlineReload, AiOutlineSend } from 'react-icons/ai';
 import { MdOutlineDeleteForever } from 'react-icons/md';
+import { confirm } from 'react-confirm-box';
 
 export const Messages = () => {
 	let [senders, setSenders] = useState<messageData[]>([]);
@@ -28,6 +38,7 @@ export const Messages = () => {
 	let [charactersList, setCharactersList] = useState<characterData[]>([]);
 	let [me, setMe] = useState<getMeData>({});
 	const { t } = useTranslation();
+	const toast = useToast();
 
 	const refetchData = useCallback(async () => {
 		getMessagesSenders({}).then((resp) => {
@@ -102,9 +113,28 @@ export const Messages = () => {
 	};
 
 	const deleteMessagefn = async (id: number) => {
-		deleteMessage({ message: id }).then((resp) => {
-			setMessages(resp.deleteMessage);
-		});
+		if (await confirm(t('messages.deleteMexConfirm'))) {
+			deleteMessage({ message: id }).then((resp) => {
+				setMessages(resp.deleteMessage);
+			});
+		}
+	};
+
+	const deleteConvfn = async (id: number, type: string) => {
+		if (await confirm(t('messages.deleteConvConfirm'))) {
+			deleteConv({ sender: id, type: type }).then((resp) => {
+				if (resp.deleteConv.response) {
+					refetchData();
+				}
+
+				toast({
+					title: resp?.deleteConv?.responseStatus,
+					status: resp?.deleteConv?.response ? 'success' : 'error',
+					duration: 9000,
+					isClosable: true,
+				});
+			});
+		}
 	};
 
 	return (
@@ -199,11 +229,13 @@ export const Messages = () => {
 													sender?.senderData
 														?.mini_avatar
 												}
-												alt={sender?.senderData?.name}
+												alt={
+													sender?.senderData?.fullname
+												}
 											/>
 										</Box>
-										<Box ml={5}>
-											{sender?.senderData?.name}{' '}
+										<Box ml={2} fontSize={12}>
+											{sender?.senderData?.fullname}
 										</Box>
 									</Box>
 									<Box
@@ -211,66 +243,138 @@ export const Messages = () => {
 										justifyContent={'space-between'}
 										ml={2}
 										m={'0 auto 5px auto'}
-										w={'50%'}
 										color={'green.textLight'}>
-										<Box
-											d={'flex'}
-											justifyContent={'center'}
-											alignItems={'center'}
-											bg={'green.backgroundDark'}
-											p={'0 5px'}
-											mr={2}
-											border={'1px solid'}
-											borderColor={'green.light'}
-											_hover={{
-												color: 'green.light',
-												cursor: 'pointer',
-												bg: 'green.lightOpacity',
-											}}
-											onClick={() =>
-												loadMessages(
-													sender?.sender,
-													'on'
-												)
-											}>
-											ON{' '}
-											{sender?.new_on && (
-												<Icon
-													ml={1}
-													boxSize={4}
-													color={'green.light'}
-													as={BiMessageRoundedError}
-												/>
-											)}
+										<Box d={'flex'}>
+											<Tooltip
+												hasArrow
+												label={t(
+													'messages.deleteConvOn'
+												)}
+												bg={'green.light'}
+												color={'green.text'}
+												fontSize={'md'}
+												fontFamily={'TecFont'}
+												letterSpacing={'widest'}
+												fontWeight={'extrabold'}>
+												<Box>
+													<Icon
+														boxSize={4}
+														mt={1}
+														mr={2}
+														as={
+															MdOutlineDeleteForever
+														}
+														_hover={{
+															color: 'green.light',
+														}}
+														cursor={'pointer'}
+														onClick={() =>
+															deleteConvfn(
+																sender?.sender,
+																'on'
+															)
+														}
+													/>
+												</Box>
+											</Tooltip>
+											<Box
+												d={'flex'}
+												justifyContent={'center'}
+												alignItems={'center'}
+												bg={'green.backgroundDark'}
+												p={'0 5px'}
+												mr={2}
+												border={'1px solid'}
+												borderColor={'green.light'}
+												_hover={{
+													color: 'green.light',
+													cursor: 'pointer',
+													bg: 'green.lightOpacity',
+												}}
+												onClick={() =>
+													loadMessages(
+														sender?.sender,
+														'on'
+													)
+												}>
+												ON{' '}
+												{sender?.new_on && (
+													<Icon
+														ml={1}
+														boxSize={4}
+														color={'green.light'}
+														as={
+															BiMessageRoundedError
+														}
+													/>
+												)}
+											</Box>
 										</Box>
-										<Box
-											d={'flex'}
-											justifyContent={'center'}
-											alignItems={'center'}
-											bg={'green.backgroundDark'}
-											p={'0 5px'}
-											border={'1px solid'}
-											borderColor={'green.light'}
-											_hover={{
-												color: 'green.light',
-												cursor: 'pointer',
-												bg: 'green.lightOpacity',
-											}}
-											onClick={() =>
-												loadMessages(
-													sender?.sender,
-													'off'
-												)
-											}>
-											OFF{' '}
-											{sender?.new_off && (
-												<Icon
-													ml={1}
-													boxSize={4}
-													color={'green.light'}
-													as={BiMessageRoundedError}
-												/>
-											)}
+										<Box d={'flex'}>
+											<Box
+												d={'flex'}
+												justifyContent={'center'}
+												alignItems={'center'}
+												bg={'green.backgroundDark'}
+												p={'0 5px'}
+												border={'1px solid'}
+												borderColor={'green.light'}
+												_hover={{
+													color: 'green.light',
+													cursor: 'pointer',
+													bg: 'green.lightOpacity',
+												}}
+												onClick={() =>
+													loadMessages(
+														sender?.sender,
+														'off'
+													)
+												}>
+												OFF{' '}
+												{sender?.new_off && (
+													<Icon
+														ml={1}
+														boxSize={4}
+														color={'green.light'}
+														as={
+															BiMessageRoundedError
+														}
+													/>
+												)}
+											</Box>
+
+											<Tooltip
+												hasArrow
+												label={t(
+													'messages.deleteConvOff'
+												)}
+												bg={'green.light'}
+												color={'green.text'}
+												fontSize={'md'}
+												fontFamily={'TecFont'}
+												letterSpacing={'widest'}
+												fontWeight={'extrabold'}>
+												<Box>
+													<Icon
+														boxSize={4}
+														ml={2}
+														mt={1}
+														as={
+															MdOutlineDeleteForever
+														}
+														_hover={{
+															color: 'green.light',
+														}}
+														cursor={'pointer'}
+														onClick={() =>
+															deleteConvfn(
+																sender?.sender,
+																'off'
+															)
+														}
+													/>
+												</Box>
+											</Tooltip>
 										</Box>
 									</Box>
 								</>
@@ -348,6 +452,10 @@ export const Messages = () => {
 													ml={2}
 													mt={1}
 													as={MdOutlineDeleteForever}
+													_hover={{
+														color: 'green.light',
+													}}
+													cursor={'pointer'}
 													onClick={() =>
 														deleteMessagefn(
 															message.id

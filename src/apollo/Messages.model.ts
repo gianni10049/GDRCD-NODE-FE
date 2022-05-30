@@ -51,3 +51,8 @@ export interface sendMessageInput {
 export interface deleteMessageInput {
 	message: number;
 }
+
+export interface deleteConvInput {
+	sender: number;
+	type: string;
+}

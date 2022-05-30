@@ -197,6 +197,10 @@
     "send": "Invia",
     "refetchMessage": "Aggiorna messaggi",
     "sendNew": "Nuovo messaggio",
-    "newMessageText": "Nuovo messaggio"
+    "newMessageText": "Nuovo messaggio",
+    "deleteMexConfirm": "Vuoi davvero eliminare questo messaggio?",
+    "deleteConvConfirm": "Vuoi davvero eliminare questa conversazione?",
+    "deleteConvOn": "Elimina Conversazione on",
+    "deleteConvOff": "Elimina conversazione off"
   }
 }

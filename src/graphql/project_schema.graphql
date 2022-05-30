@@ -6,6 +6,7 @@ schema {
 }
 
 type Mutation {
+    deleteConv(sender: ID!, token: String!, type: String!): genericResponse
     deleteMessage(message: ID!, token: String!): [messagesData]
     registration(email: String!, password: String!, password_confirm: String!, username: String!): genericResponse
     sendMessage(recipient: ID!, text: String!, token: String!, type: String!): [messagesData]

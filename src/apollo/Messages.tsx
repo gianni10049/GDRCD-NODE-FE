@@ -1,6 +1,7 @@
 import { gql } from '@apollo/client';
 import { GQLmutation, GQLQuery } from './GQL';
 import {
+	deleteConvInput,
 	deleteMessageInput,
 	getMessagesInput,
 	getMessagesSendersInput,
@@ -159,6 +160,15 @@ const DELETE_MESSAGE = gql`
 	}
 `;
 
+const DELETE_CONV = gql`
+	mutation deleteConv($token: String!, $sender: ID!, $type: String!) {
+		deleteConv(token: $token, sender: $sender, type: $type) {
+			response
+			responseStatus
+		}
+	}
+`;
+
 export const getMessagesSenders = async (data: getMessagesSendersInput) => {
 	return await GQLQuery(GET_MESSAGES_SENDERS, data);
 };
@@ -173,4 +183,7 @@ export const sendMessage = async (data: sendMessageInput) => {
 
 export const deleteMessage = async (data: deleteMessageInput) => {
 	return await GQLmutation(DELETE_MESSAGE, data);
+};
+export const deleteConv = async (data: deleteConvInput) => {
+	return await GQLmutation(DELETE_CONV, data);
 };
