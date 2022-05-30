@@ -31,6 +31,7 @@ export const CreateSingleInput = (props: fieldData) => {
 						value={props.fieldValue}
 						label={props.fieldLabel}
 						data={props.fields}
+						placeholder={props.placeholder}
 					/>
 				</Field>
 				{/* @ts-ignore*/}
@@ -41,12 +42,12 @@ export const CreateSingleInput = (props: fieldData) => {
 };
 
 export const RenderSelect = (props: renderSelectInput) => {
-	let { data, value, label } = props;
+	let { data, value, label, placeholder } = props;
 
 	if (data) {
 		return (
 			<>
-				<option value='' />
+				<option value=''>{placeholder}</option>
 				{data.map((row: any) => {
 					if (row[value] && row[label]) {
 						return <option value={row[value]}>{row[label]}</option>;

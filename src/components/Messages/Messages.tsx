@@ -125,12 +125,9 @@ export const Messages = () => {
 							bg={'white'}
 							zIndex={2}
 							color={'green.light'}
+							onClick={refetchData}
 							rounded={'full'}>
-							<Icon
-								as={AiOutlineReload}
-								boxSize={5}
-								onClick={refetchData}
-							/>
+							<Icon as={AiOutlineReload} boxSize={5} />
 						</Box>
 					</Tooltip>
 					<Tooltip
@@ -155,12 +152,9 @@ export const Messages = () => {
 							bg={'white'}
 							zIndex={2}
 							color={'green.light'}
+							onClick={resetMex}
 							rounded={'full'}>
-							<Icon
-								as={AiOutlineSend}
-								boxSize={5}
-								onClick={resetMex}
-							/>
+							<Icon as={AiOutlineSend} boxSize={5} />
 						</Box>
 					</Tooltip>
 				</Box>
@@ -232,12 +226,14 @@ export const Messages = () => {
 												)
 											}>
 											ON{' '}
-											<Icon
-												ml={1}
-												boxSize={4}
-												color={'green.light'}
-												as={BiMessageRoundedError}
-											/>
+											{sender?.new_on && (
+												<Icon
+													ml={1}
+													boxSize={4}
+													color={'green.light'}
+													as={BiMessageRoundedError}
+												/>
+											)}
 										</Box>
 										<Box
 											d={'flex'}
@@ -259,12 +255,14 @@ export const Messages = () => {
 												)
 											}>
 											OFF{' '}
-											<Icon
-												ml={1}
-												boxSize={4}
-												color={'green.light'}
-												as={BiMessageRoundedError}
-											/>
+											{sender?.new_off && (
+												<Icon
+													ml={1}
+													boxSize={4}
+													color={'green.light'}
+													as={BiMessageRoundedError}
+												/>
+											)}
 										</Box>
 									</Box>
 								</>
@@ -285,6 +283,7 @@ export const Messages = () => {
 							{messages?.map(
 								(message: messageData, i: number) => (
 									<Box
+										key={i}
 										d={'flex'}
 										w={'full'}
 										justifyContent={
@@ -294,14 +293,17 @@ export const Messages = () => {
 												: 'end'
 										}>
 										<Box
-											key={i}
 											color={'white'}
 											border={'1px solid'}
 											borderColor={'green.light'}
 											m={'2px 4px'}
 											w={'50%'}
 											p={'2px 5px'}
-											bg={'green.backgroundDark'}
+											bg={
+												message?.readData?.[0]
+													? 'green.backgroundDark'
+													: 'red.opacity'
+											}
 											boxSizing={'border-box'}
 											textAlign={
 												me?.character?.id ===
@@ -433,13 +435,14 @@ export const Messages = () => {
 								<CreateSingleInput
 									name={'recipient'}
 									type={'select'}
-									placeholder={t('modals.bank.money')}
+									placeholder={t('general.character')}
 									fields={charactersList}
 									fieldValue={'id'}
 									fieldLabel={'fullname'}
 								/>
 
 								<CreateSingleInput
+									placeholder={t('general.type')}
 									name={'type'}
 									type={'select'}
 									fields={[

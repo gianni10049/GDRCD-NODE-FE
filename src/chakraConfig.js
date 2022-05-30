@@ -30,6 +30,9 @@ const theme = extendTheme({
 		'popover': {
 			info: 'rgba(255,255,255,0.7)',
 		},
+		'red': {
+			opacity: 'rgba(143,59,59,0.5)',
+		},
 	},
 	textShadow: {
 		'light':

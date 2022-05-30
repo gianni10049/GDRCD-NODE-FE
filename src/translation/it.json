@@ -1,6 +1,8 @@
 {
   "general": {
     "siteName": "Corrupta",
+    "character": "Personaggio",
+    "type": "Tipo",
     "stats": {
       "fisic": "Fisico",
       "tecnic": "Tecnica",

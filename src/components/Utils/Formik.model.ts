@@ -15,4 +15,5 @@ export interface renderSelectInput {
 	value: string;
 	label: string;
 	data: [object];
+	placeholder?: string;
 }

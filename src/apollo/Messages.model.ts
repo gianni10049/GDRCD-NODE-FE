@@ -15,6 +15,28 @@ export interface messageData {
 	text: string;
 	recipientData: characterData;
 	senderData: characterData;
+	readData: [messagesReadData];
+	deleteData: [messagesDeleteData];
+	new_on: boolean;
+	new_off: boolean;
+	createdAt: number;
+	updatedAt: number;
+	deletedAt: number;
+}
+
+export interface messagesReadData {
+	id: number;
+	message: number;
+	character: number;
+	createdAt: number;
+	updatedAt: number;
+	deletedAt: number;
+}
+
+export interface messagesDeleteData {
+	id: number;
+	message: number;
+	character: number;
 	createdAt: number;
 	updatedAt: number;
 	deletedAt: number;

@@ -269,14 +269,36 @@ type loginResponse {
 
 type messagesData {
     createdAt: String
+    deleteData: [messagesDeleteData]
     deletedAt: String
     group: ID
     id: ID
+    new_off: Boolean
+    new_on: Boolean
+    readData: [messagesReadData]
     recipient: ID
     recipientData: characterData
     sender: ID
     senderData: characterData
     text: String
+    updatedAt: String
+}
+
+type messagesDeleteData {
+    character: ID
+    createdAt: String
+    deletedAt: String
+    id: ID
+    message: ID
+    updatedAt: String
+}
+
+type messagesReadData {
+    character: ID
+    createdAt: String
+    deletedAt: String
+    id: ID
+    message: ID
     updatedAt: String
 }
 

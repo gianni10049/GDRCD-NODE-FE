@@ -28,6 +28,8 @@ const GET_MESSAGES_SENDERS = gql`
 				updatedAt
 				deletedAt
 			}
+			new_on
+			new_off
 			createdAt
 			updatedAt
 			deletedAt
@@ -51,6 +53,14 @@ const GET_MESSAGES = gql`
 				fullname
 				profilePic
 				active
+				createdAt
+				updatedAt
+				deletedAt
+			}
+			readData {
+				id
+				message
+				character
 				createdAt
 				updatedAt
 				deletedAt
@@ -90,6 +100,14 @@ const SEND_MESSAGE = gql`
 				fullname
 				profilePic
 				active
+				createdAt
+				updatedAt
+				deletedAt
+			}
+			readData {
+				id
+				message
+				character
 				createdAt
 				updatedAt
 				deletedAt
