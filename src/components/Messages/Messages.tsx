@@ -1,5 +1,6 @@
 import React, { useCallback, useEffect, useState } from 'react';
 import {
+	deleteMessage,
 	getMessages,
 	getMessagesSenders,
 	sendMessage,
@@ -17,6 +18,7 @@ import { CreateSingleInput, renderError } from '../Utils/Formik';
 import { getCharactersList } from '../../apollo/Characters';
 import { characterData } from '../../apollo/Tables.model';
 import { AiOutlineReload, AiOutlineSend } from 'react-icons/ai';
+import { MdOutlineDeleteForever } from 'react-icons/md';
 
 export const Messages = () => {
 	let [senders, setSenders] = useState<messageData[]>([]);
@@ -97,6 +99,12 @@ export const Messages = () => {
 	const resetMex = async () => {
 		setSelectedSender(null);
 		setSelectedType(null);
+	};
+
+	const deleteMessagefn = async (id: number) => {
+		deleteMessage({ message: id }).then((resp) => {
+			setMessages(resp.deleteMessage);
+		});
 	};
 
 	return (
@@ -332,6 +340,18 @@ export const Messages = () => {
 													src={
 														message?.senderData
 															?.mini_avatar
+													}
+												/>
+
+												<Icon
+													boxSize={4}
+													ml={2}
+													mt={1}
+													as={MdOutlineDeleteForever}
+													onClick={() =>
+														deleteMessagefn(
+															message.id
+														)
 													}
 												/>
 											</Box>

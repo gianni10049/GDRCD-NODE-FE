@@ -47,3 +47,7 @@ export interface sendMessageInput {
 	recipient: number;
 	type: string;
 }
+
+export interface deleteMessageInput {
+	message: number;
+}
