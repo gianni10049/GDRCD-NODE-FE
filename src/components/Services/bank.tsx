@@ -122,17 +122,15 @@ export const Bank = () => {
 								name={'money'}
 								type={'text'}
 								placeholder={t('modals.bank.money')}
-								textAlign={'center'}
 							/>
 
 							<CreateSingleInput
 								name={'character'}
 								type={'select'}
 								placeholder={t('modals.bank.money')}
-								textAlign={'center'}
 								fields={charactersList}
 								fieldValue={'id'}
-								fieldLabel={'name'}
+								fieldLabel={'fullname'}
 							/>
 
 							<CreateSubmitInput

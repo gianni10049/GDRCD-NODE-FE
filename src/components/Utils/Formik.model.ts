@@ -2,10 +2,10 @@ export interface fieldData {
 	name: string;
 	type?: string | 'text' | 'password' | 'number' | 'select';
 	placeholder?: string;
-	textAlign?: 'left' | 'center' | 'right';
 	fields?: any;
 	fieldValue?: string;
 	fieldLabel?: any;
+	width?: string;
 }
 export interface submitData {
 	label?: string;

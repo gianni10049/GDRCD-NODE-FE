@@ -40,6 +40,17 @@ export interface abilityDetailsTableData {
 	deletedAt: string;
 }
 
+export interface accountTableData {
+	id: number;
+	username: string;
+	email: string;
+	password: string;
+	active: boolean;
+	createdAt: string;
+	updatedAt: string;
+	deletedAt: string;
+}
+
 export interface statTableData {
 	id: number;
 	name: string;
@@ -95,6 +106,22 @@ export interface characterPercentagesData {
 	initiative_calc?: singlePercentageData;
 	price_calc?: singlePercentageData;
 	research_calc?: singlePercentageData;
+}
+
+export interface characterData {
+	id: number;
+	account: number;
+	name: string;
+	nickname: string;
+	surname: string;
+	fullname: string;
+	age: number;
+	mini_avatar: string;
+	profilePic: string;
+	active: boolean;
+	createdAt: string;
+	updatedAt: string;
+	deletedAt: string;
 }
 
 interface singlePercentageData {

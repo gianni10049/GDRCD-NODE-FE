@@ -7,6 +7,7 @@ schema {
 
 type Mutation {
     registration(email: String!, password: String!, password_confirm: String!, username: String!): genericResponse
+    sendMessage(recipient: ID!, text: String!, token: String!, type: String!): [messagesData]
     sendMoney(character: ID!, money: String!, token: String!): genericResponse
     setDamageSolved(damageId: ID!, token: String!): getDamageResponse
     updateAbility(abilityId: ID!, characterId: ID, token: String!): genericResponse
@@ -24,6 +25,8 @@ type Query {
     getCharactersList(token: String!): [characterData]
     getDamage(damageId: ID!, token: String): getDamageResponse
     getMe(token: String!): getMeResponse
+    getMessages(recipient: ID!, token: String!, type: String!): [messagesData]
+    getMessagesSenders(token: String!): [messagesData]
     getPartsList(characterId: ID!, token: String!): getPartsList
     isMineCharacter(characterId: ID!, token: String!): genericResponse
     listStats(token: String!): [statData]
@@ -139,6 +142,7 @@ type characterData {
     characterPoints: characterPointsData
     createdAt: String
     deletedAt: String
+    fullname: String
     id: ID
     mini_avatar: String
     name: String
@@ -261,6 +265,19 @@ type loginResponse {
     response: String!
     responseStatus: String!
     token: String
+}
+
+type messagesData {
+    createdAt: String
+    deletedAt: String
+    group: ID
+    id: ID
+    recipient: ID
+    recipientData: characterData
+    sender: ID
+    senderData: characterData
+    text: String
+    updatedAt: String
 }
 
 type partsData {

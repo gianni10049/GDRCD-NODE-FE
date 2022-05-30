@@ -189,5 +189,11 @@
   "ability": {
     "abilityDetailsInfoTitle": "Ability info",
     "abilityDetailsInfoText": "On this screen you can view the details of the selected skill. The clear levels are those purchased by the owner of the skill while the darker ones are those still to be purchased. The base calculation for a skill is 5x level unless otherwise specified by skill build. It is possible to see the price by clicking on the tab of the desired level."
+  },
+  "messages": {
+    "send": "Send",
+    "refetchMessage": "Refresh messages",
+    "sendNew": "New message",
+    "newMessageText": "New Message"
   }
 }

@@ -16,6 +16,7 @@ const CHAR_LIST_BY_ACCOUNT = gql`
 			id
 			name
 			surname
+			fullname
 			age
 			mini_avatar
 			profilePic
@@ -44,6 +45,7 @@ const GET_CHAR = gql`
 			surname
 			age
 			mini_avatar
+			fullname
 			profilePic
 			active
 			createdAt
@@ -78,6 +80,7 @@ const GET_CHAR_STATS = gql`
 						surname
 						age
 						mini_avatar
+						fullname
 						profilePic
 						active
 						createdAt
@@ -251,6 +254,7 @@ const GET_CHAR_LIST = gql`
 			surname
 			age
 			mini_avatar
+			fullname
 			profilePic
 			active
 			createdAt
@@ -292,14 +296,4 @@ export const getCharacterPercentages = async (
 	data: getCharacterPercentagesInput
 ) => {
 	return await GQLQuery(GET_CHAR_PERCENTAGES, data);
-};
-
-export {
-	CHAR_LIST_BY_ACCOUNT,
-	SET_CHAR,
-	GET_CHAR,
-	GET_CHAR_STATS,
-	GET_CHAR_ABILITY,
-	GET_CHAR_POINTS,
-	GET_CHAR_PERCENTAGES,
 };
