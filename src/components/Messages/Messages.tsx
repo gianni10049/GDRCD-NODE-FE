@@ -24,7 +24,7 @@ import { getMe } from '../../apollo/Generic';
 import { getMeData } from '../../apollo/Generic.model';
 import moment from 'moment';
 import { CreateSingleInput, renderError } from '../Utils/Formik';
-import { getCharactersList } from '../../apollo/Characters';
+import { getCharacterData, getCharactersList } from '../../apollo/Characters';
 import { characterData } from '../../apollo/Tables.model';
 import { AiOutlineReload, AiOutlineSend } from 'react-icons/ai';
 import { MdOutlineDeleteForever } from 'react-icons/md';
@@ -36,6 +36,7 @@ export const Messages = () => {
 	let [selectedType, setSelectedType] = useState<string>();
 	let [messages, setMessages] = useState<messageData[]>([]);
 	let [charactersList, setCharactersList] = useState<characterData[]>([]);
+	let [senderData, setSenderData] = useState<characterData>();
 	let [me, setMe] = useState<getMeData>({});
 	const { t } = useTranslation();
 	const toast = useToast();
@@ -55,6 +56,10 @@ export const Messages = () => {
 					setMessages(resp.getMessages);
 				}
 			);
+
+			getCharacterData({ characterId: selectedSender }).then((resp) => {
+				setSenderData(resp.getCharacter);
+			});
 		} else {
 			getCharactersList().then((resp) => {
 				setCharactersList(resp.getCharactersList);
@@ -383,10 +388,21 @@ export const Messages = () => {
 					))}
 				</Box>
 
-				{selectedSender ? (
+				{messages ? (
 					<Box h='full' w='full' ml={2}>
 						<Box
-							h={'calc(100% - 50px)'}
+							color={'green.light'}
+							fontWeight={'bold'}
+							textAlign={'center'}
+							fontSize={20}
+							borderColor={'green.light'}
+							borderWidth={'0 0 1px 0'}
+							h={'30px'}>
+							{senderData?.fullname} - {selectedType}
+						</Box>
+
+						<Box
+							h={'calc(100% - 80px)'}
 							p={'2px'}
 							border={'1px solid'}
 							bg={'green.background'}
