@@ -3,8 +3,10 @@ import { GQLmutation, GQLQuery } from './GQL';
 import {
 	deleteConvInput,
 	deleteMessageInput,
+	getFrequenciesInput,
 	getMessagesInput,
 	getMessagesSendersInput,
+	sendFrequencyMessageInput,
 	sendMessageInput,
 } from './Messages.model';
 
@@ -169,6 +171,101 @@ const DELETE_CONV = gql`
 	}
 `;
 
+const GET_FREQUENCIES = gql`
+	query getFrequencies($token: String!) {
+		getFrequencies(token: $token) {
+			id
+			name
+			frequency
+			type
+			createdAt
+			updatedAt
+			deletedAt
+		}
+	}
+`;
+
+const GET_FREQUENCIES_MESSAGES = gql`
+	query getFrequencyMessages($token: String!, $frequency: Int!) {
+		getFrequencyMessages(token: $token, frequency: $frequency) {
+			response
+			responseStatus
+			messages {
+				id
+				text
+				sender
+				senderData {
+					id
+					account
+					name
+					nickname
+					surname
+					age
+					mini_avatar
+					fullname
+					profilePic
+					active
+					createdAt
+					updatedAt
+					deletedAt
+				}
+				frequency
+				type
+				createdAt
+				updatedAt
+				deletedAt
+			}
+			frequency {
+				id
+				name
+				frequency
+				type
+				createdAt
+				updatedAt
+				deletedAt
+			}
+		}
+	}
+`;
+
+const SEND_FREQUENCY_MESSAGE = gql`
+	mutation sendFrequencyMessage(
+		$token: String!
+		$frequency: Int!
+		$text: String!
+	) {
+		sendFrequencyMessage(
+			token: $token
+			frequency: $frequency
+			text: $text
+		) {
+			id
+			text
+			sender
+			senderData {
+				id
+				account
+				name
+				nickname
+				surname
+				age
+				mini_avatar
+				fullname
+				profilePic
+				active
+				createdAt
+				updatedAt
+				deletedAt
+			}
+			frequency
+			type
+			createdAt
+			updatedAt
+			deletedAt
+		}
+	}
+`;
+
 export const getMessagesSenders = async (data: getMessagesSendersInput) => {
 	return await GQLQuery(GET_MESSAGES_SENDERS, data);
 };
@@ -184,6 +281,21 @@ export const sendMessage = async (data: sendMessageInput) => {
 export const deleteMessage = async (data: deleteMessageInput) => {
 	return await GQLmutation(DELETE_MESSAGE, data);
 };
+
 export const deleteConv = async (data: deleteConvInput) => {
 	return await GQLmutation(DELETE_CONV, data);
+};
+
+export const getFrequencies = async (data: getFrequenciesInput) => {
+	return await GQLQuery(GET_FREQUENCIES, data);
+};
+
+export const getFrequencyMessages = async (data: getFrequenciesInput) => {
+	return await GQLQuery(GET_FREQUENCIES_MESSAGES, data);
+};
+
+export const sendFrequencyMessages = async (
+	data: sendFrequencyMessageInput
+) => {
+	return await GQLmutation(SEND_FREQUENCY_MESSAGE, data);
 };

@@ -64,7 +64,12 @@
       "title": "Messages"
     },
     "radio": {
-      "title": "Radio"
+      "title": "Radio",
+      "frequency" : "Tune",
+      "frequencyMinimumAlert" : "Minimum Tune: 1",
+      "frequencyMaxAlert" : "Maximum Tune: 999",
+      "tune" : "Tune",
+      "tunedOn" : "Tuned on:"
     }
   },
   "homepage": {

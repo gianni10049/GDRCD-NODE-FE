@@ -9,6 +9,7 @@ type Mutation {
     deleteConv(sender: ID!, token: String!, type: String!): genericResponse
     deleteMessage(message: ID!, token: String!): [messagesData]
     registration(email: String!, password: String!, password_confirm: String!, username: String!): genericResponse
+    sendFrequencyMessage(frequency: Int!, text: String!, token: String!): [radioMessagesData]
     sendMessage(recipient: ID!, text: String!, token: String!, type: String!): [messagesData]
     sendMoney(character: ID!, money: String!, token: String!): genericResponse
     setDamageSolved(damageId: ID!, token: String!): getDamageResponse
@@ -26,6 +27,8 @@ type Query {
     getCharacterStats(characterId: ID!, token: String!): getCharacterStatsResponse
     getCharactersList(token: String!): [characterData]
     getDamage(damageId: ID!, token: String): getDamageResponse
+    getFrequencies(token: String!): [radioFrequenciesData]
+    getFrequencyMessages(frequency: Int!, token: String!): getFrequencyMessagesResponse
     getMe(token: String!): getMeResponse
     getMessages(recipient: ID!, token: String!, type: String!): [messagesData]
     getMessagesSenders(token: String!): [messagesData]
@@ -238,6 +241,13 @@ type getDamagesResponse {
     responseStatus: String
 }
 
+type getFrequencyMessagesResponse {
+    frequency: radioFrequenciesData
+    messages: [radioMessagesData]
+    response: Boolean
+    responseStatus: String
+}
+
 type getMeResponse {
     me: authData
     response: Int
@@ -354,6 +364,28 @@ type permissionGroupsPivotData {
     group: Int
     id: ID
     permission: Int
+    updatedAt: String
+}
+
+type radioFrequenciesData {
+    createdAt: String
+    deletedAt: String
+    frequency: Int
+    id: ID
+    name: String
+    type: String
+    updatedAt: String
+}
+
+type radioMessagesData {
+    createdAt: String
+    deletedAt: String
+    frequency: Int
+    id: ID
+    sender: ID
+    senderData: characterData
+    text: String
+    type: String
     updatedAt: String
 }
 

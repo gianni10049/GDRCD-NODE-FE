@@ -24,6 +24,28 @@ export interface messageData {
 	deletedAt: number;
 }
 
+export interface radioFrequencieData {
+	id: number;
+	name: string;
+	frequency: number;
+	type: string;
+	createdAt: number;
+	updatedAt: number;
+	deletedAt: number;
+}
+
+export interface radioFrequencieMessagesData {
+	id: number;
+	sender: number;
+	frequency: number;
+	type: string;
+	text: string;
+	senderData: characterData;
+	createdAt: number;
+	updatedAt: number;
+	deletedAt: number;
+}
+
 export interface messagesReadData {
 	id: number;
 	message: number;
@@ -55,4 +77,15 @@ export interface deleteMessageInput {
 export interface deleteConvInput {
 	sender: number;
 	type: string;
+}
+
+export interface getFrequenciesInput {}
+
+export interface getFrequenciesMessagesInput {
+	frequency: number;
+}
+
+export interface sendFrequencyMessageInput {
+	frequency: number;
+	text: string;
 }
