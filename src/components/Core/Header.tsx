@@ -46,6 +46,7 @@ import { useDispatch } from 'react-redux';
 import { toggleCharacterModal } from '../../redux/characterModals';
 import { toggleBankModal } from '../../redux/bankModal';
 import { toggleMessagesModal } from '../../redux/messagesModal';
+import { toggleRadioModal } from '../../redux/radioModal';
 
 const NavLink = (props: navLinkInterface) => {
 	return (
@@ -340,6 +341,9 @@ const Header = () => {
 						<MenuVoice
 							icon={GoRadioTower}
 							buttonText={t('mainMenu.messages.radio')}
+							onClick={() => {
+								dispatch(toggleRadioModal({}));
+							}}
 						/>
 						<MenuVoice
 							icon={FaEdit}

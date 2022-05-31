@@ -64,6 +64,9 @@
     },
     "messages": {
       "title": "Messaggi"
+    },
+    "radio": {
+      "title": "Radio"
     }
   },
   "homepage": {
