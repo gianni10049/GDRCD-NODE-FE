@@ -252,7 +252,7 @@ export const Radio = () => {
 
 									<Box w={'calc(100% - 10px)'}>
 										<Box
-											padding={'10px 0 5px 0'}
+											padding={'5px 0 5px 0'}
 											d={'flex'}
 											color={'green.textLight'}
 											fontSize={13}
