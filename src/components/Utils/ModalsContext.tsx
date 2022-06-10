@@ -6,6 +6,7 @@ import { DamageDetailsModal } from '../Modals/DamageDetailsModal';
 import { BankModal } from '../Modals/BankModal';
 import { MessagesModal } from '../Modals/MessagesModal';
 import { RadioModal } from '../Modals/RadioModal';
+import { GroupsModal } from '../Modals/GroupsModal';
 
 export const ModalContextProvider = (data: ModalContextProviderData) => {
 	let { routeData } = data;
@@ -20,6 +21,7 @@ export const ModalContextProvider = (data: ModalContextProviderData) => {
 					<BankModal />
 					<MessagesModal />
 					<RadioModal />
+					<GroupsModal />
 				</>
 			)}
 		</>

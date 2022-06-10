@@ -5,6 +5,7 @@ import { DamageDetails } from '../components/Damage/DamageDetails';
 import { Bank } from '../components/Services/bank';
 import { Messages } from '../components/Messages/Messages';
 import { Radio } from '../components/Messages/Radio';
+import { Groups } from '../components/Groups/Groups';
 
 const modalsContent: modalsContentData = {
 	Profile: CharacterProfile,
@@ -14,6 +15,7 @@ const modalsContent: modalsContentData = {
 	Bank: Bank,
 	Messages: Messages,
 	Radio: Radio,
+	Groups: Groups,
 };
 
 interface modalsContentData {

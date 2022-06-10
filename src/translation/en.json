@@ -70,6 +70,16 @@
       "frequencyMaxAlert" : "Maximum Tune: 999",
       "tune" : "Tune",
       "tunedOn" : "Tuned on:"
+    },
+    "groups": {
+      "title": "Groups",
+      "roles": "Roles",
+      "role": "Role",
+      "name": "Name",
+      "earn": "Earn",
+      "manager": "Manager",
+      "members": "Members",
+      "description": "Description"
     }
   },
   "homepage": {

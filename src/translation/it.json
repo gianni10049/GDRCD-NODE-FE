@@ -72,6 +72,16 @@
       "frequencyMaxAlert" : "Frequenza massima 999",
       "tune" : "Sintonizzati",
       "tunedOn" : "Sintonizzato su:"
+    },
+    "groups": {
+      "title": "Gruppi",
+      "roles": "Ruoli",
+      "role": "Ruolo",
+      "name": "Nome",
+      "earn": "Guadagno",
+      "manager": "Capo",
+      "members": "Membri",
+      "description": "Statuto"
     }
   },
   "homepage": {

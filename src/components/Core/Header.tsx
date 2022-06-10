@@ -47,6 +47,7 @@ import { toggleCharacterModal } from '../../redux/characterModals';
 import { toggleBankModal } from '../../redux/bankModal';
 import { toggleMessagesModal } from '../../redux/messagesModal';
 import { toggleRadioModal } from '../../redux/radioModal';
+import { toggleGroupsModal } from '../../redux/groupsModal';
 
 const NavLink = (props: navLinkInterface) => {
 	return (
@@ -428,6 +429,9 @@ const Header = () => {
 						<MenuVoice
 							icon={AiOutlineUnorderedList}
 							buttonText={t('mainMenu.groups.list')}
+							onClick={() => {
+								dispatch(toggleGroupsModal({}));
+							}}
 						/>
 					</SubMenu>
 				</Box>

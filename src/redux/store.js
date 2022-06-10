@@ -5,6 +5,7 @@ import DamageDetailsModal from './damageDetailsModal';
 import BankModal from './bankModal';
 import MessagesModal from './messagesModal';
 import RadioModal from './radioModal';
+import GroupsModal from './groupsModal';
 
 export default configureStore({
 	reducer: {
@@ -14,5 +15,6 @@ export default configureStore({
 		bankModal: BankModal,
 		messagesModal: MessagesModal,
 		radioModal: RadioModal,
+		groupsModal: GroupsModal,
 	},
 });

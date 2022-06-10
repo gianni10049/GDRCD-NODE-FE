@@ -8,3 +8,11 @@ export const getIcon = (props: getIconsData) => {
 
 	return iconsList[icon] ?? iconsList['BsFillQuestionDiamondFill'];
 };
+
+export const getImage = (image_path: string) => {
+	try {
+		return require('../../static/images/' + image_path);
+	} catch (err) {
+		return '';
+	}
+};

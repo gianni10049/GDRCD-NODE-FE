@@ -29,6 +29,8 @@ type Query {
     getDamage(damageId: ID!, token: String): getDamageResponse
     getFrequencies(token: String!): [radioFrequenciesData]
     getFrequencyMessages(frequency: Int!, token: String!): getFrequencyMessagesResponse
+    getGroup(id: ID!, token: String!): groupData
+    getGroups(token: String!): [groupData]
     getMe(token: String!): getMeResponse
     getMessages(recipient: ID!, token: String!, type: String!): [messagesData]
     getMessagesSenders(token: String!): [messagesData]
@@ -258,6 +260,59 @@ type getPartsList {
     response: Int
     responseStatus: String
     table: [partsData]
+}
+
+type groupData {
+    createdAt: String
+    deletedAt: String
+    description: String
+    external_url: String
+    groupTypeData: groupsTypes
+    id: ID
+    logo: String
+    name: String
+    rolesData: [groupsRoles]
+    type: ID
+    updatedAt: String
+    visible: Boolean
+}
+
+type groupsMembers {
+    character: ID
+    createdAt: String
+    deletedAt: String
+    id: ID
+    manager: Boolean
+    memberData: characterData
+    role: ID
+    rolesData: groupsRoles
+    updatedAt: String
+}
+
+type groupsRoles {
+    createdAt: String
+    deletedAt: String
+    description: String
+    earn: Int
+    group: ID
+    groupData: groupData
+    groupMembers: [groupsMembers]
+    id: ID
+    logo: String
+    name: String
+    updatedAt: String
+    visible: Boolean
+}
+
+type groupsTypes {
+    createdAt: String
+    deletedAt: String
+    description: String
+    groupData: [groupData]
+    id: ID
+    logo: String
+    name: String
+    updatedAt: String
 }
 
 type logMailData {
