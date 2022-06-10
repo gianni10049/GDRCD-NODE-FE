@@ -256,14 +256,20 @@ export const Radio = () => {
 											d={'flex'}
 											color={'green.textLight'}
 											fontSize={13}
-											alignItems={'center'}
-											onClick={() =>
-												loadMessages(
-													frequence.frequency
-												)
-											}>
-											{frequence.frequency} -{' '}
-											{frequence.name}
+											alignItems={'center'}>
+											<Text
+												cursor={'pointer'}
+												_hover={{
+													color: 'green.light',
+												}}
+												onClick={() =>
+													loadMessages(
+														frequence.frequency
+													)
+												}>
+												{frequence.frequency} -{' '}
+												{frequence.name}
+											</Text>
 										</Box>
 									</Box>
 								</Box>

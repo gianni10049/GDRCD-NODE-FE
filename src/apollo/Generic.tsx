@@ -9,17 +9,19 @@ import { tokenControlData } from '../components/Routes/RouteControl.model';
 
 const GET_ME = gql`
 	query getMe($token: String!) {
-		getMe(token: $token) {
-			response
-			responseStatus
-			me {
-				character {
-					id
-					name
-				}
-				account {
-					id
-					username
+		characterConnected(token: $token) {
+			getMe {
+				response
+				responseStatus
+				me {
+					character {
+						id
+						name
+					}
+					account {
+						id
+						username
+					}
 				}
 			}
 		}
@@ -45,30 +47,32 @@ const TOKEN_CONTROL = gql`
 
 const GET_PARTS_LIST = gql`
 	query getPartsList($token: String!, $characterId: ID!) {
-		getPartsList(token: $token, characterId: $characterId) {
-			response
-			responseStatus
-			table {
-				id
-				name
-				description_it
-				description_eng
-				icon
-				partDamages {
+		characterConnected(token: $token) {
+			getPartsList(characterId: $characterId) {
+				response
+				responseStatus
+				table {
 					id
-					part
-					character
-					points
-					description
-					solved
+					name
+					description_it
+					description_eng
+					icon
+					partDamages {
+						id
+						part
+						character
+						points
+						description
+						solved
+						createdAt
+						updatedAt
+						deletedAt
+					}
+					max_points
 					createdAt
 					updatedAt
 					deletedAt
 				}
-				max_points
-				createdAt
-				updatedAt
-				deletedAt
 			}
 		}
 	}
@@ -80,24 +84,22 @@ const GET_PARTS_DAMAGE = gql`
 		$characterId: ID!
 		$partId: ID!
 	) {
-		getCharDamageByPart(
-			token: $token
-			characterId: $characterId
-			partId: $partId
-		) {
-			response
-			responseStatus
-			damages {
-				id
-				character
-				part
-				points
-				title
-				description
-				solved
-				createdAt
-				updatedAt
-				deletedAt
+		characterConnected(token: $token) {
+			getCharDamageByPart(characterId: $characterId, partId: $partId) {
+				response
+				responseStatus
+				damages {
+					id
+					character
+					part
+					points
+					title
+					description
+					solved
+					createdAt
+					updatedAt
+					deletedAt
+				}
 			}
 		}
 	}
@@ -105,9 +107,11 @@ const GET_PARTS_DAMAGE = gql`
 
 const SEND_MONEY = gql`
 	mutation sendMoney($token: String!, $character: ID!, $money: String!) {
-		sendMoney(token: $token, character: $character, money: $money) {
-			response
-			responseStatus
+		characterConnectedMutation(token: $token) {
+			sendMoney(character: $character, money: $money) {
+				response
+				responseStatus
+			}
 		}
 	}
 `;

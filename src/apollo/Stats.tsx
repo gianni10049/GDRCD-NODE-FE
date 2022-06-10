@@ -3,21 +3,23 @@ import { GQLQuery } from './GQL';
 
 const LIST_STATS = gql`
 	query listStats($token: String!) {
-		listStats(token: $token) {
-			createdAt
-			deletedAt
-			description {
-				it
-				eng
+		characterConnected(token: $token) {
+			listStats {
+				createdAt
+				deletedAt
+				description {
+					it
+					eng
+				}
+				id
+				max_level
+				min_level
+				name
+				registration
+				updatedAt
+				upgradable
+				usable
 			}
-			id
-			max_level
-			min_level
-			name
-			registration
-			updatedAt
-			upgradable
-			usable
 		}
 	}
 `;

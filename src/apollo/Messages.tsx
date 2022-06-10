@@ -12,68 +12,72 @@ import {
 
 const GET_MESSAGES_SENDERS = gql`
 	query getMessagesSenders($token: String!) {
-		getMessagesSenders(token: $token) {
-			id
-			sender
-			recipient
-			text
-			senderData {
+		characterConnected(token: $token) {
+			getMessagesSenders {
 				id
-				account
-				name
-				nickname
-				surname
-				age
-				mini_avatar
-				fullname
-				profilePic
-				active
+				sender
+				recipient
+				text
+				senderData {
+					id
+					account
+					name
+					nickname
+					surname
+					age
+					mini_avatar
+					fullname
+					profilePic
+					active
+					createdAt
+					updatedAt
+					deletedAt
+				}
+				new_on
+				new_off
 				createdAt
 				updatedAt
 				deletedAt
 			}
-			new_on
-			new_off
-			createdAt
-			updatedAt
-			deletedAt
 		}
 	}
 `;
 
 const GET_MESSAGES = gql`
 	query getMessages($token: String!, $recipient: ID!, $type: String!) {
-		getMessages(token: $token, recipient: $recipient, type: $type) {
-			id
-			sender
-			senderData {
+		characterConnected(token: $token) {
+			getMessages(recipient: $recipient, type: $type) {
 				id
-				account
-				name
-				nickname
-				surname
-				age
-				mini_avatar
-				fullname
-				profilePic
-				active
+				sender
+				senderData {
+					id
+					account
+					name
+					nickname
+					surname
+					age
+					mini_avatar
+					fullname
+					profilePic
+					active
+					createdAt
+					updatedAt
+					deletedAt
+				}
+				readData {
+					id
+					message
+					character
+					createdAt
+					updatedAt
+					deletedAt
+				}
+				recipient
+				text
 				createdAt
 				updatedAt
 				deletedAt
 			}
-			readData {
-				id
-				message
-				character
-				createdAt
-				updatedAt
-				deletedAt
-			}
-			recipient
-			text
-			createdAt
-			updatedAt
-			deletedAt
 		}
 	}
 `;
@@ -85,112 +89,162 @@ const SEND_MESSAGE = gql`
 		$recipient: ID!
 		$type: String!
 	) {
-		sendMessage(
-			token: $token
-			text: $text
-			recipient: $recipient
-			type: $type
-		) {
-			id
-			sender
-			senderData {
+		characterConnectedMutation(token: $token) {
+			sendMessage(text: $text, recipient: $recipient, type: $type) {
 				id
-				account
-				name
-				nickname
-				surname
-				age
-				mini_avatar
-				fullname
-				profilePic
-				active
+				sender
+				senderData {
+					id
+					account
+					name
+					nickname
+					surname
+					age
+					mini_avatar
+					fullname
+					profilePic
+					active
+					createdAt
+					updatedAt
+					deletedAt
+				}
+				readData {
+					id
+					message
+					character
+					createdAt
+					updatedAt
+					deletedAt
+				}
+				recipient
+				text
 				createdAt
 				updatedAt
 				deletedAt
 			}
-			readData {
-				id
-				message
-				character
-				createdAt
-				updatedAt
-				deletedAt
-			}
-			recipient
-			text
-			createdAt
-			updatedAt
-			deletedAt
 		}
 	}
 `;
 
 const DELETE_MESSAGE = gql`
 	mutation deleteMessage($token: String!, $message: ID!) {
-		deleteMessage(token: $token, message: $message) {
-			id
-			sender
-			senderData {
+		characterConnectedMutation(token: $token) {
+			deleteMessage(message: $message) {
 				id
-				account
-				name
-				nickname
-				surname
-				age
-				mini_avatar
-				fullname
-				profilePic
-				active
+				sender
+				senderData {
+					id
+					account
+					name
+					nickname
+					surname
+					age
+					mini_avatar
+					fullname
+					profilePic
+					active
+					createdAt
+					updatedAt
+					deletedAt
+				}
+				readData {
+					id
+					message
+					character
+					createdAt
+					updatedAt
+					deletedAt
+				}
+				recipient
+				text
 				createdAt
 				updatedAt
 				deletedAt
 			}
-			readData {
-				id
-				message
-				character
-				createdAt
-				updatedAt
-				deletedAt
-			}
-			recipient
-			text
-			createdAt
-			updatedAt
-			deletedAt
 		}
 	}
 `;
 
 const DELETE_CONV = gql`
 	mutation deleteConv($token: String!, $sender: ID!, $type: String!) {
-		deleteConv(token: $token, sender: $sender, type: $type) {
-			response
-			responseStatus
+		characterConnectedMutation(token: $token) {
+			deleteConv(sender: $sender, type: $type) {
+				response
+				responseStatus
+			}
 		}
 	}
 `;
 
 const GET_FREQUENCIES = gql`
 	query getFrequencies($token: String!) {
-		getFrequencies(token: $token) {
-			id
-			name
-			frequency
-			type
-			createdAt
-			updatedAt
-			deletedAt
+		characterConnected(token: $token) {
+			getFrequencies {
+				id
+				name
+				frequency
+				type
+				createdAt
+				updatedAt
+				deletedAt
+			}
 		}
 	}
 `;
 
 const GET_FREQUENCIES_MESSAGES = gql`
 	query getFrequencyMessages($token: String!, $frequency: Int!) {
-		getFrequencyMessages(token: $token, frequency: $frequency) {
-			response
-			responseStatus
-			messages {
+		characterConnected(token: $token) {
+			getFrequencyMessages(frequency: $frequency) {
+				response
+				responseStatus
+				messages {
+					id
+					text
+					sender
+					senderData {
+						id
+						account
+						name
+						nickname
+						surname
+						age
+						mini_avatar
+						fullname
+						profilePic
+						active
+						createdAt
+						updatedAt
+						deletedAt
+					}
+					frequency
+					type
+					createdAt
+					updatedAt
+					deletedAt
+				}
+				frequency {
+					id
+					name
+					frequency
+					type
+					createdAt
+					updatedAt
+					deletedAt
+				}
+			}
+		}
+	}
+`;
+
+const SEND_FREQUENCY_MESSAGE = gql`
+	mutation sendFrequencyMessage(
+		$token: String!
+		$frequency: Int!
+		$text: String!
+	) {
+		characterConnectedMutation(token: $token) {
+			sendFrequencyMessage(frequency: $frequency, text: $text) {
 				id
 				text
 				sender
@@ -215,53 +269,6 @@ const GET_FREQUENCIES_MESSAGES = gql`
 				updatedAt
 				deletedAt
 			}
-			frequency {
-				id
-				name
-				frequency
-				type
-				createdAt
-				updatedAt
-				deletedAt
-			}
-		}
-	}
-`;
-
-const SEND_FREQUENCY_MESSAGE = gql`
-	mutation sendFrequencyMessage(
-		$token: String!
-		$frequency: Int!
-		$text: String!
-	) {
-		sendFrequencyMessage(
-			token: $token
-			frequency: $frequency
-			text: $text
-		) {
-			id
-			text
-			sender
-			senderData {
-				id
-				account
-				name
-				nickname
-				surname
-				age
-				mini_avatar
-				fullname
-				profilePic
-				active
-				createdAt
-				updatedAt
-				deletedAt
-			}
-			frequency
-			type
-			createdAt
-			updatedAt
-			deletedAt
 		}
 	}
 `;

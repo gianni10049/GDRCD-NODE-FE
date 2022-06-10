@@ -4,7 +4,7 @@ const client = createApolloClient(),
 	token = localStorage.getItem('token') ?? '';
 
 export const GQLQuery = async (body: any, vars?: object) => {
-	return client
+	let query = await client
 		.query({
 			query: body,
 			variables: {
@@ -16,10 +16,18 @@ export const GQLQuery = async (body: any, vars?: object) => {
 		.then(({ data }) => {
 			return data;
 		});
+
+	if (query.accountConnected) {
+		return query.accountConnected;
+	} else if (query.characterConnected) {
+		return query.characterConnected;
+	} else {
+		return query;
+	}
 };
 
 export const GQLmutation = async (body: any, vars: object) => {
-	return client
+	let mutation = await client
 		.mutate({
 			mutation: body,
 			variables: {
@@ -31,4 +39,10 @@ export const GQLmutation = async (body: any, vars: object) => {
 		.then(({ data }) => {
 			return data;
 		});
+
+	if (mutation.characterConnectedMutation) {
+		return mutation.characterConnectedMutation;
+	} else {
+		return mutation;
+	}
 };

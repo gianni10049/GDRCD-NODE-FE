@@ -48,6 +48,7 @@ export const CharStatTab = (props: characterStatData) => {
 		getCharacterPoints({
 			characterId: characterData.id,
 		}).then((resp) => {
+			console.log('resp', resp);
 			setPointsResponse(resp.getCharacterPoints.table);
 		});
 

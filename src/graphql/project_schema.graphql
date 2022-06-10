@@ -5,43 +5,55 @@ schema {
     mutation: Mutation
 }
 
+type AccountConnected {
+    chactersListByAccount: [characterData]
+    getCharacter(characterId: ID): characterData
+    getCharactersList: [characterData]
+    setCharacter(characterId: ID!): loginResponse
+}
+
+type CharacterConnected {
+    getAbility(abilityId: ID!, characterId: ID): abilityData
+    getCharDamageByPart(characterId: ID!, partId: ID!): getDamagesResponse
+    getCharacterAbility(characterId: ID!): getCharacterAbilityResponse
+    getCharacterActionPercentages(action: String, characterId: ID!): getCharacterActionPercentagesResponse
+    getCharacterPoints(characterId: ID!): getCharacterPointsResponse
+    getCharacterStats(characterId: ID!): getCharacterStatsResponse
+    getDamage(damageId: ID!): getDamageResponse
+    getFrequencies: [radioFrequenciesData]
+    getFrequencyMessages(frequency: Int!): getFrequencyMessagesResponse
+    getGroup(id: ID!): groupData
+    getGroups: [groupData]
+    getMe: getMeResponse
+    getMessages(recipient: ID!, type: String!): [messagesData]
+    getMessagesSenders: [messagesData]
+    getPartsList(characterId: ID!): getPartsList
+    isMineCharacter(characterId: ID!): genericResponse
+    listStats: [statData]
+    permissionControl(permission: String!): genericResponse
+}
+
+type CharacterConnectedMutation {
+    deleteConv(sender: ID!, type: String!): genericResponse
+    deleteMessage(message: ID!): [messagesData]
+    sendFrequencyMessage(frequency: Int!, text: String!): [radioMessagesData]
+    sendMessage(recipient: ID!, text: String!, type: String!): [messagesData]
+    sendMoney(character: ID!, money: String!): genericResponse
+    setDamageSolved(damageId: ID!): getDamageResponse
+    updateAbility(abilityId: ID!, characterId: ID): genericResponse
+}
+
 type Mutation {
-    deleteConv(sender: ID!, token: String!, type: String!): genericResponse
-    deleteMessage(message: ID!, token: String!): [messagesData]
+    characterConnectedMutation(token: String!): CharacterConnectedMutation
     registration(email: String!, password: String!, password_confirm: String!, username: String!): genericResponse
-    sendFrequencyMessage(frequency: Int!, text: String!, token: String!): [radioMessagesData]
-    sendMessage(recipient: ID!, text: String!, token: String!, type: String!): [messagesData]
-    sendMoney(character: ID!, money: String!, token: String!): genericResponse
-    setDamageSolved(damageId: ID!, token: String!): getDamageResponse
-    updateAbility(abilityId: ID!, characterId: ID, token: String!): genericResponse
 }
 
 type Query {
-    chactersListByAccount(token: String!): [characterData]
-    getAbility(abilityId: ID!, characterId: ID, token: String!): abilityData
-    getCharDamageByPart(characterId: ID!, partId: ID!, token: String!): getDamagesResponse
-    getCharacter(characterId: ID, token: String!): characterData
-    getCharacterAbility(characterId: ID!, token: String!): getCharacterAbilityResponse
-    getCharacterActionPercentages(action: String, characterId: ID!, token: String!): getCharacterActionPercentagesResponse
-    getCharacterPoints(characterId: ID!, token: String!): getCharacterPointsResponse
-    getCharacterStats(characterId: ID!, token: String!): getCharacterStatsResponse
-    getCharactersList(token: String!): [characterData]
-    getDamage(damageId: ID!, token: String): getDamageResponse
-    getFrequencies(token: String!): [radioFrequenciesData]
-    getFrequencyMessages(frequency: Int!, token: String!): getFrequencyMessagesResponse
-    getGroup(id: ID!, token: String!): groupData
-    getGroups(token: String!): [groupData]
-    getMe(token: String!): getMeResponse
-    getMessages(recipient: ID!, token: String!, type: String!): [messagesData]
-    getMessagesSenders(token: String!): [messagesData]
-    getPartsList(characterId: ID!, token: String!): getPartsList
-    isMineCharacter(characterId: ID!, token: String!): genericResponse
-    listStats(token: String!): [statData]
+    accountConnected(token: String!): AccountConnected
+    characterConnected(token: String!): CharacterConnected
     login(password: String!, username: String!): loginResponse
-    permissionControl(permission: String!, token: String!): genericResponse
     recPass(email: String!): toastResponse
     routeControl(account_needed: Boolean, character_needed: Boolean, token: String!): genericResponse
-    setCharacter(characterId: ID!, token: String!): loginResponse
 }
 
 type abilityData {
