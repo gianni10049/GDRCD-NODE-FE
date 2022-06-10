@@ -48,6 +48,7 @@ import { toggleBankModal } from '../../redux/bankModal';
 import { toggleMessagesModal } from '../../redux/messagesModal';
 import { toggleRadioModal } from '../../redux/radioModal';
 import { toggleGroupsModal } from '../../redux/groupsModal';
+import { toggleForumModal } from '../../redux/forumModal';
 
 const NavLink = (props: navLinkInterface) => {
 	return (
@@ -349,6 +350,9 @@ const Header = () => {
 						<MenuVoice
 							icon={FaEdit}
 							buttonText={t('mainMenu.messages.forum')}
+							onClick={() => {
+								dispatch(toggleForumModal({}));
+							}}
 						/>
 					</SubMenu>
 

@@ -71,6 +71,10 @@
       "tune" : "Tune",
       "tunedOn" : "Tuned on:"
     },
+    "forum": {
+      "title": "Forum",
+      "forums": "Forums"
+    },
     "groups": {
       "title": "Groups",
       "roles": "Roles",

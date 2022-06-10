@@ -73,6 +73,10 @@
       "tune" : "Sintonizzati",
       "tunedOn" : "Sintonizzato su:"
     },
+    "forum": {
+      "title": "Bacheca",
+      "forums": "Bacheche"
+    },
     "groups": {
       "title": "Gruppi",
       "roles": "Ruoli",
