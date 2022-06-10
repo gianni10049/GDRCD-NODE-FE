@@ -278,7 +278,7 @@ export const Radio = () => {
 					)}
 				</Box>
 
-				{selectedFrequency && (
+				{selectedFrequencyData && (
 					<Box h='full' w='full' ml={2}>
 						<Box
 							color={'green.light'}
