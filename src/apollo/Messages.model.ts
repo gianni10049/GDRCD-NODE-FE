@@ -24,7 +24,7 @@ export interface messageData {
 	deletedAt: number;
 }
 
-export interface radioFrequencieData {
+export interface radioFrequenciesData {
 	id: number;
 	name: string;
 	frequency: number;

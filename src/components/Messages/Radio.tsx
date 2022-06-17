@@ -1,6 +1,6 @@
 import React, { useCallback, useEffect, useState } from 'react';
 import {
-	radioFrequencieData,
+	radioFrequenciesData,
 	radioFrequencieMessagesData,
 } from '../../apollo/Messages.model';
 import {
@@ -34,10 +34,10 @@ export const Radio = () => {
 	let last_type = '';
 	let stamp = false;
 
-	const [frequencies, setFrequencies] = useState<radioFrequencieData[]>([]);
+	const [frequencies, setFrequencies] = useState<radioFrequenciesData[]>([]);
 	const [selectedFrequency, setSelectedFrequency] = useState<number>();
 	let [selectedFrequencyData, setSelectedFrequencyData] =
-		useState<radioFrequencieData>();
+		useState<radioFrequenciesData>();
 	let [messages, setMessages] = useState<radioFrequencieMessagesData[]>([]);
 	let [me, setMe] = useState<getMeData>({});
 
@@ -228,7 +228,7 @@ export const Radio = () => {
 					</Box>
 
 					{frequencies?.map(
-						(frequence: radioFrequencieData, i: number) => {
+						(frequence: radioFrequenciesData, i: number) => {
 							if (last_type !== frequence.type) {
 								stamp = true;
 								last_type = frequence.type;
@@ -369,7 +369,7 @@ export const Radio = () => {
 												fontSize={10}>
 												{moment(
 													Number(message?.createdAt)
-												)?.format('HH:mm MM/DD/YYYY')}
+												)?.format('HH:mm DD/MM/YYYY')}
 											</Text>
 										</Box>
 									</Box>

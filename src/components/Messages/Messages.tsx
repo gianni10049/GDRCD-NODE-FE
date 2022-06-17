@@ -495,7 +495,7 @@ export const Messages = () => {
 												fontSize={10}>
 												{moment(
 													Number(message?.createdAt)
-												)?.format('HH:mm MM/DD/YYYY')}
+												)?.format('HH:mm DD/MM/YYYY')}
 											</Text>
 										</Box>
 									</Box>
