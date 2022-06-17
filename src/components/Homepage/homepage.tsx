@@ -239,7 +239,7 @@ const Homepage = () => {
 
 										<CreateSingleInput
 											name={'password_confirm'}
-											type={'Password Confirm'}
+											type={'password'}
 											placeholder={t(
 												'homepage.forms.registration.passwordConfirm'
 											)}

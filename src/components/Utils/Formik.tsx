@@ -26,14 +26,9 @@ export const CreateSingleInput = (props: fieldData) => {
 					as={'select'}
 					className={`input w-full bg-transparent border-b border-green-border font-TecFont outline-0 text-green-border placeholder:text-green-border
 					focus:text-green-light focus:placeholder:text-green-light hover:placeholder:text-green-light`}
-					placeholder={props.placeholder}>
-					<RenderSelect
-						value={props.fieldValue}
-						label={props.fieldLabel}
-						data={props.fields}
-						placeholder={props.placeholder}
-					/>
-				</Field>
+					placeholder={props.placeholder}
+					type={props.type ?? 'text'}
+				/>
 				{/* @ts-ignore*/}
 				<ErrorMessage name={props.name} render={renderError} />
 			</Box>
