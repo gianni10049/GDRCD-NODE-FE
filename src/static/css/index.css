@@ -152,3 +152,9 @@ body {font-family: "HelveticaNeue-Light", "Helvetica Neue Light", "Helvetica Neu
 .confirm-box__content button:hover{
   color: rgba(17,203,148,0.3) !important;
 }
+
+.pagination {
+   display: flex;
+   padding-left: 0;
+  list-style: none;
+}
