@@ -46,6 +46,47 @@ export interface radioFrequencieMessagesData {
 	deletedAt: number;
 }
 
+export interface forumsData {
+	id: number;
+	name: string;
+	description: string;
+	logo: string;
+	type: string;
+	visible: boolean;
+	total_results: number;
+	total_pages: number;
+	createdAt: number;
+	updatedAt: number;
+	deletedAt: number;
+}
+
+export interface forumsPostsData {
+	id: number;
+	character: number;
+	forum: number;
+	title: string;
+	text: string;
+	closed: boolean;
+	important: boolean;
+	visible: boolean;
+	characterData: characterData;
+	commentsData: [forumsCommentsData];
+	createdAt: number;
+	updatedAt: number;
+	deletedAt: number;
+}
+
+export interface forumsCommentsData {
+	id: number;
+	post: number;
+	character: number;
+	text: string;
+	characterData: characterData;
+	createdAt: number;
+	updatedAt: number;
+	deletedAt: number;
+}
+
 export interface messagesReadData {
 	id: number;
 	message: number;
@@ -88,4 +129,47 @@ export interface getFrequenciesMessagesInput {
 export interface sendFrequencyMessageInput {
 	frequency: number;
 	text: string;
+}
+
+export interface getForumsInput {}
+
+export interface getForumsPostsInput {
+	forum: number;
+	page: number;
+}
+
+export interface getPostInput {
+	post: number;
+	page: number;
+}
+
+export interface newPostInput {
+	forum: number;
+	title: string;
+	text: string;
+}
+
+export interface newCommentInput {
+	post: number;
+	text: string;
+}
+
+export interface changeCloseInput {
+	post: number;
+}
+
+export interface changeImportantInput {
+	post: number;
+}
+
+export interface forumPostsResponse {
+	posts: forumsPostsData[];
+	total_results: number;
+	total_pages: number;
+}
+
+export interface forumsPostResponse {
+	post: forumsPostsData;
+	total_results: number;
+	total_pages: number;
 }

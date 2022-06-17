@@ -73,7 +73,24 @@
     },
     "forum": {
       "title": "Forum",
-      "forums": "Forums"
+      "forums": "Forums",
+      "openPost": "Read post",
+      "openCharacter": "Open Character",
+      "noResponse": "No Response",
+      "fatherPost": "Original Post",
+      "comments": "Comments",
+      "addPost": "Add post",
+      "newPost": "New post in:",
+      "back": "Back",
+      "addComment": "Add comment",
+      "newComment": "New comment in:",
+      "refetch": "Update data",
+      "closed": "Closed",
+      "open": "Open",
+      "important": "Important",
+      "notImportant": "Not important",
+      "createPostSuccess": "Post successfully added!",
+      "createCommentSuccess": "Comment successfully added!"
     },
     "groups": {
       "title": "Groups",

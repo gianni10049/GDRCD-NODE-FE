@@ -1,11 +1,18 @@
 import { gql } from '@apollo/client';
 import { GQLmutation, GQLQuery } from './GQL';
 import {
+	changeCloseInput,
+	changeImportantInput,
 	deleteConvInput,
 	deleteMessageInput,
+	getForumsInput,
+	getForumsPostsInput,
 	getFrequenciesInput,
 	getMessagesInput,
 	getMessagesSendersInput,
+	getPostInput,
+	newCommentInput,
+	newPostInput,
 	sendFrequencyMessageInput,
 	sendMessageInput,
 } from './Messages.model';
@@ -273,6 +280,379 @@ const SEND_FREQUENCY_MESSAGE = gql`
 	}
 `;
 
+const GET_FORUMS = gql`
+	query getForums($token: String!) {
+		characterConnected(token: $token) {
+			getForums {
+				id
+				name
+				description
+				logo
+				type
+				visible
+				total_pages
+				total_results
+				createdAt
+				updatedAt
+				deletedAt
+			}
+		}
+	}
+`;
+
+const GET_POSTS = gql`
+	query getPosts($token: String!, $forum: ID!, $page: Int!) {
+		characterConnected(token: $token) {
+			getPosts(forum: $forum, page: $page) {
+				posts {
+					id
+					character
+					forum
+					title
+					text
+					closed
+					important
+					visible
+					createdAt
+					updatedAt
+					deletedAt
+					characterData {
+						id
+						account
+						name
+						nickname
+						surname
+						age
+						mini_avatar
+						fullname
+						profilePic
+						active
+						createdAt
+						updatedAt
+						deletedAt
+					}
+					commentsData {
+						id
+						post
+						character
+						text
+						createdAt
+						updatedAt
+						deletedAt
+					}
+				}
+				total_pages
+				total_results
+			}
+		}
+	}
+`;
+
+const GET_POST = gql`
+	query getPost($token: String!, $post: ID!, $page: Int!) {
+		characterConnected(token: $token) {
+			getPost(post: $post, page: $page) {
+				post {
+					id
+					character
+					forum
+					title
+					text
+					closed
+					important
+					visible
+					createdAt
+					updatedAt
+					deletedAt
+					characterData {
+						id
+						account
+						name
+						nickname
+						surname
+						age
+						mini_avatar
+						fullname
+						profilePic
+						active
+						createdAt
+						updatedAt
+						deletedAt
+					}
+					commentsData {
+						id
+						post
+						character
+						text
+						createdAt
+						updatedAt
+						deletedAt
+						characterData {
+							id
+							account
+							name
+							nickname
+							surname
+							age
+							mini_avatar
+							fullname
+							profilePic
+							active
+							createdAt
+							updatedAt
+							deletedAt
+						}
+					}
+				}
+				total_results
+				total_pages
+			}
+		}
+	}
+`;
+
+const NEW_POST = gql`
+	mutation newPost(
+		$token: String!
+		$forum: ID!
+		$title: String!
+		$text: String!
+	) {
+		characterConnectedMutation(token: $token) {
+			newPost(forum: $forum, title: $title, text: $text) {
+				posts {
+					id
+					character
+					forum
+					title
+					text
+					closed
+					important
+					visible
+					createdAt
+					updatedAt
+					deletedAt
+					characterData {
+						id
+						account
+						name
+						nickname
+						surname
+						age
+						mini_avatar
+						fullname
+						profilePic
+						active
+						createdAt
+						updatedAt
+						deletedAt
+					}
+					commentsData {
+						id
+						post
+						character
+						text
+						createdAt
+						updatedAt
+						deletedAt
+					}
+				}
+				total_pages
+				total_results
+			}
+		}
+	}
+`;
+
+const NEW_COMMENT = gql`
+	mutation newComment($token: String!, $post: ID!, $text: String!) {
+		characterConnectedMutation(token: $token) {
+			newComment(post: $post, text: $text) {
+				post {
+					id
+					character
+					forum
+					title
+					text
+					closed
+					important
+					visible
+					createdAt
+					updatedAt
+					deletedAt
+					characterData {
+						id
+						account
+						name
+						nickname
+						surname
+						age
+						mini_avatar
+						fullname
+						profilePic
+						active
+						createdAt
+						updatedAt
+						deletedAt
+					}
+					commentsData {
+						id
+						post
+						character
+						text
+						createdAt
+						updatedAt
+						deletedAt
+						characterData {
+							id
+							account
+							name
+							nickname
+							surname
+							age
+							mini_avatar
+							fullname
+							profilePic
+							active
+							createdAt
+							updatedAt
+							deletedAt
+						}
+					}
+				}
+				total_results
+				total_pages
+			}
+		}
+	}
+`;
+
+const CHANGE_CLOSED = gql`
+	mutation updatePostClose($token: String!, $post: ID!) {
+		characterConnectedMutation(token: $token) {
+			updatePostClose(post: $post) {
+				post {
+					id
+					character
+					forum
+					title
+					text
+					closed
+					important
+					visible
+					createdAt
+					updatedAt
+					deletedAt
+					characterData {
+						id
+						account
+						name
+						nickname
+						surname
+						age
+						mini_avatar
+						fullname
+						profilePic
+						active
+						createdAt
+						updatedAt
+						deletedAt
+					}
+					commentsData {
+						id
+						post
+						character
+						text
+						createdAt
+						updatedAt
+						deletedAt
+						characterData {
+							id
+							account
+							name
+							nickname
+							surname
+							age
+							mini_avatar
+							fullname
+							profilePic
+							active
+							createdAt
+							updatedAt
+							deletedAt
+						}
+					}
+				}
+				total_results
+				total_pages
+			}
+		}
+	}
+`;
+
+const CHANGE_IMPORTANT = gql`
+	mutation updatePostImportant($token: String!, $post: ID!) {
+		characterConnectedMutation(token: $token) {
+			updatePostImportant(post: $post) {
+				post {
+					id
+					character
+					forum
+					title
+					text
+					closed
+					important
+					visible
+					createdAt
+					updatedAt
+					deletedAt
+					characterData {
+						id
+						account
+						name
+						nickname
+						surname
+						age
+						mini_avatar
+						fullname
+						profilePic
+						active
+						createdAt
+						updatedAt
+						deletedAt
+					}
+					commentsData {
+						id
+						post
+						character
+						text
+						createdAt
+						updatedAt
+						deletedAt
+						characterData {
+							id
+							account
+							name
+							nickname
+							surname
+							age
+							mini_avatar
+							fullname
+							profilePic
+							active
+							createdAt
+							updatedAt
+							deletedAt
+						}
+					}
+				}
+				total_results
+				total_pages
+			}
+		}
+	}
+`;
+
 export const getMessagesSenders = async (data: getMessagesSendersInput) => {
 	return await GQLQuery(GET_MESSAGES_SENDERS, data);
 };
@@ -305,4 +685,32 @@ export const sendFrequencyMessages = async (
 	data: sendFrequencyMessageInput
 ) => {
 	return await GQLmutation(SEND_FREQUENCY_MESSAGE, data);
+};
+
+export const getForums = async (data: getForumsInput) => {
+	return await GQLQuery(GET_FORUMS, data);
+};
+
+export const getPosts = async (data: getForumsPostsInput) => {
+	return await GQLQuery(GET_POSTS, data);
+};
+
+export const getPost = async (data: getPostInput) => {
+	return await GQLQuery(GET_POST, data);
+};
+
+export const newPost = async (data: newPostInput) => {
+	return await GQLmutation(NEW_POST, data);
+};
+
+export const newComment = async (data: newCommentInput) => {
+	return await GQLmutation(NEW_COMMENT, data);
+};
+
+export const changeClose = async (data: changeCloseInput) => {
+	return await GQLmutation(CHANGE_CLOSED, data);
+};
+
+export const changeImportant = async (data: changeImportantInput) => {
+	return await GQLmutation(CHANGE_IMPORTANT, data);
 };

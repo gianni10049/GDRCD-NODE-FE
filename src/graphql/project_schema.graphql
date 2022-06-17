@@ -20,6 +20,7 @@ type CharacterConnected {
     getCharacterPoints(characterId: ID!): getCharacterPointsResponse
     getCharacterStats(characterId: ID!): getCharacterStatsResponse
     getDamage(damageId: ID!): getDamageResponse
+    getForums: [forumsData]
     getFrequencies: [radioFrequenciesData]
     getFrequencyMessages(frequency: Int!): getFrequencyMessagesResponse
     getGroup(id: ID!): groupData
@@ -28,6 +29,8 @@ type CharacterConnected {
     getMessages(recipient: ID!, type: String!): [messagesData]
     getMessagesSenders: [messagesData]
     getPartsList(characterId: ID!): getPartsList
+    getPost(page: Int!, post: ID!): ForumsPostDataResponse
+    getPosts(forum: ID!, page: Int!): ForumsPostListResponse
     isMineCharacter(characterId: ID!): genericResponse
     listStats: [statData]
     permissionControl(permission: String!): genericResponse
@@ -36,11 +39,27 @@ type CharacterConnected {
 type CharacterConnectedMutation {
     deleteConv(sender: ID!, type: String!): genericResponse
     deleteMessage(message: ID!): [messagesData]
+    newComment(post: ID!, text: String!): ForumsPostDataResponse
+    newPost(forum: ID!, text: String!, title: String!): ForumsPostListResponse
     sendFrequencyMessage(frequency: Int!, text: String!): [radioMessagesData]
     sendMessage(recipient: ID!, text: String!, type: String!): [messagesData]
     sendMoney(character: ID!, money: String!): genericResponse
     setDamageSolved(damageId: ID!): getDamageResponse
     updateAbility(abilityId: ID!, characterId: ID): genericResponse
+    updatePostClose(post: ID!): ForumsPostDataResponse
+    updatePostImportant(post: ID!): ForumsPostDataResponse
+}
+
+type ForumsPostDataResponse {
+    post: forumsPostsData
+    total_pages: Int!
+    total_results: Int!
+}
+
+type ForumsPostListResponse {
+    posts: [forumsPostsData]
+    total_pages: Int!
+    total_results: Int!
 }
 
 type Mutation {
@@ -211,6 +230,56 @@ type characterStatData {
 type descriptionsArray {
     eng: String
     it: String
+}
+
+type forumsCommentsData {
+    character: ID
+    characterData: characterData
+    createdAt: String
+    deletedAt: String
+    id: ID
+    post: ID
+    text: String
+    updatedAt: String
+}
+
+type forumsData {
+    createdAt: String
+    deletedAt: String
+    description: String
+    id: ID
+    logo: String
+    name: String
+    total_pages: Int
+    total_results: Int
+    type: String
+    updatedAt: String
+    visible: Boolean
+}
+
+type forumsPostsData {
+    character: ID
+    characterData: characterData
+    closed: Boolean
+    commentsData: [forumsCommentsData]
+    createdAt: String
+    deletedAt: String
+    forum: ID
+    id: ID
+    important: Boolean
+    text: String
+    title: String
+    updatedAt: String
+    visible: Boolean
+}
+
+type forumsReadsData {
+    character: ID
+    createdAt: String
+    deletedAt: String
+    id: ID
+    post: ID
+    updatedAt: String
 }
 
 type genericResponse {

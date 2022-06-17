@@ -75,7 +75,24 @@
     },
     "forum": {
       "title": "Bacheca",
-      "forums": "Bacheche"
+      "forums": "Bacheche",
+      "openPost": "Leggi post",
+      "openCharacter": "Vedi scheda",
+      "noResponse": "Nessun risposta",
+      "fatherPost": "Post Principale",
+      "comments": "Commenti",
+      "addPost": "Aggiungi post",
+      "newPost": "Nuovo post in:",
+      "back": "Indietro",
+      "addComment": "Aggiungi commento",
+      "newComment": "Nuovo commento in:",
+      "refetch": "Aggiorna dati",
+      "closed": "Chiuso",
+      "open": "Aperto",
+      "important": "Importante",
+      "notImportant": "Non importante",
+      "createPostSuccess": "Post inserito con successo!",
+      "createCommentSuccess": "Commento inserito con successo!"
     },
     "groups": {
       "title": "Gruppi",
