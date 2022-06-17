@@ -110,6 +110,9 @@ export default function ModalBase(props: ModalBaseData) {
 					}}
 					bounds={'#root'}
 					enableResizing={true}
+					style={{
+						zIndex: 999,
+					}}
 					default={{
 						x: positions.x > 0 ? positions.x : 0,
 						y: positions.y > 0 ? positions.y : 0,
