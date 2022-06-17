@@ -6,6 +6,8 @@ export interface fieldData {
 	fieldValue?: string;
 	fieldLabel?: any;
 	width?: string;
+	height?: string;
+	resize?: 'x' | 'y' | 'none';
 }
 export interface submitData {
 	label?: string;
