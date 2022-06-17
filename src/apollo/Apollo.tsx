@@ -5,7 +5,33 @@ function createApolloClient() {
 
 	return new ApolloClient({
 		link: httpLink,
-		cache: new InMemoryCache(),
+		cache: new InMemoryCache({
+			typePolicies: {
+				Query: {
+					fields: {
+						characterConnected: {
+							merge(existing, incoming) {
+								return incoming;
+							},
+						},
+						accountConnected: {
+							merge(existing, incoming) {
+								return incoming;
+							},
+						},
+					},
+				},
+				Mutation: {
+					fields: {
+						characterConnectedMutation: {
+							merge(existing, incoming) {
+								return incoming;
+							},
+						},
+					},
+				},
+			},
+		}),
 	});
 }
 
