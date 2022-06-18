@@ -292,6 +292,7 @@ const GET_FORUMS = gql`
 				visible
 				total_pages
 				total_results
+				to_read
 				createdAt
 				updatedAt
 				deletedAt
@@ -340,6 +341,7 @@ const GET_POSTS = gql`
 						updatedAt
 						deletedAt
 					}
+					to_read
 				}
 				total_pages
 				total_results

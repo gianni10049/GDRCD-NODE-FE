@@ -250,6 +250,7 @@ type forumsData {
     id: ID
     logo: String
     name: String
+    to_read: Boolean
     total_pages: Int
     total_results: Int
     type: String
@@ -269,6 +270,7 @@ type forumsPostsData {
     important: Boolean
     text: String
     title: String
+    to_read: Boolean
     updatedAt: String
     visible: Boolean
 }

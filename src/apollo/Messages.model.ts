@@ -55,6 +55,7 @@ export interface forumsData {
 	visible: boolean;
 	total_results: number;
 	total_pages: number;
+	to_read: boolean;
 	createdAt: number;
 	updatedAt: number;
 	deletedAt: number;
@@ -71,6 +72,7 @@ export interface forumsPostsData {
 	visible: boolean;
 	characterData: characterData;
 	commentsData: [forumsCommentsData];
+	to_read: boolean;
 	createdAt: number;
 	updatedAt: number;
 	deletedAt: number;

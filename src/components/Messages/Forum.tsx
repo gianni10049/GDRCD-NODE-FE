@@ -519,7 +519,11 @@ export const Forum = () => {
 									<Box
 										key={i}
 										minW={'50px'}
-										bg={'green.lightOpacity'}
+										bg={
+											forum.to_read
+												? 'red'
+												: 'green.lightOpacity'
+										}
 										m={'5px'}
 										p={5}>
 										<Box
@@ -607,7 +611,11 @@ export const Forum = () => {
 											w={'full'}
 											d={'flex'}
 											alignItems={'stretch'}
-											color={'green.textLight'}
+											color={
+												post.to_read
+													? 'red'
+													: 'green.textLight'
+											}
 											fontSize={13}
 											m={'5px 0'}
 											textAlign={'center'}>
