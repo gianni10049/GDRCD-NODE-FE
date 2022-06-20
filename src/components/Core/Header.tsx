@@ -49,6 +49,7 @@ import { toggleMessagesModal } from '../../redux/messagesModal';
 import { toggleRadioModal } from '../../redux/radioModal';
 import { toggleGroupsModal } from '../../redux/groupsModal';
 import { toggleForumModal } from '../../redux/forumModal';
+import { useNavigate } from 'react-router-dom';
 
 const NavLink = (props: navLinkInterface) => {
 	return (
@@ -165,6 +166,7 @@ const Header = () => {
 	const [subMenu, setSubMenu] = useState<string>('');
 	const { t } = useTranslation();
 	const dispatch = useDispatch();
+	let navigate = useNavigate();
 
 	return (
 		<Box
@@ -317,14 +319,14 @@ const Header = () => {
 							icon={CgArrowsExchangeAlt}
 							buttonText={t('mainMenu.user.changeCharacter')}
 							onClick={() => {
-								window.location.href = '/charSelect';
+								navigate('/charSelect');
 							}}
 						/>
 						<MenuVoice
 							icon={HiLogout}
 							buttonText={t('mainMenu.user.logout')}
 							onClick={() => {
-								window.location.href = '/logout';
+								navigate('/logout');
 							}}
 						/>
 					</SubMenu>

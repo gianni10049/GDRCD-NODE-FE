@@ -15,11 +15,13 @@ import {
 	registrationDataInterface,
 } from './homepage.model';
 import { useTranslation } from 'react-i18next';
+import { useNavigate } from 'react-router-dom';
 
 const Homepage = () => {
 	const [formContent, setFormContent] = useState('login');
 	const toast = useToast();
 	const { t } = useTranslation();
+	const navigate = useNavigate();
 
 	let loginInitialValues = {
 		username: '',
@@ -69,7 +71,7 @@ const Homepage = () => {
 					localStorage.setItem('token', token);
 
 					setTimeout(function () {
-						window.location.href = '/charSelect';
+						navigate('/charSelect');
 					}, 1500);
 				}
 			}

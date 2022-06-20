@@ -7,6 +7,7 @@ import { useEffect, useState } from 'react';
 import React from 'react';
 import { characterInterface } from './charSelect.model';
 import { useTranslation } from 'react-i18next';
+import { useNavigate } from 'react-router-dom';
 
 const CharacterSelect = () => {
 	//TODO
@@ -15,6 +16,7 @@ const CharacterSelect = () => {
 	let [charList, setCharList] = useState<[characterInterface]>([{}]);
 	const toast = useToast();
 	const { t } = useTranslation();
+	const navigate = useNavigate();
 
 	useEffect(() => {
 		charactersListByAccount({}).then((data) => {
@@ -36,7 +38,7 @@ const CharacterSelect = () => {
 			});
 
 			setTimeout(() => {
-				window.location.href = '/main';
+				navigate('/main');
 			}, 1500);
 		}
 	};
@@ -199,6 +201,7 @@ const CharacterSelect = () => {
 									boxShadow:
 										'inset 0px 0px 10px -5px #000000',
 								}}
+								onClick={() => navigate('/charCreate')}
 								className={'w-1/2'}>
 								+
 							</Box>
