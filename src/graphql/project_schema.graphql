@@ -10,6 +10,11 @@ type AccountConnected {
     getCharacter(characterId: ID): characterData
     getCharactersList: [characterData]
     getMe: getMeResponse
+    listAbilities: [abilityData]
+}
+
+type AccountConnectedMutation {
+    createCharacter(age: Int!, name: String!, surname: String!): genericResponse
     setCharacter(characterId: ID!): loginResponse
 }
 
@@ -63,6 +68,7 @@ type ForumsPostListResponse {
 }
 
 type Mutation {
+    accountConnectedMutation(token: String!): AccountConnectedMutation
     characterConnectedMutation(token: String!): CharacterConnectedMutation
     registration(email: String!, password: String!, password_confirm: String!, username: String!): genericResponse
 }

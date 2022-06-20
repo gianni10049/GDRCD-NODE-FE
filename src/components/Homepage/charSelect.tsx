@@ -38,7 +38,7 @@ const CharacterSelect = () => {
 			});
 
 			setTimeout(() => {
-				navigate('/main');
+				window.location.href = '/main';
 			}, 1500);
 		}
 	};

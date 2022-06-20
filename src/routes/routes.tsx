@@ -5,6 +5,7 @@ import Logout from '../components/Utils/Logout';
 import React from 'react';
 import { routeData } from './routes.model';
 import { Main } from '../components/Main/Main';
+import { CharCreate } from '../components/Homepage/charCreate';
 
 const routes: routeData[] = [
 	{
@@ -22,7 +23,16 @@ const routes: routeData[] = [
 		component: <CharacterSelect />,
 		account_needed: true,
 		character_needed: false,
-		modal: true,
+		modal: false,
+		nav: false,
+	},
+	{
+		path: 'charCreate',
+		key: 'charCreate',
+		component: <CharCreate />,
+		account_needed: true,
+		character_needed: false,
+		modal: false,
 		nav: false,
 	},
 	{

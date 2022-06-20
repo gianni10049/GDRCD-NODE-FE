@@ -130,6 +130,15 @@
     "title": "Seleziona un personaggio:",
     "createTooltip": "Crea un nuovo personaggio"
   },
+  "charCreate": {
+    "title": "Crea personaggio:",
+    "createTooltip": "Crea un nuovo personaggio",
+    "name": "Nome",
+    "surname": "Cognome",
+    "age": "Età",
+    "minimumAlert": "Età minima: 18",
+    "maximumAlert": "Età massima: 60"
+  },
   "mainMenu": {
     "map": {
       "button": "Mappa",

@@ -1,7 +1,8 @@
 import { gql } from '@apollo/client';
-import { GQLQuery } from './GQL';
+import { GQLmutation, GQLQuery } from './GQL';
 import {
 	characterListByAccount,
+	createCharacterInput,
 	getCharacterAbiInput,
 	getCharacterDataInput,
 	getCharacterPercentagesInput,
@@ -9,6 +10,22 @@ import {
 	getCharacterStatsInput,
 	setCharacterInput,
 } from './Characters.model';
+
+const CREATE_CHARACTER = gql`
+	mutation createCharacter(
+		$token: String!
+		$name: String!
+		$surname: String!
+		$age: Int!
+	) {
+		accountConnectedMutation(token: $token) {
+			createCharacter(age: $age, name: $name, surname: $surname) {
+				response
+				responseStatus
+			}
+		}
+	}
+`;
 
 const CHAR_LIST_BY_ACCOUNT = gql`
 	query chactersListByAccount($token: String!) {
@@ -28,8 +45,8 @@ const CHAR_LIST_BY_ACCOUNT = gql`
 `;
 
 const SET_CHAR = gql`
-	query setCharacter($token: String!, $characterId: ID!) {
-		accountConnected(token: $token) {
+	mutation setCharacter($token: String!, $characterId: ID!) {
+		accountConnectedMutation(token: $token) {
 			setCharacter(characterId: $characterId) {
 				responseStatus
 				response
@@ -292,7 +309,7 @@ export const charactersListByAccount = async (data: characterListByAccount) => {
 };
 
 export const setCharacter = async (data: setCharacterInput) => {
-	return await GQLQuery(SET_CHAR, data);
+	return await GQLmutation(SET_CHAR, data);
 };
 
 export const getCharacterData = async (data: getCharacterDataInput) => {
@@ -311,4 +328,8 @@ export const getCharacterPercentages = async (
 	data: getCharacterPercentagesInput
 ) => {
 	return await GQLQuery(GET_CHAR_PERCENTAGES, data);
+};
+
+export const createCharacter = async (data: createCharacterInput) => {
+	return await GQLmutation(CREATE_CHARACTER, data);
 };

@@ -66,6 +66,70 @@ const GET_ABILITY = gql`
 	}
 `;
 
+const LIST_ABILITIES = gql`
+	query listAbilities($token: String!) {
+		accountConnected(token: $token) {
+			listAbilities {
+				id
+				name
+				description {
+					eng
+					it
+				}
+				icon
+				stat
+				castable
+				max_level
+				visible
+				createdBy
+				createdAt
+				updatedAt
+				deletedAt
+				statData {
+					createdAt
+					deletedAt
+					description {
+						eng
+						it
+					}
+					id
+					max_level
+					min_level
+					name
+					registration
+					updatedAt
+					upgradable
+					usable
+				}
+				characterAbilityData {
+					id
+					character
+					ability
+					value
+					createdAt
+					updatedAt
+					deletedAt
+				}
+				abilityToDetailData {
+					id
+					ability
+					level
+					description {
+						eng
+						it
+					}
+					price
+					bonus
+					createdBy
+					createdAt
+					updatedAt
+					deletedAt
+				}
+			}
+		}
+	}
+`;
+
 const UPDATE_ABILITY = gql`
 	mutation updateAbility(
 		$token: String!
@@ -89,4 +153,6 @@ export const updateAbility = async (data: updateAbilityInput) => {
 	return await GQLmutation(UPDATE_ABILITY, data);
 };
 
-export { GET_ABILITY, UPDATE_ABILITY };
+export const listAbilities = async (data: updateAbilityInput) => {
+	return await GQLmutation(LIST_ABILITIES, data);
+};

@@ -67,3 +67,9 @@ export interface getCharacterPointsInput {
 export interface getCharacterPercentagesInput {
 	characterId: number;
 }
+
+export interface createCharacterInput {
+	age: number;
+	name: string;
+	surname: string;
+}

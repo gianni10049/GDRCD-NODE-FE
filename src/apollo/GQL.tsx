@@ -42,6 +42,8 @@ export const GQLmutation = async (body: any, vars: object) => {
 
 	if (mutation.characterConnectedMutation) {
 		return mutation.characterConnectedMutation;
+	} else if (mutation.accountConnectedMutation) {
+		return mutation.accountConnectedMutation;
 	} else {
 		return mutation;
 	}
