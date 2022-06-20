@@ -9,7 +9,7 @@ import { tokenControlData } from '../components/Routes/RouteControl.model';
 
 const GET_ME = gql`
 	query getMe($token: String!) {
-		characterConnected(token: $token) {
+		accountConnected(token: $token) {
 			getMe {
 				response
 				responseStatus
