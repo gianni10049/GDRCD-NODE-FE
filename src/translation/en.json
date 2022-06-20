@@ -128,6 +128,15 @@
     "title": "Select a character:",
     "createTooltip": "Create new character"
   },
+  "charCreate": {
+    "title": "Create Character:",
+    "createTooltip": "Create new character",
+    "name": "Name",
+    "surname": "Surname",
+    "age": "Age",
+    "minimumAlert": "Minimum age: 18",
+    "maximumAlert": "Maximum age: 60"
+  },
   "mainMenu": {
     "map": {
       "button": "Map",
