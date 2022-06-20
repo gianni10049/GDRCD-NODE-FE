@@ -9,6 +9,7 @@ type AccountConnected {
     chactersListByAccount: [characterData]
     getCharacter(characterId: ID): characterData
     getCharactersList: [characterData]
+    getMe: getMeResponse
     setCharacter(characterId: ID!): loginResponse
 }
 
@@ -25,7 +26,6 @@ type CharacterConnected {
     getFrequencyMessages(frequency: Int!): getFrequencyMessagesResponse
     getGroup(id: ID!): groupData
     getGroups: [groupData]
-    getMe: getMeResponse
     getMessages(recipient: ID!, type: String!): [messagesData]
     getMessagesSenders: [messagesData]
     getPartsList(characterId: ID!): getPartsList
@@ -268,6 +268,7 @@ type forumsPostsData {
     forum: ID
     id: ID
     important: Boolean
+    readsData: [forumsReadsData]
     text: String
     title: String
     to_read: Boolean
@@ -296,7 +297,7 @@ type getCharacterAbilityResponse {
 }
 
 type getCharacterActionPercentagesResponse {
-    character: Int
+    character: ID!
     percentages: percentagesArray
     response: Boolean
     responseStatus: String
