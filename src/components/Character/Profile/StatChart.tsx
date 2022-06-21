@@ -19,7 +19,8 @@ import { getMe } from '../../../apollo/Generic';
 import { characterTableData } from '../../../apollo/Characters.model';
 import Permission from '../../Utils/Permission';
 import { PopoverInfo } from '../../Utils/Popover';
-import { updateStat } from '../../../apollo/Stats';
+import { upgradeStat } from '../../../apollo/Stats';
+import { confirm } from 'react-confirm-box';
 
 ChartJS.register(
 	RadialLinearScale,
@@ -104,19 +105,21 @@ export const StatChart = (props: {
 		refetchData();
 	}, [stats, characterPoints]); // eslint-disable-line react-hooks/exhaustive-deps
 
-	const updateStatSubmit = async (stat: number) => {
-		updateStat({ character: characterData.id, stat }).then((resp) => {
-			if (resp.updateStat.response) {
-				refetchAll();
-			}
+	const upgradeStatSubmit = async (stat: number) => {
+		if (await confirm(t('charactersProfile.tabStats.confirmUpdate'))) {
+			upgradeStat({ character: characterData.id, stat }).then((resp) => {
+				if (resp.upgradeStat.response) {
+					refetchAll();
+				}
 
-			toast({
-				title: resp.updateStat.responseStatus,
-				status: resp.updateStat.response ? 'success' : 'error',
-				duration: 9000,
-				isClosable: true,
+				toast({
+					title: resp.upgradeStat.responseStatus,
+					status: resp.upgradeStat.response ? 'success' : 'error',
+					duration: 9000,
+					isClosable: true,
+				});
 			});
-		});
+		}
 	};
 
 	return (
@@ -149,7 +152,7 @@ export const StatChart = (props: {
 									color: 'green.light',
 								}}
 								key={i}
-								onClick={() => updateStatSubmit(stat.id)}>
+								onClick={() => upgradeStatSubmit(stat.id)}>
 								{
 									//@ts-ignore
 									t(`general.stats.${stat.name}`)

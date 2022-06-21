@@ -229,7 +229,8 @@
       "pointsPopoverText": "Punteggi e percentuali spiegazione lunghissima",
       "popoverStatTitle": "Statistics",
       "popoverStatDesc": "Character stats are displayed here.",
-      "popoverStatDescUser": "Character stats are displayed here. \n\n To increase a statistic it is necessary to click on the name of the respective statistic on the legend presence at the top left of this screen, having at least one statistic point."
+      "popoverStatDescUser": "Character stats are displayed here. \n\n To increase a statistic it is necessary to click on the name of the respective statistic on the legend presence at the top left of this screen, having at least one statistic point.",
+      "confirmUpdate": "Confirm statistic upgrade?"
     },
     "tabHealth": {
       "tabButton": "Health",

@@ -231,7 +231,8 @@
       "pointsPopoverText": "Punteggi e percentuali spiegazione lunghissima",
       "popoverStatTitle": "Statistiche",
       "popoverStatDesc": "Qui vengono visualizzate le statistiche del personaggio.",
-      "popoverStatDescUser": "Qui vengono visualizzate le statistiche del personaggio. \n\n Per aumentare una statistica è necessario cliccare sul nome della rispettiva statistica sulla leggenda presenza in alto a sinistra in questa schermata, disponendo di almeno un punto statistica."
+      "popoverStatDescUser": "Qui vengono visualizzate le statistiche del personaggio. \n\n Per aumentare una statistica è necessario cliccare sul nome della rispettiva statistica sulla leggenda presenza in alto a sinistra in questa schermata, disponendo di almeno un punto statistica.",
+      "confirmUpdate": "Confermare upgrade statistica?"
     },
     "tabHealth": {
       "tabButton": "Salute",
