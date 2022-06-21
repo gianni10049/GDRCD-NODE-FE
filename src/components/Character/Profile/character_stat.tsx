@@ -48,7 +48,6 @@ export const CharStatTab = (props: characterStatData) => {
 		getCharacterPoints({
 			characterId: characterData.id,
 		}).then((resp) => {
-			console.log('resp', resp);
 			setPointsResponse(resp.getCharacterPoints.table);
 		});
 
@@ -157,7 +156,12 @@ export const CharStatTab = (props: characterStatData) => {
 					m={'0 auto'}>
 					{setStatResponse && (
 						<Box w={'full'} maxWidth={'500px'} m={'0 auto'}>
-							<StatChart stats={statResponse} />
+							<StatChart
+								stats={statResponse}
+								characterData={characterData}
+								characterPoints={pointsResponse}
+								refetchAll={refetchData}
+							/>
 						</Box>
 					)}
 				</Box>

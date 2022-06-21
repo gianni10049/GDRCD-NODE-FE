@@ -204,6 +204,7 @@
     "tabStats": {
       "tabButton": "Points",
       "statsTitle": "Statistics",
+      "statsPoints": "Statistics points available",
       "statTotal": "Total",
       "statBonus": "Bonus",
       "statBase": "Base",
@@ -225,8 +226,10 @@
       "price_calc_label": "Trade",
       "research_calc_label": "Research",
       "pointsPopoverTitle": "Points and percentage",
-      "pointsPopoverText": "Punteggi e percentuali spiegazione lunghissima"
-
+      "pointsPopoverText": "Punteggi e percentuali spiegazione lunghissima",
+      "popoverStatTitle": "Statistics",
+      "popoverStatDesc": "Character stats are displayed here.",
+      "popoverStatDescUser": "Character stats are displayed here. \n\n To increase a statistic it is necessary to click on the name of the respective statistic on the legend presence at the top left of this screen, having at least one statistic point."
     },
     "tabHealth": {
       "tabButton": "Health",

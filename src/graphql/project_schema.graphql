@@ -53,6 +53,7 @@ type CharacterConnectedMutation {
     updateAbility(abilityId: ID!, characterId: ID): genericResponse
     updatePostClose(post: ID!): ForumsPostDataResponse
     updatePostImportant(post: ID!): ForumsPostDataResponse
+    updateStat(character: ID!, stat: ID!): genericResponse
 }
 
 type ForumsPostDataResponse {

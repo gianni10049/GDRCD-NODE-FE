@@ -1,5 +1,6 @@
 import { gql } from '@apollo/client';
-import { GQLQuery } from './GQL';
+import { GQLmutation, GQLQuery } from './GQL';
+import { updateStatInput } from './Stats.model';
 
 const LIST_STATS = gql`
 	query listStats($token: String!) {
@@ -24,8 +25,23 @@ const LIST_STATS = gql`
 	}
 `;
 
+const UPDATE_STAT = gql`
+	mutation updateStat($token: String!, $character: ID!, $stat: ID!) {
+		characterConnectedMutation(token: $token) {
+			updateStat(character: $character, stat: $stat) {
+				response
+				responseStatus
+			}
+		}
+	}
+`;
+
 export const listStats = async () => {
 	return await GQLQuery(LIST_STATS);
+};
+
+export const updateStat = async (data: updateStatInput) => {
+	return await GQLmutation(UPDATE_STAT, data);
 };
 
 export { LIST_STATS };
