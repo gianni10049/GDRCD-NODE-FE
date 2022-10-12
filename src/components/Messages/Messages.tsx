@@ -388,7 +388,7 @@ export const Messages = () => {
 					))}
 				</Box>
 
-				{messages ? (
+				{selectedSender ? (
 					<Box h='full' w='full' ml={2}>
 						<Box
 							color={'green.light'}
