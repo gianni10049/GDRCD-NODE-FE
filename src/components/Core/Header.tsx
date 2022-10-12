@@ -42,7 +42,6 @@ import { SiGooglechat, SiRoamresearch } from 'react-icons/si';
 import { useState } from 'react';
 import React from 'react';
 import { useTranslation } from 'react-i18next';
-import { useDispatch } from 'react-redux';
 import { toggleCharacterModal } from '../../redux/characterModals';
 import { toggleBankModal } from '../../redux/bankModal';
 import { toggleMessagesModal } from '../../redux/messagesModal';
@@ -50,6 +49,8 @@ import { toggleRadioModal } from '../../redux/radioModal';
 import { toggleGroupsModal } from '../../redux/groupsModal';
 import { toggleForumModal } from '../../redux/forumModal';
 import { useNavigate } from 'react-router-dom';
+import { useSelector, useDispatch } from 'react-redux';
+import { chatStorageSelector } from '../../redux/ChatStorage';
 
 const NavLink = (props: navLinkInterface) => {
 	return (
@@ -167,6 +168,9 @@ const Header = () => {
 	const { t } = useTranslation();
 	const dispatch = useDispatch();
 	let navigate = useNavigate();
+	let chatStorage = useSelector(chatStorageSelector);
+
+	// TODO - Toggle tasto chat quando in chat
 
 	return (
 		<Box
@@ -243,17 +247,19 @@ const Header = () => {
 							}}
 						/>
 
-						<NavLink
-							icon={SiGooglechat}
-							hovered={hovered}
-							label={t('mainMenu.chat.button')}
-							current_url={subMenu === 'chat'}
-							onClick={() => {
-								subMenu === '' || subMenu !== 'chat'
-									? setSubMenu('chat')
-									: setSubMenu('');
-							}}
-						/>
+						{chatStorage.isInChat && (
+							<NavLink
+								icon={SiGooglechat}
+								hovered={hovered}
+								label={t('mainMenu.chat.button')}
+								current_url={subMenu === 'chat'}
+								onClick={() => {
+									subMenu === '' || subMenu !== 'chat'
+										? setSubMenu('chat')
+										: setSubMenu('');
+								}}
+							/>
+						)}
 
 						<NavLink
 							icon={HiUserGroup}
@@ -402,31 +408,33 @@ const Header = () => {
 						/>
 					</SubMenu>
 
-					<SubMenu
-						actualSubMenu={subMenu}
-						menuOpenedOn={'chat'}
-						title={t('mainMenu.chat.button')}>
-						<MenuVoice
-							icon={BsFillInfoCircleFill}
-							buttonText={t('mainMenu.chat.info')}
-						/>
-						<MenuVoice
-							icon={ImFlag}
-							buttonText={t('mainMenu.chat.factions')}
-						/>
-						<MenuVoice
-							icon={MdOutlinePeople}
-							buttonText={t('mainMenu.chat.png')}
-						/>
-						<MenuVoice
-							icon={SiRoamresearch}
-							buttonText={t('mainMenu.chat.hunt')}
-						/>
-						<MenuVoice
-							icon={RiStarFill}
-							buttonText={t('mainMenu.chat.events')}
-						/>
-					</SubMenu>
+					{chatStorage.isInChat && (
+						<SubMenu
+							actualSubMenu={subMenu}
+							menuOpenedOn={'chat'}
+							title={t('mainMenu.chat.button')}>
+							<MenuVoice
+								icon={BsFillInfoCircleFill}
+								buttonText={t('mainMenu.chat.info')}
+							/>
+							<MenuVoice
+								icon={ImFlag}
+								buttonText={t('mainMenu.chat.factions')}
+							/>
+							<MenuVoice
+								icon={MdOutlinePeople}
+								buttonText={t('mainMenu.chat.png')}
+							/>
+							<MenuVoice
+								icon={SiRoamresearch}
+								buttonText={t('mainMenu.chat.hunt')}
+							/>
+							<MenuVoice
+								icon={RiStarFill}
+								buttonText={t('mainMenu.chat.events')}
+							/>
+						</SubMenu>
+					)}
 
 					<SubMenu
 						actualSubMenu={subMenu}
