@@ -107,6 +107,7 @@ export const Messages = () => {
 	const sendNewMessageSubmit = async (data: any, actions: any) => {
 		sendMessage(data).then((resp) => {
 			setSelectedSender(data.recipient);
+			setSelectedType(data.type);
 			setMessages(resp.sendMessage);
 			actions.resetForm();
 		});
