@@ -288,11 +288,19 @@ const GET_FORUMS = gql`
 				name
 				description
 				logo
+				category
 				type
 				visible
 				total_pages
 				total_results
 				to_read
+				categoryData {
+					id
+					title
+					order
+					createdAt
+					updatedAt
+				}
 				createdAt
 				updatedAt
 				deletedAt

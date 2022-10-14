@@ -494,9 +494,9 @@ export const Forum = () => {
 				<>
 					<Box w={'75%'} m={'0 auto'} d={'flex'} flexWrap={'wrap'}>
 						{forumsList?.map((forum: forumsData, i: number) => {
-							if (last_type !== forum.type) {
+							if (last_type !== forum.categoryData.title) {
 								stamp = true;
-								last_type = forum.type;
+								last_type = forum.categoryData.title;
 							} else {
 								stamp = false;
 							}
@@ -512,7 +512,7 @@ export const Forum = () => {
 											fontSize={20}
 											borderColor={'green.light'}
 											borderWidth={'0 0 1px 0'}>
-											{forum.type}
+											{last_type}
 										</Box>
 									)}
 

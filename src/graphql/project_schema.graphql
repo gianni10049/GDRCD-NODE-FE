@@ -239,6 +239,15 @@ type descriptionsArray {
     it: String
 }
 
+type forumsCategoriesData {
+    createdAt: String
+    deletedAt: String
+    id: ID
+    order: Int
+    title: String
+    updatedAt: String
+}
+
 type forumsCommentsData {
     character: ID
     characterData: characterData
@@ -251,6 +260,8 @@ type forumsCommentsData {
 }
 
 type forumsData {
+    category: Int
+    categoryData: forumsCategoriesData
     createdAt: String
     deletedAt: String
     description: String

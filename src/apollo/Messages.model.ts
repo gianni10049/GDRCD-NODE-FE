@@ -50,12 +50,20 @@ export interface forumsData {
 	id: number;
 	name: string;
 	description: string;
+	category: number;
 	logo: string;
 	type: string;
 	visible: boolean;
 	total_results: number;
 	total_pages: number;
 	to_read: boolean;
+	categoryData: {
+		id: number;
+		title: string;
+		order: number;
+		createdAt: number;
+		updatedAt: number;
+	};
 	createdAt: number;
 	updatedAt: number;
 	deletedAt: number;
