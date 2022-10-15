@@ -1,9 +1,10 @@
 import { createApolloClient } from './Apollo';
 
-const client = createApolloClient(),
-	token = localStorage.getItem('token') ?? '';
+const client = createApolloClient();
 
 export const GQLQuery = async (body: any, vars?: object) => {
+	const token = localStorage.getItem('token') ?? '';
+
 	let query = await client
 		.query({
 			query: body,
@@ -27,6 +28,8 @@ export const GQLQuery = async (body: any, vars?: object) => {
 };
 
 export const GQLmutation = async (body: any, vars: object) => {
+	const token = localStorage.getItem('token') ?? '';
+
 	let mutation = await client
 		.mutate({
 			mutation: body,
