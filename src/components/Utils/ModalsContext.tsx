@@ -8,6 +8,7 @@ import { MessagesModal } from '../Modals/MessagesModal';
 import { RadioModal } from '../Modals/RadioModal';
 import { GroupsModal } from '../Modals/GroupsModal';
 import { ForumModal } from '../Modals/ForumModal';
+import { MarketModal } from '../Modals/MarketModal';
 
 export const ModalContextProvider = (data: ModalContextProviderData) => {
 	let { routeData } = data;
@@ -24,6 +25,7 @@ export const ModalContextProvider = (data: ModalContextProviderData) => {
 					<RadioModal />
 					<GroupsModal />
 					<ForumModal />
+					<MarketModal />
 				</>
 			)}
 		</>

@@ -103,6 +103,9 @@
       "manager": "Capo",
       "members": "Membri",
       "description": "Statuto"
+    },
+    "market": {
+      "title": "Mercato"
     }
   },
   "homepage": {

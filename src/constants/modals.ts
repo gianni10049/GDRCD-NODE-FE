@@ -7,6 +7,7 @@ import { Messages } from '../components/Messages/Messages';
 import { Radio } from '../components/Messages/Radio';
 import { Groups } from '../components/Groups/Groups';
 import { Forum } from '../components/Messages/Forum';
+import { Market } from '../components/Market/Market';
 
 const modalsContent: modalsContentData = {
 	Profile: CharacterProfile,
@@ -18,6 +19,7 @@ const modalsContent: modalsContentData = {
 	Radio: Radio,
 	Groups: Groups,
 	Forum: Forum,
+	Market: Market,
 };
 
 interface modalsContentData {

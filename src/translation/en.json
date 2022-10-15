@@ -101,6 +101,9 @@
       "manager": "Manager",
       "members": "Members",
       "description": "Description"
+    },
+    "market": {
+      "title": "Market"
     }
   },
   "homepage": {

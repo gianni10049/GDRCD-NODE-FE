@@ -8,6 +8,7 @@ import RadioModal from './radioModal';
 import GroupsModal from './groupsModal';
 import ForumModal from './forumModal';
 import ChatStorage from './ChatStorage';
+import MarketModal from './marketModal';
 
 export default configureStore({
 	reducer: {
@@ -20,5 +21,6 @@ export default configureStore({
 		groupsModal: GroupsModal,
 		forumModal: ForumModal,
 		chatStorage: ChatStorage,
+		marketModal: MarketModal,
 	},
 });

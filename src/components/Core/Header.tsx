@@ -51,6 +51,7 @@ import { toggleForumModal } from '../../redux/forumModal';
 import { useNavigate } from 'react-router-dom';
 import { useSelector, useDispatch } from 'react-redux';
 import { chatStorageSelector } from '../../redux/ChatStorage';
+import { toggleMarketModal } from '../../redux/marketModal';
 
 const NavLink = (props: navLinkInterface) => {
 	return (
@@ -371,6 +372,9 @@ const Header = () => {
 						<MenuVoice
 							icon={GiTakeMyMoney}
 							buttonText={t('mainMenu.market.buy')}
+							onClick={() => {
+								dispatch(toggleMarketModal());
+							}}
 						/>
 						<MenuVoice
 							icon={GiReceiveMoney}
