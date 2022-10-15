@@ -176,7 +176,7 @@ export const Forum = () => {
 	};
 
 	return (
-		<>
+		<Box p={2}>
 			<Box position={'absolute'} top={2} d={'flex'} h={'30px'}>
 				<Tooltip
 					hasArrow
@@ -1127,6 +1127,6 @@ export const Forum = () => {
 					</Formik>
 				</>
 			)}
-		</>
+		</Box>
 	);
 };

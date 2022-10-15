@@ -24,7 +24,7 @@ const CharacterProfile = (props: characterProfileData) => {
 	}, [charId]);
 
 	return (
-		<Box w={'full'} h={'full'} color={'white'}>
+		<Box w={'full'} h={'full'} color={'white'} p={2}>
 			{characterData && (
 				<Flex h={'full'} alignItems={'center'} justifyItems={'center'}>
 					{/*PIC*/}

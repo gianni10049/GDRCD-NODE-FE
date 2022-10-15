@@ -70,7 +70,7 @@ export const Bank = () => {
 	}, [refetchData]);
 
 	return (
-		<Box w={'full'} h={'full'} pos={'relative'} overflow={'hidden'}>
+		<Box w={'full'} h={'full'} pos={'relative'} overflow={'hidden'} p={2}>
 			{pointsResponse && charactersList && (
 				<>
 					{/*SALDO */}

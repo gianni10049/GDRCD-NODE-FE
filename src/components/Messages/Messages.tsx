@@ -145,7 +145,7 @@ export const Messages = () => {
 
 	return (
 		<>
-			<Box h={'full'} w={'full'} d={'flex'}>
+			<Box h={'full'} w={'full'} d={'flex'} p={2}>
 				<Box>
 					<Tooltip
 						hasArrow

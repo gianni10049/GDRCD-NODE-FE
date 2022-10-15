@@ -85,7 +85,7 @@ export default function ModalBase(props: ModalBaseData) {
 						X
 					</Box>
 				</Box>
-				<Box p={2} h={'calc(100% - 40px)'} overflow={'auto'}>
+				<Box h={'calc(100% - 40px)'} overflow={'auto'}>
 					{children}
 				</Box>
 			</Box>

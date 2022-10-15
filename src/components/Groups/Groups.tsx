@@ -45,7 +45,7 @@ export const Groups = () => {
 	};
 
 	return (
-		<Box h={'full'} w={'full'} d={'flex'}>
+		<Box h={'full'} w={'full'} d={'flex'} p={2}>
 			<Box
 				w={'250px'}
 				h={'full'}
