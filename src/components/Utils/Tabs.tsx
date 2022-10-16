@@ -12,7 +12,9 @@ export const SingleTab = (props: tabData) => {
 			fontSize={12}
 			fontWeight={'hairline'}
 			borderStyle={'solid'}
-			borderWidth={'0 0 1px 0'}
+			borderWidth={'1px'}
+			ml={-2}
+			bg={'green.backgroundDark'}
 			_last={{
 				borderRightWidth: '0 !important',
 			}}
