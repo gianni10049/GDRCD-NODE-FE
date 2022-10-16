@@ -103,7 +103,7 @@ export const MarketSell = () => {
 									onClick={() => {
 										buySellItem(item?.id);
 									}}>
-									{t('market.buy')}
+									{t('market.buttons.buy')}
 								</Button>
 							</Box>
 						</>

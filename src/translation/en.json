@@ -195,6 +195,8 @@
       "text": "This window shows the main information of the character.\n\n The information is divided into:\n - Data: The main data of the character.\n - Statistics: The various scores of the character.\n - Health: The current health situation and medical history of the character."
     },
     "tabData": {
+      "tabTitle": "Tab Data",
+      "tabContent": "Tab Data Content",
       "tabButton": "Data",
       "firstBoxTitle": "Main Data",
       "age": "Age",
@@ -202,6 +204,8 @@
       "surname": "Surname"
     },
     "tabStats": {
+      "tabTitle": "Tab Statistics",
+      "tabContent": "Tab Statistics Content",
       "tabButton": "Points",
       "statsTitle": "Statistics",
       "statsPoints": "Statistics points available",
@@ -233,6 +237,8 @@
       "confirmUpdate": "Confirm statistic upgrade?"
     },
     "tabHealth": {
+      "tabTitle": "Tab Health",
+      "tabContent": "Tab Health content",
       "tabButton": "Health",
       "noDamage": "No damages on this part",
       "watch": "See Details"
@@ -253,11 +259,22 @@
     "deleteConvOff": "Delete Off Conversation"
   },
   "market": {
-    "tabs": {
-      "buy": "Buy",
-      "sell": "Sell",
-      "exchange": "Exchange"
+    "buttons": {
+      "buy": "Buy"
+    },    "tabBuy": {
+      "tabButton": "Buy",
+      "tabTitle": "Tab Buy",
+      "tabContent": "Tab Buy Content"
     },
-    "buy": "Buy"
+    "tabSell": {
+      "tabButton": "Sell",
+      "tabTitle": "Tab Sell",
+      "tabContent": "Tab Sell Content"
+    },
+    "tabExchange": {
+      "tabButton": "Exchange",
+      "tabTitle": "Tab Exchange",
+      "tabContent": "Tab Exchange Content"
+    }
   }
 }

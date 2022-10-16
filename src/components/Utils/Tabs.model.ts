@@ -1,3 +1,5 @@
 export interface tabData {
-	title: String;
+	title: string;
+	tabTitle: string;
+	tabContent: string;
 }

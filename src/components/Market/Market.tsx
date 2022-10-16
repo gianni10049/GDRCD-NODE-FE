@@ -22,9 +22,21 @@ export const Market = () => {
 						d={'flex'}
 						alignItems={'bottom'}
 						mt={2}>
-						<SingleTab title={t('market.tabs.buy')} />
-						<SingleTab title={t('market.tabs.sell')} />
-						<SingleTab title={t('market.tabs.exchange')} />
+						<SingleTab
+							title={t('market.tabBuy.tabButton')}
+							tabTitle={t('market.tabBuy.tabTitle')}
+							tabContent={t('market.tabBuy.tabContent')}
+						/>
+						<SingleTab
+							title={t('market.tabSell.tabButton')}
+							tabTitle={t('market.tabSell.tabTitle')}
+							tabContent={t('market.tabSell.tabContent')}
+						/>
+						<SingleTab
+							title={t('market.tabExchange.tabButton')}
+							tabTitle={t('market.tabExchange.tabTitle')}
+							tabContent={t('market.tabExchange.tabContent')}
+						/>
 					</TabList>
 					<TabPanels h={'full'}>
 						<TabPanel h={'full'} overflow={'auto'}>

@@ -197,6 +197,8 @@
       "text": "Questa finestra mostra le informazioni principali del personaggio. \n\n Le informazioni sono divise in: \n - Data : I dati principali del personaggio. \n - Statistiche : I punteggi vari del personaggio. \n - Salute : La situazione attuale di salute e la storia clinica del personaggio."
     },
     "tabData": {
+      "tabTitle": "Tab Dati",
+      "tabContent": "Contenuto tab Dati",
       "tabButton": "Dati",
       "firstBoxTitle": "Dati Principali",
       "age": "Età",
@@ -204,6 +206,8 @@
       "surname": "Cognome"
     },
     "tabStats": {
+      "tabTitle": "Tab Stat",
+      "tabContent": "Contenuto tab Stat",
       "tabButton": "Punteggi",
       "statsTitle": "Statistiche",
       "statsPoints": "Punti statistica disponibili",
@@ -235,6 +239,8 @@
       "confirmUpdate": "Confermare upgrade statistica?"
     },
     "tabHealth": {
+      "tabTitle": "Tab Salute",
+      "tabContent": "Contenuto tab Salute",
       "tabButton": "Salute",
       "noDamage": "Nessun danno per questa parte del corpo",
       "watch": "Vedi Dettagli"
@@ -257,11 +263,23 @@
     "deleteConvOff": "Elimina conversazione off"
   },
   "market": {
-    "tabs": {
-      "buy": "Compra",
-      "sell": "Vendi",
-      "exchange": "Scambia"
+    "buttons": {
+      "buy": "Buy"
     },
-    "buy": "Compra"
+    "tabBuy": {
+      "tabButton": "Compra",
+      "tabTitle": "Tab Compra",
+      "tabContent": "Contenuto tab Compra"
+    },
+    "tabSell": {
+      "tabButton": "Vendi",
+      "tabTitle": "Tab Vendi",
+      "tabContent": "Contenuto tab Vendi"
+    },
+    "tabExchange": {
+      "tabButton": "Vendi",
+      "tabTitle": "Tab Vendi",
+      "tabContent": "Contenuto tab Vendi"
+    }
   }
 }

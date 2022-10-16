@@ -1,15 +1,15 @@
 import { tabData } from './Tabs.model';
 import { Tab, Flex } from '@chakra-ui/react';
 import React from 'react';
+import { PopoverInfo } from './Popover';
 
 export const SingleTab = (props: tabData) => {
-	let { title } = props;
+	let { title, tabTitle, tabContent } = props;
 
 	return (
 		<Tab
 			color={'white'}
 			fontFamily={'TecFont'}
-			fontSize={12}
 			fontWeight={'hairline'}
 			borderStyle={'solid'}
 			borderWidth={'1px'}
@@ -32,10 +32,7 @@ export const SingleTab = (props: tabData) => {
 			}}>
 			<Flex>
 				{title}
-				{/*
-				- TODO Cercare di risolvere questo warning del doppio button innestato
-				<PopoverInfo title={'Test modale'} content={'TEST TEST TEST'} />
-				*/}
+				<PopoverInfo title={tabTitle} content={tabContent} />
 			</Flex>
 		</Tab>
 	);

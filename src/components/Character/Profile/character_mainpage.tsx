@@ -14,9 +14,21 @@ const CharacterMainPage = (props: characterMainPageData) => {
 	return (
 		<Tabs isFitted isLazy variant='enclosed' defaultIndex={0}>
 			<TabList border={'none'} d={'flex'} alignItems={'bottom'} mt={2}>
-				<SingleTab title={t('charactersProfile.tabData.tabButton')} />
-				<SingleTab title={t('charactersProfile.tabStats.tabButton')} />
-				<SingleTab title={t('charactersProfile.tabHealth.tabButton')} />
+				<SingleTab
+					title={t('charactersProfile.tabData.tabButton')}
+					tabTitle={t('charactersProfile.tabData.tabTitle')}
+					tabContent={t('charactersProfile.tabData.tabContent')}
+				/>
+				<SingleTab
+					title={t('charactersProfile.tabStats.tabButton')}
+					tabTitle={t('charactersProfile.tabData.tabTitle')}
+					tabContent={t('charactersProfile.tabData.tabContent')}
+				/>
+				<SingleTab
+					title={t('charactersProfile.tabHealth.tabButton')}
+					tabTitle={t('charactersProfile.tabData.tabTitle')}
+					tabContent={t('charactersProfile.tabData.tabContent')}
+				/>
 			</TabList>
 			<TabPanels>
 				<TabPanel>
