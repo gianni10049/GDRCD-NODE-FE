@@ -11,7 +11,6 @@ import {
 	FaBox,
 	FaEnvelopeOpenText,
 	FaEdit,
-	FaHandshake,
 	FaMap,
 	FaCampground,
 	FaClipboardList,
@@ -30,12 +29,7 @@ import {
 	MdEmojiPeople,
 	MdOutlinePeople,
 } from 'react-icons/md';
-import {
-	GiReceiveMoney,
-	GiTakeMyMoney,
-	GiWorld,
-	GiPathDistance,
-} from 'react-icons/gi';
+import { GiTakeMyMoney, GiWorld, GiPathDistance } from 'react-icons/gi';
 import { BsFillPinMapFill, BsFillInfoCircleFill } from 'react-icons/bs';
 import { BiCoinStack } from 'react-icons/bi';
 import { SiGooglechat, SiRoamresearch } from 'react-icons/si';
@@ -371,18 +365,10 @@ const Header = () => {
 						menuOpenedOn={'market'}>
 						<MenuVoice
 							icon={GiTakeMyMoney}
-							buttonText={t('mainMenu.market.buy')}
+							buttonText={t('mainMenu.market.button')}
 							onClick={() => {
 								dispatch(toggleMarketModal());
 							}}
-						/>
-						<MenuVoice
-							icon={GiReceiveMoney}
-							buttonText={t('mainMenu.market.sell')}
-						/>
-						<MenuVoice
-							icon={FaHandshake}
-							buttonText={t('mainMenu.market.exchange')}
 						/>
 					</SubMenu>
 

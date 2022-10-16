@@ -162,10 +162,7 @@
       "forum": "Forum"
     },
     "market": {
-      "button": "Markets",
-      "buy": "Buy",
-      "sell": "Sell",
-      "exchange": "Exchange"
+      "button": "Markets"
     },
     "camps": {
       "button": "Camps",

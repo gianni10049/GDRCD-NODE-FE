@@ -164,10 +164,7 @@
       "forum": "Forum"
     },
     "market": {
-      "button": "Mercati",
-      "buy": "Compra",
-      "sell": "Vendi",
-      "exchange": "Scambia"
+      "button": "Mercati"
     },
     "camps": {
       "button": "Accampamenti",
