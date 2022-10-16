@@ -65,11 +65,11 @@
     },
     "radio": {
       "title": "Radio",
-      "frequency" : "Tune",
-      "frequencyMinimumAlert" : "Minimum Tune: 1",
-      "frequencyMaxAlert" : "Maximum Tune: 999",
-      "tune" : "Tune",
-      "tunedOn" : "Tuned on:"
+      "frequency": "Tune",
+      "frequencyMinimumAlert": "Minimum Tune: 1",
+      "frequencyMaxAlert": "Maximum Tune: 999",
+      "tune": "Tune",
+      "tunedOn": "Tuned on:"
     },
     "forum": {
       "title": "Forum",
@@ -254,5 +254,13 @@
     "deleteConvConfirm": "Delete conversation?",
     "deleteConvOn": "Delete On Conversation",
     "deleteConvOff": "Delete Off Conversation"
+  },
+  "market": {
+    "tabs": {
+      "buy": "Buy",
+      "sell": "Sell",
+      "exchange": "Exchange"
+    },
+    "buy": "Buy"
   }
 }

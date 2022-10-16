@@ -258,5 +258,13 @@
     "deleteConvConfirm": "Vuoi davvero eliminare questa conversazione?",
     "deleteConvOn": "Elimina Conversazione on",
     "deleteConvOff": "Elimina conversazione off"
+  },
+  "market": {
+    "tabs": {
+      "buy": "Compra",
+      "sell": "Vendi",
+      "exchange": "Scambia"
+    },
+    "buy": "Compra"
   }
 }

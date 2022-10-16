@@ -17,7 +17,7 @@ export const CharDataInfo = (props: characterMainPageData) => {
 
 	return (
 		<Box w={'full'} h={'full'}>
-			<Box mb={4} w={'98%'}>
+			<Box mb={4} w={'98%'} h={'full'}>
 				<Box
 					textTransform={'uppercase'}
 					textAlign={'center'}

@@ -31,8 +31,11 @@ type CharacterConnected {
     getFrequencyMessages(frequency: Int!): getFrequencyMessagesResponse
     getGroup(id: ID!): groupData
     getGroups: [groupData]
+    getMarketBuyList: [marketData]
     getMessages(recipient: ID!, type: String!): [messagesData]
     getMessagesSenders: [messagesData]
+    getObjectData(id: ID!): objectsData
+    getObjectListData(id: ID!): objectsListData
     getPartsList(characterId: ID!): getPartsList
     getPost(page: Int!, post: ID!): ForumsPostDataResponse
     getPosts(forum: ID!, page: Int!): ForumsPostListResponse
@@ -44,6 +47,7 @@ type CharacterConnected {
 type CharacterConnectedMutation {
     deleteConv(sender: ID!, type: String!): genericResponse
     deleteMessage(message: ID!): [messagesData]
+    marketBuyItem(id: ID!): marketBuyItemResponse
     newComment(post: ID!, text: String!): ForumsPostDataResponse
     newPost(forum: ID!, text: String!, title: String!): ForumsPostListResponse
     sendFrequencyMessage(frequency: Int!, text: String!): [radioMessagesData]
@@ -436,6 +440,23 @@ type loginResponse {
     token: String
 }
 
+type marketBuyItemResponse {
+    list: [marketData]
+    response: Boolean
+    responseStatus: String
+}
+
+type marketData {
+    createdAt: String
+    deletedAt: String
+    id: ID
+    object: ID
+    objectData: objectsData
+    remained: Int
+    total: Int
+    updatedAt: String
+}
+
 type messagesData {
     createdAt: String
     deleteData: [messagesDeleteData]
@@ -469,6 +490,87 @@ type messagesReadData {
     id: ID
     message: ID
     updatedAt: String
+}
+
+type objectQualitiesData {
+    createdAt: String
+    deletedAt: String
+    description: String
+    id: ID
+    name: String
+    updatedAt: String
+}
+
+type objectStatusData {
+    createdAt: String
+    deletedAt: String
+    description: String
+    id: ID
+    name: String
+    updatedAt: String
+}
+
+type objectTypeData {
+    createdAt: String
+    deletedAt: String
+    description: String
+    id: ID
+    name: String
+    updatedAt: String
+}
+
+type objectsData {
+    charges: Int
+    concealable: Boolean
+    creatable: Boolean
+    createdAt: String
+    createdBy: Int
+    cumulative: Boolean
+    customizable: Boolean
+    deletedAt: String
+    description: String
+    droppable: Boolean
+    findable: Boolean
+    id: ID
+    img: String
+    marketable: Boolean
+    name: String
+    price: Int
+    quality: Int
+    qualityData: objectQualitiesData
+    sellable: Boolean
+    transportable: Boolean
+    type: Int
+    typeData: objectTypeData
+    updatedAt: String
+    usable: Boolean
+    wearable: Boolean
+}
+
+type objectsListData {
+    alias: String
+    charges: Int
+    comment: String
+    comment_master: String
+    createdAt: String
+    deletedAt: String
+    expiry: String
+    hidden: Boolean
+    id: ID
+    img: String
+    object: Int
+    objectData: objectsData
+    owner: Int
+    owner_type: Int
+    partData: partsData
+    quality: Int
+    qualityData: objectQualitiesData
+    status: Int
+    statusData: objectStatusData
+    updatedAt: String
+    usury: Int
+    worn: Boolean
+    worn_part: Int
 }
 
 type partsData {

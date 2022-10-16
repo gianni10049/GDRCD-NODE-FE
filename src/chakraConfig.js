@@ -33,6 +33,12 @@ const theme = extendTheme({
 		'red': {
 			opacity: 'rgba(143,59,59,0.5)',
 		},
+		market: {
+			perc75: 'rgba(46, 204, 113,0.6)',
+			perc50: 'rgba(241, 196, 15,0.6)',
+			perc25: 'rgba(243, 156, 18,0.6)',
+			perc0: 'rgba(229,7,24,0.8)',
+		},
 	},
 	textShadow: {
 		'light':
