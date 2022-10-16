@@ -31,7 +31,8 @@ type CharacterConnected {
     getFrequencyMessages(frequency: Int!): getFrequencyMessagesResponse
     getGroup(id: ID!): groupData
     getGroups: [groupData]
-    getMarketBuyList: [marketData]
+    getMarketBuyList: [marketBuyData]
+    getMarketSellList: [marketSellData]
     getMessages(recipient: ID!, type: String!): [messagesData]
     getMessagesSenders: [messagesData]
     getObjectData(id: ID!): objectsData
@@ -48,6 +49,7 @@ type CharacterConnectedMutation {
     deleteConv(sender: ID!, type: String!): genericResponse
     deleteMessage(message: ID!): [messagesData]
     marketBuyItem(id: ID!): marketBuyItemResponse
+    marketSellItem(id: ID!): marketSellItemResponse
     newComment(post: ID!, text: String!): ForumsPostDataResponse
     newPost(forum: ID!, text: String!, title: String!): ForumsPostListResponse
     sendFrequencyMessage(frequency: Int!, text: String!): [radioMessagesData]
@@ -440,13 +442,7 @@ type loginResponse {
     token: String
 }
 
-type marketBuyItemResponse {
-    list: [marketData]
-    response: Boolean
-    responseStatus: String
-}
-
-type marketData {
+type marketBuyData {
     createdAt: String
     deletedAt: String
     id: ID
@@ -455,6 +451,29 @@ type marketData {
     remained: Int
     total: Int
     updatedAt: String
+}
+
+type marketBuyItemResponse {
+    list: [marketBuyData]
+    response: Boolean
+    responseStatus: String
+}
+
+type marketSellData {
+    createdAt: String
+    deletedAt: String
+    id: ID
+    object: ID
+    objectListData: objectsListData
+    price: Int
+    selled_to: Int
+    updatedAt: String
+}
+
+type marketSellItemResponse {
+    list: [marketSellData]
+    response: Boolean
+    responseStatus: String
 }
 
 type messagesData {

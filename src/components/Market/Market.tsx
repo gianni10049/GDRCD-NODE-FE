@@ -3,6 +3,7 @@ import { TabList, TabPanel, TabPanels, Tabs, Box } from '@chakra-ui/react';
 import { useTranslation } from 'react-i18next';
 import { SingleTab } from '../Utils/Tabs';
 import { MarketBuy } from './MarketBuy';
+import { MarketSell } from './MarketSell';
 
 export const Market = () => {
 	const { t } = useTranslation();
@@ -29,7 +30,9 @@ export const Market = () => {
 						<TabPanel h={'full'} overflow={'auto'}>
 							<MarketBuy />
 						</TabPanel>
-						<TabPanel></TabPanel>
+						<TabPanel>
+							<MarketSell />
+						</TabPanel>
 						<TabPanel></TabPanel>
 					</TabPanels>
 				</Tabs>

@@ -1,13 +1,13 @@
 import React, { useEffect, useState } from 'react';
 import { useTranslation } from 'react-i18next';
 import { getMarketBuyList, marketBuyItem } from '../../apollo/Market';
-import { marketData } from '../../apollo/Market.model';
+import { marketBuyData } from '../../apollo/Market.model';
 import { Box, Image, Button, useToast } from '@chakra-ui/react';
 import { PopoverInfo } from '../Utils/Popover';
 
 export const MarketBuy = () => {
 	const { t } = useTranslation();
-	let [marketBuyList, setMarketBuyList] = useState<marketData[]>(null);
+	let [marketBuyList, setMarketBuyList] = useState<marketBuyData[]>(null);
 	const toast = useToast();
 
 	useEffect(() => {
@@ -40,7 +40,7 @@ export const MarketBuy = () => {
 				isClosable: true,
 			});
 
-			if (data.marketBuyItem.list) {
+			if (data.marketBuyItem.response) {
 				setMarketBuyList(data.marketBuyItem.list);
 			}
 		});
