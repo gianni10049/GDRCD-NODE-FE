@@ -23,7 +23,7 @@ import { ImProfile, ImFlag } from 'react-icons/im';
 import { CgArrowsExchangeAlt } from 'react-icons/cg';
 import { HiLogout, HiUserGroup } from 'react-icons/hi';
 import { RiStarFill } from 'react-icons/ri';
-import { GoRadioTower } from 'react-icons/go';
+import { FaRadio } from "react-icons/fa6";
 import {
 	MdOutlineAttachMoney,
 	MdEmojiPeople,
@@ -340,13 +340,15 @@ const Header = () => {
 							icon={FaEnvelopeOpenText}
 							buttonText={t('mainMenu.messages.personal')}
 							onClick={() => {
-								dispatch(toggleMessagesModal({}));
+								// @ts-ignore
+								dispatch(toggleMessagesModal());
 							}}
 						/>
 						<MenuVoice
-							icon={GoRadioTower}
+							icon={FaRadio}
 							buttonText={t('mainMenu.messages.radio')}
 							onClick={() => {
+								// @ts-ignore
 								dispatch(toggleRadioModal({}));
 							}}
 						/>
@@ -354,6 +356,7 @@ const Header = () => {
 							icon={FaEdit}
 							buttonText={t('mainMenu.messages.forum')}
 							onClick={() => {
+								// @ts-ignore
 								dispatch(toggleForumModal({}));
 							}}
 						/>
@@ -434,6 +437,7 @@ const Header = () => {
 							icon={AiOutlineUnorderedList}
 							buttonText={t('mainMenu.groups.list')}
 							onClick={() => {
+								// @ts-ignore
 								dispatch(toggleGroupsModal({}));
 							}}
 						/>

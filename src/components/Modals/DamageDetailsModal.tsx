@@ -17,6 +17,7 @@ export const DamageDetailsModal = () => {
 					title={damageDetailModals.title}
 					component={damageDetailModals.component}
 					options={damageDetailModals.options}
+					// @ts-ignore
 					dispatch={() => dispatch(toggleDamageDetailModal({}))}
 				/>
 			)}

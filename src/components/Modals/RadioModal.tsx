@@ -14,6 +14,7 @@ export const RadioModal = () => {
 					title={radioModal.title}
 					component={radioModal.component}
 					options={radioModal.options}
+					// @ts-ignore
 					dispatch={() => dispatch(toggleRadioModal({}))}
 				/>
 			)}

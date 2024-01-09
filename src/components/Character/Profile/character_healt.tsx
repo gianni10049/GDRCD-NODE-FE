@@ -295,10 +295,10 @@ export const CharHealthTab = (props: characterHealthData) => {
 													onClick={() => {
 														dispatch(
 															toggleDamageDetailModal(
+																//@ts-ignore
 																{
 																	options: {
-																		damageId:
-																			damage.id,
+																		damageId: damage.id,
 																	},
 																}
 															)

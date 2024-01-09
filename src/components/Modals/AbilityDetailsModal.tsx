@@ -17,6 +17,7 @@ export const AbilityDetailsModal = () => {
 					title={abilityDetailModals.title}
 					component={abilityDetailModals.component}
 					options={abilityDetailModals.options}
+					// @ts-ignore
 					dispatch={() => dispatch(toggleAbilityDetailModal({}))}
 				/>
 			)}

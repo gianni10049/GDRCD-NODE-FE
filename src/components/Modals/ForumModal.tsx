@@ -14,6 +14,7 @@ export const ForumModal = () => {
 					title={radioModal.title}
 					component={radioModal.component}
 					options={radioModal.options}
+					// @ts-ignore
 					dispatch={() => dispatch(toggleForumModal({}))}
 				/>
 			)}

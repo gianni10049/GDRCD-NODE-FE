@@ -17,6 +17,7 @@ export const MessagesModal = () => {
 					title={messagesModal.title}
 					component={messagesModal.component}
 					options={messagesModal.options}
+					// @ts-ignore
 					dispatch={() => dispatch(toggleMessagesModal({}))}
 				/>
 			)}

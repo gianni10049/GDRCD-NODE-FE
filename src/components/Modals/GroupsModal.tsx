@@ -17,6 +17,7 @@ export const GroupsModal = () => {
 					title={groupsModal.title}
 					component={groupsModal.component}
 					options={groupsModal.options}
+					// @ts-ignore
 					dispatch={() => dispatch(toggleGroupsModal({}))}
 				/>
 			)}

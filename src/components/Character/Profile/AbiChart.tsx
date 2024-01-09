@@ -116,6 +116,7 @@ export const AbiButton = (props: AbiButtonsData) => {
 				textAlign={'center'}
 				onClick={() => {
 					dispatch(
+						//@ts-ignore
 						toggleAbilityDetailModal({
 							options: {
 								abilityId: abilityId,
